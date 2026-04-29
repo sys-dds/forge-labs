@@ -1,0 +1,23 @@
+name: Pull Request Ready
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: read
+
+jobs:
+  ready:
+    name: Ready after delay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait before passing
+        run: sleep 10
+
+      - name: Mark pull request ready
+        run: echo "Pull request ready."
