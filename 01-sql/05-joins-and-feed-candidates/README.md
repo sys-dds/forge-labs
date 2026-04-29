@@ -1,50 +1,49 @@
-# Joins and Feed Candidates
+# 05 Joins and Feed Candidates
+
+## Scenario
+Ada opens her feed. SQL must decide which posts are eligible before any ranking layer scores them.
 
 ## What This Chapter Teaches
+This chapter teaches INNER JOIN for required follows, LEFT JOIN for optional metrics, NOT EXISTS anti-joins for exclusions, and row multiplication caused by multiple child tables. The goal is not to memorize syntax. The goal is to see how a backend idea becomes rows, predicates, constraints, and proof assertions.
 
-Joins combine facts, but candidate generation also needs anti-joins that exclude unsafe or muted rows.
+## Why This Matters In Real Backends
+Ranking blocked or muted content is already a backend bug. Candidate generation is the safety gate before scoring. Eligible rows first, scoring later. Joins are policy, not just data retrieval.
 
-## Real-World Backend Scenario
-
-A feed cannot be ranked until SQL gathers posts the viewer is allowed to see.
-
-## Why The Previous Chapter Matters
-
-Chapter 04 produced graph edges and visibility rules; this chapter joins them to posts and author cards.
-
-## Future Concept This Unlocks
-
-Candidate posts plus relationship metadata become raw input for metrics and ranking.
+## Named Dataset Story
+- ada follows ben, cy, and noor.
+- ada mutes cy and blocks noor.
+- diya is not followed.
+- ben posts 101 and 102.
+- cy post 201, noor post 301, diya post 401.
+- post 101 has two likes and three comments.
 
 ## Files To Read In Order
+1. `00-dataset.story.md` to understand why every named row exists.
+2. `00-concept.explainer.md` for the backend mental model.
+3. The numbered `.solution.sql` files in order; inspect the comments before running each query.
+4. `99-chapter-proof.tests.sql` to see which claims are enforced mechanically.
+5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md` after the correct version is clear.
+6. `98-extension-tasks.md` when you are ready to break and repair the lesson.
 
-1. `00-concept.explainer.md`: read the mental model before looking at SQL.
-2. `06-feed-candidates-from-following.solution.sql`: start here because it is the chapter's most important implementation file.
-3. The remaining numbered `.solution.sql` files: read them in numeric order and trace how each file adds one backend capability.
-4. `99-chapter-proof.tests.sql`: study the assertions and identify which predicate or constraint each one protects.
-5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md`: compare the wrong patterns to the implemented solution.
-6. `98-extension-tasks.md`: make one small change after the proof is green.
+## What To Inspect In Adminer Or DbGate
+Load the chapter with `./scripts/forge-load.sh 01-sql/05-joins-and-feed-candidates`. Start by opening the base tables and finding the named rows. Then open the views created by the solution files and compare them with the positive and negative cases in the dataset story. Do not begin with the final query; begin with the rows that make the query necessary.
 
-## What To Look For While Reading
+## What The Proof Tests Prove
+- Positive: feed candidates are Ben posts 101 and 102.
+- Positive: post 102 survives despite zero comments.
+- Positive: author profile fields are attached.
+- Negative/exclusion: cy is excluded by mute.
+- Negative/exclusion: noor is excluded by block.
+- Negative/exclusion: diya is excluded because Ada does not follow her.
+- Negative/exclusion: bad multiplication query inflates post 101.
 
-- INNER JOIN finds posts from followed authors.
-- LEFT JOIN keeps rows when optional metrics are absent.
-- Self joins compare rows in the same table.
-- Anti joins remove blocked or muted authors.
-- Metrics joins can multiply rows, so counts need isolated aggregation.
+## What To Deliberately Break
+- remove mute predicate. Rerun `./scripts/forge-test.sh 01-sql/05-joins-and-feed-candidates` and read the failure before restoring the predicate or constraint.
+- remove block predicate. Rerun `./scripts/forge-test.sh 01-sql/05-joins-and-feed-candidates` and read the failure before restoring the predicate or constraint.
+- join likes and comments directly and count rows. Rerun `./scripts/forge-test.sh 01-sql/05-joins-and-feed-candidates` and read the failure before restoring the predicate or constraint.
 
-## Run Command
+## Interview Explanation Target
+A senior checks candidate eligibility before debating ranking math. Be ready to explain the chapter in one minute using the named dataset, one positive case, one negative case, and the proof that catches the bug.
 
-```bash
-./scripts/forge-test.sh 01-sql/05-joins-and-feed-candidates
-```
-
-## Study-Mode Command
-
-```bash
-./scripts/forge-load.sh 01-sql/05-joins-and-feed-candidates
-```
-
-## Expected Proof Behavior
-
-The proof should pass as written. If you remove the chapter's key constraint, visibility predicate, ordering key, or exclusion rule, at least one assertion should fail.
+## What This Unlocks Next
+This unlocks aggregation and metrics in chapter 06. The next chapter should feel less like a new topic and more like the natural consequence of the rows and rules you just proved.

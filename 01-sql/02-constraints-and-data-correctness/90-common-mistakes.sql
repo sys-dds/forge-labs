@@ -1,11 +1,18 @@
--- Mistake 1: app-only duplicate follow check.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Constraints and Data Correctness: intentionally wrong patterns for study.
+-- These statements are illustrative and are not run by the proof harness.
+-- Read them after the working solution so the failure mode is easy to name.
 
--- Mistake 2: no self-follow CHECK.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 1: app-only duplicate follow check
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
 
--- Mistake 3: nullable required handle or email.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 2: no self-follow CHECK
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
 
--- Mistake 4: missing FK on relationship table.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 3: nullable required facts
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
+
+-- Mistake 4: missing foreign key on follows
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
+
+-- Mistake 5: unique handle enforced only in code
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.

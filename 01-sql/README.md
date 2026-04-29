@@ -22,11 +22,14 @@ This path teaches SQL as backend behavior: modeling users and profiles, protecti
 ```bash
 ./scripts/forge-up.sh sql
 ./scripts/forge-list.sh
+./scripts/forge-inspect.sh 01-sql/04-followers-and-social-graph
 ./scripts/forge-test.sh 01-sql/10-matching-sql-swipes-and-mutual-matches
 ./scripts/forge-load.sh 01-sql/04-followers-and-social-graph
 ./scripts/forge-shell.sh postgres
 ./scripts/forge-down.sh
 ```
+
+Use `forge-inspect.sh` before study mode when you want the chapter path, reading order, execution order, proof file, dataset story file, and Adminer/DbGate connection notes without touching the database.
 
 ## Troubleshooting
 

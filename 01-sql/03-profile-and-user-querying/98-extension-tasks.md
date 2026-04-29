@@ -1,25 +1,25 @@
-# Profiles and User Querying Extension Tasks
+# Extension Tasks
 
-## Warm-Up Task
+## 1. Warm-Up Inspection Task
+Load `01-sql/03-profile-and-user-querying` and find the named rows: ada is public, has email, two posts, two followers, and follows one user; ben is public, has one post, one follower, and follows two users; cy is non-searchable so search must skip that row. Write down which rows are positive cases and which are exclusions before opening the proof file.
 
-Add a profile card for Grace and assert her counts.
+## 2. Add-A-Query Task
+Add a nearby view that answers one chapter-specific backend question using the authored dataset. For this chapter, start from: Ada profile card returns exact counts. The query should return exact handles, ids, or counts, not a broad dump.
 
-## Add-A-Query Task
+## 3. Add-A-Constraint Or Tighten-Invariant Task
+Tighten the invariant that protects: email is absent from public profile views. If the schema cannot enforce it directly, write the predicate that acts as the query-level invariant and document why it lives there.
 
-Add a search by bio term that still excludes private profiles.
+## 4. Break/Fix Task
+add email to public_profile_by_handle. Confirm the chapter proof fails, restore the correct SQL, and explain which assertion caught the change.
 
-## Add-A-Constraint Task
+## 5. Dataset Extension Task
+Add one new named row that behaves like the edge case in this chapter. Keep the row small, then update the dataset story so another reader knows why it exists.
 
-Expose email in the public view and add a proof that fails.
+## 6. Proof Extension Task
+Add one exact assertion for the new row. Avoid a proof that only checks count greater than zero; name the expected handle, id, or count.
 
-## Break/Fix Task
+## 7. Interview Explanation Task
+Explain this sentence in your own words: A senior separates storage facts from response facts and tests the boundary explicitly.
 
-Explain why API response shape should not mirror table shape.
-
-## Stretch Task
-
-Extend the capstone view with one new backend-friendly column and prove it.
-
-## Interview Explanation Task
-
-Explain the chapter concept out loud in under 60 seconds using the implemented SQL as your example.
+## 8. Stretch Task
+Create a safe and unsafe version of the same query. The unsafe version should fail for one of these reasons: email is absent from public profile views; cy is excluded from public search; missing handle returns zero rows.

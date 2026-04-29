@@ -25,13 +25,14 @@ Use study mode when you want to load one chapter and inspect tables/views manual
 ```bash
 ./scripts/forge-up.sh sql
 ./scripts/forge-load.sh 01-sql/04-followers-and-social-graph
+./scripts/forge-inspect.sh 01-sql/04-followers-and-social-graph
 ```
 
 Then open Adminer at http://localhost:8081 or DbGate at http://localhost:8082. Connect with database `forge_labs`, user `forge_labs`, and password `forge_labs`.
 
 ## A 30-Minute Chapter Pass
 
-Read the README, skim the concept explainer, run `./scripts/forge-test.sh <chapter>`, then inspect the main view in Adminer or DbGate. Finish by reading the common mistakes.
+Read the README, inspect `00-dataset.story.md`, run `./scripts/forge-inspect.sh <chapter>` to see the reading order, run `./scripts/forge-test.sh <chapter>`, then inspect the named rows and views in Adminer or DbGate. Finish by reading the common mistakes and one break/fix task.
 
 ## A 2-Hour Chapter Pass
 

@@ -1,36 +1,35 @@
-# Window Functions and Ranking Basics
+# Window Functions and Ranking Inputs Concept Explainer
 
 ## Plain-English Concept
+A window keeps every row visible while adding context from neighboring rows. In this chapter, SQL is the place where the backend writes down that idea as durable rows and executable rules.
 
-Window functions add per-row context without collapsing rows the way GROUP BY does.
+## The Real Backend Bug This Prevents
+latest post changing randomly on ties, ranks misunderstood, running totals bleeding across authors, and rank labels treated as final ranking. That bug is easy to miss in a happy-path demo because the first query returns something plausible. The authored dataset includes rows that make the broken version visibly wrong.
 
-## Real-World Backend Pattern
+## Dataset Walkthrough
+1. ada has three posts with a clear latest id.
+2. ben has two posts.
+3. cy has one post.
+4. two posts tie on engagement.
+5. two authors tie on follower count.
+6. engagement events are ordered per author.
 
-Ranking systems need ordered candidate rows and raw signals such as latest post, engagement rank, and running totals.
+The positive cases are: latest per author returns one exact post each; RANK leaves a gap after a tie; DENSE_RANK does not leave a gap; running total restarts per author. The negative cases are: missing tie-breaker is nondeterministic; running total without partition mixes authors; ranking input is not a final algorithm. Keep those lists beside you when reading the SQL; each important predicate should map to one of them.
 
-## Mental Model
+## Step-By-Step Query Reasoning
+Start with the table that owns the durable fact. Join only when a second fact is required. Add exclusions before presenting a row as eligible. Aggregate in isolation when counts can be duplicated. Order with enough columns to make the result deterministic. Finally, read the proof file and identify the assertion that would fail if the key predicate disappeared.
 
-Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
+## Senior Mental Model
+A senior uses window output as labeled evidence, not as a finished recommendation system. A beginner often asks, "does the query return rows?" A senior asks, "which rows are intentionally absent, and which invariant makes that absence reliable?"
 
-## Step-By-Step Example
+## Beginner Trap
+The trap in this chapter is believing the sample output is the lesson. The real lesson is why the row that did not appear was excluded, why the duplicate could not be inserted, or why the count did not inflate.
 
-1. ROW_NUMBER selects one latest row per author.
-2. RANK gives tied posts the same rank and leaves gaps.
-3. DENSE_RANK gives tied authors the same rank without gaps.
-4. Running totals accumulate metrics within each author partition.
-5. Feed ranking inputs expose columns, not final recommendations.
-
-## Common Interview Phrasing
-
-"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
-
-## What Can Go Wrong
-
-- ROW_NUMBER without deterministic tie-breaker
-- confusing RANK and DENSE_RANK
-- running total without partition
-- treating ranking input columns as a ranking algorithm
+## Interview Phrasing Unique To This Chapter
+"For window functions and ranking inputs, I would first name the durable facts in the dataset, then point to the exact constraint or predicate that protects the dangerous case. In this chapter the dangerous case is missing tie-breaker is nondeterministic, and the proof makes that visible."
 
 ## Next Unlock
+stable cursor pagination in chapter 08.
 
-Ranking-shaped SQL output prepares the later ranking/matching path without implementing a scoring algorithm yet.
+## Study Check
+Before moving on, point to one row that should appear and one row that should not appear. Then point to the exact SQL fragment responsible for each outcome. If you cannot do that yet, reload the chapter in study mode and inspect the base tables again. This check keeps the lesson dataset-first: the proof is not merely green, it is explainable from named rows.

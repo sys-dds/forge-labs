@@ -1,36 +1,32 @@
-# Comments and Recursive Queries
+# Comments and Recursive Queries Concept Explainer
 
 ## Plain-English Concept
+Base case chooses the root; recursive step finds children; path turns a tree into a stable list. In this chapter, SQL is the place where the backend writes down that idea as durable rows and executable rules.
 
-A recursive CTE starts with a base row, repeatedly finds children, and carries depth/path state forward.
+## The Real Backend Bug This Prevents
+comments from another post leaking into the thread, replies ordered randomly, invalid parent links, and recursion with no clear anchor. That bug is easy to miss in a happy-path demo because the first query returns something plausible. The authored dataset includes rows that make the broken version visibly wrong.
 
-## Real-World Backend Pattern
+## Dataset Walkthrough
+1. post 100 has c1 root, c2 and c3 replies, c4 under c2, c5 under c4.
+2. post 200 has c6 and c7 to prove scope.
+3. categories include Electronics, Computers, Laptops, Phones, Home.
 
-Comment threads and categories are parent-child rows that need recursive expansion into trees.
+The positive cases are: direct replies to c1 are c2 and c3; recursive thread order is c1,c2,c4,c5,c3; depths are exact; category tree uses same recursion pattern. The negative cases are: post 200 comments are excluded; invalid parent comment fails; unstable path ordering is visible. Keep those lists beside you when reading the SQL; each important predicate should map to one of them.
 
-## Mental Model
+## Step-By-Step Query Reasoning
+Start with the table that owns the durable fact. Join only when a second fact is required. Add exclusions before presenting a row as eligible. Aggregate in isolation when counts can be duplicated. Order with enough columns to make the result deterministic. Finally, read the proof file and identify the assertion that would fail if the key predicate disappeared.
 
-Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
+## Senior Mental Model
+A senior can explain recursive SQL as a loop with a base result and a child expansion. A beginner often asks, "does the query return rows?" A senior asks, "which rows are intentionally absent, and which invariant makes that absence reliable?"
 
-## Step-By-Step Example
+## Beginner Trap
+The trap in this chapter is believing the sample output is the lesson. The real lesson is why the row that did not appear was excluded, why the duplicate could not be inserted, or why the count did not inflate.
 
-1. Root comments have no parent.
-2. Direct replies are one level down.
-3. Recursive queries keep joining children to rows already found.
-4. Depth tells the UI how far to indent.
-5. Path gives deterministic tree order.
-
-## Common Interview Phrasing
-
-"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
-
-## What Can Go Wrong
-
-- no recursive base case
-- no parent foreign key
-- path not stable
-- recursive query includes wrong post or category scope
+## Interview Phrasing Unique To This Chapter
+"For comments and recursive queries, I would first name the durable facts in the dataset, then point to the exact constraint or predicate that protects the dangerous case. In this chapter the dangerous case is post 200 comments are excluded, and the proof makes that visible."
 
 ## Next Unlock
+matching candidate filtering in chapter 10.
 
-Recursive CTEs let later backend paths model comments, folders, categories, and org-like hierarchies.
+## Study Check
+Before moving on, point to one row that should appear and one row that should not appear. Then point to the exact SQL fragment responsible for each outcome. If you cannot do that yet, reload the chapter in study mode and inspect the base tables again. This check keeps the lesson dataset-first: the proof is not merely green, it is explainable from named rows.

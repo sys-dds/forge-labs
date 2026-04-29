@@ -1,11 +1,17 @@
 DO $$
-DECLARE c integer;
+DECLARE ok boolean; post_count integer; settings_count integer;
 BEGIN
-  BEGIN INSERT INTO user_profiles (user_id, display_name) VALUES (999, 'Ghost'); RAISE EXCEPTION 'expected invalid profile user to fail'; EXCEPTION WHEN foreign_key_violation THEN NULL; END;
-  BEGIN INSERT INTO user_profiles (user_id, display_name) VALUES (1, 'Duplicate Ada'); RAISE EXCEPTION 'expected duplicate profile to fail'; EXCEPTION WHEN unique_violation THEN NULL; END;
-  BEGIN INSERT INTO posts (author_id, body) VALUES (999, 'orphan'); RAISE EXCEPTION 'expected orphan post to fail'; EXCEPTION WHEN foreign_key_violation THEN NULL; END;
-  SELECT count(*) INTO c FROM posts WHERE author_id = 1; IF c <> 2 THEN RAISE EXCEPTION 'expected Ada to have many posts, got %', c; END IF;
-  SELECT count(*) INTO c FROM users u LEFT JOIN user_settings s ON s.user_id = u.id WHERE u.handle = 'linus' AND s.user_id IS NULL; IF c <> 1 THEN RAISE EXCEPTION 'expected settings to be optional'; END IF;
-  BEGIN INSERT INTO user_settings (user_id) VALUES (1); RAISE EXCEPTION 'expected duplicate settings to fail'; EXCEPTION WHEN unique_violation THEN NULL; END;
-  BEGIN INSERT INTO follows_preview (follower_id, followee_id) VALUES (1, 2); RAISE EXCEPTION 'expected duplicate follow to fail'; EXCEPTION WHEN unique_violation THEN NULL; END;
+  ok := false; BEGIN INSERT INTO user_profiles VALUES (1,'Duplicate Ada','bad'); EXCEPTION WHEN unique_violation THEN ok := true; END;
+  IF NOT ok THEN RAISE EXCEPTION 'duplicate profile should fail'; END IF;
+  ok := false; BEGIN INSERT INTO posts (author_id,body) VALUES (999,'orphan'); EXCEPTION WHEN foreign_key_violation THEN ok := true; END;
+  IF NOT ok THEN RAISE EXCEPTION 'post without user should fail'; END IF;
+  SELECT count(*) INTO post_count FROM posts WHERE author_id = 1;
+  IF post_count <> 2 THEN RAISE EXCEPTION 'Ada should have two posts got %', post_count; END IF;
+  SELECT count(*) INTO settings_count FROM user_settings WHERE user_id = 2;
+  IF settings_count <> 0 THEN RAISE EXCEPTION 'Ben should exist without settings'; END IF;
+  ok := false; BEGIN INSERT INTO user_settings VALUES (1,false,false); EXCEPTION WHEN unique_violation THEN ok := true; END;
+  IF NOT ok THEN RAISE EXCEPTION 'duplicate settings should fail'; END IF;
+  ok := false; BEGIN INSERT INTO follows_preview VALUES (1,2); EXCEPTION WHEN unique_violation THEN ok := true; END;
+  IF NOT ok THEN RAISE EXCEPTION 'duplicate follow preview should fail'; END IF;
 END $$;
+

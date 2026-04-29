@@ -1,14 +1,12 @@
--- Follow suggestions are second-degree graph traversal:
--- 1. Start with people Ada already follows.
--- 2. Look at who those people follow.
+-- Follow suggestions are second-degree traversal:
+-- 1. Start with people Ada follows: Ben and Cy.
+-- 2. Look at who those people follow: Diya and Noor.
 -- 3. Exclude Ada herself.
 -- 4. Exclude users Ada already follows.
--- 5. Exclude blocked users because suggestions are a safety-sensitive surface.
--- DISTINCT matters because Grace and Linus can both point at the same suggestion.
+-- 5. Exclude users Ada blocks.
+-- Noor is reachable through Cy, but the block predicate is the safety line.
 CREATE VIEW ada_follow_suggestions AS
-SELECT DISTINCT
-  suggested.id,
-  suggested.handle
+SELECT DISTINCT suggested.id, suggested.handle
 FROM follows AS ada_edges
 JOIN follows AS second_degree_edges
   ON second_degree_edges.follower_id = ada_edges.followee_id
@@ -17,15 +15,14 @@ JOIN users AS suggested
 WHERE ada_edges.follower_id = 1
   AND suggested.id <> 1
   AND NOT EXISTS (
-    SELECT 1
-    FROM follows AS already_followed
-    WHERE already_followed.follower_id = 1
-      AND already_followed.followee_id = suggested.id
+    SELECT 1 FROM follows AS already
+    WHERE already.follower_id = 1
+      AND already.followee_id = suggested.id
   )
   AND NOT EXISTS (
-    SELECT 1
-    FROM blocks AS blocked
+    SELECT 1 FROM blocks AS blocked
     WHERE blocked.blocker_id = 1
       AND blocked.blocked_id = suggested.id
   )
 ORDER BY suggested.handle;
+
