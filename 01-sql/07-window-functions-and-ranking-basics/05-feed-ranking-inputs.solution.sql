@@ -1,0 +1,2 @@
+-- Ranking inputs prepare columns. The algorithm itself comes later.
+CREATE VIEW feed_ranking_inputs AS SELECT p.id AS post_id, p.author_id, p.created_at, count(DISTINCT l.user_id) AS like_count, count(DISTINCT c.id) AS comment_count, EXISTS (SELECT 1 FROM follows f WHERE f.follower_id=1 AND f.followee_id=p.author_id) AS follower_relationship_exists FROM posts p LEFT JOIN likes l ON l.post_id=p.id LEFT JOIN comments c ON c.post_id=p.id GROUP BY p.id;

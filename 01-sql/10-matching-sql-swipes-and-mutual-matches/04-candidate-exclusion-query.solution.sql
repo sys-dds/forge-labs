@@ -1,0 +1,2 @@
+-- Candidate filtering excludes self, already-swiped users, blocked users, and inactive profiles.
+CREATE VIEW ada_match_candidates AS SELECT u.id, u.handle FROM users u JOIN matching_profiles p ON p.user_id=u.id WHERE u.id<>1 AND p.active=true AND NOT EXISTS (SELECT 1 FROM swipes s WHERE s.swiper_id=1 AND s.target_id=u.id) AND NOT EXISTS (SELECT 1 FROM blocks b WHERE b.blocker_id=1 AND b.blocked_id=u.id) ORDER BY u.id;
