@@ -1,4 +1,11 @@
--- Wrong pattern 1: relying on SELECT * instead of returning a shaped backend result.
--- Wrong pattern 2: forgetting the visibility or exclusion predicate that protects the viewer.
--- Wrong pattern 3: joining tables in a way that duplicates rows and inflates counts.
--- Wrong pattern 4: leaving correctness to application code when a database rule is available.
+-- Mistake 1: app-only duplicate follow check.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 2: no self-follow CHECK.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 3: nullable required handle or email.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 4: missing FK on relationship table.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.

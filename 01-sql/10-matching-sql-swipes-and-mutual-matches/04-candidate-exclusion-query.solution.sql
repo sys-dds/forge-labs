@@ -1,2 +1,25 @@
--- Candidate filtering excludes self, already-swiped users, blocked users, and inactive profiles.
-CREATE VIEW ada_match_candidates AS SELECT u.id, u.handle FROM users u JOIN matching_profiles p ON p.user_id=u.id WHERE u.id<>1 AND p.active=true AND NOT EXISTS (SELECT 1 FROM swipes s WHERE s.swiper_id=1 AND s.target_id=u.id) AND NOT EXISTS (SELECT 1 FROM blocks b WHERE b.blocker_id=1 AND b.blocked_id=u.id) ORDER BY u.id;
+-- Candidate filtering happens before ranking. The database removes users who
+-- should never reach a scoring algorithm: Ada herself, users Ada already
+-- swiped on, blocked users, and inactive profiles.
+CREATE VIEW ada_match_candidates AS
+SELECT
+  candidate.id,
+  candidate.handle
+FROM users AS candidate
+JOIN matching_profiles AS profile
+  ON profile.user_id = candidate.id
+WHERE candidate.id <> 1
+  AND profile.active = true
+  AND NOT EXISTS (
+    SELECT 1
+    FROM swipes AS prior_decision
+    WHERE prior_decision.swiper_id = 1
+      AND prior_decision.target_id = candidate.id
+  )
+  AND NOT EXISTS (
+    SELECT 1
+    FROM blocks AS blocked
+    WHERE blocked.blocker_id = 1
+      AND blocked.blocked_id = candidate.id
+  )
+ORDER BY candidate.id;

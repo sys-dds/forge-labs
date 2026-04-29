@@ -1,4 +1,11 @@
--- Wrong pattern 1: relying on SELECT * instead of returning a shaped backend result.
--- Wrong pattern 2: forgetting the visibility or exclusion predicate that protects the viewer.
--- Wrong pattern 3: joining tables in a way that duplicates rows and inflates counts.
--- Wrong pattern 4: leaving correctness to application code when a database rule is available.
+-- Mistake 1: profile table with separate id but no unique user_id.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 2: posts without author foreign key.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 3: follows without composite primary key.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 4: settings as ever-growing nullable columns on users.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.

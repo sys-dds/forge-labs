@@ -1,13 +1,15 @@
 # Workshop Format
 
-Each chapter is implementation-first and contains:
+A Forge Labs chapter is a course chapter, not a puzzle dump.
 
-- `README.md` for reading order and run command
-- `00-concept.explainer.md` for the mental model
-- numbered `.solution.sql` files with working SQL
-- `90-common-mistakes.sql` with wrong patterns
-- `91-common-mistakes.explainer.md` explaining why those mistakes hurt
-- `98-extension-tasks.md` for small edits
-- `99-chapter-proof.tests.sql` with executable assertions
+Each real chapter has a README, a concept explainer, numbered solution SQL, chapter-specific common mistakes, chapter-specific extension tasks, and a proof test. The solution files are meant to be read before you experiment.
 
-The harness runs numbered solution files first, then the proof file. It ignores `_template`.
+## Modes
+
+- **Test mode**: `./scripts/forge-test.sh <chapter>` resets the database, loads solutions, and runs proof assertions.
+- **Study mode**: `./scripts/forge-load.sh <chapter>` resets the database, loads solutions, and leaves the data available for Adminer, DbGate, or psql inspection.
+- **Quality gate**: `./scripts/check-workshop-quality.sh` catches missing chapter files, too-few solution files, and repeated generic teaching text.
+
+## Proof Style
+
+Proof tests use SQL assertions. They should fail when an important predicate, constraint, or ordering rule is removed. A good proof checks both the row that should appear and the row that must not appear.

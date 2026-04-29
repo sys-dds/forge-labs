@@ -2,28 +2,35 @@
 
 ## Plain-English Concept
 
-Joins and Feed Candidates turns raw rows into dependable backend behavior that the application can trust.
+Joins combine facts, but candidate generation also needs anti-joins that exclude unsafe or muted rows.
 
 ## Real-World Backend Pattern
 
-This chapter teaches inner joins, left joins, self joins, anti joins, row multiplication, and feed candidate generation through the Forge Labs backend domain.
+A feed cannot be ranked until SQL gathers posts the viewer is allowed to see.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. INNER JOIN finds posts from followed authors.
+2. LEFT JOIN keeps rows when optional metrics are absent.
+3. Self joins compare rows in the same table.
+4. Anti joins remove blocked or muted authors.
+5. Metrics joins can multiply rows, so counts need isolated aggregation.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain joins and feed candidates by naming the backend behavior first, then the SQL shape that protects or returns it.
+- accidental inner join removing rows
+- row multiplication from likes/comments
+- feed candidates include blocked or muted users
+- ranking before candidate filtering
 
 ## Next Unlock
 
-feed candidates unlock ranking inputs
+Candidate posts plus relationship metadata become raw input for metrics and ranking.

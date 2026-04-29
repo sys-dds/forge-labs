@@ -2,28 +2,35 @@
 
 ## Plain-English Concept
 
-Constraints turn assumptions into enforced rules. They are the database version of never trusting every caller to behave perfectly.
+Constraints are the database final guard when application checks are late, missing, or racing.
 
 ## Real-World Backend Pattern
 
-A follow relationship is safe because the database has the final constraint, not because app code checked first.
+A follow endpoint can receive duplicate or self-follow requests, especially when clients retry or two requests race.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use constraints for invariants that must stay true under concurrent requests.
+1. NOT NULL marks facts the backend must always know.
+2. UNIQUE protects lookup identities such as handles.
+3. FOREIGN KEY keeps relationships attached to real users.
+4. CHECK rejects local nonsense such as self-follow.
+5. A composite primary key says the follow pair is the identity.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Do not rely only on service-layer checks for uniqueness, ownership, or relationship validity.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I use constraints as the final guard: NOT NULL for required facts, UNIQUE for identity, CHECK for local rules, FOREIGN KEY for valid references, and composite primary keys for relationship uniqueness.
+- app-only duplicate follow check
+- no self-follow CHECK
+- nullable required handle or email
+- missing FK on relationship table
 
 ## Next Unlock
 
-constraints unlock safe concurrent backend behavior later
+Safe follows become trustworthy input for profile counts, followers lists, and social graph traversal.

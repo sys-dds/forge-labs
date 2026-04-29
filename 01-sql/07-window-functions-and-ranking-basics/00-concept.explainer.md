@@ -2,28 +2,35 @@
 
 ## Plain-English Concept
 
-Window Functions and Ranking Basics turns raw rows into dependable backend behavior that the application can trust.
+Window functions add per-row context without collapsing rows the way GROUP BY does.
 
 ## Real-World Backend Pattern
 
-This chapter teaches ROW_NUMBER, RANK, DENSE_RANK, running totals, and raw ranking inputs through the Forge Labs backend domain.
+Ranking systems need ordered candidate rows and raw signals such as latest post, engagement rank, and running totals.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. ROW_NUMBER selects one latest row per author.
+2. RANK gives tied posts the same rank and leaves gaps.
+3. DENSE_RANK gives tied authors the same rank without gaps.
+4. Running totals accumulate metrics within each author partition.
+5. Feed ranking inputs expose columns, not final recommendations.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain window functions and ranking basics by naming the backend behavior first, then the SQL shape that protects or returns it.
+- ROW_NUMBER without deterministic tie-breaker
+- confusing RANK and DENSE_RANK
+- running total without partition
+- treating ranking input columns as a ranking algorithm
 
 ## Next Unlock
 
-window functions unlock ranking-shaped result sets
+Ranking-shaped SQL output prepares the later ranking/matching path without implementing a scoring algorithm yet.

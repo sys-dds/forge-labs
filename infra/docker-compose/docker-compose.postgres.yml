@@ -13,3 +13,30 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+
+  forge-labs-adminer:
+    image: adminer:4
+    container_name: forge-labs-adminer
+    depends_on:
+      forge-labs-postgres:
+        condition: service_healthy
+    ports:
+      - "8081:8080"
+
+  forge-labs-dbgate:
+    image: dbgate/dbgate:latest
+    container_name: forge-labs-dbgate
+    depends_on:
+      forge-labs-postgres:
+        condition: service_healthy
+    ports:
+      - "8082:3000"
+    environment:
+      CONNECTIONS: forge_labs
+      LABEL_forge_labs: Forge Labs PostgreSQL
+      SERVER_forge_labs: forge-labs-postgres
+      USER_forge_labs: forge_labs
+      PASSWORD_forge_labs: forge_labs
+      PORT_forge_labs: 5432
+      ENGINE_forge_labs: postgres@dbgate-plugin-postgres
+      DATABASE_forge_labs: forge_labs

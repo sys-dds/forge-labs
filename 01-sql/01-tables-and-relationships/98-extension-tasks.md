@@ -1,6 +1,25 @@
 # Tables and Relationships Extension Tasks
 
-- Read/change task: change one selected output column in a solution query and rerun the chapter proof.
-- Add-a-query task: add one nearby query that answers a real backend question.
-- Add-a-constraint task: add or tighten one relevant database rule where the schema owns correctness.
-- Break/fix task: deliberately remove one important predicate or constraint, confirm the proof fails, then restore it.
+## Warm-Up Task
+
+Add a query that returns users missing settings.
+
+## Add-A-Query Task
+
+Add a short display_name length check to profiles.
+
+## Add-A-Constraint Task
+
+Remove the profile primary key and prove duplicate profiles become possible.
+
+## Break/Fix Task
+
+Sketch which table would own a user avatar URL and explain why.
+
+## Stretch Task
+
+Extend the capstone view with one new backend-friendly column and prove it.
+
+## Interview Explanation Task
+
+Explain the chapter concept out loud in under 60 seconds using the implemented SQL as your example.

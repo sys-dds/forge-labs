@@ -1,4 +1,11 @@
--- Wrong pattern 1: relying on SELECT * instead of returning a shaped backend result.
--- Wrong pattern 2: forgetting the visibility or exclusion predicate that protects the viewer.
--- Wrong pattern 3: joining tables in a way that duplicates rows and inflates counts.
--- Wrong pattern 4: leaving correctness to application code when a database rule is available.
+-- Mistake 1: ordering only by created_at.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 2: offset for changing feeds.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 3: cursor without unique tie-breaker.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 4: using page number as cursor.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.

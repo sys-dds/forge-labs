@@ -2,28 +2,36 @@
 
 ## Plain-English Concept
 
-Followers and Social Graph turns raw rows into dependable backend behavior that the application can trust.
+A follow is a directed edge: follower_id points from the actor, followee_id points to the target.
 
 ## Real-World Backend Pattern
 
-This chapter teaches self-referencing many-to-many queries, mutual follows, suggestions, blocks, and mutes through the Forge Labs backend domain.
+The same directed follow edge answers followers, following, mutual follows, and second-degree suggestions.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. Followers of Ada are rows where Ada is followee_id.
+2. Following for Ada are rows where Ada is follower_id.
+3. Mutual follows require two opposite edges.
+4. Suggestions walk from Ada to people she follows, then to people they follow.
+5. Blocks remove unsafe users; mutes suppress feed candidates without deleting follows.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain followers and social graph by naming the backend behavior first, then the SQL shape that protects or returns it.
+- confusing follower and followee direction
+- missing self-follow guard
+- suggestions include already-followed users
+- treating block and mute as identical
+- missing block filter in suggestions
 
 ## Next Unlock
 
-graph queries unlock feed candidates and recommendations
+Graph traversal provides the viewer-specific author set used by feed candidate generation.
