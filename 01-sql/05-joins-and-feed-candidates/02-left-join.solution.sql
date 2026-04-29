@@ -1,2 +1,8 @@
--- LEFT JOIN preserves posts even when optional metadata, such as comments, is missing.
-CREATE VIEW left_join_comment_counts AS SELECT p.id, count(c.id) AS comment_count FROM posts p LEFT JOIN comments c ON c.post_id=p.id GROUP BY p.id ORDER BY p.id;
+-- LEFT JOIN keeps Ben post 102 even though it has zero comments.
+CREATE VIEW left_join_comment_counts AS
+SELECT p.id AS post_id, count(c.id) AS comment_count
+FROM posts AS p
+LEFT JOIN comments AS c ON c.post_id = p.id
+GROUP BY p.id
+ORDER BY p.id;
+

@@ -1,2 +1,11 @@
--- Author metrics collapse many posts into one backend summary per author.
-CREATE VIEW author_metrics AS SELECT u.handle, count(p.id) FILTER (WHERE p.hidden=false) AS visible_posts, coalesce(sum(e.like_count),0) AS likes FROM users u LEFT JOIN posts p ON p.author_id=u.id AND p.hidden=false LEFT JOIN post_engagement_counts e ON e.id=p.id GROUP BY u.handle;
+CREATE VIEW author_metrics AS
+SELECT u.handle,
+       count(DISTINCT p.id) FILTER (WHERE p.visible) AS visible_posts,
+       count(DISTINCT l.user_id) FILTER (WHERE p.visible) AS visible_likes,
+       count(DISTINCT c.id) FILTER (WHERE p.visible AND c.deleted = false) AS visible_comments
+FROM users u
+LEFT JOIN posts p ON p.author_id = u.id
+LEFT JOIN likes l ON l.post_id = p.id
+LEFT JOIN comments c ON c.post_id = p.id
+GROUP BY u.handle ORDER BY u.handle;
+

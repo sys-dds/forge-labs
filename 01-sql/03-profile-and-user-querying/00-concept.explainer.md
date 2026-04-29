@@ -1,35 +1,33 @@
-# Profiles and User Querying
+# Profile and User Querying Concept Explainer
 
 ## Plain-English Concept
+The query is a response contract. Select only public facts the caller may learn. In this chapter, SQL is the place where the backend writes down that idea as durable rows and executable rules.
 
-A backend query usually returns a deliberately shaped response, not table layout.
+## The Real Backend Bug This Prevents
+email leaks, inflated counts, private profiles in search, and APIs exposing every table change. That bug is easy to miss in a happy-path demo because the first query returns something plausible. The authored dataset includes rows that make the broken version visibly wrong.
 
-## Real-World Backend Pattern
+## Dataset Walkthrough
+1. ada is public, has email, two posts, two followers, and follows one user.
+2. ben is public, has one post, one follower, and follows two users.
+3. cy is non-searchable so search must skip that row.
+4. diya is public with no posts so empty activity still renders.
 
-A profile page should return a public card, not the raw account table with private fields.
+The positive cases are: Ada profile card returns exact counts; Diya can appear with zero post count; search returns only public matching handles. The negative cases are: email is absent from public profile views; cy is excluded from public search; missing handle returns zero rows. Keep those lists beside you when reading the SQL; each important predicate should map to one of them.
 
-## Mental Model
+## Step-By-Step Query Reasoning
+Start with the table that owns the durable fact. Join only when a second fact is required. Add exclusions before presenting a row as eligible. Aggregate in isolation when counts can be duplicated. Order with enough columns to make the result deterministic. Finally, read the proof file and identify the assertion that would fail if the key predicate disappeared.
 
-Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
+## Senior Mental Model
+A senior separates storage facts from response facts and tests the boundary explicitly. A beginner often asks, "does the query return rows?" A senior asks, "which rows are intentionally absent, and which invariant makes that absence reliable?"
 
-## Step-By-Step Example
+## Beginner Trap
+The trap in this chapter is believing the sample output is the lesson. The real lesson is why the row that did not appear was excluded, why the duplicate could not be inserted, or why the count did not inflate.
 
-1. Keep email in the account row and out of public views.
-2. Join user and profile only for fields the public API needs.
-3. Use independent count subqueries so post/follow metrics do not multiply each other.
-4. Search returns a small card shape, not every profile column.
-
-## Common Interview Phrasing
-
-"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
-
-## What Can Go Wrong
-
-- SELECT star leaking email
-- profile card counts inflated by joins
-- private profile returned by search
-- returning table shape as API shape
+## Interview Phrasing Unique To This Chapter
+"For profile and user querying, I would first name the durable facts in the dataset, then point to the exact constraint or predicate that protects the dangerous case. In this chapter the dangerous case is email is absent from public profile views, and the proof makes that visible."
 
 ## Next Unlock
+feed author cards and social graph views in chapter 04.
 
-Profile cards and counts become the display layer for followers, suggestions, and feeds.
+## Study Check
+Before moving on, point to one row that should appear and one row that should not appear. Then point to the exact SQL fragment responsible for each outcome. If you cannot do that yet, reload the chapter in study mode and inspect the base tables again. This check keeps the lesson dataset-first: the proof is not merely green, it is explainable from named rows.

@@ -1,36 +1,35 @@
-# Joins and Feed Candidates
+# Joins and Feed Candidates Concept Explainer
 
 ## Plain-English Concept
+Eligible rows first, scoring later. Joins are policy, not just data retrieval. In this chapter, SQL is the place where the backend writes down that idea as durable rows and executable rules.
 
-Joins combine facts, but candidate generation also needs anti-joins that exclude unsafe or muted rows.
+## The Real Backend Bug This Prevents
+blocked posts entering ranking, muted authors appearing, zero-comment posts disappearing, and engagement inflated by likes times comments. That bug is easy to miss in a happy-path demo because the first query returns something plausible. The authored dataset includes rows that make the broken version visibly wrong.
 
-## Real-World Backend Pattern
+## Dataset Walkthrough
+1. ada follows ben, cy, and noor.
+2. ada mutes cy and blocks noor.
+3. diya is not followed.
+4. ben posts 101 and 102.
+5. cy post 201, noor post 301, diya post 401.
+6. post 101 has two likes and three comments.
 
-A feed cannot be ranked until SQL gathers posts the viewer is allowed to see.
+The positive cases are: feed candidates are Ben posts 101 and 102; post 102 survives despite zero comments; author profile fields are attached. The negative cases are: cy is excluded by mute; noor is excluded by block; diya is excluded because Ada does not follow her; bad multiplication query inflates post 101. Keep those lists beside you when reading the SQL; each important predicate should map to one of them.
 
-## Mental Model
+## Step-By-Step Query Reasoning
+Start with the table that owns the durable fact. Join only when a second fact is required. Add exclusions before presenting a row as eligible. Aggregate in isolation when counts can be duplicated. Order with enough columns to make the result deterministic. Finally, read the proof file and identify the assertion that would fail if the key predicate disappeared.
 
-Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
+## Senior Mental Model
+A senior checks candidate eligibility before debating ranking math. A beginner often asks, "does the query return rows?" A senior asks, "which rows are intentionally absent, and which invariant makes that absence reliable?"
 
-## Step-By-Step Example
+## Beginner Trap
+The trap in this chapter is believing the sample output is the lesson. The real lesson is why the row that did not appear was excluded, why the duplicate could not be inserted, or why the count did not inflate.
 
-1. INNER JOIN finds posts from followed authors.
-2. LEFT JOIN keeps rows when optional metrics are absent.
-3. Self joins compare rows in the same table.
-4. Anti joins remove blocked or muted authors.
-5. Metrics joins can multiply rows, so counts need isolated aggregation.
-
-## Common Interview Phrasing
-
-"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
-
-## What Can Go Wrong
-
-- accidental inner join removing rows
-- row multiplication from likes/comments
-- feed candidates include blocked or muted users
-- ranking before candidate filtering
+## Interview Phrasing Unique To This Chapter
+"For joins and feed candidates, I would first name the durable facts in the dataset, then point to the exact constraint or predicate that protects the dangerous case. In this chapter the dangerous case is cy is excluded by mute, and the proof makes that visible."
 
 ## Next Unlock
+aggregation and metrics in chapter 06.
 
-Candidate posts plus relationship metadata become raw input for metrics and ranking.
+## Study Check
+Before moving on, point to one row that should appear and one row that should not appear. Then point to the exact SQL fragment responsible for each outcome. If you cannot do that yet, reload the chapter in study mode and inspect the base tables again. This check keeps the lesson dataset-first: the proof is not merely green, it is explainable from named rows.

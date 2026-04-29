@@ -1,11 +1,18 @@
--- Mistake 1: ROW_NUMBER without deterministic tie-breaker.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Window Functions and Ranking Inputs: intentionally wrong patterns for study.
+-- These statements are illustrative and are not run by the proof harness.
+-- Read them after the working solution so the failure mode is easy to name.
 
--- Mistake 2: confusing RANK and DENSE_RANK.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 1: ROW_NUMBER without deterministic tie-breaker
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
 
--- Mistake 3: running total without partition.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 2: confusing RANK and DENSE_RANK
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
 
--- Mistake 4: treating ranking input columns as a ranking algorithm.
--- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+-- Mistake 3: running total without PARTITION BY
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
+
+-- Mistake 4: treating rank label as the final algorithm
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.
+
+-- Mistake 5: filtering a window alias in the same query layer
+-- The authored dataset contains a row that would expose this bug during proof or manual inspection.

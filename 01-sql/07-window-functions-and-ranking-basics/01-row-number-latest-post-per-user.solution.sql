@@ -1,12 +1,20 @@
--- ROW_NUMBER chooses one row per partition, such as each author's latest post.
-CREATE TABLE users (id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY, handle text UNIQUE NOT NULL);
+CREATE TABLE users (id integer PRIMARY KEY, handle text UNIQUE NOT NULL);
 CREATE TABLE follows (follower_id integer REFERENCES users(id), followee_id integer REFERENCES users(id), PRIMARY KEY(follower_id,followee_id));
-CREATE TABLE posts (id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY, author_id integer REFERENCES users(id), body text, created_at timestamptz NOT NULL);
-CREATE TABLE likes (post_id integer REFERENCES posts(id), user_id integer REFERENCES users(id), PRIMARY KEY(post_id,user_id));
-CREATE TABLE comments (id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY, post_id integer REFERENCES posts(id));
-INSERT INTO users (handle) VALUES ('ada'),('grace'),('linus');
-INSERT INTO follows VALUES (1,2),(1,3),(2,3),(3,2);
-INSERT INTO posts (author_id,body,created_at) VALUES (2,'old grace','2026-01-01'),(2,'new grace','2026-01-03'),(3,'linus one','2026-01-02'),(3,'linus two','2026-01-04');
-INSERT INTO likes VALUES (1,1),(2,1),(2,3),(3,1),(3,2),(4,1),(4,2);
-INSERT INTO comments (post_id) VALUES (2),(2),(3),(4);
-CREATE VIEW latest_post_per_user AS SELECT * FROM (SELECT p.*, row_number() OVER (PARTITION BY author_id ORDER BY created_at DESC, id DESC) AS rn FROM posts p) ranked WHERE rn=1;
+CREATE TABLE posts (id integer PRIMARY KEY, author_id integer REFERENCES users(id), created_at timestamptz NOT NULL, body text NOT NULL);
+CREATE TABLE engagement_events (id integer PRIMARY KEY, post_id integer REFERENCES posts(id), event_type text NOT NULL CHECK(event_type IN ('like','comment')), created_at timestamptz NOT NULL);
+INSERT INTO users VALUES (1,'ada'),(2,'ben'),(3,'cy');
+INSERT INTO follows VALUES (2,1),(3,1),(1,2),(3,2);
+INSERT INTO posts VALUES
+  (101,1,'2026-01-01 10:00+00','Ada old'),(102,1,'2026-01-01 11:00+00','Ada middle'),(103,1,'2026-01-01 12:00+00','Ada latest'),
+  (201,2,'2026-01-01 10:30+00','Ben old'),(202,2,'2026-01-01 12:00+00','Ben latest tie time'),
+  (301,3,'2026-01-01 09:00+00','Cy only');
+INSERT INTO engagement_events VALUES
+  (1,101,'like','2026-01-01 10:01+00'),(2,103,'like','2026-01-01 12:01+00'),(3,103,'comment','2026-01-01 12:02+00'),
+  (4,201,'like','2026-01-01 10:31+00'),(5,202,'like','2026-01-01 12:01+00'),(6,202,'comment','2026-01-01 12:02+00'),(7,301,'like','2026-01-01 09:01+00');
+CREATE VIEW latest_post_per_user AS
+SELECT author_id, id AS post_id, handle
+FROM (
+  SELECT p.*, u.handle, row_number() OVER (PARTITION BY p.author_id ORDER BY p.created_at DESC, p.id DESC) AS rn
+  FROM posts p JOIN users u ON u.id = p.author_id
+) ranked WHERE rn = 1 ORDER BY author_id;
+

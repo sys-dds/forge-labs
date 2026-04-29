@@ -8,6 +8,7 @@ Each real chapter has a README, a concept explainer, numbered solution SQL, chap
 
 - **Test mode**: `./scripts/forge-test.sh <chapter>` resets the database, loads solutions, and runs proof assertions.
 - **Study mode**: `./scripts/forge-load.sh <chapter>` resets the database, loads solutions, and leaves the data available for Adminer, DbGate, or psql inspection.
+- **Inspect mode**: `./scripts/forge-inspect.sh <chapter>` prints reading order, solution execution order, proof file, dataset story file, and Adminer/DbGate connection notes without changing the database.
 - **Quality gate**: `./scripts/check-workshop-quality.sh` catches missing chapter files, too-few solution files, and repeated generic teaching text.
 
 ## Proof Style

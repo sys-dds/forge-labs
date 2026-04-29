@@ -1,22 +1,15 @@
 DO $$
-DECLARE
-  ids text;
-  c integer;
+DECLARE ids integer[]; ranks integer[]; dense integer[]; totals integer[]; cols integer;
 BEGIN
-  SELECT string_agg(id::text, ',' ORDER BY author_id) INTO ids FROM latest_post_per_user;
-  IF ids <> '2,4' THEN RAISE EXCEPTION 'latest post ids wrong: %', ids; END IF;
-
-  SELECT engagement_rank INTO c FROM ranked_posts WHERE id=2;
-  IF c <> 1 THEN RAISE EXCEPTION 'top post should rank 1, got %', c; END IF;
-  SELECT count(*) INTO c FROM ranked_posts WHERE id IN (3,4) AND engagement_rank=2;
-  IF c <> 2 THEN RAISE EXCEPTION 'rank tie behavior for posts 3 and 4 is wrong'; END IF;
-
-  SELECT count(*) INTO c FROM dense_ranked_authors WHERE handle IN ('grace','linus') AND follower_dense_rank=1;
-  IF c <> 2 THEN RAISE EXCEPTION 'dense rank tie behavior wrong'; END IF;
-
-  SELECT running_total INTO c FROM running_engagement_total WHERE id=2;
-  IF c <> 5 THEN RAISE EXCEPTION 'running total wrong, got %', c; END IF;
-
-  SELECT count(*) INTO c FROM information_schema.columns WHERE table_name='feed_ranking_inputs' AND column_name IN ('post_id','author_id','created_at','like_count','comment_count','follower_relationship_exists');
-  IF c <> 6 THEN RAISE EXCEPTION 'ranking input columns missing'; END IF;
+  SELECT array_agg(post_id ORDER BY author_id) INTO ids FROM latest_post_per_user;
+  IF ids <> ARRAY[103,202,301] THEN RAISE EXCEPTION 'latest posts expected 103,202,301 got %', ids; END IF;
+  SELECT array_agg(engagement_rank ORDER BY post_id) INTO ranks FROM ranked_posts WHERE post_id IN (103,202,101);
+  IF ranks <> ARRAY[3,1,1] THEN RAISE EXCEPTION 'RANK tie/gap expected post 101 rank 3, 103/202 rank 1 got %', ranks; END IF;
+  SELECT array_agg(follower_dense_rank ORDER BY handle) INTO dense FROM dense_ranked_authors;
+  IF dense <> ARRAY[1,1,2] THEN RAISE EXCEPTION 'dense ranks expected ada/ben 1 cy 2 got %', dense; END IF;
+  SELECT array_agg(running_total ORDER BY event_id) INTO totals FROM running_engagement_total WHERE author_id = 1;
+  IF totals <> ARRAY[1,2,3] THEN RAISE EXCEPTION 'Ada running totals expected 1,2,3 got %', totals; END IF;
+  SELECT count(*) INTO cols FROM information_schema.columns WHERE table_name='feed_ranking_inputs' AND column_name IN ('post_id','author_id','created_at','like_count','comment_count','follows_author','raw_score_input');
+  IF cols <> 7 THEN RAISE EXCEPTION 'ranking input query missing expected columns'; END IF;
 END $$;
+

@@ -1,50 +1,49 @@
-# Followers and Social Graph
+# 04 Followers and Social Graph
+
+## Scenario
+Ada opens People you may know. The graph can reach several users, but reachability is not eligibility.
 
 ## What This Chapter Teaches
+This chapter teaches directed edge lists, followers, following, mutual follows, second-degree suggestions, blocks, mutes, and visibility filtering. The goal is not to memorize syntax. The goal is to see how a backend idea becomes rows, predicates, constraints, and proof assertions.
 
-A follow is a directed edge: follower_id points from the actor, followee_id points to the target.
+## Why This Matters In Real Backends
+Most social graph bugs are direction bugs or missing exclusion predicates. follower_id is the actor/source; followee_id is the target. Every traversal must say which direction it walks.
 
-## Real-World Backend Scenario
-
-The same directed follow edge answers followers, following, mutual follows, and second-degree suggestions.
-
-## Why The Previous Chapter Matters
-
-Profile reads are useful, but social products become interesting when user-to-user edges are queried in both directions.
-
-## Future Concept This Unlocks
-
-Graph traversal provides the viewer-specific author set used by feed candidate generation.
+## Named Dataset Story
+- ada follows ben and cy.
+- ben follows ada and diya.
+- cy follows diya and noor.
+- diya and noor follow ada.
+- theo is disconnected.
+- ada blocks noor and mutes cy.
 
 ## Files To Read In Order
+1. `00-dataset.story.md` to understand why every named row exists.
+2. `00-concept.explainer.md` for the backend mental model.
+3. The numbered `.solution.sql` files in order; inspect the comments before running each query.
+4. `99-chapter-proof.tests.sql` to see which claims are enforced mechanically.
+5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md` after the correct version is clear.
+6. `98-extension-tasks.md` when you are ready to break and repair the lesson.
 
-1. `00-concept.explainer.md`: read the mental model before looking at SQL.
-2. `05-follow-suggestions-query.solution.sql`: start here because it is the chapter's most important implementation file.
-3. The remaining numbered `.solution.sql` files: read them in numeric order and trace how each file adds one backend capability.
-4. `99-chapter-proof.tests.sql`: study the assertions and identify which predicate or constraint each one protects.
-5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md`: compare the wrong patterns to the implemented solution.
-6. `98-extension-tasks.md`: make one small change after the proof is green.
+## What To Inspect In Adminer Or DbGate
+Load the chapter with `./scripts/forge-load.sh 01-sql/04-followers-and-social-graph`. Start by opening the base tables and finding the named rows. Then open the views created by the solution files and compare them with the positive and negative cases in the dataset story. Do not begin with the final query; begin with the rows that make the query necessary.
 
-## What To Look For While Reading
+## What The Proof Tests Prove
+- Positive: Ada following is ben and cy.
+- Positive: Ada followers are ben, diya, and noor.
+- Positive: Ada mutual follows are ben.
+- Positive: Ada suggestions are diya only.
+- Negative/exclusion: noor is reachable but blocked.
+- Negative/exclusion: cy remains followed but hidden from feed-style output.
+- Negative/exclusion: theo never appears accidentally.
 
-- Followers of Ada are rows where Ada is followee_id.
-- Following for Ada are rows where Ada is follower_id.
-- Mutual follows require two opposite edges.
-- Suggestions walk from Ada to people she follows, then to people they follow.
-- Blocks remove unsafe users; mutes suppress feed candidates without deleting follows.
+## What To Deliberately Break
+- reverse follower_id and followee_id in followers query. Rerun `./scripts/forge-test.sh 01-sql/04-followers-and-social-graph` and read the failure before restoring the predicate or constraint.
+- remove already-followed exclusion. Rerun `./scripts/forge-test.sh 01-sql/04-followers-and-social-graph` and read the failure before restoring the predicate or constraint.
+- remove blocked exclusion from suggestions. Rerun `./scripts/forge-test.sh 01-sql/04-followers-and-social-graph` and read the failure before restoring the predicate or constraint.
 
-## Run Command
+## Interview Explanation Target
+A senior reads a graph query by narrating each edge hop and each exclusion. Be ready to explain the chapter in one minute using the named dataset, one positive case, one negative case, and the proof that catches the bug.
 
-```bash
-./scripts/forge-test.sh 01-sql/04-followers-and-social-graph
-```
-
-## Study-Mode Command
-
-```bash
-./scripts/forge-load.sh 01-sql/04-followers-and-social-graph
-```
-
-## Expected Proof Behavior
-
-The proof should pass as written. If you remove the chapter's key constraint, visibility predicate, ordering key, or exclusion rule, at least one assertion should fail.
+## What This Unlocks Next
+This unlocks feed candidate generation in chapter 05. The next chapter should feel less like a new topic and more like the natural consequence of the rows and rules you just proved.

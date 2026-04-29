@@ -1,2 +1,6 @@
--- Running totals show how an author's engagement accumulates over time.
-CREATE VIEW running_engagement_total AS SELECT p.author_id, p.id, sum(e.engagement) OVER (PARTITION BY p.author_id ORDER BY p.created_at, p.id) AS running_total FROM posts p JOIN post_engagement e ON e.id=p.id;
+CREATE VIEW running_engagement_total AS
+SELECT p.author_id, e.id AS event_id, p.id AS post_id,
+       count(*) OVER (PARTITION BY p.author_id ORDER BY e.created_at, e.id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total
+FROM engagement_events e JOIN posts p ON p.id = e.post_id
+ORDER BY p.author_id, e.created_at, e.id;
+

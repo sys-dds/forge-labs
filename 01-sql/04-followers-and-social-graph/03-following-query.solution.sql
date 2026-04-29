@@ -1,2 +1,8 @@
--- Following for Ada are rows where Ada is the follower.
-CREATE VIEW ada_following AS SELECT u.handle FROM follows f JOIN users u ON u.id=f.followee_id WHERE f.follower_id=1 ORDER BY u.handle;
+-- Following walks the edge forwards: who did Ada choose as followee_id?
+CREATE VIEW ada_following AS
+SELECT u.id, u.handle
+FROM follows AS edge
+JOIN users AS u ON u.id = edge.followee_id
+WHERE edge.follower_id = 1
+ORDER BY u.handle;
+

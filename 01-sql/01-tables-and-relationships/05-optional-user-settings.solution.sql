@@ -1,4 +1,9 @@
--- Settings are optional: a user can exist before choosing preferences.
--- They are still one-to-one when present because user_id is the primary key.
-CREATE TABLE user_settings (user_id integer PRIMARY KEY REFERENCES users(id), email_notifications_enabled boolean NOT NULL DEFAULT true);
-INSERT INTO user_settings (user_id, email_notifications_enabled) VALUES (1,true),(2,false);
+-- Settings are optional one-to-one. Ada has settings; Ben intentionally does not,
+-- proving absence of settings is not absence of user identity.
+CREATE TABLE user_settings (
+  user_id integer PRIMARY KEY REFERENCES users(id),
+  email_notifications boolean NOT NULL DEFAULT true,
+  dark_mode boolean NOT NULL DEFAULT false
+);
+INSERT INTO user_settings VALUES (1,true,true);
+

@@ -1,4 +1,9 @@
--- A profile is one-to-one with a user because user_id is both the primary key
--- and a foreign key. That makes duplicate profile rows impossible.
-CREATE TABLE user_profiles (user_id integer PRIMARY KEY REFERENCES users(id), display_name text NOT NULL, bio text NOT NULL DEFAULT '');
-INSERT INTO user_profiles (user_id, display_name, bio) SELECT id, initcap(handle), 'Learning backend fundamentals' FROM users;
+-- A profile is true one-to-one: exactly one profile row can describe a user.
+CREATE TABLE user_profiles (
+  user_id integer PRIMARY KEY REFERENCES users(id),
+  display_name text NOT NULL,
+  bio text NOT NULL DEFAULT ''
+);
+INSERT INTO user_profiles (user_id, display_name, bio) VALUES
+  (1,'Ada','Models data carefully'),(2,'Ben','Reads query plans later'),(3,'Cy','Tests edge cases'),(4,'Diya','Keeps examples honest');
+
