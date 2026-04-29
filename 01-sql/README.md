@@ -31,6 +31,19 @@ This path teaches SQL as backend behavior: modeling users and profiles, protecti
 
 Use `forge-inspect.sh` before study mode when you want the chapter path, reading order, execution order, proof file, dataset story file, and Adminer/DbGate connection notes without touching the database.
 
+## Practice Packs
+
+Practice packs live in `01-sql/_practice/` and run independently from chapter folders. Use them when you want a scenario-sized backend task with exact expected rows and break/fix drills.
+
+```bash
+./scripts/forge-list-practice.sh
+./scripts/forge-inspect-practice.sh 01-sql/_practice/03-keyset-pagination-scroll
+./scripts/forge-load-practice.sh 01-sql/_practice/03-keyset-pagination-scroll
+./scripts/forge-test-practice.sh 01-sql/_practice/03-keyset-pagination-scroll
+```
+
+The first packs cover social graph suggestions, feed candidate filtering, keyset pagination, and matching candidate exclusions.
+
 ## Troubleshooting
 
 If a chapter fails, read the exception in `99-chapter-proof.tests.sql`. Proof failures are not noise: they usually identify a missing predicate, broken constraint, or inflated count. If Adminer or DbGate is not reachable, run `./scripts/forge-status.sh` and `./scripts/forge-logs.sh`.

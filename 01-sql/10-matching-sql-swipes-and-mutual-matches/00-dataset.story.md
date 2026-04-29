@@ -13,13 +13,13 @@ Ada opens matching candidates. SQL removes unsafe and impossible candidates befo
 - omar is active and unswiped but outside preference fit.
 
 ## Why Each Important Row Exists
-- Row group 1: ada is active age 30 in Glasgow with sql hiking coffee interests. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben is active, overlaps with Ada, and has mutual LIKE. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy is active but Ada passed Cy. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: diya is active but blocked by Ada. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: noor is inactive. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 6: maya is active, unswiped, Glasgow, and overlaps two interests. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 7: omar is active and unswiped but outside preference fit. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
+- Teaching row 1: ada is active age 30 in Glasgow with sql hiking coffee interests. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben is active, overlaps with Ada, and has mutual LIKE. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy is active but Ada passed Cy. It anchors a row that should appear in a correct result.
+- Teaching row 4: diya is active but blocked by Ada. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: noor is inactive. It anchors a row that should appear in a correct result.
+- Teaching row 6: maya is active, unswiped, Glasgow, and overlaps two interests. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 7: omar is active and unswiped but outside preference fit. It anchors a row that should appear in a correct result.
 
 ## Positive Cases
 - mutual match is Ada-Ben only.

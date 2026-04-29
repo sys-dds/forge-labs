@@ -1,0 +1,13 @@
+id=sql-practice-keyset-pagination-scroll
+title=Keyset Pagination Scroll Under New Inserts
+source_chapter=01-sql/08-pagination-and-cursors
+difficulty=foundation-plus
+concepts=keyset pagination, cursor shape, stable ordering, duplicate timestamps, offset drift
+dataset_entities=posts 101-108
+positive_cases=page one ids 107,106 and page two ids 105,104
+negative_cases=offset page two repeats 106 after a newer insert
+edge_cases=posts 105 and 104 share created_at and require id tie-breaker
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=30 minutes
+what_to_break=id tie-breaker, DESC cursor comparison, OFFSET after insert

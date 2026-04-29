@@ -23,6 +23,19 @@ Do one chapter vertically. The workshop is designed so each folder changes how y
 7. Break one proof intentionally, then repair it.
 8. Complete the stretch task and write a 60-second interview explanation.
 
+## Practice Pass
+
+Use this after the related chapter pass.
+
+1. Run `./scripts/forge-list-practice.sh`.
+2. Inspect one pack with `./scripts/forge-inspect-practice.sh <practice-pack>`.
+3. Read `00-scenario.md`, `06-expected-results.md`, and `07-break-fix-drills.md`.
+4. Load it with `./scripts/forge-load-practice.sh <practice-pack>`.
+5. Inspect the named rows and starter views in Adminer or DbGate.
+6. Run `./scripts/forge-test-practice.sh <practice-pack>`.
+7. Break one drill in `04-solution.sql`, rerun the proof, then restore it.
+8. Reset with `./scripts/forge-reset-practice.sh`.
+
 ## What To Watch For
 
 Look for the invariant the database protects, the rows a query is allowed to return, and the exclusion predicates that make a backend feature safe.

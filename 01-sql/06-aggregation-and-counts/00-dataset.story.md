@@ -12,12 +12,12 @@ A profile/feed service needs counts for cards and ranking inputs. The numbers be
 - Ben and Cy follow Ada.
 
 ## Why Each Important Row Exists
-- Row group 1: ada has two visible posts and one hidden post. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben has one visible post. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy has no posts. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: diya has one hidden-style post. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: Ada post A1 has two likes, two visible comments, and one deleted comment. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 6: Ben and Cy follow Ada. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada has two visible posts and one hidden post. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben has one visible post. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy has no posts. It anchors a row that should appear in a correct result.
+- Teaching row 4: diya has one hidden-style post. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: Ada post A1 has two likes, two visible comments, and one deleted comment. It anchors a row that should appear in a correct result.
+- Teaching row 6: Ben and Cy follow Ada. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - Ada visible post count is two.

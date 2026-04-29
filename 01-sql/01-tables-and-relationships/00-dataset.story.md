@@ -10,10 +10,10 @@ A tiny social product is being modeled from zero. Ada, Ben, Cy, and Diya are dur
 - diya has a profile and proves the model supports users before they post or receive settings.
 
 ## Why Each Important Row Exists
-- Row group 1: ada has a profile, optional settings, two posts, and preview follows to ben and cy. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben has a profile, one post, and intentionally no settings. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy has a profile and exists as a second follow target. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: diya has a profile and proves the model supports users before they post or receive settings. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada has a profile, optional settings, two posts, and preview follows to ben and cy. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben has a profile, one post, and intentionally no settings. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy has a profile and exists as a second follow target. It anchors a row that should appear in a correct result.
+- Teaching row 4: diya has a profile and proves the model supports users before they post or receive settings. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - Ada can own multiple posts without duplicating Ada herself.

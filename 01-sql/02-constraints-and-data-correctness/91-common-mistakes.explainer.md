@@ -2,11 +2,11 @@
 
 ## 1. app-only duplicate follow check
 
-- The mistake 1: app-only duplicate follow check.
-- Why it feels reasonable 1: in Constraints and Data Correctness, the happy path still returns something because Ada to Ben duplicate follow exists, but mistake 1 ignores the row that should constrain the answer.
-- The production bug it creates 1: Ada to Ben duplicate follow is mishandled in a way that a real endpoint would expose to a user or ranking job.
+- Mistake: app-only duplicate follow check.
+- Why it feels reasonable: in Constraints and Data Correctness, the happy path still returns something because Ada to Ben duplicate follow exists, but mistake 1 ignores the row that should constrain the answer.
+- The production bug it creates: Ada to Ben duplicate follow is mishandled in a way that a real endpoint would expose to a user or ranking job.
 - The exact dataset row/proof that exposes it 1: inspect Ada to Ben duplicate follow, remove the related guard, and rerun the proof until the failure names the wrong behavior.
-- How the correct solution avoids it 1: the SQL for mistake 1 keeps the row in the dataset and protects it with the chapter's specific guard rather than hiding the case.
+- How the correct solution avoids it: the SQL for mistake 1 keeps the row in the dataset and protects it with the chapter's specific guard rather than hiding the case.
 - How to explain it in an interview 1: say which named row is admitted, duplicated, or rejected incorrectly, then name the constraint or predicate that makes the authored version safe.
 
 ## 2. no self-follow CHECK

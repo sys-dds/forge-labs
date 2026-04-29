@@ -12,12 +12,12 @@ Ada opens her feed. SQL must decide which posts are eligible before any ranking 
 - post 101 has two likes and three comments.
 
 ## Why Each Important Row Exists
-- Row group 1: ada follows ben, cy, and noor. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ada mutes cy and blocks noor. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: diya is not followed. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: ben posts 101 and 102. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: cy post 201, noor post 301, diya post 401. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 6: post 101 has two likes and three comments. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada follows ben, cy, and noor. It anchors a row that should appear in a correct result.
+- Teaching row 2: ada mutes cy and blocks noor. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: diya is not followed. It anchors a row that should appear in a correct result.
+- Teaching row 4: ben posts 101 and 102. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: cy post 201, noor post 301, diya post 401. It anchors a row that should appear in a correct result.
+- Teaching row 6: post 101 has two likes and three comments. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - feed candidates are Ben posts 101 and 102.
