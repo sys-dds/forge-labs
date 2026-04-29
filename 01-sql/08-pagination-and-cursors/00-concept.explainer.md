@@ -2,28 +2,34 @@
 
 ## Plain-English Concept
 
-Pagination and Cursors turns raw rows into dependable backend behavior that the application can trust.
+A cursor is an anchor in an ordered result set; it should use enough columns to make the order unique.
 
 ## Real-World Backend Pattern
 
-This chapter teaches offset pagination, keyset pagination, stable ordering, and cursor-shaped feeds through the Forge Labs backend domain.
+Feeds and follower lists need stable next pages while new rows are inserted.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. Offset pagination counts positions and can drift.
+2. Keyset pagination asks for rows after the last seen key.
+3. created_at alone is not unique, so id is the tie-breaker.
+4. The cursor shape returns the keys needed for the next request.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain pagination and cursors by naming the backend behavior first, then the SQL shape that protects or returns it.
+- ordering only by created_at
+- offset for changing feeds
+- cursor without unique tie-breaker
+- using page number as cursor
 
 ## Next Unlock
 
-pagination unlocks production feed stability
+Stable keyset cursors make production feed scrolling possible.

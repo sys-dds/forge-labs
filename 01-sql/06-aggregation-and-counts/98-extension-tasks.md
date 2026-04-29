@@ -1,6 +1,25 @@
 # Aggregation and Counts Extension Tasks
 
-- Read/change task: change one selected output column in a solution query and rerun the chapter proof.
-- Add-a-query task: add one nearby query that answers a real backend question.
-- Add-a-constraint task: add or tighten one relevant database rule where the schema owns correctness.
-- Break/fix task: deliberately remove one important predicate or constraint, confirm the proof fails, then restore it.
+## Warm-Up Task
+
+Add average comments per visible post.
+
+## Add-A-Query Task
+
+Add an author metric that excludes hidden posts.
+
+## Add-A-Constraint Task
+
+Remove DISTINCT from engagement counts and watch counts inflate.
+
+## Break/Fix Task
+
+Explain HAVING vs WHERE using author metrics.
+
+## Stretch Task
+
+Extend the capstone view with one new backend-friendly column and prove it.
+
+## Interview Explanation Task
+
+Explain the chapter concept out loud in under 60 seconds using the implemented SQL as your example.

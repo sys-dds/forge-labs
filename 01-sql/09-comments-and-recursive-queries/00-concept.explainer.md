@@ -2,28 +2,35 @@
 
 ## Plain-English Concept
 
-Comments and Recursive Queries turns raw rows into dependable backend behavior that the application can trust.
+A recursive CTE starts with a base row, repeatedly finds children, and carries depth/path state forward.
 
 ## Real-World Backend Pattern
 
-This chapter teaches parent relationships, recursive CTEs, depth, paths, and tree ordering through the Forge Labs backend domain.
+Comment threads and categories are parent-child rows that need recursive expansion into trees.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. Root comments have no parent.
+2. Direct replies are one level down.
+3. Recursive queries keep joining children to rows already found.
+4. Depth tells the UI how far to indent.
+5. Path gives deterministic tree order.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain comments and recursive queries by naming the backend behavior first, then the SQL shape that protects or returns it.
+- no recursive base case
+- no parent foreign key
+- path not stable
+- recursive query includes wrong post or category scope
 
 ## Next Unlock
 
-recursive CTEs unlock comments and categories
+Recursive CTEs let later backend paths model comments, folders, categories, and org-like hierarchies.

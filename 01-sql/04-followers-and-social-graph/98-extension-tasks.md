@@ -1,6 +1,25 @@
 # Followers and Social Graph Extension Tasks
 
-- Read/change task: change one selected output column in a solution query and rerun the chapter proof.
-- Add-a-query task: add one nearby query that answers a real backend question.
-- Add-a-constraint task: add or tighten one relevant database rule where the schema owns correctness.
-- Break/fix task: deliberately remove one important predicate or constraint, confirm the proof fails, then restore it.
+## Warm-Up Task
+
+Add followers-I-do-not-follow-back for Ada.
+
+## Add-A-Query Task
+
+Add mutual follower count to suggestions.
+
+## Add-A-Constraint Task
+
+Remove the already-followed exclusion and watch the proof fail.
+
+## Break/Fix Task
+
+Add a block seed row and prove the blocked user disappears from suggestions.
+
+## Stretch Task
+
+Explain follower_id vs followee_id in 30 seconds.
+
+## Interview Explanation Task
+
+Explain the chapter concept out loud in under 60 seconds using the implemented SQL as your example.

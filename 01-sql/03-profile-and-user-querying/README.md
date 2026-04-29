@@ -1,36 +1,49 @@
-# 03 Profiles and User Querying
+# Profiles and User Querying
 
 ## What This Chapter Teaches
 
-public profile shapes, joins, search, and count subqueries.
+A backend query usually returns a deliberately shaped response, not table layout.
 
-## Why The Concept Matters In Real Backend Systems
+## Real-World Backend Scenario
 
-This chapter uses a realistic backend pattern so SQL is tied to product behavior rather than isolated syntax.
+A profile page should return a public card, not the raw account table with private fields.
 
-## Previous Chapter Knowledge It Uses
+## Why The Previous Chapter Matters
 
-It builds on the earlier ideas of tables, relationships, constraints, and shaped queries.
+Chapter 02 protected user/profile/follow facts so this chapter can safely shape them into read models.
 
-## Future Chapter It Unlocks
+## Future Concept This Unlocks
 
-profile queries unlock social graph screens and feed metadata.
+Profile cards and counts become the display layer for followers, suggestions, and feeds.
 
 ## Files To Read In Order
 
-1. `00-concept.explainer.md`
-2. the numbered `.solution.sql` files
-3. `99-chapter-proof.tests.sql`
-4. `90-common-mistakes.sql`
-5. `91-common-mistakes.explainer.md`
-6. `98-extension-tasks.md`
+1. `00-concept.explainer.md`: read the mental model before looking at SQL.
+2. `04-query-profile-with-counts.solution.sql`: start here because it is the chapter's most important implementation file.
+3. The remaining numbered `.solution.sql` files: read them in numeric order and trace how each file adds one backend capability.
+4. `99-chapter-proof.tests.sql`: study the assertions and identify which predicate or constraint each one protects.
+5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md`: compare the wrong patterns to the implemented solution.
+6. `98-extension-tasks.md`: make one small change after the proof is green.
 
-## Command To Run The Chapter
+## What To Look For While Reading
+
+- Keep email in the account row and out of public views.
+- Join user and profile only for fields the public API needs.
+- Use independent count subqueries so post/follow metrics do not multiply each other.
+- Search returns a small card shape, not every profile column.
+
+## Run Command
 
 ```bash
-./scripts/run-sql-chapter.sh 01-sql/03-profile-and-user-querying
+./scripts/forge-test.sh 01-sql/03-profile-and-user-querying
 ```
 
-## Expected Result
+## Study-Mode Command
 
-The command prints `PASS 01-sql/03-profile-and-user-querying`.
+```bash
+./scripts/forge-load.sh 01-sql/03-profile-and-user-querying
+```
+
+## Expected Proof Behavior
+
+The proof should pass as written. If you remove the chapter's key constraint, visibility predicate, ordering key, or exclusion rule, at least one assertion should fail.

@@ -2,28 +2,35 @@
 
 ## Plain-English Concept
 
-Aggregation and Counts turns raw rows into dependable backend behavior that the application can trust.
+Aggregation compresses many rows into one metric, but the WHERE/JOIN shape decides what gets counted.
 
 ## Real-World Backend Pattern
 
-This chapter teaches COUNT, SUM, AVG, GROUP BY, HAVING, and social metrics through the Forge Labs backend domain.
+Profile pages, feeds, and ranking inputs need counts that respect hidden posts and deleted comments.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. COUNT posts for profile summaries.
+2. Count followers by grouping on followee_id.
+3. Use DISTINCT when joining likes and comments together.
+4. Filter hidden/deleted rows before they become metrics.
+5. Use HAVING when the filter depends on an aggregate.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain aggregation and counts by naming the backend behavior first, then the SQL shape that protects or returns it.
+- counting hidden or deleted rows
+- COUNT(*) after joins inflating counts
+- using WHERE instead of HAVING for aggregate filters
+- missing DISTINCT when counting many-to-many activity
 
 ## Next Unlock
 
-metrics unlock ranking signals and profile summaries
+Counts and grouped metrics become ranking features in the next chapter.

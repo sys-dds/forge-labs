@@ -1,6 +1,25 @@
 # Pagination and Cursors Extension Tasks
 
-- Read/change task: change one selected output column in a solution query and rerun the chapter proof.
-- Add-a-query task: add one nearby query that answers a real backend question.
-- Add-a-constraint task: add or tighten one relevant database rule where the schema owns correctness.
-- Break/fix task: deliberately remove one important predicate or constraint, confirm the proof fails, then restore it.
+## Warm-Up Task
+
+Add a page size of three and compute the next cursor.
+
+## Add-A-Query Task
+
+Add a query that paginates oldest-first.
+
+## Add-A-Constraint Task
+
+Remove id from the ordering and prove tied timestamps become unstable.
+
+## Break/Fix Task
+
+Explain why page=2 is not a safe feed cursor.
+
+## Stretch Task
+
+Extend the capstone view with one new backend-friendly column and prove it.
+
+## Interview Explanation Task
+
+Explain the chapter concept out loud in under 60 seconds using the implemented SQL as your example.

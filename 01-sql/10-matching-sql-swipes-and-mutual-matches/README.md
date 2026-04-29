@@ -1,36 +1,50 @@
-# 10 Matching SQL Swipes and Mutual Matches
+# Matching SQL Swipes and Mutual Matches
 
 ## What This Chapter Teaches
 
-matching profiles, preferences, swipes, mutual likes, candidate exclusion, and fit queries.
+Swipes are directed actions. Matches and recommendations are derived from those actions plus exclusions.
 
-## Why The Concept Matters In Real Backend Systems
+## Real-World Backend Scenario
 
-This chapter uses a realistic backend pattern so SQL is tied to product behavior rather than isolated syntax.
+Matching begins with SQL exclusions and mutual LIKE detection before any recommendation algorithm exists.
 
-## Previous Chapter Knowledge It Uses
+## Why The Previous Chapter Matters
 
-It builds on the earlier ideas of tables, relationships, constraints, and shaped queries.
+Recursive queries finished the structural SQL path; matching reuses relationships, constraints, and candidate filtering.
 
-## Future Chapter It Unlocks
+## Future Concept This Unlocks
 
-swipes unlock matching candidates before ranking.
+Preference-fit candidates become the handoff to later matching/ranking algorithms.
 
 ## Files To Read In Order
 
-1. `00-concept.explainer.md`
-2. the numbered `.solution.sql` files
-3. `99-chapter-proof.tests.sql`
-4. `90-common-mistakes.sql`
-5. `91-common-mistakes.explainer.md`
-6. `98-extension-tasks.md`
+1. `00-concept.explainer.md`: read the mental model before looking at SQL.
+2. `05-basic-preference-fit-query.solution.sql`: start here because it is the chapter's most important implementation file.
+3. The remaining numbered `.solution.sql` files: read them in numeric order and trace how each file adds one backend capability.
+4. `99-chapter-proof.tests.sql`: study the assertions and identify which predicate or constraint each one protects.
+5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md`: compare the wrong patterns to the implemented solution.
+6. `98-extension-tasks.md`: make one small change after the proof is green.
 
-## Command To Run The Chapter
+## What To Look For While Reading
+
+- Profiles and preferences define who can be considered.
+- Swipes record one decision per target.
+- A mutual match is LIKE in both directions.
+- Candidate exclusion removes self, already-swiped, blocked, and inactive users.
+- Preference fit adds age, city, and shared-interest filters before ranking.
+
+## Run Command
 
 ```bash
-./scripts/run-sql-chapter.sh 01-sql/10-matching-sql-swipes-and-mutual-matches
+./scripts/forge-test.sh 01-sql/10-matching-sql-swipes-and-mutual-matches
 ```
 
-## Expected Result
+## Study-Mode Command
 
-The command prints `PASS 01-sql/10-matching-sql-swipes-and-mutual-matches`.
+```bash
+./scripts/forge-load.sh 01-sql/10-matching-sql-swipes-and-mutual-matches
+```
+
+## Expected Proof Behavior
+
+The proof should pass as written. If you remove the chapter's key constraint, visibility predicate, ordering key, or exclusion rule, at least one assertion should fail.

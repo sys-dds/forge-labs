@@ -1,4 +1,11 @@
--- Wrong pattern 1: relying on SELECT * instead of returning a shaped backend result.
--- Wrong pattern 2: forgetting the visibility or exclusion predicate that protects the viewer.
--- Wrong pattern 3: joining tables in a way that duplicates rows and inflates counts.
--- Wrong pattern 4: leaving correctness to application code when a database rule is available.
+-- Mistake 1: ROW_NUMBER without deterministic tie-breaker.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 2: confusing RANK and DENSE_RANK.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 3: running total without partition.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.
+
+-- Mistake 4: treating ranking input columns as a ranking algorithm.
+-- This is illustrative: compare it to the chapter solution before running any bad schema by hand.

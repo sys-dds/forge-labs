@@ -1,37 +1,33 @@
 # 01 SQL
 
-This path teaches SQL through backend-shaped examples: users, profiles, followers, feed candidates, counts, ranking inputs, cursors, comments, and matching.
+This path teaches SQL as backend behavior: modeling users and profiles, protecting relationships, reading public profile cards, traversing social graphs, preparing feed candidates, counting metrics, shaping ranking inputs, paginating stable feeds, reading trees, and filtering matching candidates.
 
 ## Chapter Map
 
-01 tables and relationships
-02 constraints and correctness
-03 profiles and user querying
-04 followers and social graph
-05 joins and feed candidates
-06 aggregation and counts
-07 window functions and ranking basics
-08 pagination and cursors
-09 comments and recursive queries
-10 matching SQL
-
-## Knowledge Unlock Chain
-
-Relationships unlock graph queries. Graph queries unlock feed candidates. Feed candidates unlock ranking. Pagination unlocks production feeds. Recursive queries unlock comments and categories. Swipes unlock matching candidates.
-
-## Recommended Reading Order
-
-Read each folder in order. Every chapter reuses the previous mental model and unlocks the next one.
+| Chapter | Main concept | Backend pattern | Unlocks next | Start here |
+| --- | --- | --- | --- | --- |
+| 01 | Tables and relationships | users, profiles, posts, settings, follow preview | graph-shaped data | `02-one-to-one-profile.solution.sql` |
+| 02 | Constraints and correctness | database as final guard for follows | safe relationship writes | `05-follow-table-correctness.solution.sql` |
+| 03 | Profiles and user querying | public profile card instead of table dump | social graph screens | `04-query-profile-with-counts.solution.sql` |
+| 04 | Followers and social graph | directed follows, mutuals, suggestions, blocks, mutes | feed candidates | `05-follow-suggestions-query.solution.sql` |
+| 05 | Joins and feed candidates | visible posts from followed authors | ranking inputs | `06-feed-candidates-from-following.solution.sql` |
+| 06 | Aggregation and counts | engagement and author metrics | score features | `03-count-likes-and-comments.solution.sql` |
+| 07 | Window functions | latest per author, ranks, running totals | ordered ranking input rows | `05-feed-ranking-inputs.solution.sql` |
+| 08 | Pagination and cursors | keyset pages with stable tie-breakers | production feed scrolling | `03-keyset-pagination.solution.sql` |
+| 09 | Recursive queries | comments and category trees | hierarchical reads | `03-recursive-thread-query.solution.sql` |
+| 10 | Matching SQL | swipes, mutual likes, exclusions, preference fit | matching recommendations | `05-basic-preference-fit-query.solution.sql` |
 
 ## Commands
 
 ```bash
-docker compose -f infra/docker-compose/docker-compose.postgres.yml up -d
-./scripts/run-all-sql-chapters.sh
-./scripts/run-sql-chapter.sh 01-sql/08-pagination-and-cursors
-docker compose -f infra/docker-compose/docker-compose.postgres.yml down -v
+./scripts/forge-up.sh sql
+./scripts/forge-list.sh
+./scripts/forge-test.sh 01-sql/10-matching-sql-swipes-and-mutual-matches
+./scripts/forge-load.sh 01-sql/04-followers-and-social-graph
+./scripts/forge-shell.sh postgres
+./scripts/forge-down.sh
 ```
 
 ## Troubleshooting
 
-If Docker is not running, start Docker first. If a chapter fails, read the exception from `99-chapter-proof.tests.sql`; proof failures are designed to point at the concept that broke.
+If a chapter fails, read the exception in `99-chapter-proof.tests.sql`. Proof failures are not noise: they usually identify a missing predicate, broken constraint, or inflated count. If Adminer or DbGate is not reachable, run `./scripts/forge-status.sh` and `./scripts/forge-logs.sh`.

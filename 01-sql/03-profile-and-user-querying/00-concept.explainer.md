@@ -2,28 +2,34 @@
 
 ## Plain-English Concept
 
-Profiles and User Querying turns raw rows into dependable backend behavior that the application can trust.
+A backend query usually returns a deliberately shaped response, not table layout.
 
 ## Real-World Backend Pattern
 
-This chapter teaches public profile shapes, joins, search, and count subqueries through the Forge Labs backend domain.
+A profile page should return a public card, not the raw account table with private fields.
 
 ## Mental Model
 
-Rows are backend facts. Tables store facts, constraints protect facts, relationships connect facts, and queries shape facts into the result or candidate set the application needs.
+Think in three layers: the fact stored in a row, the rule that keeps the fact safe, and the query that turns safe facts into a backend response or candidate set.
 
-## When To Use It
+## Step-By-Step Example
 
-Use it when SQL can protect or shape backend data closer to where the facts live.
+1. Keep email in the account row and out of public views.
+2. Join user and profile only for fields the public API needs.
+3. Use independent count subqueries so post/follow metrics do not multiply each other.
+4. Search returns a small card shape, not every profile column.
 
-## When Not To Use It
+## Common Interview Phrasing
 
-Avoid it when the query hides product rules or when a later chapter has not introduced the safer pattern yet.
+"I would model the durable facts first, put invariants in the database where races cannot bypass them, then shape the query so the application receives only the rows and columns it is allowed to use."
 
-## Interview Explanation
+## What Can Go Wrong
 
-I explain profiles and user querying by naming the backend behavior first, then the SQL shape that protects or returns it.
+- SELECT star leaking email
+- profile card counts inflated by joins
+- private profile returned by search
+- returning table shape as API shape
 
 ## Next Unlock
 
-profile queries unlock social graph screens and feed metadata
+Profile cards and counts become the display layer for followers, suggestions, and feeds.

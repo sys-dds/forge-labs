@@ -1,36 +1,50 @@
-# 05 Joins and Feed Candidates
+# Joins and Feed Candidates
 
 ## What This Chapter Teaches
 
-inner joins, left joins, self joins, anti joins, row multiplication, and feed candidate generation.
+Joins combine facts, but candidate generation also needs anti-joins that exclude unsafe or muted rows.
 
-## Why The Concept Matters In Real Backend Systems
+## Real-World Backend Scenario
 
-This chapter uses a realistic backend pattern so SQL is tied to product behavior rather than isolated syntax.
+A feed cannot be ranked until SQL gathers posts the viewer is allowed to see.
 
-## Previous Chapter Knowledge It Uses
+## Why The Previous Chapter Matters
 
-It builds on the earlier ideas of tables, relationships, constraints, and shaped queries.
+Chapter 04 produced graph edges and visibility rules; this chapter joins them to posts and author cards.
 
-## Future Chapter It Unlocks
+## Future Concept This Unlocks
 
-feed candidates unlock ranking inputs.
+Candidate posts plus relationship metadata become raw input for metrics and ranking.
 
 ## Files To Read In Order
 
-1. `00-concept.explainer.md`
-2. the numbered `.solution.sql` files
-3. `99-chapter-proof.tests.sql`
-4. `90-common-mistakes.sql`
-5. `91-common-mistakes.explainer.md`
-6. `98-extension-tasks.md`
+1. `00-concept.explainer.md`: read the mental model before looking at SQL.
+2. `06-feed-candidates-from-following.solution.sql`: start here because it is the chapter's most important implementation file.
+3. The remaining numbered `.solution.sql` files: read them in numeric order and trace how each file adds one backend capability.
+4. `99-chapter-proof.tests.sql`: study the assertions and identify which predicate or constraint each one protects.
+5. `90-common-mistakes.sql` and `91-common-mistakes.explainer.md`: compare the wrong patterns to the implemented solution.
+6. `98-extension-tasks.md`: make one small change after the proof is green.
 
-## Command To Run The Chapter
+## What To Look For While Reading
+
+- INNER JOIN finds posts from followed authors.
+- LEFT JOIN keeps rows when optional metrics are absent.
+- Self joins compare rows in the same table.
+- Anti joins remove blocked or muted authors.
+- Metrics joins can multiply rows, so counts need isolated aggregation.
+
+## Run Command
 
 ```bash
-./scripts/run-sql-chapter.sh 01-sql/05-joins-and-feed-candidates
+./scripts/forge-test.sh 01-sql/05-joins-and-feed-candidates
 ```
 
-## Expected Result
+## Study-Mode Command
 
-The command prints `PASS 01-sql/05-joins-and-feed-candidates`.
+```bash
+./scripts/forge-load.sh 01-sql/05-joins-and-feed-candidates
+```
+
+## Expected Proof Behavior
+
+The proof should pass as written. If you remove the chapter's key constraint, visibility predicate, ordering key, or exclusion rule, at least one assertion should fail.
