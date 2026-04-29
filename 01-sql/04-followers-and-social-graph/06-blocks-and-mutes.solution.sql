@@ -1,0 +1,2 @@
+-- Blocks remove unsafe users. Mutes suppress feed-style candidates without deleting the relationship.
+CREATE VIEW ada_feed_visible_following AS SELECT u.handle FROM follows f JOIN users u ON u.id=f.followee_id WHERE f.follower_id=1 AND NOT EXISTS (SELECT 1 FROM blocks b WHERE b.blocker_id=1 AND b.blocked_id=f.followee_id) AND NOT EXISTS (SELECT 1 FROM mutes m WHERE m.muter_id=1 AND m.muted_id=f.followee_id) ORDER BY u.handle;

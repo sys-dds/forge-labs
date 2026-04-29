@@ -1,0 +1,15 @@
+services:
+  forge-labs-postgres:
+    image: postgres:16
+    container_name: forge-labs-postgres
+    environment:
+      POSTGRES_DB: forge_labs
+      POSTGRES_USER: forge_labs
+      POSTGRES_PASSWORD: forge_labs
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forge_labs -d forge_labs"]
+      interval: 5s
+      timeout: 5s
+      retries: 20

@@ -1,0 +1,1 @@
+-- Mistake examples belong here. Keep them illustrative if they intentionally create bad schemas.

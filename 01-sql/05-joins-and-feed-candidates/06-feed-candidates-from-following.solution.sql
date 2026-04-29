@@ -1,0 +1,2 @@
+-- Candidate generation applies relationship and visibility rules before ranking exists.
+CREATE VIEW feed_candidates AS SELECT p.id AS post_id, p.body, author.handle, pr.display_name, true AS viewer_follows_author FROM posts p JOIN follows f ON f.followee_id=p.author_id AND f.follower_id=1 JOIN users author ON author.id=p.author_id JOIN profiles pr ON pr.user_id=author.id WHERE NOT EXISTS (SELECT 1 FROM blocks b WHERE b.blocker_id=1 AND b.blocked_id=p.author_id) AND NOT EXISTS (SELECT 1 FROM mutes m WHERE m.muter_id=1 AND m.muted_id=p.author_id) ORDER BY p.id;

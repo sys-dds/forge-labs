@@ -1,0 +1,2 @@
+-- Count subqueries keep each metric independent and avoid row multiplication.
+CREATE VIEW profile_card_with_counts AS SELECT u.handle, p.display_name, p.bio, (SELECT count(*) FROM posts WHERE author_id = u.id) AS post_count, (SELECT count(*) FROM follows WHERE followee_id = u.id) AS follower_count, (SELECT count(*) FROM follows WHERE follower_id = u.id) AS following_count FROM users u JOIN profiles p ON p.user_id = u.id WHERE u.handle = 'ada';
