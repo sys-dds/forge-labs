@@ -1,0 +1,55 @@
+{
+  "bad_feed": [
+    701,
+    101,
+    102,
+    103,
+    801
+  ],
+  "content": [
+    {
+      "id": 101,
+      "author": "ben",
+      "valid": true
+    },
+    {
+      "id": 102,
+      "author": "ben",
+      "valid": true,
+      "notification_key": "n1"
+    },
+    {
+      "id": 103,
+      "author": "ben",
+      "valid": true,
+      "notification_key": "n1"
+    },
+    {
+      "id": 501,
+      "author": "lina",
+      "valid": true
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "valid": true
+    },
+    {
+      "id": 701,
+      "author": "noor",
+      "blocked": true
+    },
+    {
+      "id": 801,
+      "author": "omar",
+      "unsafe": true,
+      "stale": true
+    },
+    {
+      "id": 901,
+      "author": "theo",
+      "exploration": true,
+      "valid": true
+    }
+  ]
+}

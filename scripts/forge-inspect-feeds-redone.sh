@@ -16,7 +16,11 @@ echo "Reading order:"
 for file in README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md; do
   echo "- $clinic/$file"
 done
-if [[ -s "$clinic/12-mutation-checks.md" ]]; then
+if [[ -s "$clinic/13-mutation-checks.md" ]]; then
+  for file in 10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md; do
+    echo "- $clinic/$file"
+  done
+elif [[ -s "$clinic/12-mutation-checks.md" ]]; then
   for file in 10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md; do
     echo "- $clinic/$file"
   done

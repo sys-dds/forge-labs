@@ -1,0 +1,87 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "ben",
+      "surface": [
+        "following",
+        "for_you"
+      ],
+      "safe": true,
+      "followed": true
+    },
+    {
+      "id": 501,
+      "author": "lina",
+      "surface": [
+        "for_you",
+        "creator_discovery"
+      ],
+      "safe": true,
+      "topic": "backend"
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "surface": [
+        "for_you"
+      ],
+      "safe": true,
+      "group": "Backend Club"
+    },
+    {
+      "id": 701,
+      "author": "noor",
+      "surface": [
+        "following",
+        "for_you"
+      ],
+      "blocked": true,
+      "safe": false
+    },
+    {
+      "id": 901,
+      "author": "theo",
+      "surface": [
+        "for_you",
+        "creator_discovery"
+      ],
+      "safe": true,
+      "exploration": true
+    },
+    {
+      "id": 1001,
+      "author": "omar",
+      "surface": [
+        "for_you"
+      ],
+      "unsafe": true,
+      "safe": false
+    },
+    {
+      "id": 1101,
+      "author": "ben",
+      "surface": [
+        "stories"
+      ],
+      "safe": true
+    },
+    {
+      "id": 1201,
+      "author": "lina",
+      "surface": [
+        "search"
+      ],
+      "safe": true,
+      "query_match": "backend"
+    },
+    {
+      "id": 1301,
+      "author": "maya",
+      "surface": [
+        "notification"
+      ],
+      "safe": true
+    }
+  ]
+}

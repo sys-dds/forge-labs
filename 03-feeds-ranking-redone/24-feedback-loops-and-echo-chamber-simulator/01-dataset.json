@@ -1,0 +1,52 @@
+{
+  "content": [
+    {
+      "id": 104,
+      "topic": "backend",
+      "quality": true,
+      "score": 60
+    },
+    {
+      "id": 201,
+      "topic": "backend",
+      "clickbait": true,
+      "score": 95
+    },
+    {
+      "id": 401,
+      "topic": "movies",
+      "completed": true,
+      "score": 45
+    },
+    {
+      "id": 402,
+      "topic": "movies",
+      "completed": true,
+      "score": 43
+    },
+    {
+      "id": 801,
+      "topic": "backend",
+      "unsafe": true,
+      "score": 99
+    },
+    {
+      "id": 901,
+      "topic": "exploration",
+      "exploration": true,
+      "score": 20
+    }
+  ],
+  "feedback": [
+    {
+      "topic": "backend",
+      "clicks": 5,
+      "completed": 2
+    },
+    {
+      "topic": "movies",
+      "clicks": 1,
+      "completed": 3
+    }
+  ]
+}

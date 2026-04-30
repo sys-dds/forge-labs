@@ -11,4 +11,4 @@ Feeds/Ranking clinics 01-10 were hardened before any 011-020 expansion. Banking 
 
 ## Product Surface Clinics
 
-FORGE-FEED-R2-011-020 stays on Feeds/Ranking Redone. A possible future FORGE-FEED-R2-021-030 may cover evaluation, experiments, incidents, and senior feed design. Do not move tracks without user approval.
+FORGE-FEED-R2-011-020 stays on Feeds/Ranking Redone and leads into the operating-layer clinics. FORGE-FEED-R2-021-030 now covers evaluation, experiments, incidents, debugging, feedback loops, and senior feed design. Possible future FORGE-FEED-R2-031-040 options include observability, fairness review, creator health, long-term satisfaction, and multi-surface replay. Do not move tracks without user approval.

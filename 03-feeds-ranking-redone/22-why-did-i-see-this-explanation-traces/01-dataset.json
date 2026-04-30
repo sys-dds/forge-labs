@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "ben",
+      "source": "following",
+      "affinity": 0.91,
+      "score": 91
+    },
+    {
+      "id": 501,
+      "author": "lina",
+      "source": "friend_liked_topic",
+      "friend": "diya",
+      "topic": "backend",
+      "score": 84
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "source": "group",
+      "group": "Backend Club",
+      "score": 79
+    },
+    {
+      "id": 701,
+      "author": "noor",
+      "source": "following",
+      "blocked": true,
+      "score": 99
+    },
+    {
+      "id": 801,
+      "author": "omar",
+      "source": "topic",
+      "unsafe": true,
+      "score": 95
+    },
+    {
+      "id": 901,
+      "author": "theo",
+      "source": "exploration",
+      "reserved_slot": true,
+      "score": 35
+    }
+  ]
+}

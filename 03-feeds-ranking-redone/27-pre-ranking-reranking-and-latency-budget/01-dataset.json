@@ -1,0 +1,61 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "safe": true,
+      "light": 90,
+      "heavy": 0.92,
+      "fresh": 4,
+      "author": "ben"
+    },
+    {
+      "id": 201,
+      "safe": true,
+      "light": 55,
+      "heavy": 0.4,
+      "fresh": 8,
+      "author": "ben"
+    },
+    {
+      "id": 301,
+      "safe": false,
+      "light": 99,
+      "heavy": 0.99,
+      "fresh": 1,
+      "author": "noor"
+    },
+    {
+      "id": 401,
+      "safe": true,
+      "light": 80,
+      "heavy": 0.75,
+      "fresh": 1,
+      "author": "maya"
+    },
+    {
+      "id": 501,
+      "safe": true,
+      "light": 83,
+      "heavy": 0.81,
+      "fresh": 3,
+      "author": "lina"
+    },
+    {
+      "id": 601,
+      "safe": true,
+      "light": 45,
+      "heavy": 0.9,
+      "fresh": 2,
+      "author": "omar"
+    },
+    {
+      "id": 801,
+      "safe": true,
+      "light": 35,
+      "heavy": 0.3,
+      "fresh": 2,
+      "author": "theo",
+      "exploration": true
+    }
+  ]
+}

@@ -25,4 +25,14 @@ cat <<'CLINICS'
 03-feeds-ranking-redone/18-creator-discovery-and-cold-start
 03-feeds-ranking-redone/19-safety-integrity-ranking
 03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
+03-feeds-ranking-redone/21-offline-replay-and-golden-feed-regression
+03-feeds-ranking-redone/22-why-did-i-see-this-explanation-traces
+03-feeds-ranking-redone/23-why-did-i-not-see-this-missing-item-debugger
+03-feeds-ranking-redone/24-feedback-loops-and-echo-chamber-simulator
+03-feeds-ranking-redone/25-ranking-metrics-for-beginners
+03-feeds-ranking-redone/26-ab-testing-and-experiment-guardrails
+03-feeds-ranking-redone/27-pre-ranking-reranking-and-latency-budget
+03-feeds-ranking-redone/28-freshness-stale-candidates-and-already-seen-filtering
+03-feeds-ranking-redone/29-feed-incident-clinic
+03-feeds-ranking-redone/30-senior-feed-system-design-capstone
 CLINICS

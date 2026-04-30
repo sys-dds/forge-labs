@@ -18,6 +18,7 @@ root_files=(
   03-feeds-ranking-redone/00-beginner-vocabulary.md
   03-feeds-ranking-redone/00-ranking-maths-for-beginners.md
   03-feeds-ranking-redone/00-debugging-feed-output.md
+  03-feeds-ranking-redone/00-feed-evaluation-for-beginners.md
 )
 
 shared_files=(
@@ -49,6 +50,16 @@ clinics=(
   03-feeds-ranking-redone/18-creator-discovery-and-cold-start
   03-feeds-ranking-redone/19-safety-integrity-ranking
   03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
+  03-feeds-ranking-redone/21-offline-replay-and-golden-feed-regression
+  03-feeds-ranking-redone/22-why-did-i-see-this-explanation-traces
+  03-feeds-ranking-redone/23-why-did-i-not-see-this-missing-item-debugger
+  03-feeds-ranking-redone/24-feedback-loops-and-echo-chamber-simulator
+  03-feeds-ranking-redone/25-ranking-metrics-for-beginners
+  03-feeds-ranking-redone/26-ab-testing-and-experiment-guardrails
+  03-feeds-ranking-redone/27-pre-ranking-reranking-and-latency-budget
+  03-feeds-ranking-redone/28-freshness-stale-candidates-and-already-seen-filtering
+  03-feeds-ranking-redone/29-feed-incident-clinic
+  03-feeds-ranking-redone/30-senior-feed-system-design-capstone
 )
 
 for file in "${root_files[@]}" "${shared_files[@]}"; do
@@ -60,7 +71,9 @@ for clinic in "${clinics[@]}"; do
   common=(README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md)
   for file in "${common[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
   clinic_name="$(basename "$clinic")"
-  if [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
+  if [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
+    extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
+  elif [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
     extra=(10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md)
   else
     extra=(10-mutation-checks.md)
@@ -77,7 +90,24 @@ for clinic in "${clinics[@]}"; do
     fail "$clinic evidence map has vague cells"
   fi
 
-  if [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
+  if [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
+    for heading in "What this clinic teaches" "Product surface and operating problem" "Named users/content/events and why each exists" "Broken operating/ranking behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'assert_equal\(result\.get\("(final_feed|actual_feed|golden_feed|winner|launch_decision|corrected_feed|following_feed|for_you_feed|stories_tray|search_results|notification_candidates|creator_discovery)' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks exact output assertion"
+    grep -Eq 'assert_rejected|missing_explanations|regression_report|guardrail_failures|root_causes|not in|excluded' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks rejected/missing/regressed assertion"
+    grep -q 'assert_debug_trace\|assert_trace_contains' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks debug trace assertion"
+    grep -q '| Mutation | Expected failing proof |' "$clinic/13-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/13-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
+    grep -q 'Review questions' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Review questions"
+    grep -q 'Telemetry' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Telemetry"
+    grep -q 'Do not over-engineer yet' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing restraint note"
+  elif [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
     for heading in "Product surface and user intent" "Beginner mental model"; do
       grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
     done
