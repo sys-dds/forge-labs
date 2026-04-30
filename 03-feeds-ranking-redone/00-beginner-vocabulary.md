@@ -1,176 +1,97 @@
 # Beginner Vocabulary
 
-## inventory
+## Inventory
 
-- Plain-English meaning: inventory is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its inventory value is inspected.
-- Mistake beginners make: treating inventory as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names inventory.
+Plain-English meaning: every item the feed could consider before filters or ranking.
 
-## candidate
+Tiny example from clinic 21: inventory contains 101, 501, 601, 701, 801, and 901.
 
-- Plain-English meaning: candidate is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its candidate value is inspected.
-- Mistake beginners make: treating candidate as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names candidate.
+Common beginner mistake: starting from the final feed and forgetting rejected rows.
 
-## candidate source
+How to debug it: print inventory IDs, then mark each item kept or rejected.
 
-- Plain-English meaning: candidate source is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its candidate source value is inspected.
-- Mistake beginners make: treating candidate source as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names candidate source.
+What a senior engineer asks next: which source failed to contribute candidates?
 
-## eligibility
+## Eligibility
 
-- Plain-English meaning: eligibility is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its eligibility value is inspected.
-- Mistake beginners make: treating eligibility as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names eligibility.
+Plain-English meaning: hard rules that decide whether an item is allowed at all.
 
-## feature
+Tiny example from clinic 21: 701 is rejected because the author is blocked and 801 is rejected because content is unsafe.
 
-- Plain-English meaning: feature is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its feature value is inspected.
-- Mistake beginners make: treating feature as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names feature.
+Common beginner mistake: downranking a row that should be removed.
 
-## score
+How to debug it: check rejection reasons before scores.
 
-- Plain-English meaning: score is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its score value is inspected.
-- Mistake beginners make: treating score as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names score.
+What a senior engineer asks next: is this enforced consistently across every surface?
 
-## ranker
+## Score
 
-- Plain-English meaning: ranker is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its ranker value is inspected.
-- Mistake beginners make: treating ranker as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names ranker.
+Plain-English meaning: a number used to order eligible candidates.
 
-## mixer
+Tiny example from clinic 23: 401 is eligible but below the score cutoff.
 
-- Plain-English meaning: mixer is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its mixer value is inspected.
-- Mistake beginners make: treating mixer as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names mixer.
+Common beginner mistake: using score to explain retrieval, block, freshness, or seen-state failures.
 
-## reranker
+How to debug it: ask whether the item reached scoring at all.
 
-- Plain-English meaning: reranker is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its reranker value is inspected.
-- Mistake beginners make: treating reranker as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names reranker.
+What a senior engineer asks next: which score component changed since the last replay?
 
-## boost
+## Diversity
 
-- Plain-English meaning: boost is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its boost value is inspected.
-- Mistake beginners make: treating boost as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names boost.
+Plain-English meaning: a rule that prevents one author, topic, or source from crowding out everything else.
 
-## penalty
+Tiny example from clinic 23: 501 is removed by the diversity cap after 101 already represents Ben.
 
-- Plain-English meaning: penalty is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its penalty value is inspected.
-- Mistake beginners make: treating penalty as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names penalty.
+Common beginner mistake: sorting by score and accepting repeated authors.
 
-## decay
+How to debug it: count authors in the selected feed.
 
-- Plain-English meaning: decay is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its decay value is inspected.
-- Mistake beginners make: treating decay as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names decay.
+What a senior engineer asks next: does diversity protect creators, users, or both?
 
-## normalisation
+## Exploration
 
-- Plain-English meaning: normalisation is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its normalisation value is inspected.
-- Mistake beginners make: treating normalisation as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names normalisation.
+Plain-English meaning: reserved space for useful uncertainty instead of only familiar content.
 
-## diversity
+Tiny example from clinic 21: 901 remains in the feed even with a lower score because exploration is reserved.
 
-- Plain-English meaning: diversity is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its diversity value is inspected.
-- Mistake beginners make: treating diversity as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names diversity.
+Common beginner mistake: dropping exploration when optimizing short-term engagement.
 
-## exploration
+How to debug it: check whether the mixer reserved an exploration slot.
 
-- Plain-English meaning: exploration is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its exploration value is inspected.
-- Mistake beginners make: treating exploration as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names exploration.
+What a senior engineer asks next: how do we measure exploration quality without letting it become spam?
 
-## exploitation
+## Debug trace
 
-- Plain-English meaning: exploitation is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its exploitation value is inspected.
-- Mistake beginners make: treating exploitation as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names exploitation.
+Plain-English meaning: row-level evidence explaining why an item appeared or disappeared.
 
-## downrank
+Tiny example from clinic 22: 901 says the exploration slot was reserved.
 
-- Plain-English meaning: downrank is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its downrank value is inspected.
-- Mistake beginners make: treating downrank as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names downrank.
+Common beginner mistake: returning a vague explanation that cannot be checked.
 
-## suppress
+How to debug it: require source, feature, score, safety, and mixing evidence.
 
-- Plain-English meaning: suppress is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its suppress value is inspected.
-- Mistake beginners make: treating suppress as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names suppress.
+What a senior engineer asks next: can support and on-call read the same trace?
 
-## hard filter
+## Offline replay
 
-- Plain-English meaning: hard filter is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its hard filter value is inspected.
-- Mistake beginners make: treating hard filter as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names hard filter.
+Plain-English meaning: rerunning a fixed dataset to catch regressions before launch.
 
-## soft filter
+Tiny example from clinic 21: actual_feed must match golden_feed [101, 501, 601, 901].
 
-- Plain-English meaning: soft filter is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its soft filter value is inspected.
-- Mistake beginners make: treating soft filter as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names soft filter.
+Common beginner mistake: checking output length instead of exact IDs and rejected reasons.
 
-## cold start
+How to debug it: compare missing and unexpected item IDs.
 
-- Plain-English meaning: cold start is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its cold start value is inspected.
-- Mistake beginners make: treating cold start as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names cold start.
+What a senior engineer asks next: which replays block merges?
 
-## feedback loop
+## Guardrail metric
 
-- Plain-English meaning: feedback loop is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its feedback loop value is inspected.
-- Mistake beginners make: treating feedback loop as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names feedback loop.
+Plain-English meaning: a metric that can block launch even when the primary metric improves.
 
-## debug trace
+Tiny example from clinic 26: CTR improves but hide/report rate, creator diversity, and retention fail.
 
-- Plain-English meaning: debug trace is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its debug trace value is inspected.
-- Mistake beginners make: treating debug trace as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names debug trace.
+Common beginner mistake: launching on CTR alone.
 
-## offline replay
+How to debug it: list every failed guardrail by name.
 
-- Plain-English meaning: offline replay is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its offline replay value is inspected.
-- Mistake beginners make: treating offline replay as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names offline replay.
-
-## guardrail metric
-
-- Plain-English meaning: guardrail metric is a named part of deciding what Ada sees and why.
-- Tiny example: in clinic 20, a row can change position when its guardrail metric value is inspected.
-- Mistake beginners make: treating guardrail metric as hidden magic instead of a value to print.
-- How to debug it: find the candidate row, score row, rejected item, or debug trace that names guardrail metric.
+What a senior engineer asks next: which guardrail protects against silent user harm?

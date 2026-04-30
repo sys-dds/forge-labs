@@ -1,0 +1,16 @@
+{
+  "control": {
+    "ctr": 0.1,
+    "hide_report_rate": 0.01,
+    "creator_diversity": 5,
+    "dwell_seconds": 30,
+    "retention": 0.4
+  },
+  "treatment": {
+    "ctr": 0.14,
+    "hide_report_rate": 0.05,
+    "creator_diversity": 2,
+    "dwell_seconds": 22,
+    "retention": 0.37
+  }
+}

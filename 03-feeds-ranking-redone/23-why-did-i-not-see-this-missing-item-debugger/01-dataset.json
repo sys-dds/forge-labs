@@ -1,0 +1,63 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "ben",
+      "retrieved": true,
+      "score": 90
+    },
+    {
+      "id": 201,
+      "author": "ivy",
+      "retrieved": true,
+      "muted": true,
+      "score": 88
+    },
+    {
+      "id": 301,
+      "author": "noor",
+      "retrieved": true,
+      "blocked": true,
+      "score": 95
+    },
+    {
+      "id": 401,
+      "author": "kai",
+      "retrieved": true,
+      "score": 20
+    },
+    {
+      "id": 501,
+      "author": "ben",
+      "retrieved": true,
+      "score": 80
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "retrieved": false,
+      "score": 99
+    },
+    {
+      "id": 701,
+      "author": "lina",
+      "retrieved": true,
+      "already_seen": true,
+      "score": 91
+    },
+    {
+      "id": 801,
+      "author": "omar",
+      "retrieved": true,
+      "age_hours": 200,
+      "score": 97
+    },
+    {
+      "id": 901,
+      "author": "theo",
+      "retrieved": true,
+      "exploration": true,
+      "score": 35
+    }
+  ]
+}

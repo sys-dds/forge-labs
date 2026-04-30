@@ -5,11 +5,12 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
 ./scripts/forge-list-feeds-redone.sh
-./scripts/forge-inspect-feeds-redone.sh 03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/11-following-feed-vs-for-you-feed
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/12-short-video-ranking-patterns
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/17-search-ranking-vs-feed-ranking
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
+./scripts/forge-inspect-feeds-redone.sh 03-feeds-ranking-redone/30-senior-feed-system-design-capstone
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/21-offline-replay-and-golden-feed-regression
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/22-why-did-i-see-this-explanation-traces
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/26-ab-testing-and-experiment-guardrails
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/29-feed-incident-clinic
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/30-senior-feed-system-design-capstone
 ./scripts/forge-test-all-feeds-redone.sh
 ./scripts/check-feeds-redone-quality.sh
 

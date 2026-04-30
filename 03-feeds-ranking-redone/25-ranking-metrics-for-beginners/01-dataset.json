@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "A": {
+      "impressions": 100,
+      "clicks": 14,
+      "completed": 35,
+      "skipped": 45,
+      "hides_reports": 5,
+      "distinct_authors": 2,
+      "repeated_author_exposures": 6,
+      "average_dwell_seconds": 18
+    },
+    "B": {
+      "impressions": 100,
+      "clicks": 11,
+      "completed": 62,
+      "skipped": 22,
+      "hides_reports": 1,
+      "distinct_authors": 5,
+      "repeated_author_exposures": 2,
+      "average_dwell_seconds": 34
+    }
+  }
+}

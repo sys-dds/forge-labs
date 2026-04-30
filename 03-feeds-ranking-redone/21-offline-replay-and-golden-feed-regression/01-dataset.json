@@ -1,0 +1,63 @@
+{
+  "viewer": "ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "ben",
+      "source": "following",
+      "score": 90,
+      "blocked": false,
+      "unsafe": false
+    },
+    {
+      "id": 501,
+      "author": "lina",
+      "source": "similar_topic",
+      "topic_match": true,
+      "score": 82,
+      "blocked": false,
+      "unsafe": false
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "source": "group",
+      "shared_group": true,
+      "score": 78,
+      "blocked": false,
+      "unsafe": false
+    },
+    {
+      "id": 701,
+      "author": "noor",
+      "source": "following",
+      "score": 99,
+      "blocked": true,
+      "unsafe": false
+    },
+    {
+      "id": 801,
+      "author": "omar",
+      "source": "similar_topic",
+      "score": 95,
+      "blocked": false,
+      "unsafe": true
+    },
+    {
+      "id": 901,
+      "author": "theo",
+      "source": "exploration",
+      "score": 40,
+      "blocked": false,
+      "unsafe": false
+    }
+  ],
+  "expected": {
+    "golden_feed": [
+      101,
+      501,
+      601,
+      901
+    ]
+  }
+}
