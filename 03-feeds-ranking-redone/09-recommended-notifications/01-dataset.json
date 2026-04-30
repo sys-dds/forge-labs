@@ -1,0 +1,75 @@
+{
+  "clinic": "09-recommended-notifications",
+  "title": "Recommended Notifications",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": "ben_posted",
+      "author": "Ben",
+      "source_event_id": "evt_ben_1",
+      "urgency": 9,
+      "open_probability": 0.8,
+      "quiet_hours": false,
+      "blocked": false,
+      "unsafe": false
+    },
+    {
+      "id": "ben_posted_duplicate",
+      "author": "Ben",
+      "source_event_id": "evt_ben_1",
+      "urgency": 9,
+      "open_probability": 0.8,
+      "quiet_hours": false
+    },
+    {
+      "id": "lina_similar_topic",
+      "author": "Lina",
+      "source_event_id": "evt_lina_1",
+      "urgency": 4,
+      "open_probability": 0.7,
+      "quiet_hours": true
+    },
+    {
+      "id": "maya_thread",
+      "author": "Maya",
+      "source_event_id": "evt_maya_1",
+      "urgency": 8,
+      "open_probability": 0.65,
+      "quiet_hours": false
+    },
+    {
+      "id": "omar_trending",
+      "author": "Omar",
+      "source_event_id": "evt_omar_1",
+      "urgency": 5,
+      "open_probability": 0.4,
+      "quiet_hours": false
+    },
+    {
+      "id": "noor_blocked",
+      "author": "Noor",
+      "source_event_id": "evt_noor_1",
+      "urgency": 10,
+      "open_probability": 0.9,
+      "blocked": true
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      "ben_posted",
+      "maya_thread"
+    ],
+    "eligible_ids": [
+      "ben_posted",
+      "maya_thread"
+    ],
+    "excluded_ids": [
+      "ben_posted_duplicate",
+      "lina_similar_topic",
+      "omar_trending",
+      "noor_blocked"
+    ],
+    "message": "expected sent notifications [ben_posted,maya_thread]; broken sender duplicated Ben, ignored quiet hours, sent blocked Noor, or exceeded daily fatigue limit"
+  }
+}

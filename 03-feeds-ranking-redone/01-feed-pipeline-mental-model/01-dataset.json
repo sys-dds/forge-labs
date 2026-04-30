@@ -1,0 +1,94 @@
+{
+  "clinic": "01-feed-pipeline-mental-model",
+  "title": "Feed Pipeline Mental Model",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "source": "in_network",
+      "engagement": 70,
+      "recency": 20,
+      "safety": "safe",
+      "viewer_relation": "followed",
+      "reason": "Ben in-network"
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "source": "followed_author",
+      "engagement": 95,
+      "recency": 12,
+      "safety": "safe",
+      "muted": true,
+      "reason": "muted author"
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "source": "blocked_author",
+      "engagement": 91,
+      "recency": 11,
+      "safety": "safe",
+      "blocked": true,
+      "reason": "blocked author"
+    },
+    {
+      "id": 401,
+      "author": "Diya",
+      "source": "group",
+      "engagement": 45,
+      "recency": 16,
+      "safety": "safe",
+      "reason": "Diya group"
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "source": "similar_topic",
+      "engagement": 60,
+      "recency": 18,
+      "safety": "safe",
+      "reason": "Lina out-of-network similar-topic"
+    },
+    {
+      "id": 601,
+      "author": "Omar",
+      "source": "unsafe",
+      "engagement": 99,
+      "recency": 30,
+      "safety": "unsafe",
+      "reason": "unsafe post"
+    },
+    {
+      "id": 701,
+      "author": "Maya",
+      "source": "exploration",
+      "engagement": 25,
+      "recency": 25,
+      "safety": "safe",
+      "reason": "Maya exploration"
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      101,
+      501,
+      401,
+      701
+    ],
+    "eligible_ids": [
+      101,
+      401,
+      501,
+      701
+    ],
+    "excluded_ids": [
+      201,
+      301,
+      601
+    ],
+    "message": "expected final feed [101,501,401,701]; broken ranker returned muted Cy 201, blocked Noor 301, or unsafe Omar 601 because it scored before eligibility"
+  }
+}

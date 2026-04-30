@@ -1,0 +1,72 @@
+{
+  "clinic": "10-feed-evaluation-debugging-simulation",
+  "title": "Feed Evaluation Debugging Simulation",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 701,
+      "author": "Noor",
+      "source": "blocked_author",
+      "score": 100,
+      "blocked": true
+    },
+    {
+      "id": 101,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 95
+    },
+    {
+      "id": 102,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 90
+    },
+    {
+      "id": 103,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 85
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "source": "similar_topic",
+      "score": 80
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "source": "group",
+      "score": 70
+    },
+    {
+      "id": 901,
+      "author": "New creator",
+      "source": "exploration",
+      "score": 10,
+      "exploration": true
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      101,
+      501,
+      601,
+      901
+    ],
+    "eligible_ids": [
+      101,
+      501,
+      601,
+      901
+    ],
+    "excluded_ids": [
+      701,
+      102,
+      103
+    ],
+    "message": "expected final feed [101,501,601,901]; broken replay returned blocked Noor 701, repeated Ben 101/102/103, or omitted exploration 901"
+  }
+}

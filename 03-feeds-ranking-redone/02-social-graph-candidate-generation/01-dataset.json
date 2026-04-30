@@ -1,0 +1,65 @@
+{
+  "clinic": "02-social-graph-candidate-generation",
+  "title": "Social Graph Candidate Generation",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "source": "close_friend",
+      "score": 90
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "source": "followed_author",
+      "muted": true,
+      "score": 80
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "source": "followed_author",
+      "blocked": true,
+      "score": 85
+    },
+    {
+      "id": 401,
+      "author": "Diya",
+      "source": "shared_group",
+      "score": 70
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "source": "commented_by_following",
+      "source_actor": "Maya",
+      "score": 65
+    },
+    {
+      "id": 601,
+      "author": "Theo",
+      "source": "public",
+      "score": 60
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      101,
+      401,
+      501
+    ],
+    "eligible_ids": [
+      101,
+      401,
+      501
+    ],
+    "excluded_ids": [
+      201,
+      301,
+      601
+    ],
+    "message": "expected social graph candidates [101 close_friend,401 shared_group,501 commented_by_following]; broken generator leaked Cy 201, Noor 301, Theo 601, missed Diya 401, or duplicated Lina 501"
+  }
+}

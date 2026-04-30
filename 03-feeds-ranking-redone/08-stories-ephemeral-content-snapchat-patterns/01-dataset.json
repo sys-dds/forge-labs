@@ -1,0 +1,102 @@
+{
+  "clinic": "08-stories-ephemeral-content-snapchat-patterns",
+  "title": "Stories Ephemeral Content Snapchat Patterns",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "surface": "story",
+      "close_friend": true,
+      "expired": false,
+      "muted": false,
+      "blocked": false,
+      "score": 40
+    },
+    {
+      "id": 102,
+      "author": "Ben",
+      "surface": "story",
+      "close_friend": true,
+      "expired": true,
+      "score": 99
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "surface": "story",
+      "muted": true,
+      "expired": false,
+      "score": 80
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "surface": "story",
+      "blocked": true,
+      "expired": false,
+      "score": 70
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "surface": "spotlight",
+      "language": "en",
+      "region": "UK",
+      "completion": 0.75,
+      "likes": 50,
+      "reports": 0
+    },
+    {
+      "id": 601,
+      "author": "Omar",
+      "surface": "spotlight",
+      "language": "ar",
+      "region": "UK",
+      "completion": 0.9,
+      "likes": 90,
+      "reports": 0
+    },
+    {
+      "id": 701,
+      "author": "Maya",
+      "surface": "spotlight",
+      "language": "en",
+      "region": "UK",
+      "completion": 0.95,
+      "likes": 40,
+      "reports": 0
+    },
+    {
+      "id": 801,
+      "author": "Theo",
+      "surface": "spotlight",
+      "language": "en",
+      "region": "UK",
+      "completion": 0.99,
+      "likes": 100,
+      "reports": 5
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      101,
+      701,
+      501
+    ],
+    "eligible_ids": [
+      101,
+      501,
+      701
+    ],
+    "excluded_ids": [
+      102,
+      201,
+      301,
+      601,
+      801
+    ],
+    "message": "expected story tray [101] and Spotlight [701,501]; broken simulation included expired 102, muted 201, blocked 301, wrong-language 601, reported 801, or ranked likes before completion"
+  }
+}
