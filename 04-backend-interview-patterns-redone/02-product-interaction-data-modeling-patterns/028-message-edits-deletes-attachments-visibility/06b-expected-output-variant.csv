@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+attachment_hidden_with_message,attachment:3002,true,Attachment 3002 is hidden with globally deleted message 1003
+attachment_visible,attachment:3001,true,Attachment 3001 is visible because message 1004 is visible
+delete_for_everyone_hidden,message:1003,true,Delete-for-everyone hides message 1003 for all viewers
+delete_for_me_other_viewer_visible,message:1002,true,Ben still sees message 1002
+delete_for_me_viewer_hidden,message:1002,false,Delete-for-me hides message 1002 for Ada only
+edit_history_preserved,message:1001,3,Edit history rows remain queryable
+latest_edit_current_body,message:1001,variant final body,Latest edit row determines current body
+message_lifecycle_trace,conversation:101,1001:ada=true:ben=true:body=variant final body;1002:ada=false:ben=true:body=private delete;1003:ada=true:ben=true:body=global delete;1004:ada=true:ben=true:body=attachment stays,"Trace combines current body, per-user deletion, and global deletion"

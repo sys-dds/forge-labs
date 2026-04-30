@@ -11,4 +11,4 @@ Adds senior SQL correctness and investigation clinics inside `01-sql-interview-p
 
 ## 02 Product Interaction Data Modeling Patterns
 
-Adds small product interaction modeling clinics for profiles, follows, friendships, comments, reactions, swipes, matches, feeds, notifications, activity, simple recommendations, counters, read models, visibility controls, sharing/saves, safety moderation, trust components, marketplace/creator ecosystems, constraints, and read/write paths. This stays inside Backend Interview Patterns Redone and builds on the completed SQL clinic runner style.
+Adds small product interaction modeling clinics for profiles, follows, friendships, comments, reactions, swipes, matches, feeds, notifications, activity, simple recommendations, counters, read models, visibility controls, sharing/saves, safety moderation, trust components, marketplace/creator ecosystems, messaging/inbox communication, constraints, and read/write paths. This stays inside Backend Interview Patterns Redone and builds on the completed SQL clinic runner style.

@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+archived_hidden_from_default,conversation:103,true,Archived conversation 103 is hidden from default inbox
+blocked_sender_suppressed,message:1003,true,Blocked sender Cy message is suppressed for Ada
+deterministic_tie_breaker,user:Ada,104,Conversation id breaks equal latest_rank ties
+inbox_debug_trace,user:Ada,101:rank=80:unread=0;104:rank=60:unread=1,"Trace explains order, unread, archive, block, and mute handling"
+inbox_order,user:Ada,101>104,Inbox orders by latest visible message with deterministic tie-breaker
+message_report_review_candidate,message:1004,true,Report 7001 creates review queue item 8001
+muted_suppresses_notification,conversation:101,no_push,Muted conversation remains in inbox but suppresses notification flag
+unread_badge,conversation:104,1,Unread badge is derived per user from read receipt and visible messages

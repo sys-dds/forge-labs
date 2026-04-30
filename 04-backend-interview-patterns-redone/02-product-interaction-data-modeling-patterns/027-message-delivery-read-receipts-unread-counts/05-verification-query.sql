@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_027;
+WITH unread AS (SELECT p.user_id,count(m.*) unread_count FROM conversation_participants p JOIN messages m ON m.conversation_id=p.conversation_id LEFT JOIN message_read_receipts r ON r.conversation_id=p.conversation_id AND r.user_id=p.user_id WHERE p.conversation_id=101 AND m.sender_user_id<>p.user_id AND m.message_seq>COALESCE(r.latest_read_seq,0) GROUP BY p.user_id), trace AS (SELECT string_agg(u.display_name||':read='||r.latest_read_seq||':unread='||COALESCE(unread.unread_count,0),';' ORDER BY u.user_id) t FROM users u JOIN message_read_receipts r ON r.user_id=u.user_id LEFT JOIN unread ON unread.user_id=u.user_id), checks AS (
+SELECT 'delivery_row_created' contract_name,'message:1001' subject_id,count(*)::text observed_value,'Message 1001 creates recipient delivery rows' expected_reason FROM message_delivery_states WHERE message_id=1001
+UNION ALL SELECT 'delivered_not_read','delivery:3001',delivery_state,'Delivered row 3001 is not automatically a read receipt' FROM message_delivery_states WHERE delivery_id=3001
+UNION ALL SELECT 'read_receipt_marker','user:Ben',latest_read_seq::text,'Ben latest read marker comes from message_read_receipts' FROM message_read_receipts WHERE user_id=2
+UNION ALL SELECT 'sender_own_message_not_unread','message:1003',(NOT EXISTS(SELECT 1 FROM unread WHERE user_id=1 AND unread_count>1))::text,'Ada does not count her own message 1003 as unread'
+UNION ALL SELECT 'unread_count_after_marker','user:Ben',COALESCE((SELECT unread_count::text FROM unread WHERE user_id=2),'0'),'Ben unread count only includes messages after latest read marker from other senders'
+UNION ALL SELECT 'per_user_unread_count','user:Cy',COALESCE((SELECT unread_count::text FROM unread WHERE user_id=3),'0'),'Cy has a different unread count from Ben because read markers are per user'
+UNION ALL SELECT 'read_state_debug_trace','conversation:101',t,'Trace shows latest read marker and derived unread count per participant' FROM trace)
+SELECT contract_name,subject_id,observed_value,expected_reason FROM checks ORDER BY contract_name;

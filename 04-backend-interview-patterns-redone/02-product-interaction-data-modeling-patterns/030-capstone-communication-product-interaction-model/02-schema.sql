@@ -1,0 +1,14 @@
+SET search_path TO bip_pim_030;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE conversations (conversation_id int PRIMARY KEY, conversation_type text NOT NULL);
+CREATE TABLE conversation_participants (participant_id int PRIMARY KEY, conversation_id int REFERENCES conversations, user_id int REFERENCES users, participant_state text NOT NULL);
+CREATE TABLE messages (message_id int PRIMARY KEY, conversation_id int REFERENCES conversations, sender_user_id int REFERENCES users, message_seq int NOT NULL, sent_rank int NOT NULL, body text NOT NULL);
+CREATE TABLE message_delivery_states (delivery_id int PRIMARY KEY, message_id int REFERENCES messages, recipient_user_id int REFERENCES users, delivery_state text NOT NULL);
+CREATE TABLE message_read_receipts (receipt_id int PRIMARY KEY, conversation_id int REFERENCES conversations, user_id int REFERENCES users, latest_read_seq int NOT NULL);
+CREATE TABLE message_edits (edit_id int PRIMARY KEY, message_id int REFERENCES messages, edited_body text NOT NULL, edit_seq int NOT NULL);
+CREATE TABLE message_deletions (deletion_id int PRIMARY KEY, message_id int REFERENCES messages, delete_scope text NOT NULL, viewer_user_id int);
+CREATE TABLE message_attachments (attachment_id int PRIMARY KEY, message_id int REFERENCES messages, file_name text NOT NULL);
+CREATE TABLE conversation_user_settings (setting_id int PRIMARY KEY, conversation_id int REFERENCES conversations, user_id int REFERENCES users, muted boolean NOT NULL, archived boolean NOT NULL);
+CREATE TABLE block_edges (blocker_user_id int REFERENCES users, blocked_user_id int REFERENCES users);
+CREATE TABLE message_reports (report_id int PRIMARY KEY, message_id int REFERENCES messages, reporter_user_id int REFERENCES users, reason text NOT NULL);
+CREATE TABLE review_queue_items (queue_item_id int PRIMARY KEY, message_id int REFERENCES messages, state text NOT NULL);

@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_direct_conversation_prevented,conversation:103,true,Ada/Cy block edge prevents a valid direct conversation
+conversation_visibility_trace,conversation:102,Ada:active:joined=1:left=none;Ben:active:joined=1:left=none;Cy:active:joined=1:left=none,Trace shows participant lifecycle and visibility windows
+direct_conversation_participants,conversation:101,2,Direct conversation 101 has exactly Ada and Ben active
+group_conversation_participants,conversation:102,3,Group conversation 102 has multiple active participants
+left_participant_future_hidden,message:1003,false,Ben left before message 1003 in base data
+non_participant_hidden,user:Diya,true,Diya has no participant row and cannot see conversation 102
+valid_sender_participant,message:1002,true,Ben can send message 1002 before leaving conversation 102
