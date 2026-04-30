@@ -19,6 +19,7 @@ root_files=(
   03-feeds-ranking-redone/00-ranking-maths-for-beginners.md
   03-feeds-ranking-redone/00-debugging-feed-output.md
   03-feeds-ranking-redone/00-feed-evaluation-for-beginners.md
+  03-feeds-ranking-redone/00-retrieval-for-beginners.md
 )
 
 shared_files=(
@@ -27,6 +28,7 @@ shared_files=(
   03-feeds-ranking-redone/_shared/result_contract.py
   03-feeds-ranking-redone/_shared/scoring_math.py
   03-feeds-ranking-redone/_shared/trace_helpers.py
+  03-feeds-ranking-redone/_shared/retrieval_math.py
 )
 
 clinics=(
@@ -60,6 +62,16 @@ clinics=(
   03-feeds-ranking-redone/28-freshness-stale-candidates-and-already-seen-filtering
   03-feeds-ranking-redone/29-feed-incident-clinic
   03-feeds-ranking-redone/30-senior-feed-system-design-capstone
+  03-feeds-ranking-redone/31-retrieval-funnel-mental-model
+  03-feeds-ranking-redone/32-lexical-vs-semantic-retrieval
+  03-feeds-ranking-redone/33-embeddings-for-beginners
+  03-feeds-ranking-redone/34-two-tower-retrieval-mental-model
+  03-feeds-ranking-redone/35-approximate-nearest-neighbour-mental-model
+  03-feeds-ranking-redone/36-hybrid-retrieval-and-source-blending
+  03-feeds-ranking-redone/37-retrieval-recall-precision-evaluation
+  03-feeds-ranking-redone/38-cold-start-retrieval-and-exploration-backfill
+  03-feeds-ranking-redone/39-retrieval-debugging-why-candidate-was-missing
+  03-feeds-ranking-redone/40-senior-retrieval-system-design-capstone
 )
 
 for file in "${root_files[@]}" "${shared_files[@]}"; do
@@ -71,7 +83,9 @@ for clinic in "${clinics[@]}"; do
   common=(README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md)
   for file in "${common[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
   clinic_name="$(basename "$clinic")"
-  if [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
+  if [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
+    extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
+  elif [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
     extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
   elif [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
     extra=(10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md)
@@ -90,7 +104,32 @@ for clinic in "${clinics[@]}"; do
     fail "$clinic evidence map has vague cells"
   fi
 
-  if [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
+  if [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
+    for heading in "What this clinic teaches" "Retrieval problem and user intent" "Named users/items/sources and why each exists" "Broken retrieval behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+      if grep -Eq 'import +(numpy|pandas|sklearn|faiss|annoy|hnswlib)|from +(numpy|pandas|sklearn|faiss|annoy|hnswlib)' "$file"; then fail "$file imports non-scope retrieval dependency"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +expected\["retrieved_candidates"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'assert_equal\(result\.get\("(final_candidate_pool|retrieved_candidates|hybrid_candidates|ann_candidates|ada_candidates|winner_for_first_stage_retrieval)' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks exact retrieved output assertion"
+    grep -Eq 'missed_candidates|missing_candidate_explanations|assert_rejected|missed_by_ann|false_negatives' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks retrieved/missed/rejected assertion"
+    grep -q 'retrieval_debug_trace' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks retrieval_debug_trace assertion"
+    if [[ "$clinic_name" =~ ^(33|34|35)- ]]; then
+      grep -q 'similarity_rows' "$clinic/04-proof.tests.py" || fail "$clinic vector proof lacks similarity_rows assertion"
+    fi
+    if [[ "$clinic_name" =~ ^37- ]]; then
+      grep -q 'recall_report' "$clinic/04-proof.tests.py" || fail "$clinic evaluation proof lacks recall_report assertion"
+      grep -q 'precision_report' "$clinic/04-proof.tests.py" || fail "$clinic evaluation proof lacks precision_report assertion"
+    fi
+    grep -q '| Mutation | Expected failing proof |' "$clinic/13-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/13-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
+    grep -q 'Review questions' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Review questions"
+    grep -q 'Telemetry' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Telemetry"
+    grep -q 'Do not over-engineer yet' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing restraint note"
+  elif [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
     for heading in "What this clinic teaches" "Product surface and operating problem" "Named users/content/events and why each exists" "Broken operating/ranking behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
       grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
     done
@@ -130,9 +169,14 @@ banned=(
   "production systems need this" "ranking is important" "recommendations are important"
   "social apps use this" "this is a common pattern" "weak proof" "generic feed"
   "generic ranking" "generic candidate" "positive case" "negative case" "edge case" "realistic scenario"
+  "is a named part of deciding what Ada sees and why" "treating <term> as hidden magic"
 )
 for phrase in "${banned[@]}"; do
   if grep -Riq "$phrase" 03-feeds-ranking-redone; then fail "banned fake-depth phrase found: $phrase"; fi
 done
+
+grep -q "0.9\*1.0" 03-feeds-ranking-redone/00-embedding-maths-for-beginners.md || fail "root docs define embeddings without numeric example"
+grep -q "exact scan checks every row" 03-feeds-ranking-redone/00-retrieval-for-beginners.md || fail "root docs define ANN without approximate-vs-exact trade-off"
+if grep -RIEq "import +(numpy|pandas|sklearn|faiss|annoy|hnswlib)|from +(numpy|pandas|sklearn|faiss|annoy|hnswlib)" 03-feeds-ranking-redone scripts; then fail "non-scope ML/vector dependency imported"; fi
 
 echo "PASS feeds redone quality gate"

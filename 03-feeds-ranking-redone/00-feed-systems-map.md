@@ -9,3 +9,8 @@ Inventory is everything the product could show. Eligibility removes blocked, mut
 ## Surface-Specific Ranking
 
 The same pipeline changes by surface: search starts from query relevance, marketplace starts from buyer intent, short video starts from watch signals, and safety can hard-filter, downrank, or route to review.
+
+
+## Retrieval Slice
+
+Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.

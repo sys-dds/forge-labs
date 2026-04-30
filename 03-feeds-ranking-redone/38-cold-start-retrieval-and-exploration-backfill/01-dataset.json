@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "id": 101,
+      "topic": "backend",
+      "likes": 90,
+      "quality": 0.7
+    },
+    {
+      "id": 201,
+      "topic": "movies",
+      "likes": 80,
+      "quality": 0.7
+    },
+    {
+      "id": 301,
+      "topic": "backend",
+      "likes": 0,
+      "new_creator": true,
+      "quality": 0.9,
+      "profile_topic_match": true
+    },
+    {
+      "id": 401,
+      "topic": "cooking",
+      "likes": 0,
+      "new_creator": true,
+      "quality": 0.85,
+      "profile_topic_match": false
+    },
+    {
+      "id": 501,
+      "topic": "backend",
+      "likes": 0,
+      "new_creator": true,
+      "quality": 0.95,
+      "unsafe": true,
+      "profile_topic_match": true
+    },
+    {
+      "id": 601,
+      "topic": "backend",
+      "likes": 0,
+      "new_creator": true,
+      "quality": 0.8,
+      "profile_topic_match": true
+    },
+    {
+      "id": 701,
+      "topic": "sports",
+      "likes": 95,
+      "quality": 0.5
+    }
+  ]
+}

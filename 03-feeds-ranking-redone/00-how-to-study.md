@@ -16,3 +16,8 @@ When studying a clinic, read `10-mutation-checks.md` after the proof. Pick one m
 ## Studying Part Two
 
 For clinics 11-20, read the beginner walkthrough before the proof. Then inspect the shortcut audit and mutation checks so the lesson is tied to a product surface, not a reusable dispatcher.
+
+
+## Retrieval Slice
+
+Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.

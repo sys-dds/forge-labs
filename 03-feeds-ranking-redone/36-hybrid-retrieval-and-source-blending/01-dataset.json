@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "id": 101,
+      "sources": [
+        "followed_author"
+      ],
+      "relevance": 0.9
+    },
+    {
+      "id": 201,
+      "sources": [
+        "lexical"
+      ],
+      "relevance": 0.8
+    },
+    {
+      "id": 301,
+      "sources": [
+        "semantic"
+      ],
+      "relevance": 0.82
+    },
+    {
+      "id": 401,
+      "sources": [
+        "trending"
+      ],
+      "relevance": 0.2
+    },
+    {
+      "id": 501,
+      "sources": [
+        "exploration"
+      ],
+      "relevance": 0.6
+    },
+    {
+      "id": 601,
+      "sources": [
+        "lexical",
+        "semantic"
+      ],
+      "relevance": 0.95
+    },
+    {
+      "id": 701,
+      "sources": [
+        "trending"
+      ],
+      "blocked": true,
+      "relevance": 0.99
+    },
+    {
+      "id": 801,
+      "sources": [
+        "trending"
+      ],
+      "unsafe": true,
+      "relevance": 1.0
+    }
+  ]
+}

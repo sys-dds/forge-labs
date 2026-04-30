@@ -33,7 +33,9 @@ for file in "${required[@]}"; do
 done
 
 clinic_name="$(basename "$clinic")"
-if [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
+if [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
+  extra_required=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
+elif [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
   extra_required=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
 elif [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
   extra_required=(10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md)

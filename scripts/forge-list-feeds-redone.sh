@@ -35,4 +35,14 @@ cat <<'CLINICS'
 03-feeds-ranking-redone/28-freshness-stale-candidates-and-already-seen-filtering
 03-feeds-ranking-redone/29-feed-incident-clinic
 03-feeds-ranking-redone/30-senior-feed-system-design-capstone
+03-feeds-ranking-redone/31-retrieval-funnel-mental-model
+03-feeds-ranking-redone/32-lexical-vs-semantic-retrieval
+03-feeds-ranking-redone/33-embeddings-for-beginners
+03-feeds-ranking-redone/34-two-tower-retrieval-mental-model
+03-feeds-ranking-redone/35-approximate-nearest-neighbour-mental-model
+03-feeds-ranking-redone/36-hybrid-retrieval-and-source-blending
+03-feeds-ranking-redone/37-retrieval-recall-precision-evaluation
+03-feeds-ranking-redone/38-cold-start-retrieval-and-exploration-backfill
+03-feeds-ranking-redone/39-retrieval-debugging-why-candidate-was-missing
+03-feeds-ranking-redone/40-senior-retrieval-system-design-capstone
 CLINICS
