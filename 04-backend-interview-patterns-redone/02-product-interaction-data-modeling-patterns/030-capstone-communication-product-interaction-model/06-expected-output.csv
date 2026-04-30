@@ -1,0 +1,11 @@
+contract_name,subject_id,observed_value,expected_reason
+attachment_contract,attachment:3001,true,Attachment visibility follows visible message 1002
+communication_debug_trace_contract,user:Ada,visible=1001|1002|unread=0|inbox=101,"Trace combines participants, visibility, read state, inbox, block, mute, and report state"
+delivery_read_contract,message:1001,read,Delivery/read state is stored per recipient
+edit_delete_contract,message:1002,edited body,Current body comes from latest edit while delete rows stay separate
+inbox_order_contract,user:Ada,101,Inbox order is per-user and deterministic
+message_visibility_contract,message:1003,true,Ada delete-for-me row hides message 1003 only for Ada
+mute_block_contract,conversation:102,muted:blocked_cy=true,Mute and block rows alter communication read behavior
+participant_contract,conversation:101,2,Conversation 101 has Ada and Ben participant source rows
+report_review_contract,message:1004,true,Report row links to review queue item 8001
+unread_count_contract,conversation:101,0,Unread count derives from Ada read receipt and visible non-sender messages
