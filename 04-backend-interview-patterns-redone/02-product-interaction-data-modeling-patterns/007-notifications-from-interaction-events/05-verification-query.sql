@@ -1,0 +1,12 @@
+SET search_path TO bip_pim_007;
+WITH unread AS (SELECT n.* FROM notifications n JOIN notification_state s ON s.notification_id=n.notification_id WHERE s.state='unread'), grouped AS (SELECT recipient_user_id, notification_type, subject_type, subject_id, count(*) AS notification_count, string_agg(actor_user_id::text,'+' ORDER BY actor_user_id) AS actors FROM unread GROUP BY recipient_user_id, notification_type, subject_type, subject_id), checks AS (
+  SELECT 'like_notification_created' contract_name, 'post:201 actor:2' subject_id, count(*)::text observed_value, 'Ben liking Ada post 201 creates one deduped notification' expected_reason FROM notifications WHERE recipient_user_id=1 AND actor_user_id=2 AND notification_type='liked' AND subject_id=201
+  UNION ALL SELECT 'comment_notification_created','comment:301',count(*)::text,'Cy comment on Ada post 201 notifies Ada' FROM notifications WHERE recipient_user_id=1 AND actor_user_id=3 AND notification_type='commented' AND subject_id=201
+  UNION ALL SELECT 'follow_notification_created','follow:5->1',count(*)::text,'Eli following Ada creates a notification for Ada' FROM notifications WHERE recipient_user_id=1 AND actor_user_id=5 AND notification_type='followed'
+  UNION ALL SELECT 'match_notification_created','match:401',count(*)::text,'Match 401 creates rows for both matched users' FROM notifications WHERE notification_type='matched' AND subject_id=401
+  UNION ALL SELECT 'self_notification_suppressed','event:1005',count(*)::text,'Ada liking her own post should not notify herself' FROM notifications WHERE source_event_id=1005
+  UNION ALL SELECT 'duplicate_notification_deduped','Ben post 201 likes',count(*)::text,'Duplicate like event 1006 is grouped into the existing Ben like notification' FROM notifications WHERE recipient_user_id=1 AND actor_user_id=2 AND notification_type='liked' AND subject_id=201
+  UNION ALL SELECT 'unread_count','recipient:1',count(*)::text,'Read like 9001 is excluded from Ada unread count' FROM unread WHERE recipient_user_id=1
+  UNION ALL SELECT 'grouped_notification_summary','recipient:1 post:201',COALESCE(string_agg(notification_type||':'||actors||':'||notification_count::text,'|' ORDER BY notification_type),'none'),'Unread grouping preserves actor sets per subject' FROM grouped WHERE recipient_user_id=1 AND subject_type='post' AND subject_id=201
+)
+SELECT contract_name, subject_id, observed_value, expected_reason FROM checks ORDER BY contract_name;

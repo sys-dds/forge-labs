@@ -1,0 +1,14 @@
+SET search_path TO bip_pim_010;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL, status text NOT NULL CHECK (status IN ('active','inactive')));
+CREATE TABLE profiles (user_id int PRIMARY KEY REFERENCES users, visibility text NOT NULL CHECK (visibility IN ('public','followers','private')));
+CREATE TABLE follow_edges (follower_user_id int REFERENCES users, followed_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('active','unfollowed')), PRIMARY KEY (follower_user_id, followed_user_id));
+CREATE TABLE block_edges (blocker_user_id int REFERENCES users, blocked_user_id int REFERENCES users, PRIMARY KEY (blocker_user_id, blocked_user_id));
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, created_at timestamp NOT NULL, deleted_at timestamp);
+CREATE TABLE post_reactions (reaction_id int PRIMARY KEY, post_id int REFERENCES posts, actor_user_id int REFERENCES users, reaction_type text NOT NULL, deleted_at timestamp);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users, deleted_at timestamp);
+CREATE TABLE swipe_events (event_id int PRIMARY KEY, swiper_user_id int REFERENCES users, swiped_user_id int REFERENCES users, direction text NOT NULL CHECK (direction IN ('left','right')), created_at timestamp NOT NULL);
+CREATE TABLE matches (match_id int PRIMARY KEY, user_id_low int REFERENCES users, user_id_high int REFERENCES users, unmatched_at timestamp);
+CREATE TABLE notifications (notification_id int PRIMARY KEY, recipient_user_id int REFERENCES users, actor_user_id int REFERENCES users, notification_type text NOT NULL, subject_id int NOT NULL, state text NOT NULL CHECK (state IN ('read','unread')));
+CREATE TABLE activity_events (event_id int PRIMARY KEY, actor_user_id int REFERENCES users, verb text NOT NULL, object_type text NOT NULL, object_id int NOT NULL, audience text NOT NULL CHECK (audience IN ('public','private','followers')), created_at timestamp NOT NULL);
+CREATE TABLE user_interests (user_id int REFERENCES users, tag text NOT NULL, PRIMARY KEY (user_id, tag));
+CREATE TABLE post_tags (post_id int REFERENCES posts, tag text NOT NULL, PRIMARY KEY (post_id, tag));

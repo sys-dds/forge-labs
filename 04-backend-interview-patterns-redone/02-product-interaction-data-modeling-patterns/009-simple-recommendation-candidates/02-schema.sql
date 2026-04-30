@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_009;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL, status text NOT NULL CHECK (status IN ('active','inactive')));
+CREATE TABLE follow_edges (follower_user_id int REFERENCES users, followed_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('active','unfollowed')), PRIMARY KEY (follower_user_id, followed_user_id));
+CREATE TABLE user_interests (user_id int REFERENCES users, tag text NOT NULL, PRIMARY KEY (user_id, tag));
+CREATE TABLE creators (creator_user_id int PRIMARY KEY REFERENCES users, discoverable boolean NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, tag text NOT NULL);
+CREATE TABLE swipe_events (event_id int PRIMARY KEY, swiper_user_id int REFERENCES users, swiped_user_id int REFERENCES users, direction text NOT NULL CHECK (direction IN ('left','right')), created_at timestamp NOT NULL);
+CREATE TABLE matches (match_id int PRIMARY KEY, user_id_low int REFERENCES users, user_id_high int REFERENCES users, unmatched_at timestamp);
+CREATE TABLE block_edges (blocker_user_id int REFERENCES users, blocked_user_id int REFERENCES users, PRIMARY KEY (blocker_user_id, blocked_user_id));
+CREATE TABLE report_events (report_id int PRIMARY KEY, reporter_user_id int REFERENCES users, reported_user_id int REFERENCES users);

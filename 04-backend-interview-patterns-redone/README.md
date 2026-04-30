@@ -1,6 +1,6 @@
 # Backend Interview Patterns Redone
 
-This track starts with runnable SQL interview pattern clinics. It is a query-practice track, not an application framework track or database-internals track. The first slice lives in `01-sql-interview-patterns/` and uses Docker/Postgres plus shell scripts so a learner can reset data, run a solution, diff exact CSV output, and study the pattern.
+This track contains runnable backend interview clinics. It is a data-contract and modeling practice track, not an application framework track or database-internals track. The slices use Docker/Postgres plus shell scripts so a learner can reset data, run a solution, diff exact CSV output, and study the pattern.
 ## Advanced SQL Interview Patterns 011-020
 
 Clinics 011-020 extend the lab with CTE decomposition, EXISTS and NOT EXISTS, self-comparison, running totals, rolling windows, ranking buckets, date spines, sessionization, effective-dated joins, and marketplace trust investigation queries. The same Docker/Postgres runner and base-plus-variant proof strategy from 001-010 still applies.
@@ -11,4 +11,4 @@ Adds senior SQL correctness and investigation clinics inside `01-sql-interview-p
 
 ## 02 Product Interaction Data Modeling Patterns
 
-Adds small product interaction modeling clinics for profiles, follows, friendships, comments, reactions, swipes, matches, counters, constraints, and read/write paths. This stays inside Backend Interview Patterns Redone and builds on the completed SQL clinic runner style.
+Adds small product interaction modeling clinics for profiles, follows, friendships, comments, reactions, swipes, matches, feeds, notifications, activity, simple recommendations, counters, constraints, and read/write paths. This stays inside Backend Interview Patterns Redone and builds on the completed SQL clinic runner style.

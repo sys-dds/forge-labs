@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_009;
+INSERT INTO users VALUES (1,'Ada','active'),(2,'Ben','active'),(3,'Cy','active'),(4,'Diya','active'),(5,'Eli','active'),(6,'Fay','active'),(7,'Gus','active'),(8,'Hana','active'),(9,'Ivan','active'),(10,'Jae','inactive');
+INSERT INTO follow_edges VALUES (1,2,'active'),(2,3,'active'),(1,6,'active'),(6,4,'active'),(9,3,'active');
+INSERT INTO user_interests VALUES (1,'hiking'),(1,'music'),(4,'hiking'),(5,'music'),(8,'hiking'),(10,'hiking');
+INSERT INTO creators VALUES (3,true),(4,true),(5,true),(6,true),(7,true),(8,true),(9,true),(10,true);
+INSERT INTO posts VALUES (501,4,'hiking'),(502,8,'hiking'),(503,10,'hiking'),(504,5,'music');
+INSERT INTO swipe_events VALUES (601,1,5,'right','2026-04-06 10:00'),(602,1,8,'right','2026-04-06 10:10');
+INSERT INTO matches VALUES (701,1,7,NULL);
+INSERT INTO block_edges VALUES (1,8);
+INSERT INTO report_events VALUES (801,1,9);

@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+already_followed_excluded,user:6,0,Fay is already followed by Ada
+already_matched_excluded,user:7,0,Gus is already matched with Ada
+blocked_reported_excluded,users:8|9,0,Hana is blocked and Ivan is reported
+candidate_source_labels,viewer:1,3:mutual_follow|4:mutual_follow+shared_interest|5:swipe_signal,Candidate rows keep source labels before ranking
+mutual_follow_candidate,user:3,1,Cy appears because Ada follows Ben and Ben follows Cy
+shared_interest_candidate,user:4,1,Diya appears from Ada hiking interest and Diya hiking post
+swipe_signal_candidate,user:5,1,Eli appears from Ada latest right swipe signal

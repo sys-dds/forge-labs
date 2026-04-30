@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+activity_contract,viewer:1,7001|7004,Activity hides blocked Cy and deleted Ben post 1002
+follow_contract,Ada->Ben,1,Active follow edge from Ada to Ben drives profile and feed visibility
+home_feed_contract,viewer:1,1001|1003,Home feed includes live posts from active followed authors only
+match_contract,Ada-Diya,1,Mutual right swipes produce one active Ada/Diya match
+notification_contract,recipient:1,3,Ada unread notifications exclude read comment 6003
+post_counts_contract,post:1001,2 likes/1 comments,Only live reactions and comments count on Ben post 1001
+profile_contract,viewer:1,2|4|5,Ada sees Ben/Diya/Eli but not Cy blocked or inactive Fay
+recommendation_contract,viewer:1,none,Recommendation candidates use shared interests and exclude followed or matched users

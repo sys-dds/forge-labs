@@ -2,7 +2,7 @@
 
 Forge Labs is a never-ending backend learning workshop for backend fundamentals. It is intentionally not a portfolio app, not a product clone, and not a question bank. The repo exists to make fundamentals feel concrete by connecting each concept to backend work you would actually do.
 
-The current path is **01-sql**. SQL starts the workshop because it is where backend systems discover rows, protect invariants, apply visibility rules, count behavior, paginate feeds, and prepare candidates for ranking or matching.
+The repository currently includes the original **01-sql** path plus redone backend interview tracks such as `04-backend-interview-patterns-redone/`. SQL still starts the workshop because it is where backend systems discover rows, protect invariants, apply visibility rules, count behavior, paginate feeds, and prepare candidates for ranking or matching.
 
 ## Why Implementation-First
 

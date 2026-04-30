@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+comment_notification_created,comment:301,1,Cy comment on Ada post 201 notifies Ada
+duplicate_notification_deduped,Ben post 201 likes,1,Duplicate like event 1006 is grouped into the existing Ben like notification
+follow_notification_created,follow:5->1,1,Eli following Ada creates a notification for Ada
+grouped_notification_summary,recipient:1 post:201,commented:3:1|liked:3:1,Unread grouping preserves actor sets per subject
+like_notification_created,post:201 actor:2,1,Ben liking Ada post 201 creates one deduped notification
+match_notification_created,match:401,2,Match 401 creates rows for both matched users
+self_notification_suppressed,event:1005,0,Ada liking her own post should not notify herself
+unread_count,recipient:1,4,Read like 9001 is excluded from Ada unread count

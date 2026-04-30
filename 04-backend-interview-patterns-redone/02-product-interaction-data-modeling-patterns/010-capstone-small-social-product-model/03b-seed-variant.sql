@@ -1,0 +1,14 @@
+SET search_path TO bip_pim_010;
+INSERT INTO users VALUES (1,'Ada','active'),(2,'Ben','active'),(3,'Cy','active'),(4,'Diya','active'),(5,'Eli','active'),(6,'Fay','inactive');
+INSERT INTO profiles VALUES (1,'public'),(2,'followers'),(3,'public'),(4,'public'),(5,'public'),(6,'public');
+INSERT INTO follow_edges VALUES (1,2,'active'),(1,5,'active'),(2,5,'active'),(1,6,'active');
+INSERT INTO block_edges VALUES (3,1);
+INSERT INTO posts VALUES (1001,2,'2026-04-07 10:00',NULL),(1002,2,'2026-04-07 11:00','2026-04-07 11:30'),(1003,5,'2026-04-07 12:00',NULL),(1004,6,'2026-04-07 13:00',NULL);
+INSERT INTO post_reactions VALUES (2001,1001,1,'like',NULL),(2002,1001,3,'like','2026-04-07 12:00'),(2003,1001,5,'like',NULL);
+INSERT INTO comments VALUES (3001,1001,1,NULL),(3002,1001,3,'2026-04-07 12:10');
+INSERT INTO swipe_events VALUES (4001,1,4,'right','2026-04-07 09:00'),(4002,4,1,'right','2026-04-07 09:05');
+INSERT INTO matches VALUES (5001,1,4,NULL);
+INSERT INTO notifications VALUES (6001,1,2,'liked',1001,'unread'),(6002,1,4,'matched',5001,'unread'),(6003,1,3,'commented',1001,'read'),(6004,1,5,'liked',1001,'unread');
+INSERT INTO activity_events VALUES (7001,2,'posted','post',1001,'public','2026-04-07 10:00'),(7002,3,'posted','post',1003,'public','2026-04-07 10:10'),(7003,2,'posted','post',1002,'public','2026-04-07 11:00'),(7004,5,'posted','post',1003,'followers','2026-04-07 12:00');
+INSERT INTO user_interests VALUES (1,'hiking'),(5,'hiking');
+INSERT INTO post_tags VALUES (1001,'backend'),(1003,'hiking');

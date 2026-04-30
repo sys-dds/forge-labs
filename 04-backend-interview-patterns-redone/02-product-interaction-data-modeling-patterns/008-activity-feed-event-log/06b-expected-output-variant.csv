@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+activity_order,viewer:1,8003,Visible activity order is created_at desc then event_id desc
+blocked_viewer_activity_hidden,viewer:3 actor:2,0,Cy follows Ben but Ben blocked Cy
+deleted_object_activity_hidden,event:8004,0,Activity for deleted post 701 is hidden
+owner_private_activity_visible,viewer:2 event:8002,1,Ben can see his own private activity
+private_activity_hidden,viewer:1 event:8002,0,Ben private activity is hidden from Ada
+public_activity_visible,viewer:1 event:8001,0,Ada can see Ben public activity while it remains public or followed-visible
