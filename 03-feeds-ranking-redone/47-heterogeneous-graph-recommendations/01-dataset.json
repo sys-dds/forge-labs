@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "ada": "user",
+    "ben": "user",
+    "backend_club": "group",
+    "fintech_company": "company",
+    "javaconf": "event",
+    "java": "hashtag",
+    "backend_newsletter": "newsletter",
+    "post_101": "post",
+    "post_201": "post",
+    "spam_event": "event"
+  },
+  "edges": [
+    [
+      "ada",
+      "ben",
+      "follows"
+    ],
+    [
+      "ben",
+      "java",
+      "follows_hashtag"
+    ],
+    [
+      "ada",
+      "backend_club",
+      "belongs_to"
+    ],
+    [
+      "backend_club",
+      "javaconf",
+      "recommends"
+    ],
+    [
+      "ada",
+      "fintech_company",
+      "follows_company"
+    ],
+    [
+      "fintech_company",
+      "backend_newsletter",
+      "publishes"
+    ],
+    [
+      "java",
+      "post_101",
+      "links_to"
+    ],
+    [
+      "backend_newsletter",
+      "post_201",
+      "links_to"
+    ],
+    [
+      "low_trust_source",
+      "spam_event",
+      "links_to"
+    ]
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "edges": [
+    {
+      "from": "ada",
+      "to": "ben",
+      "weight": 0.5
+    },
+    {
+      "from": "ada",
+      "to": "backend_club",
+      "weight": 0.3
+    },
+    {
+      "from": "ada",
+      "to": "diya",
+      "weight": 0.2
+    },
+    {
+      "from": "ben",
+      "to": "post_101",
+      "weight": 0.7
+    },
+    {
+      "from": "ben",
+      "to": "post_201",
+      "weight": 0.3
+    },
+    {
+      "from": "backend_club",
+      "to": "post_301",
+      "weight": 0.8
+    },
+    {
+      "from": "backend_club",
+      "to": "post_401",
+      "weight": 0.2
+    },
+    {
+      "from": "diya",
+      "to": "post_501",
+      "weight": 1.0
+    }
+  ],
+  "muted": [
+    "post_201"
+  ]
+}

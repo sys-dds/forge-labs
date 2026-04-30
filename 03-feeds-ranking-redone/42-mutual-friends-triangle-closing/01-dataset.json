@@ -1,0 +1,45 @@
+{
+  "users": [
+    "ada",
+    "ben",
+    "diya",
+    "maya",
+    "omar",
+    "noor",
+    "cy",
+    "lina"
+  ],
+  "edges": [
+    [
+      "ada",
+      "ben"
+    ],
+    [
+      "ada",
+      "diya"
+    ],
+    [
+      "ben",
+      "maya"
+    ],
+    [
+      "diya",
+      "maya"
+    ],
+    [
+      "ben",
+      "omar"
+    ],
+    [
+      "cy",
+      "omar"
+    ],
+    [
+      "noor",
+      "ben"
+    ]
+  ],
+  "blocked": [
+    "noor"
+  ]
+}

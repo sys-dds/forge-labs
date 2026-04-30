@@ -14,3 +14,8 @@ The same pipeline changes by surface: search starts from query relevance, market
 ## Retrieval Slice
 
 Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.
+
+
+## Graph Candidate Generation Layer
+
+Clinics 41-50 place social graph retrieval before ranking: follow graph, mutuals, bipartite walks, random walks, authority, communities, heterogeneous paths, freshness, debug traces, and graph handoff.

@@ -1,0 +1,46 @@
+{
+  "edges": [
+    {
+      "to": "ben",
+      "type": "follow",
+      "age_days": 200,
+      "base_weight": 0.5,
+      "post": "post_101"
+    },
+    {
+      "to": "diya",
+      "type": "reply",
+      "age_days": 2,
+      "base_weight": 1.0,
+      "post": "post_201"
+    },
+    {
+      "to": "maya",
+      "type": "like",
+      "age_days": 1,
+      "base_weight": 0.6,
+      "post": "post_301"
+    },
+    {
+      "to": "omar",
+      "type": "view",
+      "age_days": 0.04,
+      "base_weight": 0.2,
+      "post": "post_401"
+    },
+    {
+      "to": "noor",
+      "type": "block",
+      "age_days": 1,
+      "base_weight": 1.0,
+      "post": "post_501"
+    },
+    {
+      "to": "cy",
+      "type": "mute",
+      "age_days": 3,
+      "base_weight": 1.0,
+      "post": "post_601"
+    }
+  ]
+}

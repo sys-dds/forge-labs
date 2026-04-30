@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "post_101",
+      "state": "retrieved_by_follow_edge"
+    },
+    {
+      "id": "maya",
+      "state": "retrieved_by_two_hop_mutual"
+    },
+    {
+      "id": "backend_club",
+      "state": "retrieved_by_group_membership"
+    },
+    {
+      "id": "post_201",
+      "state": "missing_edge_not_ingested"
+    },
+    {
+      "id": "post_301",
+      "state": "edge_expired"
+    },
+    {
+      "id": "post_401",
+      "state": "blocked_author_path"
+    },
+    {
+      "id": "post_501",
+      "state": "community_membership_too_weak"
+    },
+    {
+      "id": "post_601",
+      "state": "source_quota_overflow"
+    },
+    {
+      "id": "post_701",
+      "state": "candidate_retrieved"
+    }
+  ]
+}

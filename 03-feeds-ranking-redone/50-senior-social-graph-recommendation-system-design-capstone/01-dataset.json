@@ -1,0 +1,94 @@
+{
+  "viewer": "ada",
+  "rows": [
+    {
+      "id": "post_101",
+      "source": "follow_graph",
+      "path": [
+        "ada",
+        "ben",
+        "post_101"
+      ],
+      "score": 0.9
+    },
+    {
+      "id": "maya",
+      "source": "mutual_friend_graph",
+      "path": [
+        "ada",
+        "ben",
+        "maya"
+      ],
+      "score": 0.8
+    },
+    {
+      "id": "post_201",
+      "source": "bipartite_graph",
+      "path": [
+        "ada",
+        "post_101",
+        "ben",
+        "post_201"
+      ],
+      "score": 0.75
+    },
+    {
+      "id": "post_301",
+      "source": "community_graph",
+      "path": [
+        "ada",
+        "backend_cluster",
+        "post_301"
+      ],
+      "score": 0.7
+    },
+    {
+      "id": "javaconf",
+      "source": "heterogeneous_event_graph",
+      "path": [
+        "ada",
+        "backend_club",
+        "javaconf"
+      ],
+      "score": 0.65
+    },
+    {
+      "id": "post_401",
+      "source": "fresh_interaction_edge",
+      "path": [
+        "ada",
+        "diya",
+        "post_401"
+      ],
+      "score": 0.6
+    },
+    {
+      "id": "post_501",
+      "source": "follow_graph",
+      "path": [
+        "ada",
+        "blocked_author",
+        "post_501"
+      ],
+      "blocked": true
+    },
+    {
+      "id": "post_601",
+      "source": "follow_graph",
+      "path": [
+        "ada",
+        "muted_author",
+        "post_601"
+      ],
+      "muted": true
+    },
+    {
+      "id": "post_701",
+      "missing": "edge_not_ingested"
+    },
+    {
+      "id": "post_801",
+      "missing": "source_quota_overflow"
+    }
+  ]
+}

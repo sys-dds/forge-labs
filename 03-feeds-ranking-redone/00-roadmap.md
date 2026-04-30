@@ -23,3 +23,8 @@ FORGE-FEED-R2-031-040 stays on Feeds/Ranking Redone and covers advanced retrieva
 ## Possible Future FORGE-FEED-R2-041-050 Options
 
 Future feed work can deepen social graph and community algorithms, trust and safety ranking, abuse/integrity retrieval, and creator ecosystem or marketplace depth. Do not create that range until the user asks for it.
+
+
+## FORGE-FEED-R2-041-050
+
+Social graph / communities / graph algorithms. Future feed expansion may cover safety, integrity, abuse, and trust ranking, then creator ecosystem and marketplace ranking depth. No movement to another track without user approval.
