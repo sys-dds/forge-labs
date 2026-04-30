@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "id": 101,
+      "retrieved": true,
+      "source": "followed"
+    },
+    {
+      "id": 201,
+      "retrieved": true,
+      "source": "semantic"
+    },
+    {
+      "id": 301,
+      "indexed": false
+    },
+    {
+      "id": 401,
+      "embedding_version": "old"
+    },
+    {
+      "id": 501,
+      "eligible": false
+    },
+    {
+      "id": 601,
+      "quota_overflow": true
+    },
+    {
+      "id": 701,
+      "tokenized": false
+    },
+    {
+      "id": 801,
+      "ann_bucket_probed": false
+    },
+    {
+      "id": 901,
+      "retrieved": true,
+      "source": "exploration"
+    }
+  ]
+}

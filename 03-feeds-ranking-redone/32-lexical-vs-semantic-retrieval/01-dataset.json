@@ -1,0 +1,57 @@
+{
+  "query": "Java testing",
+  "content": [
+    {
+      "id": 101,
+      "title": "Java unit testing with JUnit",
+      "topics": [
+        "java_testing"
+      ]
+    },
+    {
+      "id": 201,
+      "title": "Spring Boot integration tests",
+      "topics": [
+        "java_testing",
+        "backend_testing"
+      ]
+    },
+    {
+      "id": 301,
+      "title": "JavaScript testing guide",
+      "topics": [
+        "javascript_testing"
+      ]
+    },
+    {
+      "id": 401,
+      "title": "Testcontainers for backend services",
+      "topics": [
+        "backend_testing",
+        "java_testing"
+      ]
+    },
+    {
+      "id": 501,
+      "title": "Developer memes",
+      "topics": [
+        "humor"
+      ]
+    },
+    {
+      "id": 601,
+      "title": "Reliable test suites in Java",
+      "topics": [
+        "java_testing"
+      ]
+    },
+    {
+      "id": 701,
+      "title": "Java testing secrets",
+      "topics": [
+        "java_testing"
+      ],
+      "blocked": true
+    }
+  ]
+}

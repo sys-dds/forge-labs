@@ -1,0 +1,57 @@
+{
+  "viewer": "ada",
+  "items": [
+    {
+      "id": 101,
+      "source": "followed_author",
+      "score": 0.91
+    },
+    {
+      "id": 201,
+      "source": "lexical",
+      "score": 0.84
+    },
+    {
+      "id": 301,
+      "source": "semantic",
+      "score": 0.88
+    },
+    {
+      "id": 401,
+      "source": "two_tower",
+      "score": 0.94
+    },
+    {
+      "id": 501,
+      "source": "ann",
+      "score": 0.81
+    },
+    {
+      "id": 601,
+      "source": "cold_start_backfill",
+      "score": 0.73
+    },
+    {
+      "id": 701,
+      "source": "semantic",
+      "blocked": true,
+      "score": 0.99
+    },
+    {
+      "id": 801,
+      "source": "trending",
+      "unsafe": true,
+      "score": 1.0
+    },
+    {
+      "id": 901,
+      "source": "semantic",
+      "index_fresh": false
+    },
+    {
+      "id": 1001,
+      "source": "ann",
+      "ann_bucket_probed": false
+    }
+  ]
+}

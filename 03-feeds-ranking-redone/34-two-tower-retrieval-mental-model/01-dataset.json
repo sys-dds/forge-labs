@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": "ada",
+      "interests": [
+        "backend",
+        "feeds"
+      ],
+      "embedding": [
+        0.9,
+        0.8,
+        0.1
+      ]
+    },
+    {
+      "id": "ben",
+      "interests": [
+        "movies"
+      ],
+      "embedding": [
+        0.1,
+        0.2,
+        0.9
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": 101,
+      "title": "backend feed post",
+      "embedding": [
+        0.8,
+        0.8,
+        0.1
+      ]
+    },
+    {
+      "id": 201,
+      "title": "movie recommendation post",
+      "embedding": [
+        0.1,
+        0.2,
+        1.0
+      ]
+    },
+    {
+      "id": 301,
+      "title": "feed ranking post",
+      "embedding": [
+        0.9,
+        0.9,
+        0.1
+      ]
+    },
+    {
+      "id": 401,
+      "title": "cooking post",
+      "embedding": [
+        0.0,
+        0.1,
+        0.0
+      ]
+    },
+    {
+      "id": 501,
+      "title": "backend testing post",
+      "embedding": [
+        0.85,
+        0.65,
+        0.1
+      ]
+    },
+    {
+      "id": 601,
+      "title": "blocked backend post",
+      "embedding": [
+        1.0,
+        0.8,
+        0.1
+      ],
+      "blocked": true
+    }
+  ]
+}

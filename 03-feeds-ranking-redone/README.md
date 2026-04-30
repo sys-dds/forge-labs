@@ -35,3 +35,8 @@ Clinics 01-10 now avoid dispatcher shortcuts. Each clinic owns its broken simula
 ## Part Two
 
 Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 add product surface ranking patterns: Following vs For You, short video, Home vs Up Next, hot ranking, professional feeds, marketplace, search, creator discovery, safety, and beginner score debugging. New clinics avoid dispatcher shortcuts and keep behavior inside clinic-specific functions.
+
+
+## Retrieval Slice
+
+Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.

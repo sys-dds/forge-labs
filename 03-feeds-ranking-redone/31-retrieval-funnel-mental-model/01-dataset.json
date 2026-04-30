@@ -1,0 +1,55 @@
+{
+  "viewer": "ada",
+  "corpus": [
+    {
+      "id": 101,
+      "author": "ben",
+      "topic": "backend",
+      "followed": true
+    },
+    {
+      "id": 201,
+      "author": "cy",
+      "topic": "backend",
+      "muted": true
+    },
+    {
+      "id": 301,
+      "author": "noor",
+      "blocked": true
+    },
+    {
+      "id": 401,
+      "author": "diya",
+      "topic": "backend",
+      "group": "Backend Club"
+    },
+    {
+      "id": 501,
+      "author": "lina",
+      "topic": "backend",
+      "semantic_match": true
+    },
+    {
+      "id": 601,
+      "author": "maya",
+      "exploration": true
+    },
+    {
+      "id": 701,
+      "author": "omar",
+      "topic": "sports"
+    },
+    {
+      "id": 801,
+      "author": "theo",
+      "unsafe": true
+    },
+    {
+      "id": 901,
+      "author": "ivy",
+      "cold_start": true,
+      "fresh": true
+    }
+  ]
+}
