@@ -13,7 +13,7 @@ fi
 echo "Clinic path: $clinic"
 echo
 echo "Reading order:"
-for file in README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md; do
+for file in README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md 10-mutation-checks.md; do
   echo "- $clinic/$file"
 done
 echo

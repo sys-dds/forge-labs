@@ -23,6 +23,7 @@ required=(
   07-interview-explanation.md
   08-what-to-notice.md
   09-evidence-map.md
+  10-mutation-checks.md
 )
 
 for file in "${required[@]}"; do

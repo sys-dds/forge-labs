@@ -9,3 +9,6 @@
 7. Change one scoring rule.
 8. Rerun the proof.
 9. Explain the ranking behavior out loud with item IDs and reasons.
+
+## After hardening
+When studying a clinic, read `10-mutation-checks.md` after the proof. Pick one mutation, make the change locally, and confirm the proof fails for the named reason before restoring it.

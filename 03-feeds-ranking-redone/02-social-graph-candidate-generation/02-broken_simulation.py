@@ -1,38 +1,40 @@
 import json
 from pathlib import Path
 
+
 def load_dataset(dataset):
     if isinstance(dataset, dict):
         return dataset
     return json.loads(Path(dataset).read_text())
 
-def content_id(item):
-    return item["id"]
+
+def rejected(content_id, reason, stage):
+    return {"content_id": content_id, "reason": reason, "stage": stage}
+
+
+def trace(content_id, included, why):
+    return {"content_id": content_id, "included": included, "why": why}
+
+
+def base_result(dataset):
+    return {"inventory": [item["id"] for item in dataset["content"]], "eligible_candidates": [], "eligible_ids": [], "rejected_items": [], "candidate_rows": [], "feature_rows": [], "score_rows": [], "ranked_items": [], "final_feed": [], "debug_trace": [], "feedback_events": []}
+
+
+def by_id(dataset):
+    return {item["id"]: item for item in dataset["content"]}
+
+
+def collect_followed_without_filters(items):
+    return [item for item in items if item["source"] in {"close_friend", "followed_author", "commented_by_following", "public"}]
+
 
 def run(dataset):
-    data = load_dataset(dataset)
-    items = data["content"]
-    clinic = data["clinic"]
-
-    if clinic.startswith("04-"):
-        ids = []
-        for pool_name in ["in_network", "social_proof", "similar_topic", "trending", "exploration"]:
-            ids.extend(data["pools"][pool_name])
-        return {"final_feed": ids[:5], "eligible_ids": ids, "reason_labels": {}, "feedback_log": [], "debug_trace": {}}
-
-    if clinic.startswith("09-"):
-        sent = [item["id"] for item in items]
-        return {"final_feed": sent, "sent_notifications": sent, "eligible_ids": sent, "reason_labels": {}, "debug_trace": {}}
-
-    if clinic.startswith("08-"):
-        story = [item["id"] for item in items if item.get("surface") == "story"]
-        spotlight = [item["id"] for item in sorted([i for i in items if i.get("surface") == "spotlight"], key=lambda row: row.get("likes", 0), reverse=True)]
-        return {"story_tray": story, "spotlight_feed": spotlight, "final_feed": story + spotlight[:2], "eligible_ids": story + spotlight, "reason_labels": {}, "debug_trace": {}}
-
-    ordered = sorted(items, key=lambda row: row.get("score", row.get("engagement", row.get("likes", row.get("like", 0)))), reverse=True)
-    final = [content_id(item) for item in ordered[:5]]
-    return {"final_feed": final, "eligible_ids": final, "reason_labels": {}, "feedback_log": [], "debug_trace": {}, "score_components": {}}
-
+    data=load_dataset(dataset)
+    candidates=collect_followed_without_filters(data["content"])
+    # Duplicates Lina when a comment path is seen twice and misses the shared group source.
+    rows=[{"content_id": item["id"], "source": item["source"], "source_actor": item["author"], "reasons": []} for item in candidates if item["id"] != 401]
+    rows.append({"content_id":501,"source":"commented_by_following","source_actor":"Maya","reasons":[]})
+    final=[row["content_id"] for row in rows]
+    return {"inventory":[item["id"] for item in data["content"]],"eligible_candidates":candidates,"eligible_ids":final,"rejected_items":[],"candidate_rows":rows,"final_feed":final,"debug_trace":[]}
 if __name__ == "__main__":
-    import sys
-    print(json.dumps(run(sys.argv[1]), indent=2, sort_keys=True))
+    import sys; print(json.dumps(run(sys.argv[1]), indent=2, sort_keys=True))
