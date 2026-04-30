@@ -1,0 +1,11 @@
+SET search_path TO bip_pim_036;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya');
+INSERT INTO topics VALUES (101,'Build in Public','hashtag','public'),(102,'Databases','system','public');
+INSERT INTO hashtags VALUES (301,'#BuildInPublic','buildinpublic',101),(302,'#DB','db',102);
+INSERT INTO creators VALUES (201,2,'Ben Builds','active'),(202,3,'Cy Spam','active'),(203,4,'Diya Data','active');
+INSERT INTO posts VALUES (1001,201,'Build log day one','active'),(1002,201,'Deleted build note','deleted'),(1003,203,'Rough launch teaser','downranked'),(1004,202,'Blocked creator post','active');
+INSERT INTO content_topic_links VALUES (4001,101,1001,'hashtag'),(4002,101,1002,'hashtag'),(4003,101,1003,'moderator_tag'),(4004,101,1004,'hashtag');
+INSERT INTO creator_topic_links VALUES (4101,101,201,'creator_profile'),(4102,101,202,'creator_profile'),(4103,102,203,'creator_profile');
+INSERT INTO user_topic_follows VALUES (5001,1,101,'paused'),(5002,1,102,'active');
+INSERT INTO block_edges VALUES (6001,1,3);
+INSERT INTO content_treatments VALUES (7001,1003,'downrank','low quality launch spam');

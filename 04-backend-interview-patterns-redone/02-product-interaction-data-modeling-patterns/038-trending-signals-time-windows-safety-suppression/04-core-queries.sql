@@ -1,0 +1,11 @@
+SET search_path TO bip_pim_038;
+WITH components AS (SELECT * FROM trend_signal_components WHERE window_id=3001), totals AS (SELECT topic_id,sum(component_value) component_total FROM components GROUP BY topic_id), suppressed AS (SELECT topic_id FROM policy_treatments WHERE treatment='hide'), allowed AS (SELECT t.topic_id,t.component_total FROM totals t WHERE NOT EXISTS(SELECT 1 FROM suppressed s WHERE s.topic_id=t.topic_id) AND t.component_total > 0), checks AS (
+SELECT 'velocity_component' contract_name,'topic:101' subject_id,(SELECT component_value::text FROM components WHERE topic_id=101 AND component_name='velocity') observed_value,'Velocity component 4001 records interaction velocity for topic 101' expected_reason
+UNION ALL SELECT 'unique_actor_component','topic:101',(SELECT component_value::text FROM components WHERE topic_id=101 AND component_name='unique_actor'),'Unique actor component 4002 prevents one actor from faking trend'
+UNION ALL SELECT 'freshness_component','topic:103',(SELECT component_value::text FROM components WHERE topic_id=103 AND component_name='freshness'),'Freshness component 4009 decays old topic 103'
+UNION ALL SELECT 'spam_trend_suppressed','topic:102',(NOT EXISTS(SELECT 1 FROM allowed WHERE topic_id=102))::text,'Policy treatment 7001 hides spammy topic 102 despite high velocity'
+UNION ALL SELECT 'safe_trend_allowed','topic:101',(EXISTS(SELECT 1 FROM allowed WHERE topic_id=101))::text,'Topic 101 is allowed because components are positive and no hide treatment exists'
+UNION ALL SELECT 'old_trend_decayed','topic:103',(SELECT component_total::text FROM totals WHERE topic_id=103),'Old topic 103 total includes negative freshness decay'
+UNION ALL SELECT 'trend_component_total','snapshot:8001',(SELECT component_total::text FROM totals WHERE topic_id=101),'Component total for topic 101 derives from velocity, unique_actor, and freshness rows'
+UNION ALL SELECT 'trend_debug_trace','window:3001',string_agg(t.topic_id||':total='||t.component_total||':treatment='||COALESCE(pt.treatment,'allow'),'|' ORDER BY t.topic_id),'Trace combines components and policy treatments' FROM totals t LEFT JOIN policy_treatments pt ON pt.topic_id=t.topic_id)
+SELECT contract_name,subject_id,observed_value,expected_reason FROM checks ORDER BY contract_name;

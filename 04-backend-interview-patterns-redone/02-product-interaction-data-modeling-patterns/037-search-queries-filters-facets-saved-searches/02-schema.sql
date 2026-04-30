@@ -1,0 +1,12 @@
+SET search_path TO bip_pim_037;
+CREATE TABLE users(user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE search_sessions(session_id int PRIMARY KEY, user_id int NOT NULL REFERENCES users(user_id), started_at date NOT NULL);
+CREATE TABLE search_queries(query_id int PRIMARY KEY, session_id int NOT NULL REFERENCES search_sessions(session_id), user_id int NOT NULL REFERENCES users(user_id), query_text text NOT NULL);
+CREATE TABLE search_filters(filter_id int PRIMARY KEY, query_id int NOT NULL REFERENCES search_queries(query_id), filter_name text NOT NULL, filter_value text NOT NULL);
+CREATE TABLE search_facets(facet_id int PRIMARY KEY, query_id int NOT NULL REFERENCES search_queries(query_id), facet_name text NOT NULL, facet_value text NOT NULL);
+CREATE TABLE saved_searches(saved_search_id int PRIMARY KEY, user_id int NOT NULL REFERENCES users(user_id), query_text text NOT NULL, filter_name text NOT NULL, filter_value text NOT NULL, saved_state text NOT NULL CHECK(saved_state IN ('active','paused')));
+CREATE TABLE creators(creator_id int PRIMARY KEY, user_id int NOT NULL REFERENCES users(user_id), creator_name text NOT NULL);
+CREATE TABLE posts(post_id int PRIMARY KEY, creator_id int NOT NULL REFERENCES creators(creator_id), title text NOT NULL, topic_id int NOT NULL, content_state text NOT NULL CHECK(content_state IN ('active','deleted','hidden','downranked')));
+CREATE TABLE listings(listing_id int PRIMARY KEY, creator_id int NOT NULL REFERENCES creators(creator_id), title text NOT NULL, topic_id int NOT NULL, listing_state text NOT NULL CHECK(listing_state IN ('active','deleted','hidden','downranked')));
+CREATE TABLE content_treatments(treatment_id int PRIMARY KEY, entity_type text NOT NULL, entity_id int NOT NULL, treatment text NOT NULL CHECK(treatment IN ('allow','downrank','hide','review')), reason text NOT NULL);
+CREATE TABLE block_edges(block_id int PRIMARY KEY, blocker_user_id int NOT NULL REFERENCES users(user_id), blocked_user_id int NOT NULL REFERENCES users(user_id));

@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+facet_count,facet:3001,1,Facet count derives from visible filtered results for topic 501
+filter_applied,query:1001,result_type=post|topic_id=501,Filters 2001 and 2002 constrain result type and topic
+paused_saved_search_no_alert,saved:4002,true,Paused saved search 4002 does not alert
+query_recorded,query:1001,workshop,Search query 1001 records Ada text workshop
+saved_search_contract,saved:4001,active:workshop:result_type=post,Saved search 4001 stores query and filter state
+search_debug_trace,query:1001,results=post:5001|facets=501:1|alertable=true,"Trace combines query, filters, visible results, facets, saved search, blocks, and treatments"
+unsafe_result_suppressed,listing:6001,true,Listing 6001 is hidden by treatment 8001 and blocked creator 701

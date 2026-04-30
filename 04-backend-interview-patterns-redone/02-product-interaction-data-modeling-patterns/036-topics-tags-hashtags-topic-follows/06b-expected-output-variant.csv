@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_creator_hidden,creator:202,true,Creator 202 belongs to blocked user Cy via block 6001
+deleted_content_hidden,post:1002,true,Deleted post 1002 is hidden from topic surface
+downranked_content_trace,post:1003,downrank:low quality launch spam,Downranked content remains explainable through treatment 7001
+followed_topic_content,user:1,none,"Ada sees active followed-topic posts after deletion, block, and treatment rules"
+followed_topic_creator,user:1,203,Ada sees creators linked to active followed topics unless blocked
+normalized_hashtag_topic,hashtag:301,101,Hashtag 301 normalizes #BuildInPublic to topic 101
+topic_debug_trace,user:1,topics=102|posts=none|creators=203,"Trace combines follows, topic links, blocks, deleted state, and treatments"

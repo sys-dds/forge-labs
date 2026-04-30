@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_039;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya');
+INSERT INTO posts VALUES (1001,4,'Good tutorial','active'),(1002,4,'Deleted tutorial','deleted'),(1003,2,'Blocked author post','active');
+INSERT INTO listings VALUES (2001,4,'Useful template','active'),(2002,2,'Blocked listing','active');
+INSERT INTO collections VALUES (3001,1,'Ada private saves','bookmark_folder','private'),(3002,1,'Public playlist','playlist','public');
+INSERT INTO collection_members VALUES (4001,3001,4,'active',true);
+INSERT INTO collection_items VALUES (5001,3001,'post',1001,10,'active'),(5002,3001,'listing',2001,20,'active'),(5003,3001,'post',1001,30,'duplicate_attempt'),(5004,3001,'listing',2002,40,'active'),(5005,3001,'post',1002,50,'active'),(5006,3002,'post',1001,10,'active');
+INSERT INTO saved_items VALUES (6001,1,'post',1001,'active'),(6002,1,'listing',2001,'active');
+INSERT INTO block_edges VALUES (7001,1,2);
+INSERT INTO content_treatments VALUES (8001,'listing',2002,'hide','blocked seller risk');
