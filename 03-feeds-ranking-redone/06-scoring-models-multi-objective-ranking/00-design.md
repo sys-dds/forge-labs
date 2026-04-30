@@ -31,6 +31,12 @@ Scoring Models and Multi-Objective Ranking teaches readable multi-objective scor
 - Simulation/proof that uses it: exploration_bonus_applied.
 - Wrong behavior if removed: exploration objective would vanish.
 
+
+- Item: Scoring weights
+- Why it exists: The readable formula shows how like, comment, share, watch, freshness, relationship, hide risk, and exploration combine.
+- Simulation/proof that uses it: Proof asserts exact final order [501,101,601,901,701] and score components for Omar 701.
+- Wrong behavior if removed: The learner cannot explain why Lina 501 beats Omar 701 even though Omar has the highest like probability.
+
 ## Broken ranking behavior
 
 broken output ranks Omar 701 first by like probability despite high hide/report risk and hides score components.
