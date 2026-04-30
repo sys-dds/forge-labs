@@ -1,0 +1,4 @@
+seller_id,seller_name,completed_orders,cancelled_orders,disputed_orders,refund_count,fulfilment_rate
+201,Iris,2,1,1,1,0.50
+202,Jon,0,1,1,0,0.00
+203,Kara,1,0,0,1,1.00

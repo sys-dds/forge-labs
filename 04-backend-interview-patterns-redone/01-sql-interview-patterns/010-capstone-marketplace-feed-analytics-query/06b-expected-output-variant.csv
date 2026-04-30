@@ -1,0 +1,5 @@
+seller_id,seller_name,active_listings,completed_orders,cancellation_rate,dispute_rate,average_response_time,recent_listing_impressions,contact_rate,booking_rate,seller_treatment
+201,Iris,2,3,0.00,0.00,10,2,1.00,1.00,boost
+203,Kara,1,1,0.00,0.00,25,3,0.33,0.00,watch
+202,Jon,1,1,0.67,0.67,55,2,0.50,0.00,suppress
+204,Mina,1,1,0.50,0.00,20,0,0.00,0.00,suppress
