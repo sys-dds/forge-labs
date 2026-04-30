@@ -1,0 +1,1 @@
+CREATE VIEW jsonb_payload_result AS SELECT id,event_type,actor FROM audit_events WHERE payload @> '{"provider":"stripe"}' OR payload ? 'reason' ORDER BY id;

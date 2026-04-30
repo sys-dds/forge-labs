@@ -1,0 +1,1 @@
+SELECT provider, lower(slot), upper(slot) FROM bookings ORDER BY id;

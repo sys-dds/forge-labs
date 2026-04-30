@@ -1,0 +1,1 @@
+INSERT INTO create_requests(actor,idem_key,immutable_payload,status) VALUES ('ada','create-1','listing=10','received') ON CONFLICT (actor,idem_key) DO NOTHING;

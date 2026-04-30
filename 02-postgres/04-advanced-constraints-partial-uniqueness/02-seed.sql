@@ -1,0 +1,1 @@
+INSERT INTO seller_listings VALUES (1,'ben','bicycle-repair','active',20),(2,'ben','bicycle-repair','removed',18),(3,'cy','bicycle-repair','active',22);

@@ -1,0 +1,1 @@
+INSERT INTO tenant_notes VALUES (1,'alpha','Ada note'),(2,'beta','Ben note');

@@ -1,0 +1,1 @@
+UPDATE listings SET status='paused' WHERE id=1;

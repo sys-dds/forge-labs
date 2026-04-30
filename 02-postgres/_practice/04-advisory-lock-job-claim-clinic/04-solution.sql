@@ -1,0 +1,1 @@
+SELECT * FROM claim_due_jobs('worker-a','2026-01-02'); CREATE VIEW job_claim_result AS SELECT id,status,worker_id FROM jobs;

@@ -1,0 +1,2 @@
+CREATE VIEW live_trust AS SELECT s.handle, count(r.id) AS verified_review_count FROM sellers s LEFT JOIN reviews r ON r.seller_id=s.id AND r.verified AND NOT r.deleted GROUP BY s.handle;
+CREATE MATERIALIZED VIEW cached_trust AS SELECT * FROM live_trust; INSERT INTO reviews VALUES (2,1,true,false);

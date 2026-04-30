@@ -1,0 +1,1 @@
+CREATE VIEW dispute_resolution_result AS SELECT d.id,d.status,a.note FROM disputes d JOIN dispute_audit a ON a.dispute_id=d.id;

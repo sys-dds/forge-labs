@@ -1,0 +1,1 @@
+DO $$ BEGIN IF array(SELECT id FROM gauntlet_result WHERE worker_id='worker-a' ORDER BY id) <> ARRAY[1,4] THEN RAISE EXCEPTION 'advisory lock did not pair with row claim'; END IF; END $$;

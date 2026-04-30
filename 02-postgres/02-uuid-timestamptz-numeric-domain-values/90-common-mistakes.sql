@@ -1,0 +1,2 @@
+-- Break/fix: remove positive amount CHECK.
+-- Break/fix: use timestamp without time zone and compare Ada's event incorrectly.

@@ -1,0 +1,1 @@
+CREATE TABLE audit_events(id int PRIMARY KEY, event_type text NOT NULL, actor text NOT NULL, occurred_at timestamptz NOT NULL, payload jsonb NOT NULL);

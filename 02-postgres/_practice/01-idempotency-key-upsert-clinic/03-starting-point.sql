@@ -1,0 +1,1 @@
+SELECT actor, idem_key, status FROM create_requests;

@@ -1,0 +1,2 @@
+-- Break/fix: remove due_at filter and watch cleanup claim early.
+-- Break/fix: remove status transition and discuss double-claim risk.

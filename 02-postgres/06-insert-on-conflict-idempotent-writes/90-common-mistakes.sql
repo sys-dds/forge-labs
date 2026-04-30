@@ -1,0 +1,2 @@
+-- Break/fix: make idem_key globally unique and watch Ben blocked.
+-- Break/fix: update immutable_payload in the conflict branch.

@@ -1,0 +1,1 @@
+CREATE VIEW seller_api_cards AS SELECT s.handle, (SELECT count(*) FROM listings l WHERE l.seller_id=s.id AND l.visible) AS active_listing_count, (SELECT count(*) FROM reviews r WHERE r.seller_id=s.id AND r.verified AND NOT r.deleted) AS verified_review_count, EXISTS(SELECT 1 FROM disputes d WHERE d.seller_id=s.id AND d.status='open') AS has_open_dispute FROM sellers s;

@@ -1,0 +1,2 @@
+-- Break/fix: remove the outbox helper and discuss why LISTEN cannot prove offline delivery.
+-- Break/fix: put a large row dump in NOTIFY payload.

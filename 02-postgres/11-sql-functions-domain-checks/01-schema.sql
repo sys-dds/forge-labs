@@ -1,0 +1,2 @@
+CREATE TABLE seller_signals(handle text PRIMARY KEY, verified_reviews int NOT NULL, open_disputes int NOT NULL, active_listings int NOT NULL);
+CREATE FUNCTION is_seller_eligible(reviews int, disputes int, listings int) RETURNS boolean LANGUAGE sql IMMUTABLE AS $$ SELECT reviews >= 1 AND disputes = 0 AND listings >= 1 $$;

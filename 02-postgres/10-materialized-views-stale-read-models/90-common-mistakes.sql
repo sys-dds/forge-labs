@@ -1,0 +1,2 @@
+-- Break/fix: remove REFRESH and observe cached_trust stay stale.
+-- Break/fix: use cached_trust for a live safety decision and explain the risk.

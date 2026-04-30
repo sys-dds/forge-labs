@@ -1,0 +1,1 @@
+INSERT INTO inbound_requests(actor, external_ref, amount, happened_at) VALUES ('ada','req-ada-1',12.10,'2026-01-01 09:00-05'),('ben','req-ben-1',7.25,'2026-01-01 14:30+00');

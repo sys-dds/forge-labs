@@ -1,0 +1,1 @@
+CREATE VIEW trigger_side_effect_result AS SELECT count(*) AS audit_count FROM status_audit;

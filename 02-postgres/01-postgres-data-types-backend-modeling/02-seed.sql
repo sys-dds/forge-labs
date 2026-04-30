@@ -1,0 +1,4 @@
+INSERT INTO backend_users VALUES
+('00000000-0000-0000-0000-0000000000a1','ada','buyer',true),('00000000-0000-0000-0000-0000000000b1','ben','seller',true),('00000000-0000-0000-0000-0000000000c1','cy','seller',false),('00000000-0000-0000-0000-0000000000d1','maya','operator',true);
+INSERT INTO listings VALUES (10,'00000000-0000-0000-0000-0000000000b1','Ben bicycle repair',19.99,'2026-01-01 09:00+00','{"trust_signal":"verified"}');
+INSERT INTO service_requests VALUES (100,'00000000-0000-0000-0000-0000000000a1',10,'2026-01-01 10:05+01',19.99);

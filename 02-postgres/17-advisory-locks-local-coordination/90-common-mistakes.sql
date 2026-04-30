@@ -1,0 +1,2 @@
+-- Break/fix: reuse lock_key 1001 for payout-sweep and discuss unrelated coordination.
+-- Break/fix: call pg_try_advisory_xact_lock without updating job state.

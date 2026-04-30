@@ -1,0 +1,4 @@
+CREATE TABLE domain_events(id int PRIMARY KEY, event_type text NOT NULL, payload jsonb NOT NULL);
+CREATE TABLE notification_outbox(id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY, event_id int, channel text, payload jsonb);
+CREATE FUNCTION notify_domain_event() RETURNS trigger LANGUAGE plpgsql AS $$ DECLARE msg jsonb; BEGIN msg := jsonb_build_object('event_id',NEW.id,'event_type',NEW.event_type); INSERT INTO notification_outbox(event_id,channel,payload) VALUES (NEW.id,'domain_events',msg); PERFORM pg_notify('domain_events', msg::text); RETURN NEW; END $$;
+CREATE TRIGGER domain_event_notify AFTER INSERT ON domain_events FOR EACH ROW EXECUTE FUNCTION notify_domain_event();

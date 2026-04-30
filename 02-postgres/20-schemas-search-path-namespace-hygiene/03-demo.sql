@@ -1,0 +1,1 @@
+SET search_path=demo,app,public; SELECT handle FROM users WHERE id=1; RESET search_path;

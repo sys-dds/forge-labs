@@ -1,0 +1,1 @@
+INSERT INTO listings(id,title,status,updated_at) VALUES (1,'Ben repair','active','2026-01-01 00:00+00');

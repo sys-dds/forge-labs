@@ -1,0 +1,2 @@
+-- Break/fix: remove ENABLE ROW LEVEL SECURITY and rerun as app role.
+-- Break/fix: replace the policy with workspace IS NOT NULL.

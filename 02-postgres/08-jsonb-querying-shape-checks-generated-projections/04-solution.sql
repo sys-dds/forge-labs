@@ -1,0 +1,1 @@
+CREATE VIEW high_risk_events AS SELECT id FROM provider_events WHERE risk_score >= 0.80;

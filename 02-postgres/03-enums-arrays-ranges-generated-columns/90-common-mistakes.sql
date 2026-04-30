@@ -1,0 +1,2 @@
+-- Break/fix: remove generated label and try to keep it synchronized by hand.
+-- Break/fix: replace range overlap with text comparisons and test boundary behavior.

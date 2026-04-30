@@ -1,0 +1,2 @@
+CREATE TABLE seller_listings(id int PRIMARY KEY, seller text NOT NULL, slug text NOT NULL, status text NOT NULL CHECK(status IN ('active','removed')), price numeric(10,2) NOT NULL CHECK(price>0));
+CREATE UNIQUE INDEX one_active_slug_per_seller ON seller_listings(seller,slug) WHERE status='active';

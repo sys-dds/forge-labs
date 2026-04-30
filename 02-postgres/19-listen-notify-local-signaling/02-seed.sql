@@ -1,0 +1,1 @@
+INSERT INTO domain_events VALUES (100,'listing_created','{"listing_id":10}');

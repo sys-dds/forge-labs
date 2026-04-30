@@ -1,0 +1,2 @@
+CREATE TABLE coordination_jobs(id int PRIMARY KEY, job_name text UNIQUE, lock_key bigint UNIQUE, claimed_by text);
+CREATE FUNCTION claim_coordination_job(job text, worker text) RETURNS boolean LANGUAGE plpgsql AS $$ DECLARE k bigint; BEGIN SELECT lock_key INTO k FROM coordination_jobs WHERE job_name=job AND claimed_by IS NULL; IF k IS NULL THEN RETURN false; END IF; IF NOT pg_try_advisory_xact_lock(k) THEN RETURN false; END IF; UPDATE coordination_jobs SET claimed_by=worker WHERE job_name=job AND claimed_by IS NULL; RETURN FOUND; END $$;

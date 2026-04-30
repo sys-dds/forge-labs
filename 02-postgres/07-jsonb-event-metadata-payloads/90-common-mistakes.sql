@@ -1,0 +1,2 @@
+-- Break/fix: move actor only into payload and try to join actor history.
+-- Break/fix: assume every event has reason and inspect listing_created rows.

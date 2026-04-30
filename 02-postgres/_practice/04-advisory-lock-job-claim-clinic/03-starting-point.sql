@@ -1,0 +1,1 @@
+SELECT id,kind,status FROM jobs ORDER BY id;

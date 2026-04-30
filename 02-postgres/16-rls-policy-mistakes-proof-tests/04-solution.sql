@@ -1,0 +1,1 @@
+CREATE VIEW rls_policy_owner_reference AS SELECT count(*) AS owner_count FROM tenant_notes;

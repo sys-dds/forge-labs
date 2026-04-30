@@ -1,0 +1,1 @@
+INSERT INTO seller_signals VALUES ('ben',2,0,1),('cy',0,0,1),('noor',2,1,1);

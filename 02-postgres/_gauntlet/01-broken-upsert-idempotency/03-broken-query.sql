@@ -1,0 +1,3 @@
+CREATE UNIQUE INDEX broken_global_idem ON create_requests(idem_key);
+INSERT INTO create_requests(actor,idem_key,immutable_payload,status) VALUES ('ada','create-1','listing=changed','processed') ON CONFLICT (idem_key) DO UPDATE SET immutable_payload=EXCLUDED.immutable_payload, status=EXCLUDED.status;
+CREATE VIEW gauntlet_result AS SELECT actor, idem_key, immutable_payload, status FROM create_requests;

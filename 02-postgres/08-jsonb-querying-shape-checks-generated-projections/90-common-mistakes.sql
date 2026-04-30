@@ -1,0 +1,2 @@
+-- Break/fix: compare risk_score as text and add 0.9 versus 0.82.
+-- Break/fix: drop the provider payload shape CHECK.

@@ -1,0 +1,1 @@
+DO $$ BEGIN IF (SELECT count(*) FROM practice_result WHERE actor='ada')<>1 THEN RAISE EXCEPTION 'Ada duplicate created'; END IF; IF NOT EXISTS (SELECT 1 FROM practice_result WHERE actor='ben' AND immutable_payload='listing=20') THEN RAISE EXCEPTION 'Ben scoped key missing'; END IF; END $$;

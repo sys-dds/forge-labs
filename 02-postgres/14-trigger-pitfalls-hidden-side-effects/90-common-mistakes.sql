@@ -1,0 +1,2 @@
+-- Break/fix: drop the WHEN guard and watch the no-op update create noise.
+-- Break/fix: make the trigger update listings again and discuss recursion risk.

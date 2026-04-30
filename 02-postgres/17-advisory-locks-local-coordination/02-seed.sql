@@ -1,0 +1,1 @@
+INSERT INTO coordination_jobs VALUES (1,'nightly-reconcile',1001,NULL),(2,'payout-sweep',2002,NULL);

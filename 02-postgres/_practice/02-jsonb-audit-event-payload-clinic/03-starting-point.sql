@@ -1,0 +1,1 @@
+SELECT id,event_type,payload FROM audit_events ORDER BY id;

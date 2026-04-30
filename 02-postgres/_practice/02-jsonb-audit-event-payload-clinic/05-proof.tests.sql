@@ -1,0 +1,1 @@
+DO $$ BEGIN IF array(SELECT id FROM jsonb_payload_result ORDER BY id) <> ARRAY[2,3] THEN RAISE EXCEPTION 'JSONB payload result wrong'; END IF; BEGIN INSERT INTO audit_events VALUES (4,'bad','noor','[]'); RAISE EXCEPTION 'array payload accepted'; EXCEPTION WHEN check_violation THEN NULL; END; END $$;

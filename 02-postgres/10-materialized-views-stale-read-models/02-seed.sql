@@ -1,0 +1,1 @@
+INSERT INTO sellers VALUES (1,'ben'); INSERT INTO reviews VALUES (1,1,true,false);

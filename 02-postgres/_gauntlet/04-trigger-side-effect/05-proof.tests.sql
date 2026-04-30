@@ -1,0 +1,1 @@
+DO $$ BEGIN IF (SELECT audit_count FROM gauntlet_result)<>1 THEN RAISE EXCEPTION 'trigger logged no-op or missed change'; END IF; END $$;

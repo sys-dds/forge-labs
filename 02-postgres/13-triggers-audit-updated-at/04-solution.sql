@@ -1,0 +1,1 @@
+CREATE VIEW listing_trigger_result AS SELECT l.status,l.updated_at,a.old_status,a.new_status,a.event_type FROM listings l JOIN listing_audit a ON a.listing_id=l.id;

@@ -22,3 +22,7 @@ A practice pack is smaller than a chapter and more operational. It has a `challe
 ## Proof Style
 
 Proof tests use SQL assertions. They should fail when an important predicate, constraint, or ordering rule is removed. A good proof checks both the row that should appear and the row that must not appear.
+
+## PostgreSQL Path Format
+
+PostgreSQL chapters use `01-schema.sql`, `02-seed.sql`, `03-demo.sql`, `04-solution.sql`, and `05-proof.tests.sql`. Practice packs and gauntlets under `02-postgres` stay independent so a learner can reset quickly, inspect named rows, and prove one feature at a time.

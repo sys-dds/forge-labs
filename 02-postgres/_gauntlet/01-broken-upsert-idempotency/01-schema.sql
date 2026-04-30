@@ -1,0 +1,1 @@
+CREATE TABLE create_requests(id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY, actor text NOT NULL, idem_key text NOT NULL, immutable_payload text NOT NULL, status text NOT NULL DEFAULT 'received', retry_count int NOT NULL DEFAULT 0, UNIQUE(actor, idem_key));

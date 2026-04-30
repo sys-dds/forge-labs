@@ -16,3 +16,8 @@ Forge Labs grows vertically, one learning path at a time. The first path is SQL 
 - data modelling reviews
 - Ranking and matching systems
 - Backend reliability patterns
+
+## Current Path Update
+
+1. SQL foundations through social graph and matching examples.
+2. PostgreSQL backend power through database-owned correctness, data shaping, local coordination, and proof tests.

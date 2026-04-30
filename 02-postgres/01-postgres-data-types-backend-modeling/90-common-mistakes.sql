@@ -1,0 +1,2 @@
+-- Break/fix: change price to double precision and compare 0.1 + 0.2 style values.
+-- Break/fix: remove the handle CHECK and watch the proof accept a useless identity.

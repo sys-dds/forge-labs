@@ -1,0 +1,1 @@
+DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM gauntlet_result WHERE actor='ada' AND immutable_payload='listing=10' AND status='processed') THEN RAISE EXCEPTION 'Ada immutable payload changed'; END IF; IF NOT EXISTS (SELECT 1 FROM gauntlet_result WHERE actor='ben') THEN RAISE EXCEPTION 'Ben scoped key missing'; END IF; END $$;

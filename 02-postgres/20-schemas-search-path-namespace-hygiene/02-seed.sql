@@ -1,0 +1,1 @@
+INSERT INTO app.users VALUES (1,'Ada'); INSERT INTO demo.users VALUES (1,'Wrong Ada'); INSERT INTO audit.events VALUES (1,'user_created');

@@ -1,0 +1,1 @@
+CREATE VIEW active_listing_slugs AS SELECT seller, slug, count(*) AS active_count FROM seller_listings WHERE status='active' GROUP BY seller, slug;

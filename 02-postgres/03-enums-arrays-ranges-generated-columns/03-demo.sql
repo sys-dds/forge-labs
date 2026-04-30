@@ -1,0 +1,1 @@
+SELECT id,title,search_label FROM service_listings WHERE tags @> ARRAY['repair'];

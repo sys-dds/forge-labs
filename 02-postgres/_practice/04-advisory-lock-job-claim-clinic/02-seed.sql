@@ -1,0 +1,1 @@
+INSERT INTO jobs VALUES (1,'email','queued','2026-01-01',NULL),(2,'cleanup','queued','2026-02-01',NULL),(3,'export','running','2026-01-01','old'),(4,'sync','failed','2026-01-01',NULL);

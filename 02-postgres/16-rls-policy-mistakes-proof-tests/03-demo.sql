@@ -1,0 +1,1 @@
+SET ROLE forge_pg_writer; SET app.workspace='alpha'; SELECT * FROM tenant_notes; RESET ROLE;

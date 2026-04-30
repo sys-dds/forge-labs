@@ -1,0 +1,1 @@
+DO $$ DECLARE alpha_count int; BEGIN SET ROLE forge_pg_practice_user; PERFORM set_config('app.workspace','alpha',false); SELECT count(*) INTO alpha_count FROM tenant_rows; RESET ROLE; IF alpha_count<>1 THEN RAISE EXCEPTION 'RLS leak or over-filter: %', alpha_count; END IF; END $$;

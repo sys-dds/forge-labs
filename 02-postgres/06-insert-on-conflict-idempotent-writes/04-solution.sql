@@ -1,0 +1,3 @@
+INSERT INTO create_requests(actor,idem_key,immutable_payload,status) VALUES ('ada','create-1','listing=10','processed') ON CONFLICT (actor,idem_key) DO UPDATE SET status=EXCLUDED.status, retry_count=create_requests.retry_count+1;
+INSERT INTO create_requests(actor,idem_key,immutable_payload,status) VALUES ('ben','create-1','listing=20','received') ON CONFLICT (actor,idem_key) DO NOTHING;
+CREATE VIEW request_idempotency_result AS SELECT actor, idem_key, immutable_payload, status, retry_count FROM create_requests;

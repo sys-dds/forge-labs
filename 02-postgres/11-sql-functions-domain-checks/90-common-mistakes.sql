@@ -1,0 +1,2 @@
+-- Break/fix: rename the function to ok() and discuss what context disappears.
+-- Break/fix: hide a table lookup inside the function and inspect callers.

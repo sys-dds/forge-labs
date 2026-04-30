@@ -1,0 +1,1 @@
+CREATE VIEW namespace_result AS SELECT (SELECT handle FROM app.users WHERE id=1) AS app_handle, internal.normalized_handle(' Ada ') AS normalized, (SELECT count(*) FROM audit.events) AS audit_count;

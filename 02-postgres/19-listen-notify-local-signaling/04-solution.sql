@@ -1,0 +1,1 @@
+CREATE VIEW notify_payloads AS SELECT event_id, payload->>'event_type' AS event_type FROM notification_outbox;

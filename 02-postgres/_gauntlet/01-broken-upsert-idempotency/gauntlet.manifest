@@ -1,0 +1,11 @@
+id=pg-gauntlet-01-broken-upsert-idempotency
+title=Broken Upsert Idempotency
+difficulty=intermediate
+concepts=PostgreSQL debugging, backend correctness
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Ada duplicate retries create two logical requests because the unique boundary is wrong.
+expected_fix=Use `(actor, idem_key)` as the conflict target and avoid overwriting immutable payloads.
+estimated_time=30 minutes
+what_to_break_next=Remove the corrected database-owned boundary and rerun the proof.

@@ -1,0 +1,1 @@
+INSERT INTO listings VALUES (1,'active'),(2,'active');
