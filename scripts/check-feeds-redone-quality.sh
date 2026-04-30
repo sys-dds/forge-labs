@@ -22,10 +22,11 @@ for file in "${root_files[@]}"; do
 done
 
 shared_files=(
-  03-feeds-ranking-redone/_shared/simulation_contract.py
   03-feeds-ranking-redone/_shared/import_simulation.py
   03-feeds-ranking-redone/_shared/assertions.py
-  03-feeds-ranking-redone/_shared/quality_helpers.py
+  03-feeds-ranking-redone/_shared/result_contract.py
+  03-feeds-ranking-redone/_shared/scoring_math.py
+  03-feeds-ranking-redone/_shared/trace_helpers.py
 )
 
 for file in "${shared_files[@]}"; do
@@ -58,6 +59,7 @@ required=(
   07-interview-explanation.md
   08-what-to-notice.md
   09-evidence-map.md
+  10-mutation-checks.md
 )
 
 design_headings=(
@@ -89,6 +91,20 @@ for clinic in "${clinics[@]}"; do
   python3 -m json.tool "$clinic/01-dataset.json" >/dev/null || fail "invalid JSON $clinic/01-dataset.json"
   PYTHONPYCACHEPREFIX=/tmp/forge-feeds-redone-pycache python3 -m py_compile "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py" || fail "python file failed to compile in $clinic"
 
+  for py_file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+    if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$py_file"; then
+      fail "$py_file contains forbidden clinic dispatcher shortcut"
+    fi
+  done
+
+  if grep -Eq 'return +expected\["final_feed"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then
+    fail "$clinic/03-solution.py returns expected output directly"
+  fi
+
+  if grep -Eq 'len\([^)]*(final_feed|sent_notifications|story_tray|spotlight_feed)[^)]*\)' "$clinic/04-proof.tests.py" && ! grep -Eq 'assert_equal\(result\.get\("(final_feed|sent_notifications|story_tray|spotlight_feed)"' "$clinic/04-proof.tests.py"; then
+    fail "$clinic/04-proof.tests.py appears to rely on output length without exact output assertion"
+  fi
+
   for heading in "${design_headings[@]}"; do
     grep -q "$heading" "$clinic/00-design.md" || fail "$clinic/00-design.md missing heading $heading"
   done
@@ -99,6 +115,13 @@ for clinic in "${clinics[@]}"; do
   grep -q '| Item | Exists because | Used by proof | Used by debug trace | Used by drill |' "$clinic/09-evidence-map.md" || fail "$clinic/09-evidence-map.md missing required table header"
   evidence_rows="$(grep -Ec '^\| [^|-]' "$clinic/09-evidence-map.md")"
   [[ "$evidence_rows" -ge 7 ]] || fail "$clinic/09-evidence-map.md needs at least 6 item rows"
+  if grep -v '^| Item |' "$clinic/09-evidence-map.md" | grep -Eq '\| Used by proof \||\| Used by debug trace \||\| Used by drill \|'; then
+    fail "$clinic/09-evidence-map.md contains vague Used by cells"
+  fi
+
+  grep -q '| Mutation | Expected failing proof |' "$clinic/10-mutation-checks.md" || fail "$clinic/10-mutation-checks.md missing mutation table"
+  mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/10-mutation-checks.md")"
+  [[ "$mutation_rows" -ge 6 ]] || fail "$clinic/10-mutation-checks.md needs at least 5 mutation rows"
 
   for heading in "${interview_headings[@]}"; do
     grep -q "$heading" "$clinic/07-interview-explanation.md" || fail "$clinic/07-interview-explanation.md missing $heading"
@@ -113,8 +136,8 @@ for clinic in "${clinics[@]}"; do
   if grep -Eiq "assertion failed|^failed$|^wrong$" "$clinic/04-proof.tests.py"; then
     fail "$clinic/04-proof.tests.py contains generic proof failure text"
   fi
-  grep -q "expected\\[\"final_feed\"\\]" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must contain exact expected output checks"
-  grep -q "rejected" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must assert rejected items"
+  grep -Eq 'assert_equal\(result\.get\("(final_feed|sent_notifications|story_tray|spotlight_feed)"' "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must contain exact output checks"
+  grep -Eq "assert_rejected|excluded|not in" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must assert rejected/excluded/missing items"
   grep -q "debug_trace" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must assert debug_trace"
   grep -Eq "expected .*\\[[0-9a-zA-Z_, -]+\\]|content ID|701|501|101|ben_posted|maya_thread" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py failure messages must name expected output or a specific content ID"
 done

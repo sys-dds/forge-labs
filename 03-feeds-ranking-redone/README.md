@@ -28,3 +28,6 @@ Recommended order:
 What each clinic teaches: pipeline stages, social graph recall, out-of-network retrieval, dedupe/mixing, feature rows, multi-objective scoring, diversity, stories and vertical feeds, recommended notifications, and replay/debugging.
 
 Intentionally not included yet: embeddings, ANN retrieval, online learning, experiments, model training, distributed fanout infrastructure, or company-specific algorithms.
+
+## Hardening note
+Clinics 01-10 now avoid dispatcher shortcuts. Each clinic owns its broken simulation, solution functions, proof tests, evidence map, and mutation checks. Do not add 011-020 until this foundation has been reviewed.

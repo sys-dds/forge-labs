@@ -1,10 +1,15 @@
-"""Import a clinic simulation module by filesystem path."""
+"""Import a simulation module by path without clinic-specific behavior."""
 
 import importlib.util
+import json
 from pathlib import Path
 
 
-def import_simulation(path):
+def load_json(path):
+    return json.loads(Path(path).read_text())
+
+
+def import_module(path):
     module_path = Path(path)
     spec = importlib.util.spec_from_file_location("feed_simulation", module_path)
     if spec is None or spec.loader is None:
@@ -14,3 +19,6 @@ def import_simulation(path):
     if not hasattr(module, "run"):
         raise AttributeError(f"{module_path} must expose run(dataset: dict) -> dict")
     return module
+
+
+import_simulation = import_module
