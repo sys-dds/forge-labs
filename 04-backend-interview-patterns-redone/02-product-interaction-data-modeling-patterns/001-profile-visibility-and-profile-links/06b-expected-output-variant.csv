@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_viewer_hidden,ada_dev,1,Blocked Omar sees no Ada profile fields
+deactivated_user_hidden,diya_data,0,Diya inactive user hides profile lookup
+handle_lookup,ben_ops,1,Handle uniquely resolves Ben profile
+owner_can_see_private_field,ada_dev,1,Ada is owner so private email is visible
+private_field_hidden_from_public,ada_dev,0,Ben is not owner so Ada private email is hidden
+public_profile_visible,ada_dev,1,public viewer sees Ada public bio

@@ -8,3 +8,7 @@ Clinics 011-020 extend the lab with CTE decomposition, EXISTS and NOT EXISTS, se
 ## BIP-SQL-021-030
 
 Adds senior SQL correctness and investigation clinics inside `01-sql-interview-patterns/`: reconciliation, hierarchy traversal, pagination stability, state debugging, ratio safety, and capstone incident analysis. No track movement.
+
+## 02 Product Interaction Data Modeling Patterns
+
+Adds small product interaction modeling clinics for profiles, follows, friendships, comments, reactions, swipes, matches, counters, constraints, and read/write paths. This stays inside Backend Interview Patterns Redone and builds on the completed SQL clinic runner style.

@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+block_suppresses_match,Ada-Omar,0,Block suppresses otherwise reciprocal swipe
+candidate_pool,Ada,Maya|Niko,Candidate pool excludes blocked reported matched left-swiped and inactive rows
+duplicate_match_prevented,Ada-Cy,1,Canonical match pair prevents duplicates
+left_swipe_no_match,Ada-Diya,0,Left swipe does not create match
+mutual_like_match,Ada-Cy,1,Mutual latest right swipes create one active match
+one_way_like_not_match,Ada-Ben,1,One-way right swipe is not necessarily an active match
+report_suppresses_match,Ada-Noor,0,Report suppresses otherwise reciprocal swipe
+unmatched_not_active,Ada-Lina,0,Unmatched pair is not active

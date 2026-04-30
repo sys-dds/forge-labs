@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+accepted_visible_both_ways,Ada-Ben,2,Accepted friendship reads both directions
+block_prevents_friendship,Ada-Omar,0,Ada block prevents Omar friendship visibility
+declined_not_friend,Ada-Diya,0,Declined or cancelled request is not friendship
+mutual_friend_count,Ada-Ben,2,Ada and Ben share accepted mutual friends
+mutual_friend_list,Ada-Ben,Lina|Maya,Mutual friend list is deterministic
+pending_not_friend,Ada-Cy,1,Pending request is not accepted friendship

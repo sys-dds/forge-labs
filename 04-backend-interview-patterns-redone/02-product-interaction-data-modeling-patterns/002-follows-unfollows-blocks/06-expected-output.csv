@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+active_follow_edge,1->2,1,Ada actively follows Ben
+block_overrides_follow,4->2,0,Ben block suppresses Omar follow
+follower_count,Ben,1,Ben follower count excludes inactive and blocked edges
+following_count,Ben,1,Ben following count excludes blocked edges
+one_way_follow_not_friendship,2->1,0,Ben does not automatically follow Ada
+unfollow_removed_from_active_count,3->2,0,Cy inactive follow does not count for Ben
+visible_author_check,viewer_4_post_201,0,Blocked Omar cannot see Ben author row

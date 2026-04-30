@@ -1,0 +1,16 @@
+# How To Explain In Interview
+
+## Direct answer
+I treat swipes as events and matches as derived lifecycle rows; reciprocal latest right swipes plus no suppression create one active match.
+
+## Table explanation
+Name the object table first, then relationship/event tables, then read contract columns.
+
+## Query explanation
+Explain which rows are eligible, which lifecycle states are excluded, and which counts are derived.
+
+## Write path explanation
+Describe the insert/update and the constraint that prevents duplicate or invalid state.
+
+## Scaling follow-up answer
+I would add read models or counters after proving the source-of-truth tables and query contract.
