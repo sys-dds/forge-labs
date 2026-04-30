@@ -10,3 +10,4 @@ Clinics 006-010 make that split visible:
 - `follow_edges`, `user_interests`, `swipe_events`, `matches`, `block_edges`, and `report_events` derive recommendation candidates before ranking.
 - The capstone composes these contracts without turning the answer into a large system design.
 - Clinics 011-015 add read-model counters, drift evidence, audience groups, private saves, repost references, hide/mute/report controls, preference feedback, and a capstone that compares source truth with read-model rows.
+- Clinics 016-020 add safety evidence, review queues, policy decisions, treatments, appeals, reversals, audit lineage, trust components, abuse signals, and exact safety debug traces.

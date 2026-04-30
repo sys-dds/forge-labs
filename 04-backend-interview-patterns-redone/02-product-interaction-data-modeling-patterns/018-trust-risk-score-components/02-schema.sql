@@ -1,0 +1,12 @@
+SET search_path TO bip_pim_018;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users);
+CREATE TABLE report_events (report_id int PRIMARY KEY, reported_user_id int REFERENCES users, reason text NOT NULL);
+CREATE TABLE block_edges (blocker_user_id int REFERENCES users, blocked_user_id int REFERENCES users);
+CREATE TABLE mute_edges (muter_user_id int REFERENCES users, muted_user_id int REFERENCES users);
+CREATE TABLE post_reactions (reaction_id int PRIMARY KEY, post_id int REFERENCES posts, actor_user_id int REFERENCES users);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users);
+CREATE TABLE policy_decisions (decision_id int PRIMARY KEY, user_id int REFERENCES users, policy text NOT NULL, decision text NOT NULL);
+CREATE TABLE appeals (appeal_id int PRIMARY KEY, user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('pending','approved','rejected')));
+CREATE TABLE trust_score_components (component_id int PRIMARY KEY, user_id int REFERENCES users, component_type text NOT NULL, component_value int NOT NULL, source_table text NOT NULL, source_id int NOT NULL);
+CREATE TABLE trust_score_snapshots (snapshot_id int PRIMARY KEY, user_id int REFERENCES users, component_total int NOT NULL, treatment text NOT NULL CHECK (treatment IN ('allow','review','downrank')));

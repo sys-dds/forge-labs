@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+appeal_restoration_component,user:2,10,Approved appeal 5001 restores part of trust
+block_mute_component,user:2,-20,Block and mute evidence lowers Ben trust
+component_total,user:2,-25,Component total is derived from named rows
+healthy_creator_allowed,user:3,allow,Cy has healthy positive component and is allowed
+positive_engagement_component,user:2,15,Positive engagement component raises Ben trust
+report_component,user:2,-30,Report component lowers Ben trust from report 1001
+risk_treatment,user:2,review,Treatment derives from component total threshold -20
+score_debug_trace,user:2,appeal_restoration_component:10|block_mute_component:-20|positive_engagement_component:15|report_component:-30,Debug trace exposes component breakdown

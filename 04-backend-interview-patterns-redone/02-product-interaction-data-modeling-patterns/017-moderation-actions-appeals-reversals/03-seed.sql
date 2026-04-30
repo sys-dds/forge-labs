@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_017;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy');
+INSERT INTO moderators VALUES (10,'Mina'),(11,'Owen');
+INSERT INTO posts VALUES (201,1,'Removed pending appeal'),(202,2,'Restored after appeal'),(203,3,'Rejected appeal');
+INSERT INTO policy_decisions VALUES (401,201,'spam','violation'),(402,202,'harassment','violation'),(403,203,'fraud','violation');
+INSERT INTO policy_treatments VALUES (501,401,'remove'),(502,402,'remove'),(503,403,'remove'),(504,402,'restore');
+INSERT INTO moderation_actions VALUES (601,201,'remove',501,10,'2026-04-14 09:00'),(602,202,'remove',502,10,'2026-04-14 09:05'),(603,202,'restore',504,11,'2026-04-14 10:00'),(604,203,'remove',503,10,'2026-04-14 09:10');
+INSERT INTO appeals VALUES (701,201,1,'pending'),(702,202,2,'approved'),(703,203,3,'rejected');
+INSERT INTO appeal_decisions VALUES (801,702,11,'approved','2026-04-14 09:55'),(802,703,11,'rejected','2026-04-14 09:56');
+INSERT INTO audit_log VALUES (9001,'post',201,'moderator',10,'remove',NULL,'remove'),(9002,'post',202,'moderator',11,'appeal_restore','remove','restore'),(9003,'post',203,'moderator',11,'appeal_reject','remove','remove');

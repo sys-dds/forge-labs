@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+abusive_account_treatment,user:3,downrank,Cy treatment derives from abuse evidence
+duplicate_comment_signal,user:3,1,Cy duplicate comments 301 and 302 create spam signal 7001
+evidence_rows,signal:7001,8001+8002,Signal 7001 links exact duplicate comment evidence rows
+fake_like_burst_signal,user:2,1,Ben same-minute like evidence creates fake engagement signal 7002
+normal_engagement_not_flagged,user:4,1,Diya normal engagement signal is allow not review
+report_plus_evidence_reviewed,user:3,1,Report 6001 plus evidence rows send Cy to review or stronger treatment
+safe_account_allowed,user:4,allow,Diya is allowed because normal high engagement is not flagged
+safety_debug_trace,user:3,duplicate_comment_signal:downrank:8001+8002,Safety trace explains Cy abuse outcome

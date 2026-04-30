@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_016;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya');
+INSERT INTO moderators VALUES (10,'Mina');
+INSERT INTO posts VALUES (201,2,'Spam link'),(202,3,'Messy now confirmed unsafe'),(203,4,'Safe update');
+INSERT INTO comments VALUES (301,201,2,'Buy now');
+INSERT INTO report_events VALUES (1001,1,'post',201,'spam','credible','2026-04-13 09:00'),(1002,3,'post',201,'spam','credible','2026-04-13 09:02'),(1003,4,'post',202,'harassment','credible','2026-04-13 09:03');
+INSERT INTO report_evidence VALUES (2001,1001,'spam_link',80),(2002,1002,'duplicate_report',30),(2003,1003,'threat_phrase',70);
+INSERT INTO review_queue_items VALUES (3001,'post',201,'reviewed',90),(3002,'post',202,'reviewed',70);
+INSERT INTO policy_decisions VALUES (4001,3001,10,'spam','violation','2026-04-13 10:00'),(4002,3002,10,'harassment','violation','2026-04-13 10:05');
+INSERT INTO policy_treatments VALUES (5001,4001,'hide','confirmed spam evidence'),(5002,4002,'hide','credible harassment evidence');

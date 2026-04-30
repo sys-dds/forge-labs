@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_017;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE moderators (moderator_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, body text NOT NULL);
+CREATE TABLE policy_decisions (decision_id int PRIMARY KEY, post_id int REFERENCES posts, policy text NOT NULL, decision text NOT NULL CHECK (decision IN ('violation','safe')));
+CREATE TABLE policy_treatments (treatment_id int PRIMARY KEY, decision_id int REFERENCES policy_decisions, treatment text NOT NULL CHECK (treatment IN ('allow','hide','remove','restore')));
+CREATE TABLE moderation_actions (action_id int PRIMARY KEY, post_id int REFERENCES posts, treatment text NOT NULL CHECK (treatment IN ('hide','remove','restore')), source_treatment_id int REFERENCES policy_treatments, actor_moderator_id int REFERENCES moderators, created_at timestamp NOT NULL);
+CREATE TABLE appeals (appeal_id int PRIMARY KEY, post_id int REFERENCES posts, appellant_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('pending','approved','rejected')));
+CREATE TABLE appeal_decisions (appeal_decision_id int PRIMARY KEY, appeal_id int REFERENCES appeals, moderator_id int REFERENCES moderators, outcome text NOT NULL CHECK (outcome IN ('approved','rejected')), created_at timestamp NOT NULL);
+CREATE TABLE audit_log (audit_id int PRIMARY KEY, entity_type text NOT NULL, entity_id int NOT NULL, actor_type text NOT NULL, actor_id int NOT NULL, action text NOT NULL, previous_treatment text, new_treatment text);

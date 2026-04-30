@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+abuse_signal_contract,signal:1001,1201+1202,Abuse signal 1001 links evidence rows 1201 and 1202
+appeal_reversal_contract,post:204,remove>restore,Approved appeal restores post 204 after removal
+audit_lineage_contract,trace:1301-1304,report:3012:queued>decision:602:policy_decision>treatment:702:apply_treatment>appeal:901:appeal_restore,Audit lineage links report to decision to treatment to appeal restore
+policy_decision_contract,post:203,1,Confirmed violation post 203 has fraud decision 602
+review_queue_contract,post:202,1,Reported but unconfirmed post 202 enters review queue item 501
+safety_debug_trace_contract,user:3,downrank:abuse_signal_component:-20|report_component:-30,Safety debug trace explains final risk treatment from components
+treatment_contract,post:203,1,Violation decision 602 applies remove treatment 702
+trust_component_contract,user:3,abuse_signal_component:-20|report_component:-30,Cy treatment has report and abuse component breakdown
+visibility_contract,viewer:1,201|202|204,Visible posts exclude current remove actions but keep safe and restored content

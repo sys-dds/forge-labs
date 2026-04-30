@@ -1,0 +1,12 @@
+SET search_path TO bip_pim_018;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy');
+INSERT INTO posts VALUES (201,2),(202,3);
+INSERT INTO report_events VALUES (1001,2,'spam');
+INSERT INTO block_edges VALUES (1,2);
+INSERT INTO mute_edges VALUES (3,2);
+INSERT INTO post_reactions VALUES (2001,201,1),(2002,202,1),(2003,202,2);
+INSERT INTO comments VALUES (3001,201,1),(3002,202,1);
+INSERT INTO policy_decisions VALUES (4001,2,'spam','violation'),(4002,3,'safe','safe');
+INSERT INTO appeals VALUES (5001,2,'approved');
+INSERT INTO trust_score_components VALUES (6001,2,'report_component',-30,'report_events',1001),(6002,2,'block_mute_component',-20,'block_edges',1),(6003,2,'positive_engagement_component',15,'post_reactions',2001),(6004,2,'appeal_restoration_component',10,'appeals',5001),(6005,3,'positive_engagement_component',20,'post_reactions',2002);
+INSERT INTO trust_score_snapshots VALUES (7001,2,-25,'review'),(7002,3,20,'allow');

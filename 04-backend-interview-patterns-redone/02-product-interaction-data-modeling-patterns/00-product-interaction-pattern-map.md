@@ -7,4 +7,5 @@
 - Candidate/read models: home feed rows, notification rows, activity feed rows, and recommendation candidates are contracts derived from objects, relationships, and events.
 - Counter/read models: post count rows, user count rows, notification count rows, and drift checks are derived from source-of-truth interaction tables.
 - User controls: hide events, mute edges, report events, preference feedback, bookmarks, reposts, and quote reposts are product state with viewer-specific semantics.
+- Safety contracts: `report_events`, `report_evidence`, `review_queue_items`, `policy_decisions`, `policy_treatments`, `appeals`, `audit_log`, `abuse_signal_events`, and `trust_score_components` explain why content is allowed, reviewed, downranked, hidden, removed, or restored.
 - Read models: every clinic uses `05-verification-query.sql` as a small contract for the screen or API read path.
