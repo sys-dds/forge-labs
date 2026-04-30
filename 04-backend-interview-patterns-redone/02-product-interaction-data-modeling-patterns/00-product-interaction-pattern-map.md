@@ -1,7 +1,8 @@
 # Product Interaction Pattern Map
 
 - Objects: `users`, `profiles`, `posts`, `comments`, and `user_profiles` are the durable things.
-- Relationships: `follow_edges`, `friendships`, `user_blocks`, and `matches` describe links between people.
-- Events: `swipe_events`, `report_events`, and reaction history show what happened over time.
-- Counters: follower counts, following counts, likes, comments, replies, and matches can be derived first and materialised later.
+- Relationships: `follow_edges`, `friendships`, `block_edges`, `mute_edges`, and `matches` describe links or suppression between people.
+- Events: `swipe_events`, `interaction_events`, `activity_events`, `report_events`, and reaction history show what happened over time.
+- Counters: follower counts, following counts, likes, comments, replies, unread notifications, and matches can be derived first and materialised later.
+- Candidate/read models: home feed rows, notification rows, activity feed rows, and recommendation candidates are contracts derived from objects, relationships, and events.
 - Read models: every clinic uses `05-verification-query.sql` as a small contract for the screen or API read path.

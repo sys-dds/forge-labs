@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_author_hidden,post:104,0,Ada blocked Omar so his followed post is suppressed
+deleted_post_hidden,post:106,0,Deleted posts do not enter the home feed
+feed_order,viewer:1,108>102>101,Feed order is created_at desc then post_id desc
+followed_author_post_visible,post:101,1,Ben is active followed unblocked unmuted and the post is live
+inactive_author_hidden,post:107,0,Posts from inactive Lina are hidden even with a follow edge
+muted_author_hidden,post:105,0,Ada muted Noor so her followed post is suppressed
+stable_cursor_order,after:102,101,Cursor after post 102 keeps deterministic older rows
+unfollowed_author_hidden,post:103,0,Eli is hidden unless the follow_edges row is active
