@@ -1,0 +1,6 @@
+category_id,category_name,depth,path_text,root_category
+1,services,0,services,services
+2,home services,1,services > home services,services
+5,electrical,2,services > home services > electrical,services
+3,plumbing,2,services > home services > plumbing,services
+4,sink repair,3,services > home services > plumbing > sink repair,services

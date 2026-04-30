@@ -1,0 +1,4 @@
+seller_id,seller_name,completed_orders,cancelled_orders,disputed_orders,refunded_orders,open_orders,total_gmv_pence,refund_amount_pence
+201,Iris,2,0,0,1,0,18000,2500
+202,Jon,0,1,0,0,1,0,0
+203,Kara,0,0,0,0,0,0,0

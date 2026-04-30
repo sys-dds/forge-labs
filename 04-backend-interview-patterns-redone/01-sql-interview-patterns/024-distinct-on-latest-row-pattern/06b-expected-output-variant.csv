@@ -1,0 +1,4 @@
+listing_id,decision_id,decision,decided_at,reviewer
+201,13,approved,2026-02-04 09:00:00,Kara
+202,14,limited,2026-02-02 10:00:00,Mina
+203,16,limited,2026-02-01 10:00:00,Ola

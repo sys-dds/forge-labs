@@ -1,0 +1,11 @@
+SET search_path TO bip_sql_030;
+INSERT INTO sellers VALUES (101,'Ben',true,15),(102,'Omar',true,25),(103,'Diya',true,35),(104,'Maya',true,20),(105,'Lina',true,22),(106,'Noor',true,45),(107,'Cy',true,30),(108,'Theo',true,28);
+INSERT INTO listings VALUES (1001,101,'active',false),(1002,101,'active',false),(2001,102,'active',false),(3001,103,'active',false),(4001,104,'active',false),(5001,105,'active',false),(6001,106,'active',false),(7001,107,'active',true),(8001,108,'active',false);
+INSERT INTO orders VALUES (1,101,'completed',5000),(2,101,'completed',6000),(3,101,'completed',7000),(4,102,'completed',4000),(5,102,'cancelled',3000),(6,103,'completed',3000),(7,104,'completed',9000),(8,105,'completed',8000),(9,106,'completed',2000),(10,108,'completed',1000);
+INSERT INTO disputes VALUES (1,4);
+INSERT INTO refunds VALUES (1,4),(2,5);
+INSERT INTO listing_events VALUES (1,1001,'impression','2026-05-01'),(2,1001,'contact','2026-05-01'),(3,1001,'booking','2026-05-01'),(4,1002,'impression','2026-05-02'),(5,1002,'contact','2026-05-02'),(6,1002,'booking','2026-05-02'),(7,3001,'impression','2026-05-01'),(8,3001,'impression','2026-05-02'),(9,3001,'impression','2026-05-03'),(10,3001,'impression','2026-05-04'),(11,3001,'impression','2026-05-05'),(12,3001,'contact','2026-05-05'),(13,4001,'impression','2026-05-03'),(14,5001,'impression','2026-05-03'),(15,8001,'impression','2026-05-03'),(16,8001,'contact','2026-05-03');
+INSERT INTO moderation_decisions VALUES (1,101,'approved','2026-05-01 09:00'),(2,102,'limited','2026-05-01 09:00'),(3,103,'approved','2026-05-01 09:00'),(4,104,'approved','2026-05-01 09:00'),(5,105,'approved','2026-05-01 09:00'),(6,106,'approved','2026-05-01 09:00'),(7,107,'rejected','2026-05-01 09:00'),(8,108,'approved','2026-05-01 09:00');
+INSERT INTO ledger_entries VALUES (101,1,5000),(102,2,6000),(103,3,7000),(104,4,4000),(105,5,3000),(106,6,3000),(107,7,8500),(108,8,8000),(109,9,2000),(110,10,1000);
+INSERT INTO order_status_events VALUES (1,1,'paid','2026-05-01 09:00'),(2,1,'completed','2026-05-01 10:00'),(3,8,'created','2026-05-01 09:00'),(4,8,'cancelled','2026-05-01 09:30'),(5,8,'completed','2026-05-01 10:00');
+INSERT INTO fraud_cases VALUES (1,102,'open');

@@ -1,0 +1,9 @@
+seller_id,seller_name,active_listing_count,completed_orders,cancellation_rate,dispute_rate,refund_rate,avg_response_minutes,recent_impressions,contact_rate,booking_rate,latest_moderation_decision,ledger_mismatch_count,invalid_order_transition_count,risk_treatment
+101,Ben,2,3,0.00,0.00,0.00,15,2,1.00,1.00,approved,0,0,boost
+102,Omar,1,1,0.50,0.50,1.00,25,0,0.00,0.00,limited,0,0,suppress
+103,Diya,1,1,0.00,0.00,0.00,35,5,0.20,0.00,approved,0,0,watch
+104,Maya,1,1,0.00,0.00,0.00,20,1,0.00,0.00,approved,1,0,manual_review
+105,Lina,1,1,0.00,0.00,0.00,22,1,0.00,0.00,approved,0,1,manual_review
+106,Noor,1,1,0.00,0.00,0.00,45,0,0.00,0.00,approved,0,0,allow
+107,Cy,0,0,0.00,0.00,0.00,30,0,0.00,0.00,rejected,0,0,allow
+108,Theo,1,1,0.00,0.00,0.00,28,1,1.00,0.00,approved,0,0,allow

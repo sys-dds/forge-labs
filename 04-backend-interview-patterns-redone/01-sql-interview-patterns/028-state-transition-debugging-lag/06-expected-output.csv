@@ -1,0 +1,5 @@
+order_id,event_id,previous_status,current_status,violation_reason
+102,6,created,completed,completed_before_paid
+103,10,cancelled,shipped,terminal_status_after_cancelled
+104,14,completed,completed,duplicate_terminal_status
+105,17,paid,refunded,refunded_before_completed
