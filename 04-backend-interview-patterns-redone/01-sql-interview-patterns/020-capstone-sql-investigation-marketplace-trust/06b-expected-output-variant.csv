@@ -1,0 +1,5 @@
+seller_id,seller_name,active_listings,completed_orders,cancellation_rate,dispute_rate,refund_rate,avg_response_minutes,recent_impressions,contact_rate,booking_rate,treatment,primary_reason
+201,Iris,2,3,0.00,0.00,0.00,12.00,2,1.00,1.00,boost,high_completion_low_risk
+203,Kara,1,2,0.00,0.00,0.00,24.00,5,0.20,1.00,allow,meets_basic_trust_rules
+204,Mina,1,1,0.00,0.00,0.00,20.00,1,0.00,0.00,watch,low_booking_rate_watch
+202,Jon,1,1,0.67,0.33,0.33,70.00,2,0.50,0.00,suppress,dispute_rate_high

@@ -1,0 +1,6 @@
+wallet_id,ledger_entry_id,amount_pence,running_balance_pence
+201,101,2000,2000
+201,102,-700,1300
+201,103,-1500,-200
+202,104,100,100
+202,106,25,125

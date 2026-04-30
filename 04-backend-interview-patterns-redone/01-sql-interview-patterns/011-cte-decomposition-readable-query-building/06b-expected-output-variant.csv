@@ -1,0 +1,2 @@
+seller_id,seller_name,active_listings,completed_orders,cancellation_rate,dispute_rate,avg_response_minutes,recent_impressions,eligibility_reason
+201,Iris,3,5,0.00,0.00,35,1,eligible

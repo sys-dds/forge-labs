@@ -3,7 +3,7 @@ set -euo pipefail
 root="04-backend-interview-patterns-redone/01-sql-interview-patterns"
 fail(){ echo "FAIL BIP SQL quality: $*" >&2; exit 1; }
 [[ -f "04-backend-interview-patterns-redone/README.md" ]] || fail "missing track README"
-for f in README.md 00-how-to-study.md 00-sql-interview-pattern-map.md 00-common-sql-traps.md; do [[ -s "$root/$f" ]] || fail "missing $root/$f"; done
+for f in README.md 00-how-to-study.md 00-sql-interview-pattern-map.md 00-common-sql-traps.md 00-window-functions-for-interviews.md 00-time-series-sql-patterns.md 00-investigation-query-patterns.md; do [[ -s "$root/$f" ]] || fail "missing $root/$f"; done
 [[ -f infra/docker-compose/docker-compose.postgres.yml ]] || fail "missing Docker/Postgres compose"
 for s in bip-sql-up.sh bip-sql-down.sh bip-sql-reset.sh bip-sql-list.sh bip-sql-test-one.sh bip-sql-test-all.sh check-bip-sql-quality.sh; do [[ -x "scripts/$s" ]] || fail "missing executable scripts/$s"; done
 required=(README.md 00-pattern.md 01-schema.sql 02-seed.sql 02b-seed-variant.sql 03-question.md 04-broken-attempt.sql 05-solution.sql 06-expected-output.csv 06b-expected-output-variant.csv 07-proof.sh 08-explain-in-interview.md 09-follow-up-variants.md 10-shortcut-audit.md)
@@ -28,7 +28,8 @@ for clinic in "$root"/[0-9][0-9][0-9]-*; do
   grep -qi "variant dataset catches" "$clinic/10-shortcut-audit.md" || fail "$clinic shortcut audit missing variant catch"
   if grep -Riq "this clinic teaches SQL pattern\|TODO\|lorem ipsum" "$clinic"; then fail "$clinic contains placeholder wording"; fi
 done
-[[ "$count" -eq 10 ]] || fail "expected 10 clinics, found $count"
-if find "$root" -maxdepth 1 -type d -name '011-*' | grep -q .; then fail "unexpected clinics beyond 010"; fi
+[[ "$count" -eq 20 ]] || fail "expected 20 clinics, found $count"
+if find "$root" -maxdepth 1 -type d -name '021-*' | grep -q .; then fail "unexpected clinics beyond 020"; fi
+[[ "$(./scripts/bip-sql-list.sh | wc -l | tr -d ' ')" -eq 20 ]] || fail "all-test list must include 001-020"
 if rg -n "Spring|JPA|frontend|Redis|Kafka|sklearn|numpy|pandas|notebook|\.ipynb" 04-backend-interview-patterns-redone scripts/bip-sql-*.sh; then fail "out-of-scope addition found"; fi
 echo "PASS BIP SQL quality gate"

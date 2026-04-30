@@ -7,3 +7,6 @@
 - Global `LIMIT` is not top-N per group.
 - `MAX(timestamp)` does not return the whole latest row unless you rank the row.
 - Retention and funnel queries need exact time windows and event order.
+## Advanced SQL Interview Patterns 011-020
+
+Clinics 011-020 extend the lab with CTE decomposition, EXISTS and NOT EXISTS, self-comparison, running totals, rolling windows, ranking buckets, date spines, sessionization, effective-dated joins, and marketplace trust investigation queries. The same Docker/Postgres runner and base-plus-variant proof strategy from 001-010 still applies.
