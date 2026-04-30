@@ -1,0 +1,14 @@
+id=sql-gauntlet-window-ranking-bugs
+title=Window Ranking Bugs
+source_chapter=01-sql/07-window-functions-and-ranking-basics
+difficulty=intermediate
+concepts=row_number, rank, dense_rank, partitioning, running totals
+dataset_entities=ada,ben,cy,posts 101-106
+bug_type=unstable latest row and unpartitioned running total
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=latest post per author and running totals are wrong
+expected_fix=partition windows and add deterministic tie-breakers
+estimated_time=30 minutes
+what_to_break_next=remove partition, remove id tie-breaker, swap rank and dense_rank

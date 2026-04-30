@@ -1,0 +1,14 @@
+id=sql-gauntlet-aggregation-inflation-bugs
+title=Aggregation Inflation Bugs
+source_chapter=01-sql/06-aggregation-and-counts
+difficulty=intermediate
+concepts=aggregation, row multiplication, hidden rows, deleted comments, HAVING
+dataset_entities=ada,ben,cy,A1,A2,A3,B1
+bug_type=count inflation and hidden/deleted rows counted
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Ada engagement is inflated and hidden/deleted rows count
+expected_fix=filter visible posts and aggregate likes/comments separately
+estimated_time=25 minutes
+what_to_break_next=count star after joins, include hidden posts, include deleted comments

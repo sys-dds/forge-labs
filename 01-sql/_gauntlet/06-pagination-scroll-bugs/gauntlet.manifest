@@ -1,0 +1,14 @@
+id=sql-gauntlet-pagination-scroll-bugs
+title=Pagination Scroll Bugs
+source_chapter=01-sql/08-pagination-and-cursors
+difficulty=intermediate
+concepts=keyset pagination, offset drift, stable ordering, cursor tie-breakers
+dataset_entities=posts 101-108
+bug_type=offset pagination and created_at-only cursor
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=page two repeats post 106 after new insert
+expected_fix=continue after last seen (created_at,id) cursor
+estimated_time=25 minutes
+what_to_break_next=remove id tie-breaker, use offset after insert, reverse comparison

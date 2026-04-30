@@ -10,6 +10,9 @@ Each real chapter has a README, a concept explainer, numbered solution SQL, chap
 - **Study mode**: `./scripts/forge-load.sh <chapter>` resets the database, loads solutions, and leaves the data available for Adminer, DbGate, or psql inspection.
 - **Inspect mode**: `./scripts/forge-inspect.sh <chapter>` prints reading order, solution execution order, proof file, dataset story file, and Adminer/DbGate connection notes without changing the database.
 - **Practice mode**: `./scripts/forge-load-practice.sh <pack>` loads an independent scenario pack, while `./scripts/forge-test-practice.sh <pack>` runs its solution and proof tests.
+- **Gauntlet mode**: `./scripts/forge-test-gauntlet.sh <pack>` proves the broken query fails, then proves the solution passes.
+- **Take-home mode**: `./scripts/forge-test-takehome.sh <pack>` runs a compact assessment solution and proof.
+- **Interview/self-assessment mode**: Markdown prompts and scorecards train explanation and next-study decisions.
 - **Quality gate**: `./scripts/check-workshop-quality.sh` catches missing chapter files, too-few solution files, and repeated generic teaching text.
 
 ## Practice Pack Format
