@@ -1,0 +1,14 @@
+id=sql-gauntlet-social-graph-suggestion-bugs
+title=Social Graph Suggestion Bugs
+source_chapter=01-sql/04-followers-and-social-graph
+difficulty=intermediate
+concepts=directed edges, second-degree traversal, exclusions, blocks, distinct suggestions
+dataset_entities=ada,ben,cy,diya,noor,theo
+bug_type=missing exclusions and duplicate paths
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Noor or Ada appears and Diya can duplicate
+expected_fix=walk outgoing edges and remove self, followed users, and blocked users
+estimated_time=20 minutes
+what_to_break_next=reverse edge direction, remove DISTINCT, remove block exclusion

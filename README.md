@@ -45,6 +45,22 @@ Use practice mode after a chapter idea is familiar and you want to work it like 
 
 Chapter mode teaches the concept in sequence. Practice mode asks you to load a scenario, inspect named rows, break a query deliberately, read the proof failure, and reset quickly.
 
+## Mastery Modes
+
+After practice mode, use the SQL mastery layer:
+
+```bash
+./scripts/forge-list-gauntlet.sh
+./scripts/forge-test-all-gauntlets.sh
+./scripts/forge-list-takehomes.sh
+./scripts/forge-test-all-takehomes.sh
+./scripts/forge-list-interview-drills.sh
+./scripts/forge-list-self-assessment.sh
+./scripts/forge-verify-sql-mastery.sh
+```
+
+Gauntlets repair realistic broken queries. Mini take-homes feel like small backend SQL assessments. Interview drills train out-loud explanation. Self-assessment maps weak spots and decides whether to stay in SQL or move toward PostgreSQL-specific study.
+
 ## A 30-Minute Chapter Pass
 
 Read the README, inspect `00-dataset.story.md`, run `./scripts/forge-inspect.sh <chapter>` to see the reading order, run `./scripts/forge-test.sh <chapter>`, then inspect the named rows and views in Adminer or DbGate. Finish by reading the common mistakes and one break/fix task.

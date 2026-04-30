@@ -44,6 +44,23 @@ Practice packs live in `01-sql/_practice/` and run independently from chapter fo
 
 The first packs cover social graph suggestions, feed candidate filtering, keyset pagination, and matching candidate exclusions.
 
+## Mastery Layer
+
+The SQL path now has five modes:
+
+- chapters: learn concepts in order
+- `_practice`: guided scenario practice
+- `_gauntlet`: broken query repair with proof failure and proof pass
+- `_takehomes`: mini backend SQL assessments
+- `_interview-drills`: explain decisions out loud with named rows
+- `_self-assessment`: score weak spots and decide whether PostgreSQL-specific study is next
+
+Run the full local SQL mastery check with:
+
+```bash
+./scripts/forge-verify-sql-mastery.sh
+```
+
 ## Troubleshooting
 
 If a chapter fails, read the exception in `99-chapter-proof.tests.sql`. Proof failures are not noise: they usually identify a missing predicate, broken constraint, or inflated count. If Adminer or DbGate is not reachable, run `./scripts/forge-status.sh` and `./scripts/forge-logs.sh`.

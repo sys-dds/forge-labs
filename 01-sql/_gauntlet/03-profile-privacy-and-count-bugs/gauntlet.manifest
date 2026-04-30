@@ -1,0 +1,14 @@
+id=sql-gauntlet-profile-privacy-and-count-bugs
+title=Profile Privacy and Count Bugs
+source_chapter=01-sql/03-profile-and-user-querying
+difficulty=intermediate
+concepts=public projection, count isolation, privacy filters, search visibility
+dataset_entities=ada,ben,cy,diya
+bug_type=email leak, count inflation, private search leak
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Ada counts inflate and Cy appears in search
+expected_fix=project safe columns, aggregate counts separately, filter searchable profiles
+estimated_time=25 minutes
+what_to_break_next=select email, join posts and follows directly, remove searchable filter

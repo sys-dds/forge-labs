@@ -1,0 +1,14 @@
+id=sql-gauntlet-matching-candidate-bugs
+title=Matching Candidate Bugs
+source_chapter=01-sql/10-matching-sql-swipes-and-mutual-matches
+difficulty=intermediate
+concepts=mutual matches, PASS vs LIKE, safety exclusions, preference fit
+dataset_entities=ada,ben,cy,diya,noor,maya,omar
+bug_type=PASS treated as LIKE and unsafe candidates included
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Cy matches Ada and blocked/inactive users appear
+expected_fix=require LIKE both ways and separate raw safety candidates from fit
+estimated_time=25 minutes
+what_to_break_next=remove active filter, remove already-swiped filter, treat PASS as LIKE

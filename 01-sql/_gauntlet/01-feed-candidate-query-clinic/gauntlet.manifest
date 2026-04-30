@@ -1,0 +1,14 @@
+id=sql-gauntlet-feed-candidate-query-clinic
+title=Feed Candidate Query Clinic
+source_chapter=01-sql/05-joins-and-feed-candidates
+difficulty=intermediate
+concepts=joins, exclusions, row multiplication, candidate generation
+dataset_entities=ada,ben,cy,noor,diya,posts 101,102,201,301,401
+bug_type=missing exclusions and row multiplication
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=muted Cy or blocked Noor reaches feed candidates and Ben post 101 counts inflate
+expected_fix=filter candidates first, aggregate likes and comments separately, keep zero-comment posts
+estimated_time=25 minutes
+what_to_break_next=remove mute predicate, remove block predicate, replace left aggregate join with inner join

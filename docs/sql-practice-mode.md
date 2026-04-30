@@ -69,3 +69,7 @@ Open `04-solution.sql`, make one change from `07-break-fix-drills.md`, and rerun
 ```
 
 The proof should fail with a specific exception. Restore the predicate, join, cursor comparison, or constraint and rerun the proof. Reset whenever the database state gets noisy.
+
+## After Practice
+
+Move to gauntlet mode when the practice solution makes sense. Gauntlets start from realistic broken SQL and force you to connect a wrong named row to the bug. After gauntlets, use mini take-homes for assessment, interview drills for out-loud explanation, and self-assessment to decide whether to revisit SQL or move toward PostgreSQL-specific work.

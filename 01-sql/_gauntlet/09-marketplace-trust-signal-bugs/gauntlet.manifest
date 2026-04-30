@@ -1,0 +1,14 @@
+id=sql-gauntlet-marketplace-trust-signal-bugs
+title=Marketplace Trust Signal Bugs
+source_chapter=01-sql/06-aggregation-and-counts
+difficulty=intermediate
+concepts=conditional aggregation, trust signals, hidden rows, disputes
+dataset_entities=ada,ben,cy,diya,noor,maya
+bug_type=deleted and unverified signals counted with hidden listings
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Cy and Ben trust counts include rows that should not count
+expected_fix=filter active listings, visible reviews, verification, suspicious reviewers, and dispute status
+estimated_time=30 minutes
+what_to_break_next=count deleted reviews, include hidden listings, merge dispute statuses

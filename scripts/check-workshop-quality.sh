@@ -79,6 +79,11 @@ done
 
 practice_required=(README.md challenge.manifest 00-scenario.md 01-schema.sql 02-seed.sql 03-starting-point.sql 04-solution.sql 05-proof.tests.sql 06-expected-results.md 07-break-fix-drills.md 08-interview-explanation.md)
 manifest_required=(id title source_chapter difficulty concepts proof_file solution_file)
+gauntlet_required=(README.md gauntlet.manifest 00-scenario.md 01-schema.sql 02-seed.sql 03-broken-query.sql 04-solution.sql 05-proof.tests.sql 06-debugging-notes.md 07-break-fix-drills.md 08-interview-explanation.md)
+gauntlet_manifest_required=(id title source_chapter difficulty concepts dataset_entities bug_type broken_query_file solution_file proof_file expected_failure expected_fix estimated_time what_to_break_next)
+takehome_required=(README.md 00-brief.md 01-schema.sql 02-seed.sql 03-candidate-task.md 04-solution.sql 05-proof.tests.sql 06-review-rubric.md 07-follow-up-questions.md 08-model-walkthrough.md)
+drill_required=(prompt.md model-answer.md bad-answer.md follow-up-questions.md scorecard.md)
+self_assessment_required=(README.md sql-skill-rubric.md checklist.md weak-spot-map.md next-study-decision-tree.md sql-to-postgres-readiness.md)
 
 for pack in 01-sql/_practice/[0-9][0-9]-*/; do
   pack="${pack%/}"
@@ -96,6 +101,43 @@ for pack in 01-sql/_practice/[0-9][0-9]-*/; do
   solution_file=$(awk -F= '$1=="solution_file"{print $2}' "$pack/challenge.manifest")
   [[ "$proof_file" == "05-proof.tests.sql" ]] || { echo "FAIL $pack manifest proof_file should be 05-proof.tests.sql" >&2; exit 1; }
   [[ "$solution_file" == "04-solution.sql" ]] || { echo "FAIL $pack manifest solution_file should be 04-solution.sql" >&2; exit 1; }
+done
+
+for pack in 01-sql/_gauntlet/[0-9][0-9]-*/; do
+  pack="${pack%/}"
+  [[ -d "$pack" ]] || continue
+  for file in "${gauntlet_required[@]}"; do
+    [[ -f "$pack/$file" ]] || { echo "FAIL $pack missing $file" >&2; exit 1; }
+  done
+  for key in "${gauntlet_manifest_required[@]}"; do
+    grep -E "^${key}=.+" "$pack/gauntlet.manifest" >/dev/null || { echo "FAIL $pack/gauntlet.manifest missing required key: $key" >&2; exit 1; }
+  done
+done
+
+for pack in 01-sql/_takehomes/[0-9][0-9]-*/; do
+  pack="${pack%/}"
+  [[ -d "$pack" ]] || continue
+  for file in "${takehome_required[@]}"; do
+    [[ -f "$pack/$file" ]] || { echo "FAIL $pack missing $file" >&2; exit 1; }
+  done
+done
+
+for drill in 01-sql/_interview-drills/[0-9][0-9]-*/; do
+  drill="${drill%/}"
+  [[ -d "$drill" ]] || continue
+  for file in "${drill_required[@]}"; do
+    [[ -f "$drill/$file" ]] || { echo "FAIL $drill missing $file" >&2; exit 1; }
+  done
+  if cmp -s "$drill/model-answer.md" "$drill/bad-answer.md"; then
+    echo "FAIL $drill model answer and bad answer are identical" >&2
+    exit 1
+  fi
+  grep -F "Senior signal:" "$drill/scorecard.md" >/dev/null || { echo "FAIL $drill scorecard missing senior signal" >&2; exit 1; }
+  grep -F "Red flag:" "$drill/scorecard.md" >/dev/null || { echo "FAIL $drill scorecard missing red flag" >&2; exit 1; }
+done
+
+for file in "${self_assessment_required[@]}"; do
+  [[ -f "01-sql/_self-assessment/$file" ]] || { echo "FAIL 01-sql/_self-assessment missing $file" >&2; exit 1; }
 done
 printf 'PASS workshop quality gate
 '

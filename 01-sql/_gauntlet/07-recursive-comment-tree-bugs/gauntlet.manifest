@@ -1,0 +1,14 @@
+id=sql-gauntlet-recursive-comment-tree-bugs
+title=Recursive Comment Tree Bugs
+source_chapter=01-sql/09-comments-and-recursive-queries
+difficulty=intermediate
+concepts=recursive CTE, base case, post scope, depth, path ordering
+dataset_entities=post 100 comments c1-c5, post 200 comments c6-c7
+bug_type=missing post scope and unstable recursion
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=post 200 comments leak into post 100 thread
+expected_fix=scope base and recursive terms to post 100 and carry depth/path
+estimated_time=30 minutes
+what_to_break_next=remove post scope, remove path ordering, remove depth increment

@@ -36,6 +36,14 @@ Use this after the related chapter pass.
 7. Break one drill in `04-solution.sql`, rerun the proof, then restore it.
 8. Reset with `./scripts/forge-reset-practice.sh`.
 
+## Mastery Pass
+
+1. Run `./scripts/forge-test-all-gauntlets.sh` and read each broken-query failure as evidence.
+2. Solve one take-home before opening `04-solution.sql`.
+3. Use `./scripts/forge-list-interview-drills.sh` and answer three prompts out loud.
+4. Score misses with `01-sql/_self-assessment/sql-skill-rubric.md`.
+5. Run `./scripts/forge-verify-sql-mastery.sh` before deciding the SQL path is complete.
+
 ## What To Watch For
 
 Look for the invariant the database protects, the rows a query is allowed to return, and the exclusion predicates that make a backend feature safe.
