@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+inactive_like_excluded,401,0,Cy removed like is excluded
+post_detail_counts,401,2|comments=1|replies=1,Post detail query exposes derived counts
+reply_count,401,1,Visible replies under visible parents count
+soft_deleted_comment_excluded,401,1,Soft-deleted comment rows exist but are hidden
+unique_like_count,401,2,Latest active reaction per user prevents duplicate likes
+visible_comment_count,401,1,Only visible top-level comments count
