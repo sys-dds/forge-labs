@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_011;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, deleted_at timestamp);
+CREATE TABLE post_reactions (reaction_id int PRIMARY KEY, post_id int REFERENCES posts, actor_user_id int REFERENCES users, reaction_type text NOT NULL, deleted_at timestamp);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users, deleted_at timestamp);
+CREATE TABLE follow_edges (follower_user_id int REFERENCES users, followed_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('active','removed')), PRIMARY KEY (follower_user_id, followed_user_id));
+CREATE TABLE notifications (notification_id int PRIMARY KEY, recipient_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('read','unread')));
+CREATE TABLE post_count_read_models (post_id int PRIMARY KEY REFERENCES posts, like_count int NOT NULL, comment_count int NOT NULL, updated_at timestamp NOT NULL);
+CREATE TABLE user_count_read_models (user_id int PRIMARY KEY REFERENCES users, follower_count int NOT NULL, updated_at timestamp NOT NULL);
+CREATE TABLE notification_count_read_models (user_id int PRIMARY KEY REFERENCES users, unread_count int NOT NULL, updated_at timestamp NOT NULL);

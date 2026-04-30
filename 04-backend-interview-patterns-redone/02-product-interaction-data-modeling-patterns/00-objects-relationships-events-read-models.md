@@ -9,3 +9,4 @@ Clinics 006-010 make that split visible:
 - `activity_events` are filtered into user-visible activity, not blindly exposed as audit history.
 - `follow_edges`, `user_interests`, `swipe_events`, `matches`, `block_edges`, and `report_events` derive recommendation candidates before ranking.
 - The capstone composes these contracts without turning the answer into a large system design.
+- Clinics 011-015 add read-model counters, drift evidence, audience groups, private saves, repost references, hide/mute/report controls, preference feedback, and a capstone that compares source truth with read-model rows.

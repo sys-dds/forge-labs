@@ -5,4 +5,6 @@
 - Events: `swipe_events`, `interaction_events`, `activity_events`, `report_events`, and reaction history show what happened over time.
 - Counters: follower counts, following counts, likes, comments, replies, unread notifications, and matches can be derived first and materialised later.
 - Candidate/read models: home feed rows, notification rows, activity feed rows, and recommendation candidates are contracts derived from objects, relationships, and events.
+- Counter/read models: post count rows, user count rows, notification count rows, and drift checks are derived from source-of-truth interaction tables.
+- User controls: hide events, mute edges, report events, preference feedback, bookmarks, reposts, and quote reposts are product state with viewer-specific semantics.
 - Read models: every clinic uses `05-verification-query.sql` as a small contract for the screen or API read path.

@@ -1,0 +1,18 @@
+SET search_path TO bip_pim_015;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL, status text NOT NULL CHECK (status IN ('active','inactive')));
+CREATE TABLE profiles (user_id int PRIMARY KEY REFERENCES users, visibility text NOT NULL CHECK (visibility IN ('public','friends_only')));
+CREATE TABLE friendships (user_id_low int REFERENCES users, user_id_high int REFERENCES users, state text NOT NULL CHECK (state IN ('accepted','pending')), PRIMARY KEY (user_id_low,user_id_high));
+CREATE TABLE audience_groups (group_id int PRIMARY KEY, owner_user_id int REFERENCES users, group_name text NOT NULL);
+CREATE TABLE audience_group_members (group_id int REFERENCES audience_groups, member_user_id int REFERENCES users, PRIMARY KEY (group_id, member_user_id));
+CREATE TABLE block_edges (blocker_user_id int REFERENCES users, blocked_user_id int REFERENCES users, PRIMARY KEY (blocker_user_id, blocked_user_id));
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, visibility text NOT NULL CHECK (visibility IN ('public','close_friends')), audience_group_id int REFERENCES audience_groups, deleted_at timestamp);
+CREATE TABLE post_reactions (reaction_id int PRIMARY KEY, post_id int REFERENCES posts, actor_user_id int REFERENCES users, deleted_at timestamp);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users, deleted_at timestamp);
+CREATE TABLE hide_events (event_id int PRIMARY KEY, viewer_user_id int REFERENCES users, post_id int REFERENCES posts);
+CREATE TABLE mute_edges (muter_user_id int REFERENCES users, muted_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('active','removed')), PRIMARY KEY (muter_user_id, muted_user_id));
+CREATE TABLE report_events (report_id int PRIMARY KEY, reporter_user_id int REFERENCES users, post_id int REFERENCES posts);
+CREATE TABLE reposts (repost_id int PRIMARY KEY, user_id int REFERENCES users, original_post_id int REFERENCES posts, deleted_at timestamp);
+CREATE TABLE bookmarks (bookmark_id int PRIMARY KEY, user_id int REFERENCES users, post_id int REFERENCES posts, deleted_at timestamp);
+CREATE TABLE notifications (notification_id int PRIMARY KEY, recipient_user_id int REFERENCES users, state text NOT NULL CHECK (state IN ('read','unread')));
+CREATE TABLE post_count_read_models (post_id int PRIMARY KEY REFERENCES posts, like_count int NOT NULL, comment_count int NOT NULL);
+CREATE TABLE user_count_read_models (user_id int PRIMARY KEY REFERENCES users, follower_count int NOT NULL);
