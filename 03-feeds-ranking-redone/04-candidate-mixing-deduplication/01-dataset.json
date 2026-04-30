@@ -1,0 +1,88 @@
+{
+  "clinic": "04-candidate-mixing-deduplication",
+  "title": "Candidate Mixing and Deduplication",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 90
+    },
+    {
+      "id": 102,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 80
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "source": "multi",
+      "score": 88
+    },
+    {
+      "id": 502,
+      "author": "Lina",
+      "source": "social_proof",
+      "score": 40
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "source": "similar_topic",
+      "score": 76
+    },
+    {
+      "id": 701,
+      "author": "Omar",
+      "source": "trending",
+      "score": 70
+    },
+    {
+      "id": 901,
+      "author": "Theo",
+      "source": "exploration",
+      "score": 25
+    }
+  ],
+  "pools": {
+    "in_network": [
+      101,
+      102
+    ],
+    "social_proof": [
+      501,
+      502
+    ],
+    "similar_topic": [
+      501,
+      601
+    ],
+    "trending": [
+      501,
+      701
+    ],
+    "exploration": [
+      901
+    ]
+  },
+  "expected": {
+    "final_feed": [
+      101,
+      501,
+      601,
+      701,
+      901
+    ],
+    "eligible_ids": [
+      101,
+      501,
+      601,
+      701,
+      901
+    ],
+    "excluded_ids": [],
+    "message": "expected mixed page [101,501,601,701,901] with one Lina 501 carrying social_proof, similar_topic, trending; broken mixer duplicated 501 or lost reasons"
+  }
+}

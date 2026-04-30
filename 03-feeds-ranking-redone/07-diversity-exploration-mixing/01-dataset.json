@@ -1,0 +1,88 @@
+{
+  "clinic": "07-diversity-exploration-mixing",
+  "title": "Diversity Exploration Mixing",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 1001,
+      "author": "Unsafe",
+      "topic": "backend",
+      "score": 100,
+      "unsafe": true
+    },
+    {
+      "id": 101,
+      "author": "Ben",
+      "topic": "backend",
+      "score": 99
+    },
+    {
+      "id": 102,
+      "author": "Ben",
+      "topic": "backend",
+      "score": 98
+    },
+    {
+      "id": 103,
+      "author": "Ben",
+      "topic": "backend",
+      "score": 97
+    },
+    {
+      "id": 104,
+      "author": "Ben",
+      "topic": "backend",
+      "score": 96
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "topic": "backend",
+      "score": 95
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "topic": "movies",
+      "score": 80,
+      "fresh": true
+    },
+    {
+      "id": 701,
+      "author": "Diya",
+      "topic": "cooking",
+      "score": 70
+    },
+    {
+      "id": 901,
+      "author": "New creator",
+      "topic": "exploration",
+      "score": 20,
+      "exploration": true
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      101,
+      102,
+      601,
+      701,
+      901
+    ],
+    "eligible_ids": [
+      101,
+      102,
+      103,
+      104,
+      501,
+      601,
+      701,
+      901
+    ],
+    "excluded_ids": [
+      1001
+    ],
+    "message": "expected diverse feed [101,102,601,701,901]; broken ranker returned unsafe 1001, repeated Ben four times, overfilled backend, or omitted exploration 901"
+  }
+}

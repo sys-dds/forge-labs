@@ -1,0 +1,86 @@
+{
+  "clinic": "06-scoring-models-multi-objective-ranking",
+  "title": "Scoring Models and Multi-Objective Ranking",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "like": 0.45,
+      "comment": 0.7,
+      "share": 0.2,
+      "completion": 0.2,
+      "freshness": 2,
+      "relationship": 5,
+      "hide": 0.05,
+      "exploration": 0
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "like": 0.55,
+      "comment": 0.2,
+      "share": 0.25,
+      "completion": 0.95,
+      "freshness": 3,
+      "relationship": 1,
+      "hide": 0.02,
+      "exploration": 0
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "like": 0.35,
+      "comment": 0.3,
+      "share": 0.75,
+      "completion": 0.3,
+      "freshness": 2,
+      "relationship": 2,
+      "hide": 0.04,
+      "exploration": 0
+    },
+    {
+      "id": 701,
+      "author": "Omar",
+      "like": 0.95,
+      "comment": 0.05,
+      "share": 0.05,
+      "completion": 0.1,
+      "freshness": 3,
+      "relationship": 0,
+      "hide": 0.8,
+      "exploration": 0
+    },
+    {
+      "id": 901,
+      "author": "New creator",
+      "like": 0.2,
+      "comment": 0.1,
+      "share": 0.1,
+      "completion": 0.35,
+      "freshness": 4,
+      "relationship": 0,
+      "hide": 0.03,
+      "exploration": 4
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      501,
+      101,
+      601,
+      901,
+      701
+    ],
+    "eligible_ids": [
+      501,
+      101,
+      601,
+      901,
+      701
+    ],
+    "excluded_ids": [],
+    "message": "expected multi-objective order [501,101,601,901,701]; broken like-only ranker put Omar 701 first and ignored hide risk, comments, shares, watch completion, relationship, and exploration"
+  }
+}

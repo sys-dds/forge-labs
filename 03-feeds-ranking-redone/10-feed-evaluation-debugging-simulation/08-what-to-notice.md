@@ -1,0 +1,6 @@
+# What To Notice
+
+- Ben post 102 is kept because the solution has an explicit rule for it.
+- Lina post 501 is not merely low ranked; it demonstrates a rule the broken version violated.
+- The proof names [101,501,601,901], so a ranking change has to be intentional.
+- The simulation returns enough fields to debug why each final item appeared.

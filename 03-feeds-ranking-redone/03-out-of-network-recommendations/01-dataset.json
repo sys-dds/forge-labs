@@ -1,0 +1,80 @@
+{
+  "clinic": "03-out-of-network-recommendations",
+  "title": "Out-of-Network Recommendations",
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "source": "in_network",
+      "score": 50
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "source": "similar_topic_backend",
+      "score": 92
+    },
+    {
+      "id": 502,
+      "author": "Lina",
+      "source": "similar_creator_java",
+      "score": 75
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "source": "similar_interest_oled",
+      "score": 86
+    },
+    {
+      "id": 701,
+      "author": "Omar",
+      "source": "regional_trending",
+      "score": 82
+    },
+    {
+      "id": 801,
+      "author": "Noor",
+      "source": "regional_trending",
+      "blocked": true,
+      "unsafe": true,
+      "score": 99
+    },
+    {
+      "id": 901,
+      "author": "Theo",
+      "source": "exploration_fallback",
+      "exploration": true,
+      "score": 30
+    },
+    {
+      "id": 1001,
+      "author": "Cy",
+      "source": "low_quality_repeat",
+      "low_quality": true,
+      "score": 77
+    }
+  ],
+  "pools": null,
+  "expected": {
+    "final_feed": [
+      501,
+      601,
+      701,
+      901
+    ],
+    "eligible_ids": [
+      501,
+      601,
+      701,
+      901
+    ],
+    "excluded_ids": [
+      801,
+      1001,
+      502
+    ],
+    "message": "expected out-of-network candidates [501,601,701,901]; broken retriever used only trending, included blocked Noor 801, repeated Lina, or omitted exploration Theo 901"
+  }
+}

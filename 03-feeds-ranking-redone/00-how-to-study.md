@@ -1,0 +1,11 @@
+# How To Study
+
+1. Read the scenario.
+2. Inspect the dataset.
+3. Run the broken simulation proof.
+4. Read the failure.
+5. Inspect debugging notes.
+6. Run the solution proof.
+7. Change one scoring rule.
+8. Rerun the proof.
+9. Explain the ranking behavior out loud with item IDs and reasons.
