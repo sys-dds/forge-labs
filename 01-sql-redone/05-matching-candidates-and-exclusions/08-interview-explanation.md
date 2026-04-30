@@ -8,6 +8,10 @@ I would separate mutual match detection from candidate generation. Mutual matche
 
 Ben has Ada LIKE Ben and Ben LIKE Ada, so Ben is the only mutual match. Cy liked Ada, but Ada passed Cy, so Cy is excluded. Diya is blocked by Ada. Noor is inactive. Maya and Omar are raw candidates. Maya is the only preference-fit candidate and shares two interests with Ada.
 
+## Query reasoning
+
+The solution derives mutual matches from two LIKE rows, builds raw candidates by removing self, inactive, blocked, and already-swiped users, then applies Ada's city, age, and shared-interest preference checks.
+
 ## Common mistake
 
 The common mistake is mixing PASS with LIKE or letting preference fit run before safety exclusions. That can make Cy look matched or Diya look eligible.
@@ -16,3 +20,6 @@ The common mistake is mixing PASS with LIKE or letting preference fit run before
 
 I would keep exclusions explicit even if ranking later uses a scoring model. A ranker can sort safe candidates; it should not decide whether blocked or already-swiped users are safe to show.
 
+## Follow-up answer
+
+If ranking were added, I would rank Maya and Omar after raw exclusions, then apply preference-specific views as needed; I would not let Diya or Cy re-enter through scoring.
