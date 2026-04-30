@@ -12,12 +12,12 @@ The backend prepares rows for a future ranking system without pretending SQL ran
 - engagement events are ordered per author.
 
 ## Why Each Important Row Exists
-- Row group 1: ada has three posts with a clear latest id. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben has two posts. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy has one post. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: two posts tie on engagement. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: two authors tie on follower count. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 6: engagement events are ordered per author. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada has three posts with a clear latest id. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben has two posts. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy has one post. It anchors a row that should appear in a correct result.
+- Teaching row 4: two posts tie on engagement. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: two authors tie on follower count. It anchors a row that should appear in a correct result.
+- Teaching row 6: engagement events are ordered per author. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - latest per author returns one exact post each.

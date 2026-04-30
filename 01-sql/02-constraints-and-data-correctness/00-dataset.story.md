@@ -10,10 +10,10 @@ Two follow requests for Ada following Ben arrive at the same time. The applicati
 - profiles are tied to existing users only.
 
 ## Why Each Important Row Exists
-- Row group 1: ada and ben have unique lower-case handles. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ada follows ben once. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy and diya exist so invalid and valid relationship attempts are distinguishable. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: profiles are tied to existing users only. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada and ben have unique lower-case handles. It anchors a row that should appear in a correct result.
+- Teaching row 2: ada follows ben once. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy and diya exist so invalid and valid relationship attempts are distinguishable. It anchors a row that should appear in a correct result.
+- Teaching row 4: profiles are tied to existing users only. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - Ada to Ben follow is stored exactly once.

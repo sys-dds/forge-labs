@@ -1,0 +1,13 @@
+id=sql-practice-matching-candidate-filtering
+title=Matching Candidate Filtering Before Preference Fit
+source_chapter=01-sql/10-matching-sql-swipes-and-mutual-matches
+difficulty=foundation-plus
+concepts=mutual matches, swipe constraints, safety exclusions, active profiles, preference fit
+dataset_entities=ada,ben,cy,diya,noor,maya,omar
+positive_cases=Ada-Ben mutual match, Maya raw and preference-fit candidate
+negative_cases=Cy pass is not a match, Diya blocked, Noor inactive, Ben and Cy already swiped, Omar outside preference fit
+edge_cases=duplicate swipe rejected, self-swipe rejected, Maya shared interest count is exact
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=35 minutes
+what_to_break=PASS treated as LIKE, already-swiped exclusion, active filter, preference fit before safety

@@ -9,9 +9,9 @@ A post has nested comments, and the backend needs the whole thread with depth an
 - categories include Electronics, Computers, Laptops, Phones, Home.
 
 ## Why Each Important Row Exists
-- Row group 1: post 100 has c1 root, c2 and c3 replies, c4 under c2, c5 under c4. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: post 200 has c6 and c7 to prove scope. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: categories include Electronics, Computers, Laptops, Phones, Home. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
+- Teaching row 1: post 100 has c1 root, c2 and c3 replies, c4 under c2, c5 under c4. It anchors a row that should appear in a correct result.
+- Teaching row 2: post 200 has c6 and c7 to prove scope. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: categories include Electronics, Computers, Laptops, Phones, Home. It anchors a row that should appear in a correct result.
 
 ## Positive Cases
 - direct replies to c1 are c2 and c3.

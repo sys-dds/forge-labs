@@ -17,6 +17,13 @@ banned=(
   "This looks tempting when you focus on the immediate query or endpoint"
   "It breaks real backend behavior because the database no longer protects"
   "The chapter solution avoids it by making the rule explicit"
+  "Row group"
+  "concrete case for a positive query result rather than abstract prose"
+  "concrete case for an exclusion or edge condition rather than abstract prose"
+  "The mistake 1:"
+  "Why it feels reasonable 1:"
+  "The production bug it creates 1:"
+  "How the correct solution avoids it 1:"
 )
 word_count() { wc -w < "$1" | tr -d ' '; }
 check_min_words() {
@@ -68,6 +75,27 @@ for chapter in 01-sql/[0-9][0-9]-*/; do
   check_min_words "$chapter/00-dataset.story.md" 300
   check_dataset_sections "$chapter/00-dataset.story.md"
   check_repeated_mistake_paragraphs "$chapter/91-common-mistakes.explainer.md"
+done
+
+practice_required=(README.md challenge.manifest 00-scenario.md 01-schema.sql 02-seed.sql 03-starting-point.sql 04-solution.sql 05-proof.tests.sql 06-expected-results.md 07-break-fix-drills.md 08-interview-explanation.md)
+manifest_required=(id title source_chapter difficulty concepts proof_file solution_file)
+
+for pack in 01-sql/_practice/[0-9][0-9]-*/; do
+  pack="${pack%/}"
+  [[ -d "$pack" ]] || continue
+  for file in "${practice_required[@]}"; do
+    [[ -f "$pack/$file" ]] || { echo "FAIL $pack missing $file" >&2; exit 1; }
+  done
+  for key in "${manifest_required[@]}"; do
+    if ! grep -E "^${key}=.+" "$pack/challenge.manifest" >/dev/null; then
+      echo "FAIL $pack/challenge.manifest missing required key: $key" >&2
+      exit 1
+    fi
+  done
+  proof_file=$(awk -F= '$1=="proof_file"{print $2}' "$pack/challenge.manifest")
+  solution_file=$(awk -F= '$1=="solution_file"{print $2}' "$pack/challenge.manifest")
+  [[ "$proof_file" == "05-proof.tests.sql" ]] || { echo "FAIL $pack manifest proof_file should be 05-proof.tests.sql" >&2; exit 1; }
+  [[ "$solution_file" == "04-solution.sql" ]] || { echo "FAIL $pack manifest solution_file should be 04-solution.sql" >&2; exit 1; }
 done
 printf 'PASS workshop quality gate
 '

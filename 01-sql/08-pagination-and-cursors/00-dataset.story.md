@@ -11,11 +11,11 @@ Ada scrolls a feed while new posts are being created above the rows she already 
 - cursor page one returns a documented boundary.
 
 ## Why Each Important Row Exists
-- Row group 1: six posts exist before scrolling. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: two posts share the exact same created_at. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: a new post appears before offset page two. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: ids disambiguate timestamp ties. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: cursor page one returns a documented boundary. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
+- Teaching row 1: six posts exist before scrolling. It anchors a row that should appear in a correct result.
+- Teaching row 2: two posts share the exact same created_at. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: a new post appears before offset page two. It anchors a row that should appear in a correct result.
+- Teaching row 4: ids disambiguate timestamp ties. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: cursor page one returns a documented boundary. It anchors a row that should appear in a correct result.
 
 ## Positive Cases
 - keyset page one and page two return exact ids.

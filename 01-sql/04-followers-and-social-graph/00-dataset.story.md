@@ -12,12 +12,12 @@ Ada opens People you may know. The graph can reach several users, but reachabili
 - ada blocks noor and mutes cy.
 
 ## Why Each Important Row Exists
-- Row group 1: ada follows ben and cy. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben follows ada and diya. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy follows diya and noor. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: diya and noor follow ada. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 5: theo is disconnected. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 6: ada blocks noor and mutes cy. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada follows ben and cy. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben follows ada and diya. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy follows diya and noor. It anchors a row that should appear in a correct result.
+- Teaching row 4: diya and noor follow ada. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 5: theo is disconnected. It anchors a row that should appear in a correct result.
+- Teaching row 6: ada blocks noor and mutes cy. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - Ada following is ben and cy.

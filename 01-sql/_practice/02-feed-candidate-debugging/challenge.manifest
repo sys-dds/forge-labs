@@ -1,0 +1,13 @@
+id=sql-practice-feed-candidate-debugging
+title=Feed Candidate Debugging Before Ranking
+source_chapter=01-sql/05-joins-and-feed-candidates
+difficulty=foundation-plus
+concepts=candidate filtering, anti-joins, left joins, aggregate pre-counts, row multiplication
+dataset_entities=ada,ben,cy,noor,diya,posts 101,102,201,301,401
+positive_cases=Ben posts 101 and 102 are eligible with exact engagement counts
+negative_cases=Cy muted, Noor blocked, Diya not followed
+edge_cases=Ben post 102 has zero comments and must survive
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=30 minutes
+what_to_break=LEFT JOIN, mute predicate, block predicate, direct likes/comments join

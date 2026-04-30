@@ -1,0 +1,13 @@
+id=sql-practice-social-graph-suggestions
+title=People You May Know: Directed Graph Suggestions
+source_chapter=01-sql/04-followers-and-social-graph
+difficulty=foundation-plus
+concepts=directed edges, second-degree traversal, exclusions, blocks, mutes, distinct paths
+dataset_entities=ada,ben,cy,diya,noor,theo
+positive_cases=diya is reachable through Ben and Cy and remains eligible
+negative_cases=ben already followed, cy already followed and muted, ada self, noor blocked, theo disconnected
+edge_cases=duplicate paths to Diya collapse to one suggestion
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=25 minutes
+what_to_break=already-followed exclusion, blocked exclusion, edge direction, DISTINCT

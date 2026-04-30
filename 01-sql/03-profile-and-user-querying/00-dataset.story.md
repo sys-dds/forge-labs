@@ -10,10 +10,10 @@ A public profile endpoint is being built. The endpoint should return a profile c
 - diya is public with no posts so empty activity still renders.
 
 ## Why Each Important Row Exists
-- Row group 1: ada is public, has email, two posts, two followers, and follows one user. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 2: ben is public, has one post, one follower, and follows two users. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
-- Row group 3: cy is non-searchable so search must skip that row. This row is present so the lesson has a concrete case for a positive query result rather than abstract prose.
-- Row group 4: diya is public with no posts so empty activity still renders. This row is present so the lesson has a concrete case for an exclusion or edge condition rather than abstract prose.
+- Teaching row 1: ada is public, has email, two posts, two followers, and follows one user. It anchors a row that should appear in a correct result.
+- Teaching row 2: ben is public, has one post, one follower, and follows two users. It anchors an exclusion or edge condition the proof can name.
+- Teaching row 3: cy is non-searchable so search must skip that row. It anchors a row that should appear in a correct result.
+- Teaching row 4: diya is public with no posts so empty activity still renders. It anchors an exclusion or edge condition the proof can name.
 
 ## Positive Cases
 - Ada profile card returns exact counts.
