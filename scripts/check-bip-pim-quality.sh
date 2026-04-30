@@ -3,7 +3,7 @@ set -euo pipefail
 root="04-backend-interview-patterns-redone/02-product-interaction-data-modeling-patterns"
 fail(){ echo "FAIL BIP PIM quality: $*" >&2; exit 1; }
 [[ -f "04-backend-interview-patterns-redone/README.md" ]] || fail "missing track README"
-for f in README.md 00-how-to-study.md 00-product-interaction-pattern-map.md 00-common-data-modeling-traps.md 00-objects-relationships-events-read-models.md 00-feed-notification-activity-patterns.md 00-recommendation-candidate-basics.md 00-read-models-and-counters.md 00-visibility-and-user-controls.md 00-safety-moderation-trust-patterns.md 00-policy-decision-and-audit-lineage.md 00-marketplace-creator-ecosystem-patterns.md 00-buyer-intent-seller-quality-and-supply-demand.md 00-messaging-inbox-communication-patterns.md 00-groups-communities-memberships-patterns.md; do [[ -s "$root/$f" ]] || fail "missing $root/$f"; done
+for f in README.md 00-how-to-study.md 00-product-interaction-pattern-map.md 00-common-data-modeling-traps.md 00-objects-relationships-events-read-models.md 00-feed-notification-activity-patterns.md 00-recommendation-candidate-basics.md 00-read-models-and-counters.md 00-visibility-and-user-controls.md 00-safety-moderation-trust-patterns.md 00-policy-decision-and-audit-lineage.md 00-marketplace-creator-ecosystem-patterns.md 00-buyer-intent-seller-quality-and-supply-demand.md 00-messaging-inbox-communication-patterns.md 00-groups-communities-memberships-patterns.md 00-discovery-search-topics-collections-patterns.md; do [[ -s "$root/$f" ]] || fail "missing $root/$f"; done
 [[ -f infra/docker-compose/docker-compose.postgres.yml ]] || fail "missing Docker/Postgres compose"
 for s in bip-pim-list.sh bip-pim-test-one.sh bip-pim-test-all.sh check-bip-pim-quality.sh; do [[ -x "scripts/$s" ]] || fail "missing executable scripts/$s"; done
 required=(README.md 00-interview-question.md 01-data-model.md 02-schema.sql 03-seed.sql 03b-seed-variant.sql 04-core-queries.sql 05-verification-query.sql 06-expected-output.csv 06b-expected-output-variant.csv 07-broken-model-or-query.sql 08-proof.sh 09-api-shape.md 10-read-write-path.md 11-scaling-notes.md 12-common-mistakes.md 13-how-to-explain-in-interview.md 14-shortcut-audit.md)
@@ -65,15 +65,35 @@ for clinic in "$root"/[0-9][0-9][0-9]-*; do
     fi
     grep -Eiq "membership|role|permission|request|invite|private|channel|post|moderation|audit|rsvp|waitlist|attendance|trace" "$clinic/05-verification-query.sql" || fail "$clinic community verification lacks contract trace"
   fi
+  if [[ "$((10#$clinic_num))" -ge 36 && "$((10#$clinic_num))" -lt 41 ]]; then
+    grep -Eiq "topics|hashtags|content_topic_links|creator_topic_links|user_topic_follows|search_queries|search_sessions|search_filters|search_facets|saved_searches|trend_windows|trend_signal_components|trend_snapshots|collections|collection_members|collection_items|saved_items|policy_treatments|abuse_signal_events" "$clinic/13-how-to-explain-in-interview.md" || fail "$clinic discovery explanation missing actual table names"
+    grep -Eiq "Ada|Ben|Cy|Diya|hashtag 301|filter 2001|saved search 4002|treatment 7001|collection item 5003|filter 9101|saved search 9202|treatment 16001|item 13003|[0-9]{3,5}" "$clinic/13-how-to-explain-in-interview.md" || fail "$clinic discovery explanation missing actual trap rows"
+    if grep -Rqi "trend_score" "$clinic" && ! grep -Rqi "trend_signal_components" "$clinic"; then fail "$clinic has opaque trend_score without trend components"; fi
+    if grep -Rqi "search_queries" "$clinic"; then
+      grep -Rqi "search_filters" "$clinic" || fail "$clinic search query has no filter modeling"
+      grep -Rqi "search_facets" "$clinic" || fail "$clinic search query has no facet modeling"
+      grep -Rqi "saved_searches" "$clinic" || fail "$clinic search query has no saved-search modeling"
+    fi
+    if grep -Rqi "collections" "$clinic"; then
+      grep -Rqi "owner_user_id" "$clinic/02-schema.sql" || fail "$clinic collection model lacks owner"
+      grep -Rqi "visibility" "$clinic/02-schema.sql" || fail "$clinic collection model lacks visibility"
+      grep -Rqi "collection_items" "$clinic/02-schema.sql" || fail "$clinic collection model lacks item lifecycle"
+    fi
+    if [[ "$clinic_num" == "038" || "$clinic_num" == "040" ]]; then
+      grep -Rqi "trend_signal_components" "$clinic" || fail "$clinic trend model lacks component rows"
+      grep -Eiq "velocity|unique_actor|freshness|component|treatment|suppressed|trace" "$clinic/05-verification-query.sql" || fail "$clinic trend verification lacks component/suppression trace"
+    fi
+    grep -Eiq "topic|hashtag|filter|facet|saved|trend|component|suppression|collection|visibility|lifecycle|trace" "$clinic/05-verification-query.sql" || fail "$clinic discovery verification lacks contract trace"
+  fi
   grep -qi "variant proof catches" "$clinic/14-shortcut-audit.md" || fail "$clinic shortcut audit missing variant proof"
   grep -qi "mutation should fail" "$clinic/14-shortcut-audit.md" || fail "$clinic shortcut audit missing mutation"
   if grep -Riq "this clinic teaches product modeling\|TODO\|lorem ipsum" "$clinic"; then fail "$clinic contains placeholder wording"; fi
 done
-[[ "$count" -eq 35 ]] || fail "expected 35 clinics, found $count"
-if find "$root" -maxdepth 1 -type d -name '036-*' | grep -q .; then fail "unexpected clinics beyond 035"; fi
-for n in 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019 020 021 022 023 024 025 026 027 028 029 030 031 032 033 034 035; do
+[[ "$count" -eq 40 ]] || fail "expected 40 clinics, found $count"
+if find "$root" -maxdepth 1 -type d -name '041-*' | grep -q .; then fail "unexpected clinics beyond 040"; fi
+for n in 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019 020 021 022 023 024 025 026 027 028 029 030 031 032 033 034 035 036 037 038 039 040; do
   ./scripts/bip-pim-list.sh | grep -q "/$n-" || fail "all-test list must include $n"
 done
-[[ "$(./scripts/bip-pim-list.sh | wc -l | tr -d ' ')" -eq 35 ]] || fail "all-test list must include exactly 001-035"
-if rg -n "Spring|JPA|Redis|Kafka|sklearn|numpy|pandas|notebook|\.ipynb" "$root" scripts/bip-pim-*.sh; then fail "out-of-scope addition found"; fi
+[[ "$(./scripts/bip-pim-list.sh | wc -l | tr -d ' ')" -eq 40 ]] || fail "all-test list must include exactly 001-040"
+if rg -n "Spring|JPA|Redis|Kafka|sklearn|numpy|pandas|notebook|\.ipynb|OpenSearch" "$root" scripts/bip-pim-*.sh; then fail "out-of-scope addition found"; fi
 echo "PASS BIP PIM quality gate"

@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+collection_item_lifecycle_contract,collection:12001,13001>13002,Collection items include active ordered rows and exclude duplicate item 13003
+collection_visibility_contract,collection:12001,true,Ada can see owner-private collection 12001
+discovery_debug_trace_contract,user:1,topic=1001|search=post:1001|trends=101:38|102:44|collection=13001>13002,"Trace combines topics, search, filters, facets, saved searches, trend components, safety, and collections"
+filter_facet_contract,facet:9151,filters=result_type=post|topic_id=101|facet=101:1,Facet counts derive from filtered visible results
+safety_suppression_contract,topic:102,false,Topic 102 is suppressed by abuse signal 15001 and treatment 16001
+saved_search_contract,saved:9202,false,Paused saved search 9202 does not alert in base data
+search_result_contract,query:9001,post:1001,Search query 9001 applies filters and visibility before results
+topic_discovery_contract,topic:101,1001,Ada follow 5001 and content_topic_links produce visible topic posts
+trending_component_contract,window:11001,101:38|102:44,Trend totals derive from signal component rows

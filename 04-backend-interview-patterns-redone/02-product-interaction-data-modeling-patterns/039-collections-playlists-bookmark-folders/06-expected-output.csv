@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_author_item_hidden,item:5004,true,Item 5004 points at blocked seller Ben and hide treatment 8001
+collaborative_member_add_allowed,member:4001,true,Diya member row 4001 can add to collection 3001
+collection_item_order,collection:3001,5001>5002,Collection item order uses item_position and suppresses hidden items
+deleted_item_hidden,item:5005,true,Item 5005 points at deleted post 1002
+duplicate_item_prevented,item:5003,true,Duplicate attempt item 5003 is not active collection content
+private_collection_non_member_hidden,collection:3001,true,Cy is not owner or member of private collection 3001
+private_collection_owner_visible,collection:3001,true,Ada owns private collection 3001
+public_collection_visible,collection:3002,true,Public collection 3002 is visible to Cy

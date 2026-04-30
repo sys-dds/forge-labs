@@ -1,0 +1,12 @@
+SET search_path TO bip_pim_037;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya');
+INSERT INTO search_sessions VALUES (1101,1,'2026-04-01');
+INSERT INTO search_queries VALUES (1001,1101,1,'workshop');
+INSERT INTO search_filters VALUES (2001,1001,'result_type','post'),(2002,1001,'topic_id','501');
+INSERT INTO search_facets VALUES (3001,1001,'topic_id','501');
+INSERT INTO saved_searches VALUES (4001,1,'workshop','result_type','post','active'),(4002,1,'workshop','result_type','listing','paused');
+INSERT INTO creators VALUES (701,3,'Cy Unsafe'),(702,2,'Ben Builder'),(703,4,'Diya Docs');
+INSERT INTO posts VALUES (5001,702,'workshop checklist',501,'active'),(5002,703,'workshop setup',502,'active'),(5003,702,'workshop deleted',501,'deleted');
+INSERT INTO listings VALUES (6001,701,'workshop kit',501,'active'),(6002,702,'workshop templates',501,'active');
+INSERT INTO content_treatments VALUES (8001,'listing',6001,'hide','unsafe seller report');
+INSERT INTO block_edges VALUES (9001,1,3);

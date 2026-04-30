@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+freshness_component,topic:103,-15,Freshness component 4009 decays old topic 103
+old_trend_decayed,topic:103,5,Old topic 103 total includes negative freshness decay
+safe_trend_allowed,topic:101,true,Topic 101 is allowed because components are positive and no hide treatment exists
+spam_trend_suppressed,topic:102,false,Policy treatment 7001 hides spammy topic 102 despite high velocity
+trend_component_total,snapshot:8001,60,"Component total for topic 101 derives from velocity, unique_actor, and freshness rows"
+trend_debug_trace,window:3001,101:total=60:treatment=allow|102:total=60:treatment=review|103:total=5:treatment=downrank,Trace combines components and policy treatments
+unique_actor_component,topic:101,20,Unique actor component 4002 prevents one actor from faking trend
+velocity_component,topic:101,30,Velocity component 4001 records interaction velocity for topic 101

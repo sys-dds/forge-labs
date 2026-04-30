@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_039;
+CREATE TABLE users(user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts(post_id int PRIMARY KEY, author_user_id int NOT NULL REFERENCES users(user_id), title text NOT NULL, content_state text NOT NULL CHECK(content_state IN ('active','deleted','hidden','downranked')));
+CREATE TABLE listings(listing_id int PRIMARY KEY, seller_user_id int NOT NULL REFERENCES users(user_id), title text NOT NULL, listing_state text NOT NULL CHECK(listing_state IN ('active','deleted','hidden','downranked')));
+CREATE TABLE collections(collection_id int PRIMARY KEY, owner_user_id int NOT NULL REFERENCES users(user_id), collection_name text NOT NULL, collection_type text NOT NULL CHECK(collection_type IN ('playlist','bookmark_folder','collection')), visibility text NOT NULL CHECK(visibility IN ('public','private','followers_only')));
+CREATE TABLE collection_members(member_id int PRIMARY KEY, collection_id int NOT NULL REFERENCES collections(collection_id), user_id int NOT NULL REFERENCES users(user_id), member_state text NOT NULL CHECK(member_state IN ('active','removed')), can_add boolean NOT NULL);
+CREATE TABLE collection_items(item_id int PRIMARY KEY, collection_id int NOT NULL REFERENCES collections(collection_id), entity_type text NOT NULL CHECK(entity_type IN ('post','listing')), entity_id int NOT NULL, item_position int NOT NULL, item_state text NOT NULL CHECK(item_state IN ('active','removed','duplicate_attempt')));
+CREATE TABLE saved_items(saved_item_id int PRIMARY KEY, user_id int NOT NULL REFERENCES users(user_id), entity_type text NOT NULL, entity_id int NOT NULL, saved_state text NOT NULL CHECK(saved_state IN ('active','removed')));
+CREATE TABLE block_edges(block_id int PRIMARY KEY, blocker_user_id int NOT NULL REFERENCES users(user_id), blocked_user_id int NOT NULL REFERENCES users(user_id));
+CREATE TABLE content_treatments(treatment_id int PRIMARY KEY, entity_type text NOT NULL, entity_id int NOT NULL, treatment text NOT NULL CHECK(treatment IN ('allow','downrank','hide','review')), reason text NOT NULL);
