@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+attendance_checkin_contract,attendance:5001,true,Attendance 5001 links to Ada going RSVP 3001
+cancelled_event_hidden,event:2002,true,Cancelled event 2002 is suppressed from upcoming list
+declined_not_counted,rsvp:3004,true,Diya declined RSVP 3004 does not count toward capacity
+event_lifecycle_trace,event:2001,going=3|capacity=3|upcoming=true,"Trace combines membership, RSVP state, capacity, waitlist, attendance, and cancellation"
+member_rsvp_allowed,rsvp:3001,true,Ada active membership 1001 can RSVP going to member-only event 2001
+non_member_rsvp_denied,rsvp:3003,true,Cy has no membership row and cannot RSVP to private community event
+waitlisted_not_going,rsvp:3005,false,Eli waitlisted RSVP 3005 is not a going seat until promoted
+waitlist_promotion_contract,event:2001,5:promoted,Waitlist row 4005 records promotion lifecycle separately from RSVP

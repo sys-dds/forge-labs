@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+approved_request_member,request:2002,true,Approved request 2002 links to membership 3002
+banned_invite_denied,invite:4005,true,Eli ban 5005 suppresses accepted invite 4005
+expired_invite_denied,invite:4004,true,Invite 4004 must be accepted and unexpired before access
+pending_request_not_member,request:2001,true,Ada request 2001 is pending and has no active membership
+private_access_contract,community:101,2|6,Only active non-banned memberships can view Private Foundry
+rejected_request_hidden,request:2003,true,Rejected request 2003 grants no access
+request_audit_trace,community:101,request:2002:approve|request:2003:reject|invite:4004:expire_invite|invite:4005:ban_suppressed|invite:4006:accept_invite,Audit rows link request or invite to decision actor
+valid_invite_membership,invite:4006,true,Accepted unexpired invite 4006 links to active membership 3006

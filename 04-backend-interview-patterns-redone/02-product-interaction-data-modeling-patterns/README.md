@@ -1,6 +1,6 @@
 # Product Interaction Data Modeling Patterns
 
-This section teaches small backend interview models for product interactions: profile visibility, follows, friendships, reactions, comments, swipes, matches, home feeds, notifications, activity logs, simple recommendation candidates, counters, read models, sharing/saves, user controls, safety moderation, trust components, abuse evidence, audit lineage, marketplace/creator exposure, buyer intent, seller quality, offers/bookings, supply/demand, messaging/inbox communication, and read contracts.
+This section teaches small backend interview models for product interactions: profile visibility, follows, friendships, reactions, comments, swipes, matches, home feeds, notifications, activity logs, simple recommendation candidates, counters, read models, sharing/saves, user controls, safety moderation, trust components, abuse evidence, audit lineage, marketplace/creator exposure, buyer intent, seller quality, offers/bookings, supply/demand, messaging/inbox communication, community memberships, roles, private access, posts, events, moderation traces, and read contracts.
 
 Run:
 
@@ -41,5 +41,10 @@ Clinics:
 - `028-message-edits-deletes-attachments-visibility`
 - `029-inbox-ordering-mutes-blocks-message-reports`
 - `030-capstone-communication-product-interaction-model`
+- `031-groups-communities-memberships-roles`
+- `032-join-requests-invites-private-communities`
+- `033-community-posts-channels-thread-visibility`
+- `034-community-events-rsvps-attendance`
+- `035-capstone-community-product-interaction-model`
 
 Each clinic has base and variant data so the model has to work from relationships and constraints, not from memorised rows.
