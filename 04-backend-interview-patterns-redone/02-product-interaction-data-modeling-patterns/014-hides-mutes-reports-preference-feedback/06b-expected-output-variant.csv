@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+hidden_post_suppressed,viewer:1 post:301,1,Ada hide event 701 suppresses only Ada view of post 301
+muted_author_suppressed,viewer:1 author:3,0,Ada mute edge suppresses Cy post 302
+negative_feedback_signal,viewer:1,1,less_like_this feedback creates negative signal
+other_viewer_still_visible,viewer:2 post:303,1,Other viewers can see non-removed reported content
+positive_feedback_signal,viewer:1,1,more_like_this feedback creates positive signal
+report_not_global_delete,viewer:2 post:303,1,Ben can still see reported post 303 because report is not deletion
+report_review_candidate,post:303,2,Report events create open review queue candidates
+viewer_specific_controls,viewer:1,301|303|304,Ada feed keeps only rows not hidden or muted

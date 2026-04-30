@@ -1,0 +1,11 @@
+contract_name,subject_id,observed_value,expected_reason
+drift_detected,all,follower:2:1|unread:1:1,Drift rows show source minus stored counter deltas
+no_drift_for_healthy_row,post:102,1,Post 102 stored counters match source counts
+read_model_comment_count,post:101,1,Stored comment counter matches the read model row
+read_model_follower_count,user:2,1,Stored follower counter is stale for Ben
+read_model_like_count,post:101,2,Stored like counter is read-model state
+repair_candidate,all,follower:2|unread:1,Repair candidates are the rows with non-zero drift
+source_comment_count,post:101,1,Source comments ignore deleted comment 2002
+source_follower_count,user:2,2,Source followers count active follow_edges only
+source_like_count,post:101,2,Source likes ignore deleted reaction 1003
+unread_count,user:1,2,Source unread count excludes read notification 3003

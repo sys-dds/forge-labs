@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+drift_contract,all,follower:2:1,Drift compares source counts with read-model counters
+follower_counts_contract,user:2,2,Source follower count for Ben derives from accepted friendships
+post_counts_contract,post:501,2 likes/1 comments,Source post counts ignore deleted reaction and comment rows
+post_visibility_contract,viewer:1,501|502|503|504,Visible posts honor public close-friends block and deleted rules
+profile_visibility_contract,viewer:1,2|3|5,Ada sees Ben and Cy profiles but not blocked Omar
+repair_candidate_contract,all,follower:2,Repair candidates are rows with drift
+share_save_contract,viewer:1,1 reposts/1 saves,Share/save contract separates repost lifecycle and private saves
+unread_counts_contract,user:1,3,Unread notification count excludes read notification 1303
+user_controls_contract,viewer:1,501|502|503,Controlled feed removes hidden Ben post 503 and muted Eli post 504

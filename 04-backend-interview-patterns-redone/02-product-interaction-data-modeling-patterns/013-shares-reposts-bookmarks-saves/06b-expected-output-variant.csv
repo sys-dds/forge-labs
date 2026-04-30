@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+blocked_author_suppresses_share,repost:303,0,Omar blocked Ada so repost of Omar content is hidden
+deleted_original_suppresses_share,repost:302,1,Deleted original post 202 suppresses repost visibility
+duplicate_save_prevented,user:1 post:201,1,Ada has one logical save even with duplicate active history rows
+private_save_hidden_from_others,viewer:3 user:1 save,0,Cy cannot read Ada private bookmark state
+private_save_visible_to_owner,viewer:1 post:201,1,Ada can see her own save state
+quote_repost_reference,quote:401,201:Ada adds context,Quote repost keeps Ada text plus original reference
+repost_original_reference,repost:301,201,Repost 301 points at original post 201
+share_count,post:201,2,Share count derives from active visible repost and quote rows

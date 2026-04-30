@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_011;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya');
+INSERT INTO posts VALUES (101,2,NULL),(102,3,NULL);
+INSERT INTO post_reactions VALUES (1001,101,1,'liked',NULL),(1002,101,3,'liked',NULL),(1003,101,4,'liked','2026-04-08 09:00'),(1004,102,1,'liked',NULL);
+INSERT INTO comments VALUES (2001,101,1,NULL),(2002,101,3,'2026-04-08 10:00'),(2003,102,2,NULL);
+INSERT INTO follow_edges VALUES (1,2,'active'),(3,2,'active'),(4,2,'removed');
+INSERT INTO notifications VALUES (3001,1,'unread'),(3002,1,'unread'),(3003,1,'read');
+INSERT INTO post_count_read_models VALUES (101,2,1,'2026-04-08 12:00'),(102,1,1,'2026-04-08 12:00');
+INSERT INTO user_count_read_models VALUES (2,1,'2026-04-08 12:00');
+INSERT INTO notification_count_read_models VALUES (1,1,'2026-04-08 12:00');

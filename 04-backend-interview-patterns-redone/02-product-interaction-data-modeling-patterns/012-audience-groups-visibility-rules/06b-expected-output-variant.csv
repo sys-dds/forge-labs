@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+block_overrides_visibility,post:207,0,Omar blocked Ada so public visibility is overridden
+close_friends_visible,post:205,0,Ada sees Diya close-friends post only while group member
+deleted_post_hidden,post:208,0,Deleted content is hidden regardless of public visibility
+friends_only_visible,post:204,1,Accepted friendship with Cy makes friends-only post visible
+non_member_hidden,post:206,0,Ada is not in Eli close-friends group
+owner_private_visible,post:203,1,Ada can see her own private post
+private_hidden,post:202,0,Ben private post is hidden from non-owner Ada
+public_visible,post:201,1,Public Ben post is visible to Ada
