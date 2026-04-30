@@ -1,0 +1,73 @@
+{
+  "buyer_intent": {
+    "query": "sink repair",
+    "location": "Glasgow",
+    "budget_pence": 8000,
+    "preferred_time": "today_or_tomorrow"
+  },
+  "listings": [
+    {
+      "id": "listing_101",
+      "seller": "Ben",
+      "service": "sink repair",
+      "city": "Glasgow",
+      "availability": "today",
+      "price_pence": 7500,
+      "blocked": false
+    },
+    {
+      "id": "listing_201",
+      "seller": "Diya",
+      "service": "plumbing general",
+      "city": "Glasgow",
+      "availability": "tomorrow",
+      "price_pence": 8500,
+      "blocked": false
+    },
+    {
+      "id": "listing_301",
+      "seller": "Maya",
+      "service": "sink installation",
+      "city": "Edinburgh",
+      "availability": "today",
+      "price_pence": 7000,
+      "blocked": false
+    },
+    {
+      "id": "listing_401",
+      "seller": "Omar",
+      "service": "electrical repair",
+      "city": "Glasgow",
+      "availability": "today",
+      "price_pence": 6000,
+      "blocked": false
+    },
+    {
+      "id": "listing_501",
+      "seller": "Lina",
+      "service": "sink repair",
+      "city": "Glasgow",
+      "availability": "next_week",
+      "price_pence": 7000,
+      "blocked": false
+    },
+    {
+      "id": "listing_601",
+      "seller": "Noor",
+      "service": "sink repair",
+      "city": "Glasgow",
+      "availability": "today",
+      "price_pence": 7000,
+      "blocked": true
+    },
+    {
+      "id": "listing_701",
+      "seller": "Theo",
+      "service": "sink repair",
+      "city": "Glasgow",
+      "availability": "today",
+      "price_pence": 12000,
+      "blocked": false
+    }
+  ]
+}

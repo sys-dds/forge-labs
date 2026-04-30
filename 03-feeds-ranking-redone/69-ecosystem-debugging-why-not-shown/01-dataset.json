@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "id": "post_101",
+      "type": "post",
+      "status": "shown",
+      "reason": "relevant_creator",
+      "stage": "ranking"
+    },
+    {
+      "id": "listing_201",
+      "type": "listing",
+      "status": "shown",
+      "reason": "trusted_seller",
+      "stage": "ranking"
+    },
+    {
+      "id": "creator_maya",
+      "type": "creator",
+      "status": "shown",
+      "reason": "cold_start_exploration",
+      "stage": "exploration"
+    },
+    {
+      "id": "post_301",
+      "type": "post",
+      "status": "missing",
+      "reason": "repeated_author_cap",
+      "stage": "ecosystem_diversity"
+    },
+    {
+      "id": "creator_lina",
+      "type": "creator",
+      "status": "missing",
+      "reason": "exposure_budget_exhausted",
+      "stage": "exposure_budget"
+    },
+    {
+      "id": "listing_401",
+      "type": "listing",
+      "status": "missing",
+      "reason": "seller_fully_loaded",
+      "stage": "supply_capacity"
+    },
+    {
+      "id": "listing_501",
+      "type": "listing",
+      "status": "missing",
+      "reason": "fraud_risk_suppressed",
+      "stage": "marketplace_risk"
+    },
+    {
+      "id": "post_601",
+      "type": "post",
+      "status": "missing",
+      "reason": "low_audience_fit",
+      "stage": "relevance"
+    },
+    {
+      "id": "creator_omar",
+      "type": "creator",
+      "status": "missing",
+      "reason": "low_quality_viral_suppressed",
+      "stage": "quality_gate"
+    },
+    {
+      "id": "listing_701",
+      "type": "listing",
+      "status": "missing",
+      "reason": "wrong_category",
+      "stage": "buyer_intent"
+    },
+    {
+      "id": "post_801",
+      "type": "post",
+      "status": "missing",
+      "reason": "blocked_creator",
+      "stage": "safety_eligibility"
+    }
+  ]
+}

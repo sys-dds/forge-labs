@@ -33,3 +33,6 @@ Social graph / communities / graph algorithms. Future feed expansion may cover s
 ## FORGE-FEED-R2-051-060
 
 Safety / integrity / abuse / trust ranking. A possible future feed expansion is creator ecosystem and marketplace ranking depth. No movement to another track without user approval.
+## Creator And Marketplace Ecosystem Clinics
+
+Clinics 01-10 cover feed pipeline foundations; 11-20 product surface ranking patterns; 21-30 evaluation, experiments, incidents, and senior design; 31-40 advanced retrieval, embeddings, ANN, and recall debugging; 41-50 social graph, communities, and graph algorithms; 51-60 safety, integrity, abuse, and trust ranking; 61-70 creator ecosystem and marketplace ranking depth. Stay on Feeds/Ranking Redone unless the user approves moving to another track. At clinic 70, Feeds/Ranking Redone is feature-complete unless review asks for another feed expansion.

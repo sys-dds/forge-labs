@@ -31,3 +31,6 @@ For each graph clinic, name the nodes, draw the source path, inspect rejected an
 ## Studying 51-60
 
 For each safety clinic, identify the risk row, map it to remove/reduce/inform/review/allow, inspect audit trace, then run broken and solution proofs.
+## Creator And Marketplace Ecosystem Clinics
+
+Clinics 01-10 cover feed pipeline foundations; 11-20 product surface ranking patterns; 21-30 evaluation, experiments, incidents, and senior design; 31-40 advanced retrieval, embeddings, ANN, and recall debugging; 41-50 social graph, communities, and graph algorithms; 51-60 safety, integrity, abuse, and trust ranking; 61-70 creator ecosystem and marketplace ranking depth. Stay on Feeds/Ranking Redone unless the user approves moving to another track. At clinic 70, Feeds/Ranking Redone is feature-complete unless review asks for another feed expansion.

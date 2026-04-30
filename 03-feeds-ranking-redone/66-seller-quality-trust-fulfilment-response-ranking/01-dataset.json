@@ -1,0 +1,71 @@
+{
+  "sellers": [
+    {
+      "id": "seller_ben",
+      "rating": 4.9,
+      "response_minutes": 12,
+      "cancellation_rate": 0.02,
+      "dispute_rate": 0.01,
+      "completed_jobs": 200,
+      "blocked": false
+    },
+    {
+      "id": "seller_diya",
+      "rating": 4.7,
+      "response_minutes": 35,
+      "cancellation_rate": 0.04,
+      "dispute_rate": 0.02,
+      "completed_jobs": 90,
+      "blocked": false
+    },
+    {
+      "id": "seller_omar",
+      "rating": 4.8,
+      "response_minutes": 5,
+      "cancellation_rate": 0.3,
+      "dispute_rate": 0.2,
+      "completed_jobs": 50,
+      "blocked": false
+    },
+    {
+      "id": "seller_maya",
+      "rating": 4.8,
+      "response_minutes": 20,
+      "cancellation_rate": 0.0,
+      "dispute_rate": 0.0,
+      "completed_jobs": 3,
+      "blocked": false
+    },
+    {
+      "id": "seller_noor",
+      "rating": 5.0,
+      "response_minutes": 1,
+      "cancellation_rate": 0,
+      "dispute_rate": 0,
+      "completed_jobs": 20,
+      "blocked": true
+    }
+  ],
+  "listings": [
+    {
+      "id": "listing_101",
+      "seller_id": "seller_ben"
+    },
+    {
+      "id": "listing_201",
+      "seller_id": "seller_diya"
+    },
+    {
+      "id": "listing_301",
+      "seller_id": "seller_omar"
+    },
+    {
+      "id": "listing_401",
+      "seller_id": "seller_maya"
+    },
+    {
+      "id": "listing_501",
+      "seller_id": "seller_noor"
+    }
+  ]
+}

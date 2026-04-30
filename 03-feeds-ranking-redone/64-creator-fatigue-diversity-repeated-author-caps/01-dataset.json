@@ -1,0 +1,60 @@
+{
+  "posts": [
+    {
+      "id": "post_101",
+      "creator_id": "Ben",
+      "score": 98,
+      "quality": 90,
+      "blocked": false
+    },
+    {
+      "id": "post_102",
+      "creator_id": "Ben",
+      "score": 94,
+      "quality": 89,
+      "blocked": false
+    },
+    {
+      "id": "post_103",
+      "creator_id": "Ben",
+      "score": 93,
+      "quality": 88,
+      "blocked": false
+    },
+    {
+      "id": "post_201",
+      "creator_id": "Diya",
+      "score": 90,
+      "quality": 87,
+      "blocked": false
+    },
+    {
+      "id": "post_301",
+      "creator_id": "Maya",
+      "score": 85,
+      "quality": 84,
+      "blocked": false
+    },
+    {
+      "id": "post_401",
+      "creator_id": "Lina",
+      "score": 80,
+      "quality": 82,
+      "blocked": false
+    },
+    {
+      "id": "post_501",
+      "creator_id": "Omar",
+      "score": 99,
+      "quality": 35,
+      "blocked": false
+    },
+    {
+      "id": "post_601",
+      "creator_id": "Noor",
+      "score": 92,
+      "quality": 95,
+      "blocked": true
+    }
+  ]
+}

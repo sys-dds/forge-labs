@@ -44,3 +44,6 @@ Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surfa
 Clinics 41-50 add social graph, communities, graph algorithms, mutuals, graph retrieval, and community recommendations while staying inside Feeds/Ranking Redone.
 
 Clinics 51-60 add safety, integrity, abuse, trust ranking, policy treatment, review queues, appeals, and safety-aware feed design while staying inside Feeds/Ranking Redone.
+## Creator And Marketplace Ecosystem Clinics
+
+Clinics 01-10 cover feed pipeline foundations; 11-20 product surface ranking patterns; 21-30 evaluation, experiments, incidents, and senior design; 31-40 advanced retrieval, embeddings, ANN, and recall debugging; 41-50 social graph, communities, and graph algorithms; 51-60 safety, integrity, abuse, and trust ranking; 61-70 creator ecosystem and marketplace ranking depth. Stay on Feeds/Ranking Redone unless the user approves moving to another track. At clinic 70, Feeds/Ranking Redone is feature-complete unless review asks for another feed expansion.
