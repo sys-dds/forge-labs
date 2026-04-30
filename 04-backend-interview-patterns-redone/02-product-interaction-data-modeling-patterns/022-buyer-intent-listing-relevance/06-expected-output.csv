@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+already_seen_suppressed,listing:102,suppressed,Seen listing 102 is suppressed for Ada
+availability_match_component,listing:101,1,Listing availability row must be available
+category_match_component,listing:101,1,Listing category must match Ada buyer intent
+location_match_component,listing:101,1,Location or service area must match buyer intent
+low_trust_seller_suppressed,listing:103,review,RiskSeller listing is reviewed because seller trust components are low
+price_match_component,listing:101,1,Price must be at or below buyer intent max_price
+relevance_debug_trace,buyer:Ada,101:cat=1|price=1|loc=1|avail=1|seen=0|trust=80;102:cat=1|price=1|loc=1|avail=1|seen=1|trust=70;103:cat=1|price=1|loc=1|avail=1|seen=0|trust=25;104:cat=0|price=1|loc=1|avail=1|seen=0|trust=80,Trace lists relevance components and seller trust treatment reason
+selected_listing,buyer:Ada,listing:101,"Selected listing satisfies intent, availability, seen state, and trust gate"

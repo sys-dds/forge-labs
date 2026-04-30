@@ -1,0 +1,11 @@
+SET search_path TO bip_pim_024;
+CREATE TABLE buyers (buyer_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE sellers (seller_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE listings (listing_id int PRIMARY KEY, seller_id int REFERENCES sellers, category text NOT NULL, location text NOT NULL, status text NOT NULL);
+CREATE TABLE offers (offer_id int PRIMARY KEY, buyer_id int REFERENCES buyers, listing_id int REFERENCES listings, offer_state text NOT NULL);
+CREATE TABLE bookings (booking_id int PRIMARY KEY, offer_id int REFERENCES offers, seller_id int REFERENCES sellers, booking_state text NOT NULL);
+CREATE TABLE listing_availability_windows (window_id int PRIMARY KEY, listing_id int REFERENCES listings, available_slots int NOT NULL);
+CREATE TABLE seller_capacity_windows (capacity_id int PRIMARY KEY, seller_id int REFERENCES sellers, capacity_slots int NOT NULL);
+CREATE TABLE buyer_demand_events (demand_id int PRIMARY KEY, buyer_id int REFERENCES buyers, category text NOT NULL, location text NOT NULL);
+CREATE TABLE local_supply_snapshots (snapshot_id int PRIMARY KEY, category text NOT NULL, location text NOT NULL, supply_count int NOT NULL);
+CREATE TABLE local_demand_snapshots (snapshot_id int PRIMARY KEY, category text NOT NULL, location text NOT NULL, demand_count int NOT NULL);

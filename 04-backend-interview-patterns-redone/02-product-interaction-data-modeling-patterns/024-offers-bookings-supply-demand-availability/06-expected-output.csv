@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+accepted_offer_booking,offer:302,booking:401,Accepted offer 302 creates or links booking 401
+availability_debug_trace,seller:NorthClean,capacity=2|active=1|cancelled=1|remaining=1,"Trace explains capacity, cancellation, and availability treatment"
+cancelled_booking_releases_capacity,booking:402,cancelled,Cancelled booking 402 releases capacity
+completed_booking_consumed,booking:401,completed,Completed booking 401 remains historical consumed capacity
+demand_pressure,cleaning:North,4,Demand pressure is demand minus supply
+local_supply_count,cleaning:North,1,Local supply count comes from supply snapshot
+overbooking_prevented,seller:NorthClean,prevented,Capacity remaining cannot go negative for NorthClean
+pending_offer_not_booking,offer:301,not_booking,Pending offer 301 is not a booking
+supply_demand_treatment,cleaning:North,boost,High demand and low supply boosts available listings

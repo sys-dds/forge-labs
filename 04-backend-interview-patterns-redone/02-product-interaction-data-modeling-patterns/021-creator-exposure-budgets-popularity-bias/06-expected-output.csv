@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+exposure_budget_remaining,creator:MegaMaker,0,Budget remaining is budget_limit minus derived exposure spend
+exposure_decision_trace,surface:home,MegaMaker:remaining=0|quality=90|seen=no;QuietCraft:remaining=2|quality=70|seen=no;LowLift:remaining=3|quality=30|seen=no;RepeatRay:remaining=2|quality=80|seen=yes,"Trace shows budget, component quality, and repeated exposure state"
+exposure_spend_derived,creator:MegaMaker,3,Exposure spend is counted from exposure_events
+long_tail_creator_exposed,creator:QuietCraft,exposed,QuietCraft earns a long-tail slot because budget remains and quality is healthy
+low_quality_creator_not_boosted,creator:LowLift,not_boosted,LowLift is long-tail but blocked by low quality components
+popular_creator_capped,creator:MegaMaker,capped,MegaMaker is capped when exposure spend reaches the budget window
+repeated_creator_suppressed,creator:RepeatRay,suppressed,RepeatRay is suppressed because Ada has already seen the creator
+variant_exposure_change,surface:home,creator:QuietCraft,Variant changes the selected creator when MegaMaker has remaining budget
