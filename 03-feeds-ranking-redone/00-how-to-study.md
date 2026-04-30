@@ -21,3 +21,8 @@ For clinics 11-20, read the beginner walkthrough before the proof. Then inspect 
 ## Retrieval Slice
 
 Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.
+
+
+## Studying 41-50
+
+For each graph clinic, name the nodes, draw the source path, inspect rejected and missed rows, then run the broken and solution proofs.

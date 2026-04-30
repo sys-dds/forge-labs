@@ -45,4 +45,14 @@ cat <<'CLINICS'
 03-feeds-ranking-redone/38-cold-start-retrieval-and-exploration-backfill
 03-feeds-ranking-redone/39-retrieval-debugging-why-candidate-was-missing
 03-feeds-ranking-redone/40-senior-retrieval-system-design-capstone
+03-feeds-ranking-redone/41-social-graph-data-model
+03-feeds-ranking-redone/42-mutual-friends-triangle-closing
+03-feeds-ranking-redone/43-bipartite-user-item-collaborative-filtering
+03-feeds-ranking-redone/44-random-walk-recommendation-intuition
+03-feeds-ranking-redone/45-pagerank-style-authority-propagation
+03-feeds-ranking-redone/46-community-detection-interest-clusters
+03-feeds-ranking-redone/47-heterogeneous-graph-recommendations
+03-feeds-ranking-redone/48-edge-freshness-decay-interaction-strength
+03-feeds-ranking-redone/49-graph-candidate-debugging-why-missing
+03-feeds-ranking-redone/50-senior-social-graph-recommendation-system-design-capstone
 CLINICS

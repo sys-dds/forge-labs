@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "ada",
+      "type": "user"
+    },
+    {
+      "id": "ben",
+      "type": "user"
+    },
+    {
+      "id": "cy",
+      "type": "user"
+    },
+    {
+      "id": "diya",
+      "type": "user"
+    },
+    {
+      "id": "noor",
+      "type": "user"
+    },
+    {
+      "id": "maya",
+      "type": "user"
+    },
+    {
+      "id": "backend_club",
+      "type": "group"
+    },
+    {
+      "id": "post_101",
+      "type": "content"
+    },
+    {
+      "id": "post_201",
+      "type": "content"
+    },
+    {
+      "id": "post_301",
+      "type": "content"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ada",
+      "to": "ben",
+      "type": "follow",
+      "direction": "directed"
+    },
+    {
+      "from": "ada",
+      "to": "cy",
+      "type": "mute",
+      "direction": "directed"
+    },
+    {
+      "from": "ada",
+      "to": "noor",
+      "type": "block",
+      "direction": "directed"
+    },
+    {
+      "from": "ada",
+      "to": "diya",
+      "type": "friend",
+      "direction": "undirected"
+    },
+    {
+      "from": "ada",
+      "to": "backend_club",
+      "type": "member",
+      "direction": "directed"
+    },
+    {
+      "from": "maya",
+      "to": "backend_club",
+      "type": "member",
+      "direction": "directed"
+    },
+    {
+      "from": "ben",
+      "to": "post_101",
+      "type": "authored",
+      "direction": "directed"
+    },
+    {
+      "from": "cy",
+      "to": "post_201",
+      "type": "authored",
+      "direction": "directed"
+    },
+    {
+      "from": "noor",
+      "to": "post_301",
+      "type": "authored",
+      "direction": "directed"
+    }
+  ]
+}

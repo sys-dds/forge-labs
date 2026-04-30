@@ -20,6 +20,10 @@ root_files=(
   03-feeds-ranking-redone/00-debugging-feed-output.md
   03-feeds-ranking-redone/00-feed-evaluation-for-beginners.md
   03-feeds-ranking-redone/00-retrieval-for-beginners.md
+  03-feeds-ranking-redone/00-social-graph-for-beginners.md
+  03-feeds-ranking-redone/00-graph-algorithms-for-beginners.md
+  03-feeds-ranking-redone/00-graph-debugging-playbook.md
+  03-feeds-ranking-redone/00-community-recommendations-map.md
 )
 
 shared_files=(
@@ -29,6 +33,7 @@ shared_files=(
   03-feeds-ranking-redone/_shared/scoring_math.py
   03-feeds-ranking-redone/_shared/trace_helpers.py
   03-feeds-ranking-redone/_shared/retrieval_math.py
+  03-feeds-ranking-redone/_shared/graph_helpers.py
 )
 
 clinics=(
@@ -72,6 +77,16 @@ clinics=(
   03-feeds-ranking-redone/38-cold-start-retrieval-and-exploration-backfill
   03-feeds-ranking-redone/39-retrieval-debugging-why-candidate-was-missing
   03-feeds-ranking-redone/40-senior-retrieval-system-design-capstone
+  03-feeds-ranking-redone/41-social-graph-data-model
+  03-feeds-ranking-redone/42-mutual-friends-triangle-closing
+  03-feeds-ranking-redone/43-bipartite-user-item-collaborative-filtering
+  03-feeds-ranking-redone/44-random-walk-recommendation-intuition
+  03-feeds-ranking-redone/45-pagerank-style-authority-propagation
+  03-feeds-ranking-redone/46-community-detection-interest-clusters
+  03-feeds-ranking-redone/47-heterogeneous-graph-recommendations
+  03-feeds-ranking-redone/48-edge-freshness-decay-interaction-strength
+  03-feeds-ranking-redone/49-graph-candidate-debugging-why-missing
+  03-feeds-ranking-redone/50-senior-social-graph-recommendation-system-design-capstone
 )
 
 for file in "${root_files[@]}" "${shared_files[@]}"; do
@@ -83,7 +98,9 @@ for clinic in "${clinics[@]}"; do
   common=(README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md)
   for file in "${common[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
   clinic_name="$(basename "$clinic")"
-  if [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
+  if [[ "$clinic_name" =~ ^(41|42|43|44|45|46|47|48|49|50)- ]]; then
+    extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
+  elif [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
     extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
   elif [[ "$clinic_name" =~ ^(21|22|23|24|25|26|27|28|29|30)- ]]; then
     extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
@@ -104,7 +121,30 @@ for clinic in "${clinics[@]}"; do
     fail "$clinic evidence map has vague cells"
   fi
 
-  if [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
+  if [[ "$clinic_name" =~ ^(41|42|43|44|45|46|47|48|49|50)- ]]; then
+    for heading in "What this clinic teaches" "Graph problem and user intent" "Named users/items/communities/edges and why each exists" "Broken graph behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+      if grep -Eq 'import +(numpy|pandas|sklearn|networkx|igraph|graphframes)|from +(numpy|pandas|sklearn|networkx|igraph|graphframes)' "$file"; then fail "$file imports non-scope graph dependency"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +expected\["graph_candidates"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'assert_equal\(result\.get\("(final_candidate_pool|graph_candidates|people_you_may_know)' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks exact graph candidate assertion"
+    grep -Eq 'missed_graph_candidates|missing_graph_explanations|assert_rejected|not in' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks graph candidate/missed/rejected assertion"
+    grep -q 'graph_debug_trace' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks graph_debug_trace assertion"
+    if [[ "$clinic_name" =~ ^42- ]]; then grep -q 'mutual_rows' "$clinic/04-proof.tests.py" || fail "$clinic mutual proof lacks mutual_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^44- ]]; then grep -q 'random_walk_rows' "$clinic/04-proof.tests.py" || fail "$clinic random-walk proof lacks random_walk_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^45- ]]; then grep -q 'authority_rows' "$clinic/04-proof.tests.py" || fail "$clinic authority proof lacks authority_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^46- ]]; then grep -q 'community_rows' "$clinic/04-proof.tests.py" || fail "$clinic community proof lacks community_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^47- ]]; then grep -q 'heterogeneous_path_rows' "$clinic/04-proof.tests.py" || fail "$clinic heterogeneous proof lacks heterogeneous_path_rows assertion"; fi
+    grep -q '| Mutation | Expected failing proof |' "$clinic/13-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/13-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
+    grep -q 'Review questions' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Review questions"
+    grep -q 'Telemetry' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Telemetry"
+    grep -q 'Do not over-engineer yet' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing restraint note"
+  elif [[ "$clinic_name" =~ ^(31|32|33|34|35|36|37|38|39|40)- ]]; then
     for heading in "What this clinic teaches" "Retrieval problem and user intent" "Named users/items/sources and why each exists" "Broken retrieval behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
       grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
     done
@@ -177,6 +217,8 @@ done
 
 grep -q "0.9\*1.0" 03-feeds-ranking-redone/00-embedding-maths-for-beginners.md || fail "root docs define embeddings without numeric example"
 grep -q "exact scan checks every row" 03-feeds-ranking-redone/00-retrieval-for-beginners.md || fail "root docs define ANN without approximate-vs-exact trade-off"
-if grep -RIEq "import +(numpy|pandas|sklearn|faiss|annoy|hnswlib)|from +(numpy|pandas|sklearn|faiss|annoy|hnswlib)" 03-feeds-ranking-redone scripts; then fail "non-scope ML/vector dependency imported"; fi
+grep -q "0.5 \* 0.7 = 0.35" 03-feeds-ranking-redone/00-graph-algorithms-for-beginners.md || fail "root docs define graph algorithms without numeric/path example"
+grep -q "Ada -> backend_club -> javaconf" 03-feeds-ranking-redone/00-graph-debugging-playbook.md || fail "root docs define graph tracing without path example"
+if grep -RIEq "import +(numpy|pandas|sklearn|faiss|annoy|hnswlib|networkx|igraph|graphframes)|from +(numpy|pandas|sklearn|faiss|annoy|hnswlib|networkx|igraph|graphframes)" 03-feeds-ranking-redone scripts; then fail "non-scope ML/vector/graph dependency imported"; fi
 
 echo "PASS feeds redone quality gate"

@@ -1,0 +1,33 @@
+{
+  "seed_authority": {
+    "ben": 0.9,
+    "diya": 0.9,
+    "backend_club": 0.8,
+    "omar": 0.2
+  },
+  "edges": [
+    [
+      "ben",
+      "post_101"
+    ],
+    [
+      "diya",
+      "post_101"
+    ],
+    [
+      "backend_club",
+      "post_201"
+    ],
+    [
+      "omar",
+      "post_301"
+    ],
+    [
+      "omar",
+      "post_401"
+    ]
+  ],
+  "spam": [
+    "post_401"
+  ]
+}

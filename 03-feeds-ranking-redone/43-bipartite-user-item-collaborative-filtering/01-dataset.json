@@ -1,0 +1,46 @@
+{
+  "users": [
+    "ada",
+    "ben",
+    "diya",
+    "maya",
+    "noor",
+    "omar"
+  ],
+  "items": [
+    "post_101",
+    "post_201",
+    "post_301",
+    "post_401",
+    "post_501",
+    "post_601"
+  ],
+  "blocked_authors": [
+    "noor"
+  ],
+  "interactions": {
+    "ada": [
+      "post_101",
+      "post_201"
+    ],
+    "ben": [
+      "post_101",
+      "post_201",
+      "post_401"
+    ],
+    "diya": [
+      "post_101",
+      "post_401"
+    ],
+    "maya": [
+      "post_301"
+    ],
+    "omar": [
+      "post_601"
+    ],
+    "noor": [
+      "post_101",
+      "post_501"
+    ]
+  }
+}

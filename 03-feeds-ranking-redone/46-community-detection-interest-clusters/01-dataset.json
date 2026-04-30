@@ -1,0 +1,42 @@
+{
+  "user_memberships": {
+    "ada": {
+      "backend_cluster": 0.9,
+      "movie_cluster": 0.3
+    },
+    "ben": {
+      "backend_cluster": 0.8
+    },
+    "lina": {
+      "backend_cluster": 0.7,
+      "movie_cluster": 0.5
+    },
+    "maya": {
+      "movie_cluster": 0.9
+    },
+    "omar": {
+      "cooking_cluster": 1.0
+    }
+  },
+  "item_memberships": {
+    "post_101": {
+      "backend_cluster": 1.0
+    },
+    "post_201": {
+      "backend_cluster": 0.6,
+      "movie_cluster": 0.5
+    },
+    "post_301": {
+      "movie_cluster": 0.9
+    },
+    "post_401": {
+      "cooking_cluster": 1.0
+    },
+    "post_501": {
+      "backend_cluster": 0.8
+    }
+  },
+  "unsafe": [
+    "post_501"
+  ]
+}
