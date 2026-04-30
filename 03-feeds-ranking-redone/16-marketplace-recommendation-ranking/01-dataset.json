@@ -1,0 +1,68 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "category": "sink",
+      "trust": 95,
+      "distance": 2,
+      "price": 7500,
+      "available": true
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "category": "sink",
+      "trust": 20,
+      "risk": true,
+      "distance": 1,
+      "price": 4000,
+      "available": true
+    },
+    {
+      "id": 301,
+      "author": "Diya",
+      "category": "sink",
+      "trust": 90,
+      "distance": 20,
+      "price": 7800,
+      "available": true
+    },
+    {
+      "id": 401,
+      "author": "Lina",
+      "category": "sink",
+      "trust": 85,
+      "distance": 5,
+      "price": 9000,
+      "available": true
+    },
+    {
+      "id": 501,
+      "author": "Omar",
+      "category": "electrical",
+      "trust": 99,
+      "distance": 1,
+      "price": 5000,
+      "available": true
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "category": "sink",
+      "trust": 90,
+      "distance": 1,
+      "price": 7000,
+      "available": false
+    },
+    {
+      "id": 701,
+      "author": "Noor",
+      "category": "sink",
+      "blocked": true,
+      "trust": 100,
+      "price": 6000,
+      "available": true
+    }
+  ]
+}

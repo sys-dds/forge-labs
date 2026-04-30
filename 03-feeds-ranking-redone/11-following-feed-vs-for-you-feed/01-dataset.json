@@ -1,0 +1,93 @@
+{
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "followed": true,
+      "age": 1,
+      "relevance": 90,
+      "source": "followed",
+      "safe": true
+    },
+    {
+      "id": 102,
+      "author": "Ben",
+      "followed": true,
+      "age": 9,
+      "relevance": 40,
+      "source": "followed",
+      "safe": true
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "followed": true,
+      "age": 2,
+      "relevance": 95,
+      "source": "followed",
+      "muted": true,
+      "safe": true
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "followed": false,
+      "age": 3,
+      "relevance": 99,
+      "source": "blocked",
+      "blocked": true,
+      "safe": true
+    },
+    {
+      "id": 401,
+      "author": "Diya",
+      "followed": true,
+      "age": 4,
+      "relevance": 70,
+      "source": "followed",
+      "safe": true
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "followed": false,
+      "age": 5,
+      "relevance": 88,
+      "source": "similar_topic",
+      "safe": true
+    },
+    {
+      "id": 701,
+      "author": "Maya",
+      "followed": false,
+      "age": 6,
+      "relevance": 55,
+      "source": "exploration",
+      "safe": true
+    },
+    {
+      "id": 801,
+      "author": "Omar",
+      "followed": false,
+      "age": 1,
+      "relevance": 100,
+      "source": "unsafe",
+      "safe": false
+    }
+  ],
+  "expected": {
+    "following_feed": [
+      101,
+      401,
+      102
+    ],
+    "for_you_feed": [
+      101,
+      501,
+      401,
+      701,
+      102
+    ]
+  }
+}

@@ -6,3 +6,7 @@ Future clinics should start with named rows, exact wrong output, and proof messa
 
 ## Hardened clinic standard
 Each clinic keeps its behavior in clinic-local functions. Evidence maps and mutation checks are required so every named item is tied to a proof, trace, and drill. Shared helpers stay small and cannot contain clinic business rules.
+
+## Part Two Clinic Files
+
+New clinics include beginner walkthroughs, shortcut audits, and mutation checks. Each new clinic owns its broken simulation, solution, and proof file.

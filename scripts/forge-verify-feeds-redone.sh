@@ -5,10 +5,11 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
 ./scripts/forge-list-feeds-redone.sh
-./scripts/forge-inspect-feeds-redone.sh 03-feeds-ranking-redone/10-feed-evaluation-debugging-simulation
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/01-feed-pipeline-mental-model
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/08-stories-ephemeral-content-snapchat-patterns
-./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/10-feed-evaluation-debugging-simulation
+./scripts/forge-inspect-feeds-redone.sh 03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/11-following-feed-vs-for-you-feed
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/12-short-video-ranking-patterns
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/17-search-ranking-vs-feed-ranking
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
 ./scripts/forge-test-all-feeds-redone.sh
 ./scripts/check-feeds-redone-quality.sh
 

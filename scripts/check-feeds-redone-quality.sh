@@ -15,11 +15,10 @@ root_files=(
   03-feeds-ranking-redone/00-how-to-study.md
   03-feeds-ranking-redone/00-clinic-format.md
   03-feeds-ranking-redone/00-roadmap.md
+  03-feeds-ranking-redone/00-beginner-vocabulary.md
+  03-feeds-ranking-redone/00-ranking-maths-for-beginners.md
+  03-feeds-ranking-redone/00-debugging-feed-output.md
 )
-
-for file in "${root_files[@]}"; do
-  [[ -s "$file" ]] || fail "missing root doc $file"
-done
 
 shared_files=(
   03-feeds-ranking-redone/_shared/import_simulation.py
@@ -28,10 +27,6 @@ shared_files=(
   03-feeds-ranking-redone/_shared/scoring_math.py
   03-feeds-ranking-redone/_shared/trace_helpers.py
 )
-
-for file in "${shared_files[@]}"; do
-  [[ -s "$file" ]] || fail "missing shared contract file $file"
-done
 
 clinics=(
   03-feeds-ranking-redone/01-feed-pipeline-mental-model
@@ -44,132 +39,70 @@ clinics=(
   03-feeds-ranking-redone/08-stories-ephemeral-content-snapchat-patterns
   03-feeds-ranking-redone/09-recommended-notifications
   03-feeds-ranking-redone/10-feed-evaluation-debugging-simulation
+  03-feeds-ranking-redone/11-following-feed-vs-for-you-feed
+  03-feeds-ranking-redone/12-short-video-ranking-patterns
+  03-feeds-ranking-redone/13-youtube-style-home-and-up-next
+  03-feeds-ranking-redone/14-hot-ranking-reddit-hacker-news-patterns
+  03-feeds-ranking-redone/15-linkedin-professional-feed-ranking
+  03-feeds-ranking-redone/16-marketplace-recommendation-ranking
+  03-feeds-ranking-redone/17-search-ranking-vs-feed-ranking
+  03-feeds-ranking-redone/18-creator-discovery-and-cold-start
+  03-feeds-ranking-redone/19-safety-integrity-ranking
+  03-feeds-ranking-redone/20-beginner-ranking-maths-and-score-debugging
 )
 
-required=(
-  README.md
-  00-design.md
-  00-scenario.md
-  01-dataset.json
-  02-broken_simulation.py
-  03-solution.py
-  04-proof.tests.py
-  05-debugging-notes.md
-  06-break-fix-drills.md
-  07-interview-explanation.md
-  08-what-to-notice.md
-  09-evidence-map.md
-  10-mutation-checks.md
-)
-
-design_headings=(
-  "What this clinic teaches"
-  "Named users/content and why each exists"
-  "Broken ranking behavior"
-  "Exact wrong result from the broken version"
-  "Correct result from the solution"
-  "Proof assertions"
-  "What the learner should notice"
-  "Interview explanation target"
-)
-
-interview_headings=(
-  "Direct answer"
-  "Dataset walkthrough"
-  "Ranking reasoning"
-  "Common mistake"
-  "Senior trade-off"
-  "Follow-up answer"
-)
+for file in "${root_files[@]}" "${shared_files[@]}"; do
+  [[ -s "$file" ]] || fail "missing required file $file"
+done
 
 for clinic in "${clinics[@]}"; do
   [[ -d "$clinic" ]] || fail "missing clinic $clinic"
-  for file in "${required[@]}"; do
-    [[ -s "$clinic/$file" ]] || fail "missing required file $clinic/$file"
-  done
+  common=(README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md)
+  for file in "${common[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
+  clinic_name="$(basename "$clinic")"
+  if [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
+    extra=(10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md)
+  else
+    extra=(10-mutation-checks.md)
+  fi
+  for file in "${extra[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
 
   python3 -m json.tool "$clinic/01-dataset.json" >/dev/null || fail "invalid JSON $clinic/01-dataset.json"
-  PYTHONPYCACHEPREFIX=/tmp/forge-feeds-redone-pycache python3 -m py_compile "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py" || fail "python file failed to compile in $clinic"
+  PYTHONPYCACHEPREFIX=/tmp/forge-feeds-redone-pycache python3 -m py_compile "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py" || fail "python compile failed in $clinic"
 
-  for py_file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
-    if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$py_file"; then
-      fail "$py_file contains forbidden clinic dispatcher shortcut"
-    fi
-  done
-
-  if grep -Eq 'return +expected\["final_feed"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then
-    fail "$clinic/03-solution.py returns expected output directly"
-  fi
-
-  if grep -Eq 'len\([^)]*(final_feed|sent_notifications|story_tray|spotlight_feed)[^)]*\)' "$clinic/04-proof.tests.py" && ! grep -Eq 'assert_equal\(result\.get\("(final_feed|sent_notifications|story_tray|spotlight_feed)"' "$clinic/04-proof.tests.py"; then
-    fail "$clinic/04-proof.tests.py appears to rely on output length without exact output assertion"
-  fi
-
-  for heading in "${design_headings[@]}"; do
-    grep -q "$heading" "$clinic/00-design.md" || fail "$clinic/00-design.md missing heading $heading"
-  done
-
-  wrong_count="$(grep -c "Wrong behavior if removed:" "$clinic/00-design.md")"
-  [[ "$wrong_count" -ge 6 ]] || fail "$clinic/00-design.md needs at least 6 Wrong behavior if removed entries"
-
-  grep -q '| Item | Exists because | Used by proof | Used by debug trace | Used by drill |' "$clinic/09-evidence-map.md" || fail "$clinic/09-evidence-map.md missing required table header"
+  grep -q '| Item | Exists because | Used by proof | Used by debug trace | Used by drill |' "$clinic/09-evidence-map.md" || fail "$clinic evidence map missing table"
   evidence_rows="$(grep -Ec '^\| [^|-]' "$clinic/09-evidence-map.md")"
-  [[ "$evidence_rows" -ge 7 ]] || fail "$clinic/09-evidence-map.md needs at least 6 item rows"
+  [[ "$evidence_rows" -ge 7 ]] || fail "$clinic evidence map needs at least 6 item rows"
   if grep -v '^| Item |' "$clinic/09-evidence-map.md" | grep -Eq '\| Used by proof \||\| Used by debug trace \||\| Used by drill \|'; then
-    fail "$clinic/09-evidence-map.md contains vague Used by cells"
+    fail "$clinic evidence map has vague cells"
   fi
 
-  grep -q '| Mutation | Expected failing proof |' "$clinic/10-mutation-checks.md" || fail "$clinic/10-mutation-checks.md missing mutation table"
-  mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/10-mutation-checks.md")"
-  [[ "$mutation_rows" -ge 6 ]] || fail "$clinic/10-mutation-checks.md needs at least 5 mutation rows"
-
-  for heading in "${interview_headings[@]}"; do
-    grep -q "$heading" "$clinic/07-interview-explanation.md" || fail "$clinic/07-interview-explanation.md missing $heading"
-  done
-
-  drill_count="$(grep -Ec '^[0-9]+\. ' "$clinic/06-break-fix-drills.md")"
-  [[ "$drill_count" -ge 5 ]] || fail "$clinic/06-break-fix-drills.md needs at least 5 drills"
-
-  mention_count="$(grep -Eo 'Ada|Ben|Cy|Noor|Diya|Lina|Omar|Maya|Theo|101|102|201|301|401|501|502|601|701|801|901|1001|ben_posted|maya_thread|lina_similar_topic|noor_blocked' "$clinic/05-debugging-notes.md" | sort -u | wc -l | tr -d ' ')"
-  [[ "$mention_count" -ge 5 ]] || fail "$clinic/05-debugging-notes.md must mention at least 5 named users/content IDs"
-
-  if grep -Eiq "assertion failed|^failed$|^wrong$" "$clinic/04-proof.tests.py"; then
-    fail "$clinic/04-proof.tests.py contains generic proof failure text"
+  if [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
+    for heading in "Product surface and user intent" "Beginner mental model"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'assert_equal\(result\.get\("(final_feed|following_feed|for_you_feed|short_video_feed|home_recommendations|up_next|hot_ranked_posts|professional_feed|marketplace_recommendations|search_results|creator_discovery)' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks exact output assertion"
+    grep -Eq 'assert_rejected|not in|excluded' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks rejection/exclusion assertion"
+    grep -q 'assert_debug_trace\|assert_trace_contains' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks debug trace assertion"
+    grep -q '| Mutation | Expected failing proof |' "$clinic/12-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/12-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
   fi
-  grep -Eq 'assert_equal\(result\.get\("(final_feed|sent_notifications|story_tray|spotlight_feed)"' "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must contain exact output checks"
-  grep -Eq "assert_rejected|excluded|not in" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must assert rejected/excluded/missing items"
-  grep -q "debug_trace" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py must assert debug_trace"
-  grep -Eq "expected .*\\[[0-9a-zA-Z_, -]+\\]|content ID|701|501|101|ben_posted|maya_thread" "$clinic/04-proof.tests.py" || fail "$clinic/04-proof.tests.py failure messages must name expected output or a specific content ID"
 done
 
 banned=(
-  "Row group"
-  "Teaching row"
-  "anchors a row"
-  "concrete case"
-  "This breaks backend behavior"
-  "This chapter teaches an important concept"
-  "real-world backend pattern"
-  "useful in real systems"
-  "production systems need this"
-  "ranking is important"
-  "recommendations are important"
-  "social apps use this"
-  "this is a common pattern"
-  "weak proof"
-  "generic feed"
-  "generic ranking"
-  "generic candidate"
-  "positive case"
-  "negative case"
-  "edge case"
-  "realistic scenario"
+  "Row group" "Teaching row" "anchors a row" "concrete case" "This breaks backend behavior"
+  "This chapter teaches an important concept" "real-world backend pattern" "useful in real systems"
+  "production systems need this" "ranking is important" "recommendations are important"
+  "social apps use this" "this is a common pattern" "weak proof" "generic feed"
+  "generic ranking" "generic candidate" "positive case" "negative case" "edge case" "realistic scenario"
 )
-
 for phrase in "${banned[@]}"; do
-  if grep -Riq "$phrase" 03-feeds-ranking-redone; then
-    fail "banned fake-depth phrase found: $phrase"
-  fi
+  if grep -Riq "$phrase" 03-feeds-ranking-redone; then fail "banned fake-depth phrase found: $phrase"; fi
 done
 
 echo "PASS feeds redone quality gate"

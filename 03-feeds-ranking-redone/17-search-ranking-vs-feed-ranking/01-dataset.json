@@ -1,0 +1,63 @@
+{
+  "query": "Java testing",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "title": "Java unit testing with JUnit",
+      "engagement": 60,
+      "blocked": false,
+      "age": 2
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "title": "Spring Boot integration testing",
+      "engagement": 50,
+      "age": 3
+    },
+    {
+      "id": 301,
+      "author": "Diya",
+      "title": "JavaScript testing",
+      "engagement": 80,
+      "age": 1
+    },
+    {
+      "id": 401,
+      "author": "Lina",
+      "title": "Java concurrency",
+      "engagement": 90,
+      "age": 2
+    },
+    {
+      "id": 501,
+      "author": "Omar",
+      "title": "Top 10 developer memes",
+      "engagement": 500,
+      "age": 1
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "title": "JUnit Testcontainers guide",
+      "engagement": 40,
+      "age": 1
+    },
+    {
+      "id": 701,
+      "author": "Noor",
+      "title": "Java testing secrets",
+      "blocked": true,
+      "engagement": 100,
+      "age": 1
+    },
+    {
+      "id": 801,
+      "author": "Theo",
+      "title": "Old Java testing post",
+      "engagement": 20,
+      "age": 90
+    }
+  ]
+}
