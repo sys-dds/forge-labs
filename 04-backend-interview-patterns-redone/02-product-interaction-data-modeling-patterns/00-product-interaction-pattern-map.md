@@ -8,4 +8,5 @@
 - Counter/read models: post count rows, user count rows, notification count rows, and drift checks are derived from source-of-truth interaction tables.
 - User controls: hide events, mute edges, report events, preference feedback, bookmarks, reposts, and quote reposts are product state with viewer-specific semantics.
 - Safety contracts: `report_events`, `report_evidence`, `review_queue_items`, `policy_decisions`, `policy_treatments`, `appeals`, `audit_log`, `abuse_signal_events`, and `trust_score_components` explain why content is allowed, reviewed, downranked, hidden, removed, or restored.
+- Marketplace contracts: `creators`, `exposure_budget_windows`, `buyer_intents`, `listings`, `seller_quality_components`, `offers`, `bookings`, `local_supply_snapshots`, `local_demand_snapshots`, and `marketplace_treatments` explain exposure, relevance, quality, availability, and risk outcomes.
 - Read models: every clinic uses `05-verification-query.sql` as a small contract for the screen or API read path.

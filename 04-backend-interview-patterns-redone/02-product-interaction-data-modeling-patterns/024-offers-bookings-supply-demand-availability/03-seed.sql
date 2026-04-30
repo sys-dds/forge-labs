@@ -1,0 +1,11 @@
+SET search_path TO bip_pim_024;
+INSERT INTO buyers VALUES (10,'Ada'),(11,'Ben');
+INSERT INTO sellers VALUES (1,'NorthClean'),(2,'SouthClean');
+INSERT INTO listings VALUES (101,1,'cleaning','North','active'),(102,2,'cleaning','South','active');
+INSERT INTO offers VALUES (301,10,101,'pending'),(302,10,101,'accepted'),(303,11,101,'accepted'),(304,11,101,'cancelled');
+INSERT INTO bookings VALUES (401,302,1,'completed'),(402,304,1,'cancelled');
+INSERT INTO listing_availability_windows VALUES (501,101,2),(502,102,3);
+INSERT INTO seller_capacity_windows VALUES (601,1,2),(602,2,3);
+INSERT INTO buyer_demand_events VALUES (701,10,'cleaning','North'),(702,11,'cleaning','North'),(703,10,'cleaning','North');
+INSERT INTO local_supply_snapshots VALUES (801,'cleaning','North',1),(802,'cleaning','South',3);
+INSERT INTO local_demand_snapshots VALUES (901,'cleaning','North',5),(902,'cleaning','South',2);

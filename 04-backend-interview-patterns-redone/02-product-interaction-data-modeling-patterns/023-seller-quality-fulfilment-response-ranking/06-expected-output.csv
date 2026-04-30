@@ -1,0 +1,11 @@
+contract_name,subject_id,observed_value,expected_reason
+cancellation_component,seller:RiskSeller,-25,Cancellation penalty is a separate component
+dispute_component,seller:RiskSeller,-30,Dispute penalty is a separate component
+fulfilment_component,seller:BrightSeller,50,"Fulfilment component is explicit, not hidden in one seller_quality_score"
+healthy_seller_allowed,seller:BrightSeller,boost,BrightSeller is healthy and boosted/allowed
+quality_debug_trace,seller:RiskSeller,cancellation:-25|dispute:-30|fulfilment:10|response_time:-10|review:10,"Trace exposes fulfilment, cancellation, dispute, response, and review components"
+response_time_component,seller:BrightSeller,20,Response speed contributes separately
+review_component,seller:BrightSeller,25,Review component contributes separately
+risky_seller_reviewed,seller:RiskSeller,review,RiskSeller is reviewed/downranked when component total is poor
+seller_quality_total,seller:RiskSeller,-45,Total derives from seller quality components
+seller_treatment,seller:RiskSeller,review,Treatment derives from the component snapshot

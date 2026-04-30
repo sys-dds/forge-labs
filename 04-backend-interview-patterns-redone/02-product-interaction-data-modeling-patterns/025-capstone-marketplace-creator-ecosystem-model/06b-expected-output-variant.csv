@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+buyer_intent_contract,buyer:Ada,cleaning:120:North,Buyer intent row drives listing relevance
+creator_exposure_contract,creator:MegaMaker,1,Creator exposure contract derives remaining budget from exposure events
+listing_relevance_contract,listing:1001,match,"Listing 1001 matches Ada category, price, and location intent"
+marketplace_debug_trace_contract,buyer:Ada,exposure=1|fit=match|risk=0|treatment=allow,"Trace combines exposure, intent, quality, supply demand, risk, and treatment components"
+marketplace_risk_contract,listing:1002,fraud:0,Marketplace risk keeps evidence count visible
+offer_booking_contract,offer:1201,pending_not_booking,Pending offer is distinct from accepted booking lifecycle
+seller_quality_contract,seller:RiskSeller,dispute:0|fulfilment:35|review:20,Seller quality contract exposes component rows
+supply_demand_contract,cleaning:North,1,Supply demand contract derives demand pressure
+treatment_contract,listing:1002,allow:risk_cleared,Treatment row records boost/downrank/allow reason
