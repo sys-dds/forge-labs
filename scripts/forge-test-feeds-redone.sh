@@ -23,10 +23,23 @@ required=(
   07-interview-explanation.md
   08-what-to-notice.md
   09-evidence-map.md
-  10-mutation-checks.md
 )
 
 for file in "${required[@]}"; do
+  if [[ ! -s "$clinic/$file" ]]; then
+    echo "Missing required file: $clinic/$file" >&2
+    exit 1
+  fi
+done
+
+clinic_name="$(basename "$clinic")"
+if [[ "$clinic_name" =~ ^(11|12|13|14|15|16|17|18|19|20)- ]]; then
+  extra_required=(10-beginner-walkthrough.md 11-shortcut-audit.md 12-mutation-checks.md)
+else
+  extra_required=(10-mutation-checks.md)
+fi
+
+for file in "${extra_required[@]}"; do
   if [[ ! -s "$clinic/$file" ]]; then
     echo "Missing required file: $clinic/$file" >&2
     exit 1

@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "id": "Ben",
+      "followers": 100000,
+      "relevance": 95,
+      "quality": 90,
+      "followed": true
+    },
+    {
+      "id": "Cy",
+      "followers": 200,
+      "relevance": 88,
+      "quality": 95,
+      "cold_start": true
+    },
+    {
+      "id": "Diya",
+      "followers": 10000,
+      "relevance": 96,
+      "quality": 90
+    },
+    {
+      "id": "Lina",
+      "followers": 3000,
+      "relevance": 70,
+      "quality": 80
+    },
+    {
+      "id": "Omar",
+      "followers": 200000,
+      "relevance": 80,
+      "quality": 20,
+      "reported": true
+    },
+    {
+      "id": "Maya",
+      "followers": 100,
+      "relevance": 82,
+      "quality": 94,
+      "cold_start": true
+    },
+    {
+      "id": "Noor",
+      "followers": 50000,
+      "blocked": true,
+      "relevance": 90,
+      "quality": 90
+    },
+    {
+      "id": "Theo",
+      "followers": 40000,
+      "relevance": 10,
+      "quality": 70
+    }
+  ]
+}

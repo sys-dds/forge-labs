@@ -1,0 +1,46 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "label": "safe",
+      "score": 90
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "label": "borderline_clickbait",
+      "score": 95
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "label": "blocked_author",
+      "score": 99
+    },
+    {
+      "id": 401,
+      "author": "Diya",
+      "label": "reported_once",
+      "score": 88
+    },
+    {
+      "id": 501,
+      "author": "Lina",
+      "label": "sensitive_allowed",
+      "score": 80
+    },
+    {
+      "id": 601,
+      "author": "Omar",
+      "label": "spam",
+      "score": 100
+    },
+    {
+      "id": 701,
+      "author": "Maya",
+      "label": "safe_exploration",
+      "score": 85
+    }
+  ]
+}

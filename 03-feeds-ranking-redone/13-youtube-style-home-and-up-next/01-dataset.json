@@ -1,0 +1,92 @@
+{
+  "viewer": "Ada",
+  "current_video_id": 101,
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "topic": "java",
+      "home": 0,
+      "related": 0,
+      "clicks": 50
+    },
+    {
+      "id": 201,
+      "author": "Lina",
+      "topic": "java testing",
+      "home": 70,
+      "related": 95,
+      "clicks": 60
+    },
+    {
+      "id": 301,
+      "author": "Maya",
+      "topic": "OLED",
+      "home": 98,
+      "related": 5,
+      "clicks": 40
+    },
+    {
+      "id": 401,
+      "author": "Diya",
+      "topic": "dragons",
+      "home": 92,
+      "related": 3,
+      "clicks": 35
+    },
+    {
+      "id": 501,
+      "author": "Omar",
+      "topic": "java clickbait",
+      "home": 99,
+      "related": 80,
+      "clicks": 200,
+      "abandonment": 0.9
+    },
+    {
+      "id": 601,
+      "author": "Noor",
+      "topic": "java",
+      "home": 90,
+      "related": 90,
+      "blocked": true
+    },
+    {
+      "id": 701,
+      "author": "Theo",
+      "topic": "football",
+      "home": 10,
+      "related": 0,
+      "clicks": 80
+    },
+    {
+      "id": 801,
+      "author": "Cy",
+      "topic": "java concurrency",
+      "home": 50,
+      "related": 88,
+      "long_hard": true
+    },
+    {
+      "id": 901,
+      "author": "New creator",
+      "topic": "java tip",
+      "home": 75,
+      "related": 70,
+      "exploration": true
+    }
+  ],
+  "expected": {
+    "home_recommendations": [
+      301,
+      401,
+      901,
+      201
+    ],
+    "up_next": [
+      201,
+      801,
+      901
+    ]
+  }
+}

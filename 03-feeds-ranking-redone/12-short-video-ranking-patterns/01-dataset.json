@@ -1,0 +1,91 @@
+{
+  "viewer": "Ada",
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "topic": "dragons",
+      "likes": 70,
+      "completion": 0.8,
+      "rewatch": 1,
+      "swipe": 0.1,
+      "hides": 0,
+      "blocked": false
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "topic": "cooking",
+      "likes": 50,
+      "completion": 0.95,
+      "rewatch": 0,
+      "swipe": 0.05,
+      "hides": 0,
+      "blocked": false
+    },
+    {
+      "id": 301,
+      "author": "Noor",
+      "topic": "dragons",
+      "likes": 99,
+      "completion": 0.9,
+      "rewatch": 2,
+      "blocked": true
+    },
+    {
+      "id": 401,
+      "author": "Lina",
+      "topic": "OLED",
+      "likes": 60,
+      "completion": 0.7,
+      "rewatch": 1,
+      "swipe": 0.1,
+      "hides": 0,
+      "blocked": false
+    },
+    {
+      "id": 501,
+      "author": "Omar",
+      "topic": "clickbait",
+      "likes": 200,
+      "completion": 0.2,
+      "rewatch": 0,
+      "swipe": 0.9,
+      "hides": 9,
+      "blocked": false
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "topic": "exploration",
+      "likes": 20,
+      "completion": 0.55,
+      "rewatch": 0,
+      "swipe": 0.2,
+      "hides": 0,
+      "exploration": true,
+      "blocked": false
+    },
+    {
+      "id": 701,
+      "author": "Theo",
+      "topic": "dragons",
+      "likes": 40,
+      "completion": 0.6,
+      "rewatch": 0,
+      "swipe": 0.2,
+      "hides": 0,
+      "creator_seen_count": 3,
+      "blocked": false
+    }
+  ],
+  "expected": {
+    "short_video_feed": [
+      201,
+      101,
+      401,
+      601,
+      701
+    ]
+  }
+}

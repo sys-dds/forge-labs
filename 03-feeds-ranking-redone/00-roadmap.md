@@ -8,3 +8,7 @@ Banking Systems Redone and Backend Interview Patterns Redone are separate future
 
 ## Foundation review gate
 Feeds/Ranking clinics 01-10 were hardened before any 011-020 expansion. Banking Systems Redone, Backend Interview Patterns Redone, and Postgres Redone remain later tracks.
+
+## Product Surface Clinics
+
+FORGE-FEED-R2-011-020 stays on Feeds/Ranking Redone. A possible future FORGE-FEED-R2-021-030 may cover evaluation, experiments, incidents, and senior feed design. Do not move tracks without user approval.

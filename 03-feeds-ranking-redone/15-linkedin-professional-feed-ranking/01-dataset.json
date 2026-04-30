@@ -1,0 +1,67 @@
+{
+  "content": [
+    {
+      "id": 101,
+      "author": "Ben",
+      "type": "post",
+      "relevance": 95,
+      "network": 10,
+      "likes": 80
+    },
+    {
+      "id": 201,
+      "author": "Cy",
+      "type": "job_spam",
+      "relevance": 10,
+      "network": 2,
+      "likes": 100
+    },
+    {
+      "id": 301,
+      "author": "Diya",
+      "type": "article",
+      "relevance": 85,
+      "network": 5,
+      "likes": 40
+    },
+    {
+      "id": 401,
+      "author": "Lina",
+      "type": "article",
+      "relevance": 80,
+      "network": 4,
+      "likes": 50
+    },
+    {
+      "id": 501,
+      "author": "Omar",
+      "type": "viral",
+      "relevance": 5,
+      "network": 0,
+      "likes": 500
+    },
+    {
+      "id": 601,
+      "author": "Maya",
+      "type": "job",
+      "relevance": 90,
+      "network": 3,
+      "likes": 20
+    },
+    {
+      "id": 701,
+      "author": "Noor",
+      "type": "post",
+      "blocked": true,
+      "relevance": 99,
+      "likes": 60
+    },
+    {
+      "id": 801,
+      "author": "Theo",
+      "type": "company_repeat",
+      "relevance": 60,
+      "likes": 70
+    }
+  ]
+}
