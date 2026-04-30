@@ -20,3 +20,8 @@ Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surfa
 ## Graph Clinic Contract
 
 Clinics 41-50 include graph candidates, missed graph candidates, rejected items, graph-specific semantic rows, graph_debug_trace, shortcut audit, mutation checks, and senior review notes.
+
+
+## Safety Clinic Contract
+
+Clinics 51-60 include policy decisions, evidence rows, rejected/downranked/informed/review rows, safety_debug_trace, audit logs where relevant, shortcut audit, mutation checks, and senior review notes.

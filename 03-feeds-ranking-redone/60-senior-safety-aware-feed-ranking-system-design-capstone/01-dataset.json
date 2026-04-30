@@ -1,0 +1,49 @@
+{
+  "candidates": [
+    {
+      "id": "post_101",
+      "risk": "safe",
+      "score": 100
+    },
+    {
+      "id": "post_201",
+      "risk": "spam_scam",
+      "score": 99
+    },
+    {
+      "id": "post_301",
+      "risk": "borderline_label",
+      "score": 70
+    },
+    {
+      "id": "post_401",
+      "risk": "fake_engagement",
+      "score": 90
+    },
+    {
+      "id": "post_501",
+      "risk": "trusted_source",
+      "score": 95
+    },
+    {
+      "id": "post_601",
+      "risk": "appeal_reversed",
+      "score": 92
+    },
+    {
+      "id": "post_701",
+      "risk": "blocked_author",
+      "score": 98
+    },
+    {
+      "id": "post_801",
+      "risk": "uncertain_review",
+      "score": 80
+    },
+    {
+      "id": "post_901",
+      "risk": "safe_exploration",
+      "score": 75
+    }
+  ]
+}

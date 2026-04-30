@@ -1,0 +1,49 @@
+{
+  "reporters": {
+    "Ada": 0.9,
+    "Ben": 0.8,
+    "Troll_1": 0.1,
+    "Troll_2": 0.05,
+    "Maya": 0.5
+  },
+  "reports": {
+    "post_101": [
+      [
+        "Ada",
+        "harassment"
+      ],
+      [
+        "Ben",
+        "harassment"
+      ]
+    ],
+    "post_201": [
+      [
+        "Troll_1",
+        "abuse"
+      ],
+      [
+        "Troll_2",
+        "abuse"
+      ]
+    ],
+    "post_301": [
+      [
+        "Maya",
+        "misinformation"
+      ]
+    ],
+    "post_401": [
+      [
+        "auto",
+        "spam"
+      ]
+    ],
+    "post_501": [
+      [
+        "Troll_1",
+        "abuse"
+      ]
+    ]
+  }
+}

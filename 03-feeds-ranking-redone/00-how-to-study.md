@@ -26,3 +26,8 @@ Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surfa
 ## Studying 41-50
 
 For each graph clinic, name the nodes, draw the source path, inspect rejected and missed rows, then run the broken and solution proofs.
+
+
+## Studying 51-60
+
+For each safety clinic, identify the risk row, map it to remove/reduce/inform/review/allow, inspect audit trace, then run broken and solution proofs.

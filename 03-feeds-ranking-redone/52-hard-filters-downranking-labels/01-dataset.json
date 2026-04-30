@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "id": "post_101",
+      "score": 95,
+      "risk": "safe"
+    },
+    {
+      "id": "post_201",
+      "score": 99,
+      "risk": "blocked_author"
+    },
+    {
+      "id": "post_301",
+      "score": 98,
+      "risk": "malware_link"
+    },
+    {
+      "id": "post_401",
+      "score": 90,
+      "risk": "sensational"
+    },
+    {
+      "id": "post_501",
+      "score": 80,
+      "risk": "fact_check_context"
+    },
+    {
+      "id": "post_601",
+      "score": 70,
+      "risk": "engagement_bait_mild"
+    },
+    {
+      "id": "post_701",
+      "score": 86,
+      "risk": "safe"
+    },
+    {
+      "id": "post_801",
+      "score": 83,
+      "risk": "age_allowed"
+    }
+  ]
+}

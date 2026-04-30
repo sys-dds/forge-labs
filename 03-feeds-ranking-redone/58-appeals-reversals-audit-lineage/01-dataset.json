@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "case": "case_101",
+      "content_id": "post_101",
+      "original": "remove",
+      "evidence": "spam_scam",
+      "appeal": "weak",
+      "final": "upheld_policy_violation"
+    },
+    {
+      "case": "case_201",
+      "content_id": "post_201",
+      "original": "downrank",
+      "evidence": "stale_report",
+      "appeal": "fresh_context",
+      "final": "reversed_stale_report"
+    },
+    {
+      "case": "case_301",
+      "content_id": "post_301",
+      "original": "inform",
+      "evidence": "context_needed",
+      "appeal": "none",
+      "final": "upheld_context_label"
+    },
+    {
+      "case": "case_401",
+      "content_id": "post_401",
+      "original": "review",
+      "evidence": "review_queue",
+      "appeal": "none",
+      "final": "upheld_review_decision"
+    },
+    {
+      "case": "case_501",
+      "content_id": "post_501",
+      "original": "remove",
+      "evidence": "missing_context",
+      "appeal": "creator_evidence",
+      "final": "restored_after_creator_evidence"
+    }
+  ]
+}

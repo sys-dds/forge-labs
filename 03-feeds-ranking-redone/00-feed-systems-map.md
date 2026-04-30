@@ -19,3 +19,8 @@ Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surfa
 ## Graph Candidate Generation Layer
 
 Clinics 41-50 place social graph retrieval before ranking: follow graph, mutuals, bipartite walks, random walks, authority, communities, heterogeneous paths, freshness, debug traces, and graph handoff.
+
+
+## Safety And Integrity Layer
+
+Clinics 51-60 place policy labels, evidence rows, hard filters, downranking, labels, review queues, appeals, incidents, and audit traces around retrieval and ranking.

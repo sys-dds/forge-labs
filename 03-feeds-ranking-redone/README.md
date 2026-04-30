@@ -42,3 +42,5 @@ Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 add product surface
 Clinics 01-10 cover feed pipeline foundations. Clinics 11-20 cover product surface ranking patterns. Clinics 21-30 cover evaluation, experiments, incidents, and senior design. Clinics 31-40 cover advanced retrieval, embeddings, ANN trade-offs, hybrid source blending, recall debugging, and retrieval system design. Stay on Feeds/Ranking Redone unless the user explicitly approves a track move. Future feed expansions can cover social graph/community algorithms, safety and trust ranking, and creator ecosystem depth.
 
 Clinics 41-50 add social graph, communities, graph algorithms, mutuals, graph retrieval, and community recommendations while staying inside Feeds/Ranking Redone.
+
+Clinics 51-60 add safety, integrity, abuse, trust ranking, policy treatment, review queues, appeals, and safety-aware feed design while staying inside Feeds/Ranking Redone.
