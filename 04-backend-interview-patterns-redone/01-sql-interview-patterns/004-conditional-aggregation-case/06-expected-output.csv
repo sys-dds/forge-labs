@@ -1,0 +1,5 @@
+seller_id,seller_name,completed_orders,cancelled_orders,disputed_orders,refund_count,fulfilment_rate
+101,Ben,2,1,0,1,0.50
+102,Diya,1,1,1,1,0.33
+103,Maya,0,1,0,0,0.00
+104,Omar,2,0,0,0,1.00

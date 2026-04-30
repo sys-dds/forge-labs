@@ -1,0 +1,7 @@
+topic,post_id,title,score,topic_rank
+backend,401,Iris auth,89,1
+backend,403,Kara workers,86,2
+infra,602,Sol queues,81,1
+infra,603,Taj logs,81,2
+sql,501,Mina group by,92,1
+sql,502,Niko windows,92,2

@@ -1,0 +1,6 @@
+seller_id,seller_name,active_listings,completed_orders,cancellation_rate,dispute_rate,average_response_time,recent_listing_impressions,contact_rate,booking_rate,seller_treatment
+101,Ben,2,3,0.25,0.00,8,3,0.67,1.00,boost
+103,Maya,1,1,0.00,0.00,18,1,1.00,0.00,allow
+106,Lina,1,1,0.00,0.00,30,0,0.00,0.00,allow
+104,Diya,1,2,0.33,0.00,22,3,0.33,0.00,watch
+102,Omar,1,2,0.50,0.50,45,3,0.33,1.00,suppress
