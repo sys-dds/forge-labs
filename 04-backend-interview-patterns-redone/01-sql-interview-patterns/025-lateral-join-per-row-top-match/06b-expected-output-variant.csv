@@ -1,0 +1,5 @@
+buyer_id,listing_id,match_reason,seller_trust_score
+5,203,within_budget_best_trust_match,95.00
+6,205,within_budget_best_trust_match,87.00
+7,206,within_budget_best_trust_match,95.00
+8,,no_valid_listing,

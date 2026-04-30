@@ -1,0 +1,5 @@
+variant_id,impressions,clicks,hides,reports,click_rate,hide_rate,report_rate,quality_decision
+F,500,120,30,2,0.24,0.06,0.00,boost
+G,400,100,80,5,0.25,0.20,0.01,suppress
+H,0,0,0,0,,,,insufficient_data
+I,200,30,10,12,0.15,0.05,0.06,suppress

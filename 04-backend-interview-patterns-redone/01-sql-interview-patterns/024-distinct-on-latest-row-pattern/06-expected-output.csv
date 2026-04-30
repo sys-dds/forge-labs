@@ -1,0 +1,4 @@
+listing_id,decision_id,decision,decided_at,reviewer
+101,2,limited,2026-01-03 09:00:00,Ben
+102,4,rejected,2026-01-02 10:00:00,Diya
+104,,no_decision,,

@@ -1,0 +1,11 @@
+SET search_path TO bip_sql_030;
+INSERT INTO sellers VALUES (201,'Iris',true,12),(202,'Jon',true,26),(203,'Kara',true,36),(204,'Mina',true,18),(205,'Niko',true,24);
+INSERT INTO listings VALUES (2101,201,'active',false),(2201,202,'active',false),(2301,203,'active',false),(2401,204,'active',false),(2501,205,'active',false);
+INSERT INTO orders VALUES (21,201,'completed',5000),(22,201,'completed',6000),(23,201,'completed',7000),(24,202,'completed',4000),(25,202,'completed',3000),(26,203,'completed',3000),(27,204,'completed',9000),(28,205,'completed',8000);
+INSERT INTO disputes VALUES (21,24);
+INSERT INTO refunds VALUES (21,24);
+INSERT INTO listing_events VALUES (21,2101,'impression','2026-05-01'),(22,2101,'contact','2026-05-01'),(23,2101,'booking','2026-05-01'),(24,2301,'impression','2026-05-01'),(25,2301,'impression','2026-05-02'),(26,2301,'impression','2026-05-03'),(27,2301,'impression','2026-05-04'),(28,2301,'contact','2026-05-04'),(29,2401,'impression','2026-05-03'),(30,2401,'contact','2026-05-03'),(31,2401,'booking','2026-05-03'),(32,2501,'impression','2026-05-03');
+INSERT INTO moderation_decisions VALUES (21,201,'approved','2026-05-01 09:00'),(22,202,'limited','2026-05-01 09:00'),(23,203,'approved','2026-05-01 09:00'),(24,204,'approved','2026-05-01 09:00'),(25,205,'approved','2026-05-01 09:00');
+INSERT INTO ledger_entries VALUES (201,21,5000),(202,22,6000),(203,23,7000),(204,24,4000),(205,25,3000),(206,26,3000),(207,27,9000),(208,28,8000);
+INSERT INTO order_status_events VALUES (21,21,'paid','2026-05-01 09:00'),(22,21,'completed','2026-05-01 10:00'),(23,28,'created','2026-05-01 09:00'),(24,28,'cancelled','2026-05-01 09:30'),(25,28,'completed','2026-05-01 10:00');
+INSERT INTO fraud_cases VALUES (21,202,'closed');

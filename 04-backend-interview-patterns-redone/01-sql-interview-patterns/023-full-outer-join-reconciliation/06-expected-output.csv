@@ -1,0 +1,5 @@
+source_order_id,source_ledger_id,mismatch_type,order_amount_pence,ledger_amount_pence,expected_treatment
+1002,,missing_ledger,7000,,investigate_reconciliation_gap
+1004,9004,amount_mismatch,9000,8500,investigate_reconciliation_gap
+1005,9005,status_mismatch,4000,4000,investigate_reconciliation_gap
+,9003,extra_ledger,,2500,investigate_reconciliation_gap

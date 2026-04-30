@@ -1,0 +1,11 @@
+SET search_path TO bip_sql_030;
+CREATE TABLE sellers(seller_id int PRIMARY KEY, seller_name text NOT NULL, active boolean NOT NULL, avg_response_minutes int NOT NULL);
+CREATE TABLE listings(listing_id int PRIMARY KEY, seller_id int NOT NULL, status text NOT NULL, blocked boolean NOT NULL);
+CREATE TABLE orders(order_id int PRIMARY KEY, seller_id int NOT NULL, status text NOT NULL, amount_pence int NOT NULL);
+CREATE TABLE disputes(dispute_id int PRIMARY KEY, order_id int NOT NULL);
+CREATE TABLE refunds(refund_id int PRIMARY KEY, order_id int NOT NULL);
+CREATE TABLE listing_events(event_id int PRIMARY KEY, listing_id int NOT NULL, event_type text NOT NULL, event_at date NOT NULL);
+CREATE TABLE moderation_decisions(decision_id int PRIMARY KEY, seller_id int NOT NULL, decision text NOT NULL, decided_at timestamp NOT NULL);
+CREATE TABLE ledger_entries(ledger_id int PRIMARY KEY, order_id int, amount_pence int NOT NULL);
+CREATE TABLE order_status_events(event_id int PRIMARY KEY, order_id int NOT NULL, status text NOT NULL, event_at timestamp NOT NULL);
+CREATE TABLE fraud_cases(case_id int PRIMARY KEY, seller_id int NOT NULL, status text NOT NULL);
