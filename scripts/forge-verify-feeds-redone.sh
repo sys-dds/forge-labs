@@ -6,6 +6,8 @@ cd "$ROOT_DIR"
 
 ./scripts/forge-list-feeds-redone.sh
 ./scripts/forge-inspect-feeds-redone.sh 03-feeds-ranking-redone/10-feed-evaluation-debugging-simulation
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/01-feed-pipeline-mental-model
+./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/08-stories-ephemeral-content-snapchat-patterns
 ./scripts/forge-test-feeds-redone.sh 03-feeds-ranking-redone/10-feed-evaluation-debugging-simulation
 ./scripts/forge-test-all-feeds-redone.sh
 ./scripts/check-feeds-redone-quality.sh

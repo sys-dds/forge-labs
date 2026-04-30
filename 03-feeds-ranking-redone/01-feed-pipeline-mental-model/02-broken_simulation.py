@@ -1,14 +1,16 @@
 import json
 from pathlib import Path
 
-def load_dataset(dataset_path):
-    return json.loads(Path(dataset_path).read_text())
+def load_dataset(dataset):
+    if isinstance(dataset, dict):
+        return dataset
+    return json.loads(Path(dataset).read_text())
 
 def content_id(item):
     return item["id"]
 
-def run(dataset_path):
-    data = load_dataset(dataset_path)
+def run(dataset):
+    data = load_dataset(dataset)
     items = data["content"]
     clinic = data["clinic"]
 

@@ -22,6 +22,7 @@ required=(
   06-break-fix-drills.md
   07-interview-explanation.md
   08-what-to-notice.md
+  09-evidence-map.md
 )
 
 for file in "${required[@]}"; do
