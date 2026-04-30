@@ -10,7 +10,7 @@ fi
 echo "Clinic path: $clinic_path"
 echo
 echo "Files in reading order:"
-for f in README.md 00-scenario.md 01-schema.sql 02-seed.sql 03-broken-query.sql 04-solution.sql 05-proof.tests.sql 06-debugging-notes.md 07-break-fix-drills.md 08-interview-explanation.md 09-what-to-notice.md; do
+for f in README.md 00-design.md 00-scenario.md 01-schema.sql 02-seed.sql 03-broken-query.sql 04-solution.sql 05-proof.tests.sql 06-debugging-notes.md 07-break-fix-drills.md 08-interview-explanation.md 09-what-to-notice.md; do
   [[ -f "$clinic_path/$f" ]] && echo "- $clinic_path/$f"
 done
 echo
@@ -22,4 +22,3 @@ echo "- proof expectations in 05-proof.tests.sql"
 echo
 echo "Important rows:"
 sed -n '/^## Rows To Inspect/,$p' "$clinic_path/README.md" | sed -n '1,20p'
-

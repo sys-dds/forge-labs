@@ -26,6 +26,12 @@ Recommended order:
 3. `03-aggregation-grain-and-row-multiplication` fixes child-table multiplication.
 4. `04-keyset-pagination-stable-feeds` keeps scrolling stable while new rows arrive.
 5. `05-matching-candidates-and-exclusions` separates unsafe candidates from preference fit.
+6. `06-public-profile-projection-and-privacy` shapes public profile output and keeps private fields out.
+7. `07-social-graph-suggestions-and-mutuals` separates followers, following, mutuals, and safe suggestions.
+8. `08-recursive-comment-threads` returns a scoped comment subtree with depth and stable order.
+9. `09-analytics-funnel-and-daily-metrics` counts signup-user funnel metrics instead of raw event rows.
+10. `10-sql-endpoint-capstone` combines projection, graph exclusions, aggregation, visible signals, and stable cursors.
+
+Clinics 01-05 teach core mechanics: constraints, joins, aggregation grain, pagination, and matching exclusions. Clinics 06-10 turn those mechanics into endpoint-shaped backend scenarios: public projections, graph suggestions, recursive threads, analytics dashboards, and a creator discovery capstone.
 
 To break/fix intentionally, change `04-solution.sql`, rerun `05-proof.tests.sql`, and force yourself to explain the exact row that proves the bug. If the explanation does not name Ada, Ben post 102, Maya, or another concrete row from the clinic, it is probably too vague.
-
