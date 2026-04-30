@@ -38,3 +38,10 @@ The base case chooses the tree; the recursive term walks children; path order ke
 
 Explain recursive CTE mechanics, base case versus recursive term, depth/path, stable ordering, and scope safety.
 
+## Row removal checks
+
+- Wrong behavior if removed: without c1, the recursive base case is missing.
+- Wrong behavior if removed: without c2, the first child path is not tested.
+- Wrong behavior if removed: without c5, deep recursion is not tested.
+- Wrong behavior if removed: without c8, same-post non-subtree roots are not tested.
+- Wrong behavior if removed: without c6, post 200 scope leakage is not tested.

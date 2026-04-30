@@ -29,9 +29,9 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_matches EXCEPT SELECT handle FROM mutual_matches)
   UNION ALL
   (SELECT handle FROM mutual_matches EXCEPT SELECT * FROM expected_matches)
-) THEN 1 ELSE fail_test('assertion failed') END AS mutual_matches_exact;
+) THEN 1 ELSE fail_test('expected mutual_matches exactly {Ben}; broken query treated Ada PASS on Cy or one-way likes as mutual matches') END AS mutual_matches_exact;
 
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM mutual_matches WHERE handle = 'cy') THEN 1 ELSE fail_test('assertion failed') END AS pass_does_not_create_cy_match;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM mutual_matches WHERE handle = 'cy') THEN 1 ELSE fail_test('expected Cy absent from mutual_matches because Ada passed Cy even though Cy liked Ada') END AS pass_does_not_create_cy_match;
 
 CREATE TEMP TABLE expected_raw_candidates (handle text);
 INSERT INTO expected_raw_candidates VALUES ('maya'), ('omar');
@@ -40,13 +40,13 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_raw_candidates EXCEPT SELECT handle FROM raw_candidates)
   UNION ALL
   (SELECT handle FROM raw_candidates EXCEPT SELECT * FROM expected_raw_candidates)
-) THEN 1 ELSE fail_test('assertion failed') END AS raw_candidates_exact;
+) THEN 1 ELSE fail_test('expected raw_candidates exactly {Maya,Omar}; broken query included already-swiped, blocked, inactive, self, or matched users') END AS raw_candidates_exact;
 
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'ben') THEN 1 ELSE fail_test('assertion failed') END AS ben_match_not_candidate;
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'cy') THEN 1 ELSE fail_test('assertion failed') END AS cy_passed_not_candidate;
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'diya') THEN 1 ELSE fail_test('assertion failed') END AS diya_blocked_not_candidate;
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'noor') THEN 1 ELSE fail_test('assertion failed') END AS noor_inactive_not_candidate;
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'ada') THEN 1 ELSE fail_test('assertion failed') END AS ada_not_own_candidate;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'ben') THEN 1 ELSE fail_test('expected Ben excluded from raw_candidates because Ada and Ben already mutual liked') END AS ben_match_not_candidate;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'cy') THEN 1 ELSE fail_test('expected Cy excluded from raw_candidates because Ada already passed Cy') END AS cy_passed_not_candidate;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'diya') THEN 1 ELSE fail_test('expected Diya excluded from raw_candidates because Ada blocked Diya') END AS diya_blocked_not_candidate;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'noor') THEN 1 ELSE fail_test('expected Noor excluded from raw_candidates because Noor is inactive') END AS noor_inactive_not_candidate;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM raw_candidates WHERE handle = 'ada') THEN 1 ELSE fail_test('expected Ada excluded from her own matching candidates') END AS ada_not_own_candidate;
 
 CREATE TEMP TABLE expected_fit_candidates (handle text, shared_interest_count bigint);
 INSERT INTO expected_fit_candidates VALUES ('maya', 2);
@@ -55,4 +55,4 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_fit_candidates EXCEPT SELECT handle, shared_interest_count FROM preference_fit_candidates)
   UNION ALL
   (SELECT handle, shared_interest_count FROM preference_fit_candidates EXCEPT SELECT * FROM expected_fit_candidates)
-) THEN 1 ELSE fail_test('assertion failed') END AS fit_candidates_exact;
+) THEN 1 ELSE fail_test('expected preference_fit_candidates exactly {Maya with shared_interest_count=2}; broken query rescued Omar outside Ada preference fit or lost Maya') END AS fit_candidates_exact;

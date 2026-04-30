@@ -36,3 +36,10 @@ With descending order, rows after cursor 106 are less than `(10:04, 106)`.
 
 Explain cursor 106, why 108 does not affect keyset page two, and why `(created_at, id)` is stable.
 
+## Row removal checks
+
+- Wrong behavior if removed: without post 107, page one top order is not proven.
+- Wrong behavior if removed: without post 106, the cursor example is gone.
+- Wrong behavior if removed: without post 108, offset instability is not shown.
+- Wrong behavior if removed: without post 105, timestamp tie ordering is not tested.
+- Wrong behavior if removed: without post 104, created_at-only cursor skipping is not tested.

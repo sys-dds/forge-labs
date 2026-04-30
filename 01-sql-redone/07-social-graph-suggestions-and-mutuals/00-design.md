@@ -39,3 +39,10 @@ The proof checks exact following, followers, mutuals, suggestions, duplicate raw
 
 Explain directed edges, mutual follow logic, second-degree traversal, exclusion predicates, and why reachability is not eligibility.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ben, mutual follow logic is not tested.
+- Wrong behavior if removed: without Cy, following without mutual is not tested.
+- Wrong behavior if removed: without Diya, duplicate second-degree paths are not proven.
+- Wrong behavior if removed: without Noor, blocked reachable suggestions are not tested.
+- Wrong behavior if removed: without Omar, incoming follower confusion is not tested.

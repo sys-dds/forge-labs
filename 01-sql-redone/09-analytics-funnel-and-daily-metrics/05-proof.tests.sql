@@ -23,7 +23,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_metrics EXCEPT SELECT * FROM daily_signup_metrics)
   UNION ALL
   (SELECT * FROM daily_signup_metrics EXCEPT SELECT * FROM expected_metrics)
-) THEN 1 ELSE fail_test('Daily signup metrics are wrong') END AS exact_daily_metrics;
+) THEN 1 ELSE fail_test('expected daily signup metrics 2026-01-01={4,2,1,1} and 2026-01-02={1,0,0,0}; broken query counted raw events, Noor, Cy duplicate, or Diya feed view') END AS exact_daily_metrics;
 
 SELECT CASE WHEN EXISTS (
   SELECT 1 FROM daily_signup_metrics
@@ -50,4 +50,3 @@ SELECT CASE WHEN EXISTS (
   SELECT 1 FROM daily_signup_metrics
   WHERE metric_date = '2026-01-01' AND next_day_post_after_signup_users = 1
 ) THEN 1 ELSE fail_test('Maya next-day post conversion missing') END AS maya_next_day_post;
-

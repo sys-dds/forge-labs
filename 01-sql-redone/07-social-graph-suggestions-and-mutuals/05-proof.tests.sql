@@ -14,7 +14,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_following EXCEPT SELECT handle FROM ada_following)
   UNION ALL
   (SELECT handle FROM ada_following EXCEPT SELECT * FROM expected_following)
-) THEN 1 ELSE fail_test('Ada following set is wrong') END AS following_exact;
+) THEN 1 ELSE fail_test('expected Ada following {ben,cy,maya}; broken graph query reversed or lost outgoing edges') END AS following_exact;
 
 CREATE TEMP TABLE expected_followers (handle text);
 INSERT INTO expected_followers VALUES ('ben'), ('noor'), ('omar');
@@ -23,7 +23,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_followers EXCEPT SELECT handle FROM ada_followers)
   UNION ALL
   (SELECT handle FROM ada_followers EXCEPT SELECT * FROM expected_followers)
-) THEN 1 ELSE fail_test('Ada followers set is wrong') END AS followers_exact;
+) THEN 1 ELSE fail_test('expected Ada followers {ben,noor,omar}; broken graph query confused incoming edges') END AS followers_exact;
 
 CREATE TEMP TABLE expected_mutuals (handle text);
 INSERT INTO expected_mutuals VALUES ('ben');
@@ -32,7 +32,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_mutuals EXCEPT SELECT handle FROM ada_mutual_follows)
   UNION ALL
   (SELECT handle FROM ada_mutual_follows EXCEPT SELECT * FROM expected_mutuals)
-) THEN 1 ELSE fail_test('Ada mutual follows set is wrong') END AS mutuals_exact;
+) THEN 1 ELSE fail_test('expected Ada mutual follows {ben}; broken query treated following Cy or Maya as mutual') END AS mutuals_exact;
 
 CREATE TEMP TABLE expected_suggestions (handle text);
 INSERT INTO expected_suggestions VALUES ('diya');
@@ -41,7 +41,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_suggestions EXCEPT SELECT handle FROM ada_safe_suggestions)
   UNION ALL
   (SELECT handle FROM ada_safe_suggestions EXCEPT SELECT * FROM expected_suggestions)
-) THEN 1 ELSE fail_test('Ada safe suggestions set is wrong') END AS suggestions_exact;
+) THEN 1 ELSE fail_test('expected Ada safe suggestions {diya}; broken query leaked Noor/Omar/already-followed users or duplicated Diya') END AS suggestions_exact;
 
 SELECT CASE WHEN (
   SELECT COUNT(*)
@@ -56,4 +56,3 @@ SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM ada_safe_suggestions WHERE handle = '
 SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM ada_safe_suggestions WHERE handle = 'theo') THEN 1 ELSE fail_test('Theo disconnected user was suggested') END AS theo_absent;
 SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM ada_safe_suggestions WHERE handle = 'omar') THEN 1 ELSE fail_test('Omar incoming follower became suggestion') END AS omar_not_suggestion;
 SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM ada_safe_suggestions WHERE handle IN ('ben', 'cy', 'maya')) THEN 1 ELSE fail_test('Already-followed user suggested') END AS already_followed_excluded;
-

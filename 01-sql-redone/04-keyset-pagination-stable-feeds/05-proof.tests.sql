@@ -18,7 +18,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_page_one EXCEPT SELECT * FROM actual_page_one)
   UNION ALL
   (SELECT * FROM actual_page_one EXCEPT SELECT * FROM expected_page_one)
-) THEN 1 ELSE fail_test('assertion failed') END AS page_one_exact_ids;
+) THEN 1 ELSE fail_test('expected page one before insert to be posts {107,106} in created_at DESC,id DESC order') END AS page_one_exact_ids;
 
 CREATE TEMP TABLE expected_keyset_page_two (position integer, id integer);
 INSERT INTO expected_keyset_page_two VALUES (1, 105), (2, 104);
@@ -31,7 +31,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_keyset_page_two EXCEPT SELECT * FROM actual_keyset_page_two)
   UNION ALL
   (SELECT * FROM actual_keyset_page_two EXCEPT SELECT * FROM expected_keyset_page_two)
-) THEN 1 ELSE fail_test('assertion failed') END AS keyset_page_two_exact_ids;
+) THEN 1 ELSE fail_test('expected keyset page two after cursor post 106 to be posts {105,104}; broken offset or cursor comparison returned a duplicate or skipped tied rows') END AS keyset_page_two_exact_ids;
 
 CREATE TEMP TABLE expected_tie_order (position integer, id integer);
 INSERT INTO expected_tie_order VALUES (1, 105), (2, 104);
@@ -44,9 +44,9 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_tie_order EXCEPT SELECT * FROM actual_tie_order)
   UNION ALL
   (SELECT * FROM actual_tie_order EXCEPT SELECT * FROM expected_tie_order)
-) THEN 1 ELSE fail_test('assertion failed') END AS duplicate_timestamp_ordered_by_id;
+) THEN 1 ELSE fail_test('expected same-timestamp posts 105 and 104 ordered by id DESC so cursor ties are stable') END AS duplicate_timestamp_ordered_by_id;
 
-SELECT CASE WHEN EXISTS (SELECT 1 FROM keyset_page_two_after_106 WHERE id = 106) THEN fail_test('assertion failed') ELSE 1 END AS offset_duplicate_106_not_allowed;
+SELECT CASE WHEN EXISTS (SELECT 1 FROM keyset_page_two_after_106 WHERE id = 106) THEN fail_test('expected post 106 absent from page two after cursor 106; broken offset pagination duplicated the last row from page one after post 108 arrived') ELSE 1 END AS offset_duplicate_106_not_allowed;
 
 CREATE TEMP TABLE expected_after_105 (position integer, id integer);
 INSERT INTO expected_after_105 VALUES (1, 104), (2, 103);
@@ -59,4 +59,4 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_after_105 EXCEPT SELECT * FROM actual_after_105)
   UNION ALL
   (SELECT * FROM actual_after_105 EXCEPT SELECT * FROM expected_after_105)
-) THEN 1 ELSE fail_test('assertion failed') END AS created_at_alone_misses_tied_row;
+) THEN 1 ELSE fail_test('expected cursor after post 105 to return {104,103}; broken created_at-only cursor missed tied post 104') END AS created_at_alone_misses_tied_row;

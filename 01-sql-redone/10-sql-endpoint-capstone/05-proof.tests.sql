@@ -55,20 +55,19 @@ SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM ada_creator_discovery_page_one WHERE 
 SELECT CASE WHEN EXISTS (
   SELECT 1 FROM ada_creator_discovery_page_one
   WHERE handle = 'diya' AND follower_count = 3 AND mutual_follow_count = 1 AND recent_visible_post_count = 2
-) THEN 1 ELSE fail_test('Diya counts wrong') END AS diya_counts;
+) THEN 1 ELSE fail_test('expected Diya counts follower_count=3 mutual_follow_count=1 recent_visible_post_count=2; broken endpoint multiplied posts and followers') END AS diya_counts;
 
 SELECT CASE WHEN EXISTS (
   SELECT 1 FROM ada_creator_discovery_page_one
   WHERE handle = 'lina' AND follower_count = 2 AND mutual_follow_count = 1 AND recent_visible_post_count = 1
-) THEN 1 ELSE fail_test('Lina counts wrong') END AS lina_counts;
+) THEN 1 ELSE fail_test('expected Lina counts follower_count=2 mutual_follow_count=1 recent_visible_post_count=1; broken endpoint missed Lina tie row') END AS lina_counts;
 
 SELECT CASE WHEN EXISTS (
   SELECT 1 FROM ada_creator_discovery_page_one
   WHERE handle = 'maya' AND follower_count = 2 AND mutual_follow_count = 1 AND recent_visible_post_count = 1
-) THEN 1 ELSE fail_test('Maya counts wrong') END AS maya_counts;
+) THEN 1 ELSE fail_test('expected Maya counts follower_count=2 mutual_follow_count=1 recent_visible_post_count=1; broken endpoint missed Maya tie row') END AS maya_counts;
 
 SELECT CASE WHEN (
   SELECT string_agg(handle, ',' ORDER BY recent_visible_post_count DESC, follower_count DESC, cursor_created_at DESC, creator_id DESC)
   FROM ada_creator_discovery_page_one
-) = 'diya,lina,maya' THEN 1 ELSE fail_test('Stable ordering tie failed') END AS stable_ordering;
-
+) = 'diya,lina,maya' THEN 1 ELSE fail_test('expected stable order diya,lina,maya; broken endpoint missed creator_id tie-breaker for Lina and Maya') END AS stable_ordering;

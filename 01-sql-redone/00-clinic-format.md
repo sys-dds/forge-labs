@@ -15,3 +15,5 @@ Future clinics should stay small:
 - Make the proof fail for a specific row-level reason.
 - Explain the failure with table names, query names, and row identifiers.
 - Avoid adding a folder just because a course outline would look bigger.
+
+Product-pattern clinics must explain the domain model before the SQL. Candidate generation and ranking must stay separate: do not hide eligibility bugs behind a score. Proof failure messages should name the expected rows and the broken behavior they caught.

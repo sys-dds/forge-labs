@@ -38,3 +38,10 @@ LIKE and PASS are directed decisions, and preference fit should not rescue unsaf
 
 Explain mutual match detection, raw candidate exclusion, preference fit, and why ranking comes after exclusions.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ben, mutual match detection has no valid match.
+- Wrong behavior if removed: without Cy, PASS versus LIKE is not tested.
+- Wrong behavior if removed: without Diya, block exclusion is not tested.
+- Wrong behavior if removed: without Noor, inactive-user exclusion is not tested.
+- Wrong behavior if removed: without Maya, preference-fit candidate output is empty.

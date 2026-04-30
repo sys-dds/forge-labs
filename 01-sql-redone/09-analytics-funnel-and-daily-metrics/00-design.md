@@ -38,3 +38,10 @@ The event table is event grain; the dashboard is signup-user grain by signup dat
 
 Explain funnel grain, deduplication, event order, internal/test filtering, and date bucket behavior.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ada, same-day conversion is not tested.
+- Wrong behavior if removed: without Ben, feed-without-post conversion is not tested.
+- Wrong behavior if removed: without Cy, duplicate signup dedupe is not tested.
+- Wrong behavior if removed: without Diya, feed-without-signup pollution is not tested.
+- Wrong behavior if removed: without Maya, next-day post conversion is not tested.
