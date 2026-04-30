@@ -1,0 +1,10 @@
+contract_name,subject_id,observed_value,expected_reason
+duplicate_report_grouped,post:201,2,Duplicate reports group into one content report group
+evidence_linked_to_decision,decision:4001,2001+2002,Decision 4001 is backed by evidence rows 2001 and 2002
+low_quality_report_not_removed,post:202,0,Post 202 is not hidden when decision is safe or report quality is low
+policy_decision_recorded,decision:4001,1,Moderator Mina recorded spam violation decision 4001
+queue_priority,post:201,90,Queue priority derives from credible spam severity and evidence count
+report_created,post:201,2,Two report events exist for post 201
+review_queue_item_created,post:201,1,Reported post 201 has one queue item 3001
+safe_content_allowed,post:202,0,Safe decision 4002 keeps post 202 allowed
+treatment_applied,post:201,1,Violation decision 4001 applies hide treatment 5001

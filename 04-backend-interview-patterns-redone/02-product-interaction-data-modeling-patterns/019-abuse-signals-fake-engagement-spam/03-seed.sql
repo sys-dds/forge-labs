@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_019;
+INSERT INTO users VALUES (1,'Ada'),(2,'Ben'),(3,'Cy'),(4,'Diya'),(5,'Eli');
+INSERT INTO posts VALUES (201,1),(202,4);
+INSERT INTO post_reactions VALUES (1001,201,2,'2026-04-15 09:00'),(1002,201,5,'2026-04-15 09:00'),(1003,201,3,'2026-04-15 09:01'),(1004,202,1,'2026-04-15 10:00'),(1005,202,2,'2026-04-15 11:00');
+INSERT INTO comments VALUES (301,201,3,'buy now','2026-04-15 09:00'),(302,201,3,'buy now','2026-04-15 09:01'),(303,201,3,'buy now','2026-04-15 09:02'),(304,202,4,'great topic','2026-04-15 09:03');
+INSERT INTO follow_edges VALUES (2,1),(3,1),(4,1);
+INSERT INTO report_events VALUES (6001,1,3,'spam');
+INSERT INTO abuse_signal_events VALUES (7001,3,'duplicate_comment_signal','review'),(7002,2,'fake_like_burst_signal','downrank'),(7003,4,'normal_engagement','allow');
+INSERT INTO abuse_signal_evidence VALUES (8001,7001,'comments',301,'duplicate body buy now'),(8002,7001,'comments',302,'duplicate body buy now'),(8003,7002,'post_reactions',1001,'same minute burst'),(8004,7002,'post_reactions',1002,'same minute burst'),(8005,7003,'post_reactions',1004,'spaced engagement');
+INSERT INTO policy_treatments VALUES (9001,3,'review','report plus duplicate comments'),(9002,4,'allow','normal engagement evidence');

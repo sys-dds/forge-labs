@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_019;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users);
+CREATE TABLE post_reactions (reaction_id int PRIMARY KEY, post_id int REFERENCES posts, actor_user_id int REFERENCES users, created_at timestamp NOT NULL);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users, body text NOT NULL, created_at timestamp NOT NULL);
+CREATE TABLE follow_edges (follower_user_id int REFERENCES users, followed_user_id int REFERENCES users);
+CREATE TABLE report_events (report_id int PRIMARY KEY, reporter_user_id int REFERENCES users, reported_user_id int REFERENCES users, reason text NOT NULL);
+CREATE TABLE abuse_signal_events (signal_id int PRIMARY KEY, user_id int REFERENCES users, signal_type text NOT NULL, classification text NOT NULL CHECK (classification IN ('review','allow','downrank')));
+CREATE TABLE abuse_signal_evidence (evidence_id int PRIMARY KEY, signal_id int REFERENCES abuse_signal_events, source_type text NOT NULL, source_id int NOT NULL, detail text NOT NULL);
+CREATE TABLE policy_treatments (treatment_id int PRIMARY KEY, user_id int REFERENCES users, treatment text NOT NULL CHECK (treatment IN ('allow','review','downrank')), reason text NOT NULL);

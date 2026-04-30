@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+actor_lineage,post:202,moderator:11:appeal_restore,Audit lineage traces moderator/operator actors
+approved_appeal_restored,appeal:702,1,Approved appeal 702 restores post 202
+current_treatment,post:202,restore,Current treatment differs after approved appeal
+historical_treatment,post:202,remove>restore,History preserves remove then restore
+pending_appeal_no_restore,appeal:701,1,Pending appeal 701 does not restore post 201
+rejected_appeal_still_removed,appeal:703,1,Rejected appeal 703 keeps post 203 removed
+removed_content_hidden,post:201,1,Post 201 is hidden while latest action is remove
+reversal_audit_logged,post:202,1,Audit row 9002 records remove to restore reversal

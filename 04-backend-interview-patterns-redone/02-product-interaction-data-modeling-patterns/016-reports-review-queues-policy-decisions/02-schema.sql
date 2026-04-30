@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_016;
+CREATE TABLE users (user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE moderators (moderator_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE posts (post_id int PRIMARY KEY, author_user_id int REFERENCES users, body text NOT NULL);
+CREATE TABLE comments (comment_id int PRIMARY KEY, post_id int REFERENCES posts, author_user_id int REFERENCES users, body text NOT NULL);
+CREATE TABLE report_events (report_id int PRIMARY KEY, reporter_user_id int REFERENCES users, content_type text NOT NULL, content_id int NOT NULL, reason text NOT NULL, quality text NOT NULL CHECK (quality IN ('low','credible')), created_at timestamp NOT NULL);
+CREATE TABLE report_evidence (evidence_id int PRIMARY KEY, report_id int REFERENCES report_events, evidence_type text NOT NULL, severity int NOT NULL);
+CREATE TABLE review_queue_items (queue_item_id int PRIMARY KEY, content_type text NOT NULL, content_id int NOT NULL, state text NOT NULL CHECK (state IN ('open','reviewed')), priority int NOT NULL);
+CREATE TABLE policy_decisions (decision_id int PRIMARY KEY, queue_item_id int REFERENCES review_queue_items, moderator_id int REFERENCES moderators, policy text NOT NULL, decision text NOT NULL CHECK (decision IN ('violation','safe')), decided_at timestamp NOT NULL);
+CREATE TABLE policy_treatments (treatment_id int PRIMARY KEY, decision_id int REFERENCES policy_decisions, treatment text NOT NULL CHECK (treatment IN ('allow','review','downrank','hide','remove','restore')), reason text NOT NULL);
