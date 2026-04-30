@@ -13,3 +13,4 @@ Clinics 006-010 make that split visible:
 - Clinics 016-020 add safety evidence, review queues, policy decisions, treatments, appeals, reversals, audit lineage, trust components, abuse signals, and exact safety debug traces.
 - Clinics 021-025 add marketplace and creator ecosystem rows: exposure budgets, buyer intent, listing relevance, seller quality components, offer/booking lifecycle, supply/demand snapshots, marketplace risk rows, and treatment/debug traces.
 - Clinics 026-030 add communication rows: conversations, participants, messages, delivery states, read receipts, edit/delete lifecycle, attachments, inbox settings, blocks, reports, review queue rows, and exact communication debug traces.
+- Clinics 031-035 add community rows: memberships, roles, role permissions, join requests, invites, bans, channels, channel memberships, posts, threads, moderation actions, events, RSVPs, waitlists, attendance, and exact community debug traces.

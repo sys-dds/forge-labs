@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+active_member_visible,user:1,true,Ada membership 1001 is active and not banned
+banned_member_blocked,user:4,true,Diya ban 7001 blocks private content and rejoin
+left_member_hidden,user:3,true,"Cy membership 1003 is left, so member-only content is hidden"
+member_permission_denied,user:5,false,Member role 204 has permission 9004 denied
+membership_lifecycle_trace,community:101,1:active|2:active|3:left|4:banned|5:active,"Membership rows distinguish active, left, and banned states"
+moderator_permission_contract,user:2,true,Moderator permission row 9002 controls remove_post
+owner_role_contract,user:1,owner,Owner role 201 can transfer ownership
+role_permission_trace,community:101,admin:remove_post=true|member:remove_post=false|moderator:remove_post=true|moderator:transfer_ownership=false|owner:transfer_ownership=true,Trace comes from role assignments and permission rows

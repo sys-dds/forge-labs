@@ -1,0 +1,11 @@
+contract_name,subject_id,observed_value,expected_reason
+attendance_contract,attendance:9401,true,Attendance 9401 links to Ada going RSVP 9201
+channel_visibility_contract,user:2,8001|8002|8004,"Ben sees public post 8001, private mod post 8002, and reply 8004 but not removed post 8003"
+community_debug_trace_contract,community:101,members=1|2|5|visible_ben=8001|8002|8004|going=3|audit=pending|ban_suppressed|remove|promote_waitlist,"Debug trace combines membership, roles, access, channel posts, moderation, RSVP, waitlist, attendance, and audit"
+event_rsvp_contract,event:9001,1:going|2:going|5:going,RSVP rows separate going and waitlisted states
+membership_contract,community:101,1:active|2:active|5:active,"Active membership rows 2001, 2002, and 2005 gate community access"
+moderation_audit_contract,post:8003,true,Moderation action 10003 has audit row 11003
+post_thread_contract,thread:8501,8001->8004,Thread 8501 keeps reply 8004 attached to post 8001
+private_access_contract,community:101,1|2|5,Private access includes active non-banned members and excludes Cy request 3003 and Diya ban 5004
+role_permission_contract,user:2,remove_post=true|transfer_ownership=true,Ben moderator permissions come from role 6002 rows 6202 and 6203
+waitlist_capacity_contract,event:9001,going=3|capacity=3|waitlist=5:promoted,Capacity counts going only and keeps waitlist lifecycle separate

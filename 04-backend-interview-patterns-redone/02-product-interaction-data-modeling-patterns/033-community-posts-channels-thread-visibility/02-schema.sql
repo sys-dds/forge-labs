@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_033;
+CREATE TABLE users(user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE communities(community_id int PRIMARY KEY, community_name text NOT NULL, visibility text NOT NULL CHECK (visibility IN ('public','private','invite_only')));
+CREATE TABLE community_memberships(membership_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), user_id int NOT NULL REFERENCES users(user_id), member_state text NOT NULL CHECK (member_state IN ('active','pending','left','removed','banned')));
+CREATE TABLE community_channels(channel_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), channel_name text NOT NULL, channel_visibility text NOT NULL CHECK (channel_visibility IN ('public','private')));
+CREATE TABLE channel_memberships(channel_membership_id int PRIMARY KEY, channel_id int NOT NULL REFERENCES community_channels(channel_id), user_id int NOT NULL REFERENCES users(user_id), channel_member_state text NOT NULL CHECK (channel_member_state IN ('active','removed')));
+CREATE TABLE community_posts(post_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), channel_id int NOT NULL REFERENCES community_channels(channel_id), author_user_id int NOT NULL REFERENCES users(user_id), body text NOT NULL, post_state text NOT NULL CHECK (post_state IN ('active','deleted')), is_pinned boolean NOT NULL DEFAULT false, created_rank int NOT NULL);
+CREATE TABLE community_threads(thread_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), parent_post_id int NOT NULL REFERENCES community_posts(post_id), reply_post_id int NOT NULL REFERENCES community_posts(post_id));
+CREATE TABLE community_post_moderation_actions(action_id int PRIMARY KEY, post_id int NOT NULL REFERENCES community_posts(post_id), actor_user_id int NOT NULL REFERENCES users(user_id), action_type text NOT NULL CHECK (action_type IN ('hide','remove','restore')), reason text NOT NULL);
+

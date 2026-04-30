@@ -1,0 +1,10 @@
+SET search_path TO bip_pim_034;
+CREATE TABLE users(user_id int PRIMARY KEY, display_name text NOT NULL);
+CREATE TABLE communities(community_id int PRIMARY KEY, community_name text NOT NULL, visibility text NOT NULL CHECK (visibility IN ('public','private','invite_only')));
+CREATE TABLE community_memberships(membership_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), user_id int NOT NULL REFERENCES users(user_id), member_state text NOT NULL CHECK (member_state IN ('active','pending','left','removed','banned')));
+CREATE TABLE community_events(event_id int PRIMARY KEY, community_id int NOT NULL REFERENCES communities(community_id), event_name text NOT NULL, event_state text NOT NULL CHECK (event_state IN ('scheduled','cancelled','completed')), member_only boolean NOT NULL, capacity int NOT NULL, starts_at date NOT NULL);
+CREATE TABLE event_rsvps(rsvp_id int PRIMARY KEY, event_id int NOT NULL REFERENCES community_events(event_id), user_id int NOT NULL REFERENCES users(user_id), rsvp_state text NOT NULL CHECK (rsvp_state IN ('going','maybe','declined','waitlisted')), state_changed_at date NOT NULL);
+CREATE TABLE event_waitlist(waitlist_id int PRIMARY KEY, event_id int NOT NULL REFERENCES community_events(event_id), user_id int NOT NULL REFERENCES users(user_id), waitlist_rank int NOT NULL, waitlist_state text NOT NULL CHECK (waitlist_state IN ('waiting','promoted','cancelled')));
+CREATE TABLE event_attendance(attendance_id int PRIMARY KEY, event_id int NOT NULL REFERENCES community_events(event_id), user_id int NOT NULL REFERENCES users(user_id), rsvp_id int NOT NULL REFERENCES event_rsvps(rsvp_id), checked_in_at date NOT NULL);
+CREATE TABLE event_audit_log(audit_id int PRIMARY KEY, event_id int NOT NULL REFERENCES community_events(event_id), actor_user_id int NOT NULL REFERENCES users(user_id), action_type text NOT NULL CHECK (action_type IN ('create','cancel','promote_waitlist','check_in')), subject_user_id int REFERENCES users(user_id), created_at date NOT NULL);
+

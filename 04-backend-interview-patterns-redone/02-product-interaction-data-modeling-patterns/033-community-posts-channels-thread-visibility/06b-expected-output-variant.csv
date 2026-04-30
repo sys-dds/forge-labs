@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+channel_visibility_trace,community:101,1:1001|1:1003|2:1001|2:1002|2:1003|3:1001|3:1002|3:1003,"Trace combines member state, channel visibility, deletion, and moderation state"
+deleted_post_hidden,post:1004,true,Deleted post 1004 is suppressed
+pinned_post_contract,community:101,1001,Pinned visible posts derive from community_posts.is_pinned
+private_channel_member_visible,user:2/post:1002,true,Ben channel membership 5002 can see private channel post 1002
+private_channel_non_member_hidden,user:3/post:1002,false,Cy active community member lacks channel_memberships row for channel 202
+public_channel_post_visible,user:1/post:1001,true,Ada active membership 3001 can see public channel post 1001
+removed_member_hidden,user:4,true,Diya membership 3004 is removed and sees no community posts
+thread_reply_contract,thread:6001,1001->1003,Reply post 1003 stays attached to parent post 1001
