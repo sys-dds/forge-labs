@@ -1,0 +1,1 @@
+CREATE TRIGGER audit_trg AFTER UPDATE ON listings FOR EACH ROW EXECUTE FUNCTION audit_status(); UPDATE listings SET status=status WHERE id=1; UPDATE listings SET status='paused' WHERE id=2; CREATE VIEW gauntlet_result AS SELECT count(*) AS audit_count FROM listing_audit;

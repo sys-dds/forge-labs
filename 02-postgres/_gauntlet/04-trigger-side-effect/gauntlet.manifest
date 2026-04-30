@@ -1,0 +1,11 @@
+id=pg-gauntlet-04-trigger-side-effect
+title=Trigger Side Effect
+difficulty=intermediate
+concepts=PostgreSQL debugging, backend correctness
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=A status audit trigger logs no-op updates and makes bulk changes noisy.
+expected_fix=Add a WHEN guard so only status changes are audited.
+estimated_time=30 minutes
+what_to_break_next=Remove the corrected database-owned boundary and rerun the proof.

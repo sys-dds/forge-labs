@@ -1,0 +1,3 @@
+CREATE TABLE disputes(id int PRIMARY KEY, seller text, status text NOT NULL);
+CREATE TABLE dispute_audit(id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY, dispute_id int, note text, new_status text);
+CREATE FUNCTION resolve_dispute(p_dispute_id int, p_note text) RETURNS disputes LANGUAGE plpgsql AS $$ DECLARE row_out disputes; BEGIN UPDATE disputes SET status='resolved' WHERE id=p_dispute_id AND status='open' RETURNING * INTO row_out; IF NOT FOUND THEN RAISE EXCEPTION 'dispute % is not open', p_dispute_id; END IF; INSERT INTO dispute_audit(dispute_id,note,new_status) VALUES (p_dispute_id,p_note,'resolved'); RETURN row_out; END $$;

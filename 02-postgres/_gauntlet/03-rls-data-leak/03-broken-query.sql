@@ -1,0 +1,1 @@
+DROP POLICY tenant_rows_read ON tenant_rows; CREATE POLICY tenant_rows_read ON tenant_rows FOR SELECT TO forge_pg_practice_user USING (workspace IS NOT NULL); CREATE VIEW gauntlet_result AS SELECT count(*) AS owner_count FROM tenant_rows;

@@ -1,0 +1,1 @@
+SELECT seller, slug, status FROM seller_listings ORDER BY seller,id;

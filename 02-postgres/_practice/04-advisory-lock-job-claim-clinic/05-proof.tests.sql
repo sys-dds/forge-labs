@@ -1,0 +1,1 @@
+DO $$ BEGIN IF array(SELECT id FROM job_claim_result WHERE worker_id='worker-a' ORDER BY id) <> ARRAY[1,4] THEN RAISE EXCEPTION 'wrong jobs claimed'; END IF; END $$;

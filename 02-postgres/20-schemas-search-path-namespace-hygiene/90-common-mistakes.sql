@@ -1,0 +1,2 @@
+-- Break/fix: call users unqualified inside a helper and change search_path.
+-- Break/fix: move audit.events into app schema and discuss ownership confusion.

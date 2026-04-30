@@ -1,0 +1,1 @@
+INSERT INTO audit_events VALUES (1,'listing_created','ben','2026-01-01','{"listing_id":10,"source":"web"}'),(2,'review_flagged','maya','2026-01-02','{"review_id":50,"reason":"spam"}'),(3,'payment_boundary_event','ada','2026-01-03','{"provider":"stripe","amount":"19.99"}'),(4,'moderation_event','maya','2026-01-04','{"action":"hide"}'),(5,'listing_created','cy','2026-01-05','{}');

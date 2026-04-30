@@ -1,0 +1,11 @@
+id=pg-gauntlet-05-advisory-lock-misuse
+title=Advisory Lock Misuse
+difficulty=intermediate
+concepts=PostgreSQL debugging, backend correctness
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=A worker takes a lock but does not transition the job row, so another path can treat it as queued.
+expected_fix=Combine advisory lock with a row status update.
+estimated_time=30 minutes
+what_to_break_next=Remove the corrected database-owned boundary and rerun the proof.

@@ -1,0 +1,1 @@
+SELECT id, external_id, risk_score FROM provider_events ORDER BY id;

@@ -1,0 +1,1 @@
+DO $$ BEGIN IF (SELECT reservation_count FROM reservation_result WHERE provider='ben')<>2 THEN RAISE EXCEPTION 'adjacent reservations wrong'; END IF; BEGIN INSERT INTO reservations VALUES (4,'ben',tstzrange('2026-01-01 09:30+00','2026-01-01 10:30+00','[)')); RAISE EXCEPTION 'overlap accepted'; EXCEPTION WHEN exclusion_violation THEN NULL; END; END $$;

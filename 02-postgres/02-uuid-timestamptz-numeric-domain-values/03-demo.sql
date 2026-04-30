@@ -1,0 +1,1 @@
+SELECT actor, external_ref, happened_at AT TIME ZONE 'UTC' AS utc_time FROM inbound_requests ORDER BY actor;

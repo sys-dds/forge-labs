@@ -1,0 +1,2 @@
+CREATE TABLE jobs(id int PRIMARY KEY, kind text, status text, due_at timestamptz, worker_id text, claimed_at timestamptz);
+CREATE FUNCTION claim_due_jobs(worker text, at_time timestamptz) RETURNS TABLE(job_id int) LANGUAGE plpgsql AS $$ BEGIN RETURN QUERY UPDATE jobs SET status='running', worker_id=worker, claimed_at=at_time WHERE id IN (SELECT j.id FROM jobs j WHERE j.due_at<=at_time AND j.status IN ('queued','failed') AND pg_try_advisory_xact_lock(j.id) ORDER BY j.id LIMIT 10) RETURNING jobs.id; END $$;

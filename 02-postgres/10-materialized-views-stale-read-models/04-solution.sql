@@ -1,0 +1,1 @@
+REFRESH MATERIALIZED VIEW cached_trust; CREATE VIEW trust_after_refresh AS SELECT * FROM cached_trust;

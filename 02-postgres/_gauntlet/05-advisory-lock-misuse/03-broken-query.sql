@@ -1,0 +1,1 @@
+SELECT pg_try_advisory_xact_lock(id) FROM jobs WHERE id=1; CREATE VIEW gauntlet_result AS SELECT id,status,worker_id FROM jobs;

@@ -1,0 +1,8 @@
+id=pg-practice-03-rls-tenant-isolation-clinic
+title=RLS Tenant Isolation Clinic
+difficulty=foundation-plus
+concepts=PostgreSQL backend correctness, proof tests
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=25 minutes
+what_to_break=remove ENABLE ROW LEVEL SECURITY or broaden the policy predicate

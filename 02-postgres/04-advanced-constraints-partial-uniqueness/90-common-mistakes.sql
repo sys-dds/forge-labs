@@ -1,0 +1,2 @@
+-- Break/fix: replace partial unique index with a global unique slug and observe Cy blocked incorrectly.
+-- Break/fix: remove the WHERE status='active' predicate.

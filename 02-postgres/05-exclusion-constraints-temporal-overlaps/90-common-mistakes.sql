@@ -1,0 +1,2 @@
+-- Break/fix: drop provider from the exclusion constraint and watch Cy blocked incorrectly.
+-- Break/fix: change bounds and inspect the 10:00 adjacent booking.

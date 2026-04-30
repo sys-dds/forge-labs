@@ -1,0 +1,1 @@
+SELECT id,event_type,payload ? 'source' AS has_source FROM audit_events ORDER BY id;

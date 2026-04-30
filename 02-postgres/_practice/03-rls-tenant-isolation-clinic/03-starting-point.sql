@@ -1,0 +1,1 @@
+SET ROLE forge_pg_practice_user; SET app.workspace='alpha'; SELECT * FROM tenant_rows; RESET ROLE;

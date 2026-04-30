@@ -1,0 +1,2 @@
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+CREATE TABLE reservations(id int PRIMARY KEY, provider text NOT NULL, slot tstzrange NOT NULL CHECK(NOT isempty(slot)), EXCLUDE USING gist (provider WITH =, slot WITH &&));

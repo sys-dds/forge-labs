@@ -1,0 +1,1 @@
+CREATE VIEW eligible_sellers AS SELECT handle FROM seller_signals WHERE is_seller_eligible(verified_reviews,open_disputes,active_listings);

@@ -1,0 +1,2 @@
+CREATE TYPE listing_status AS ENUM ('draft','active','paused','removed');
+CREATE TABLE service_listings(id int PRIMARY KEY, seller text NOT NULL, title text NOT NULL, status listing_status NOT NULL, tags text[] NOT NULL, availability tstzrange NOT NULL, search_label text GENERATED ALWAYS AS (lower(seller || '-' || replace(title,' ','-'))) STORED);

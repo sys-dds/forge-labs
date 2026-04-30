@@ -1,0 +1,1 @@
+SELECT handle,email FROM sellers ORDER BY handle;

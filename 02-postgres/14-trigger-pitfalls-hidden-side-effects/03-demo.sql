@@ -1,0 +1,1 @@
+UPDATE listings SET status='paused' WHERE status='active'; UPDATE listings SET seller=seller WHERE id=1;

@@ -1,0 +1,2 @@
+-- Break/fix: use SELECT * in the view.
+-- Break/fix: join listings and reviews directly and inspect inflated counts.

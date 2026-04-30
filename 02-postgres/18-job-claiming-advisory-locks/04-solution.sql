@@ -1,0 +1,1 @@
+CREATE VIEW job_claim_result AS SELECT id,status,worker_id FROM jobs ORDER BY id;

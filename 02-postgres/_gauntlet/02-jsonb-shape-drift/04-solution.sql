@@ -1,0 +1,1 @@
+CREATE VIEW gauntlet_result AS SELECT id FROM audit_events WHERE payload ? 'reason' OR (payload ? 'amount' AND (payload->>'amount')::numeric >= 19.99);

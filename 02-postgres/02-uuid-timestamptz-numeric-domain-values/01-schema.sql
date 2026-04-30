@@ -1,0 +1,1 @@
+CREATE TABLE inbound_requests(id uuid PRIMARY KEY DEFAULT gen_random_uuid(), actor text NOT NULL, external_ref text NOT NULL CHECK(length(trim(external_ref))>0), amount numeric(12,2) NOT NULL CHECK(amount>=0), happened_at timestamptz NOT NULL, UNIQUE(actor, external_ref));

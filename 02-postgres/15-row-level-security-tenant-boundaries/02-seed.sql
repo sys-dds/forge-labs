@@ -1,0 +1,1 @@
+INSERT INTO tenant_listings VALUES (1,'alpha','Ada alpha listing'),(2,'beta','Ben beta listing');

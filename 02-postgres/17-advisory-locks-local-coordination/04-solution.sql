@@ -1,0 +1,1 @@
+SELECT claim_coordination_job('payout-sweep','worker-b'); CREATE VIEW advisory_lock_claims AS SELECT job_name, claimed_by FROM coordination_jobs ORDER BY id;

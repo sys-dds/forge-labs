@@ -1,0 +1,1 @@
+CREATE VIEW reservation_result AS SELECT provider,count(*) AS reservation_count FROM reservations GROUP BY provider;

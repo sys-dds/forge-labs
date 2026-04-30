@@ -1,0 +1,1 @@
+INSERT INTO service_listings(id,seller,title,status,tags,availability) VALUES (1,'ben','Bicycle Repair','active',ARRAY['repair','bicycle'],tstzrange('2026-01-01 09:00+00','2026-01-01 12:00+00','[)')),(2,'cy','Window Cleaning','paused',ARRAY['cleaning','home'],tstzrange('2026-01-01 13:00+00','2026-01-01 15:00+00','[)'));

@@ -1,0 +1,1 @@
+INSERT INTO provider_events VALUES (1,'risk','{"risk_score":"0.82","external_id":"risk-1"}'),(2,'moderation','{"reason":"abuse"}'),(3,'provider','{"external_id":"evt-77"}');

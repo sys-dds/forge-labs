@@ -76,3 +76,13 @@ Do not read all chapter names and move on. The path is vertical: relationships u
 ## What Comes Next
 
 Later paths can cover PostgreSQL-specific behavior, database optimisation, ranking/matching systems, and backend reliability patterns. They are intentionally not part of this first SQL foundation.
+
+## PostgreSQL Path
+
+The second path is **02-postgres**. It keeps the SQL workshop intact and adds PostgreSQL-specific backend features: types, constraints, upserts, JSONB, generated columns, views, functions, triggers, RLS, advisory locks, notifications, and schema hygiene.
+
+```bash
+./scripts/forge-list-postgres.sh
+./scripts/forge-test-all-postgres.sh
+./scripts/forge-verify-postgres.sh
+```

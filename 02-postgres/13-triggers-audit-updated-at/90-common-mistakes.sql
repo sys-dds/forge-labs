@@ -1,0 +1,2 @@
+-- Break/fix: remove the WHEN guard and update only title.
+-- Break/fix: omit OLD.status from audit and explain lost context.

@@ -1,0 +1,1 @@
+SELECT handle, is_seller_eligible(verified_reviews,open_disputes,active_listings) FROM seller_signals;

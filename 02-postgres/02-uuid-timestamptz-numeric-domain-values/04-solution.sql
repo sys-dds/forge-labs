@@ -1,0 +1,1 @@
+CREATE VIEW request_amount_summary AS SELECT actor, sum(amount) AS exact_total, count(*) AS request_count FROM inbound_requests GROUP BY actor;

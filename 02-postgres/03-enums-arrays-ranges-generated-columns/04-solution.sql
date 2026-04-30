@@ -1,0 +1,1 @@
+CREATE VIEW matching_windows AS SELECT id,title FROM service_listings WHERE availability && tstzrange('2026-01-01 10:00+00','2026-01-01 11:00+00','[)');

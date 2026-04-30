@@ -1,0 +1,1 @@
+DO $$ BEGIN IF array(SELECT id FROM gauntlet_result ORDER BY id) <> ARRAY[2,3] THEN RAISE EXCEPTION 'JSONB shape/filter wrong'; END IF; END $$;

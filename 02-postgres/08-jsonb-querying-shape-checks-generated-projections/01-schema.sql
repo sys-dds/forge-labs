@@ -1,0 +1,1 @@
+CREATE TABLE provider_events(id int PRIMARY KEY, kind text NOT NULL, payload jsonb NOT NULL CHECK (kind <> 'provider' OR payload ? 'external_id'), external_id text GENERATED ALWAYS AS (payload->>'external_id') STORED, risk_score numeric GENERATED ALWAYS AS (NULLIF(payload->>'risk_score','')::numeric) STORED);

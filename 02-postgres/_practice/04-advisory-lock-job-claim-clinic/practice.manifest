@@ -1,0 +1,8 @@
+id=pg-practice-04-advisory-lock-job-claim-clinic
+title=Advisory Lock Job Claim Clinic
+difficulty=foundation-plus
+concepts=PostgreSQL backend correctness, proof tests
+proof_file=05-proof.tests.sql
+solution_file=04-solution.sql
+estimated_time=25 minutes
+what_to_break=remove due_at filter or forget the status update after locking

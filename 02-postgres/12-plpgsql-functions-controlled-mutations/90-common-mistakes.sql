@@ -1,0 +1,2 @@
+-- Break/fix: remove the exception and return NULL on invalid transition.
+-- Break/fix: update status without writing dispute_audit.

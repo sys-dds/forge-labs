@@ -1,0 +1,11 @@
+id=pg-gauntlet-03-rls-data-leak
+title=RLS Data Leak
+difficulty=intermediate
+concepts=PostgreSQL debugging, backend correctness
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=The tenant policy checks only that a workspace exists, so alpha can see beta.
+expected_fix=Bind the policy to current_setting(app.workspace).
+estimated_time=30 minutes
+what_to_break_next=Remove the corrected database-owned boundary and rerun the proof.

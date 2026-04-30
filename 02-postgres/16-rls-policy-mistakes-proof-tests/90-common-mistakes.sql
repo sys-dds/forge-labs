@@ -1,0 +1,2 @@
+-- Break/fix: remove WITH CHECK and attempt beta insert from alpha context.
+-- Break/fix: prove only reading the happy path misses write leaks.

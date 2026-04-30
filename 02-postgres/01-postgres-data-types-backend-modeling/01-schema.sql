@@ -1,0 +1,3 @@
+CREATE TABLE backend_users(id uuid PRIMARY KEY, handle text NOT NULL CHECK (handle<>''), role text NOT NULL CHECK (role IN ('buyer','seller','operator')), active boolean NOT NULL);
+CREATE TABLE listings(id int PRIMARY KEY, seller_id uuid REFERENCES backend_users(id), title text NOT NULL, price numeric(10,2) NOT NULL CHECK (price>=0), created_at timestamptz NOT NULL, metadata jsonb NOT NULL DEFAULT '{}');
+CREATE TABLE service_requests(id int PRIMARY KEY, buyer_id uuid REFERENCES backend_users(id), listing_id int REFERENCES listings(id), requested_at timestamptz NOT NULL, payment_boundary_amount numeric(10,2) NOT NULL CHECK(payment_boundary_amount>=0));

@@ -1,0 +1,1 @@
+INSERT INTO tenant_rows VALUES (1,'alpha','Ada alpha row'),(2,'beta','Ben beta row');

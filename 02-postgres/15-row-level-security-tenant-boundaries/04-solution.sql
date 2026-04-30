@@ -1,0 +1,1 @@
+CREATE VIEW rls_owner_reference AS SELECT count(*) AS owner_visible_count FROM tenant_listings;

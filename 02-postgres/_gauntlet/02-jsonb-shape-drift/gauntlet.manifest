@@ -1,0 +1,11 @@
+id=pg-gauntlet-02-jsonb-shape-drift
+title=JSONB Shape Drift
+difficulty=intermediate
+concepts=PostgreSQL debugging, backend correctness
+broken_query_file=03-broken-query.sql
+solution_file=04-solution.sql
+proof_file=05-proof.tests.sql
+expected_failure=Provider events silently accept missing external ids and text risk scores are compared incorrectly.
+expected_fix=Add JSONB shape checks and project typed values before filtering.
+estimated_time=30 minutes
+what_to_break_next=Remove the corrected database-owned boundary and rerun the proof.

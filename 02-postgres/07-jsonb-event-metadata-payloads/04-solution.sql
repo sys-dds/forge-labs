@@ -1,0 +1,1 @@
+CREATE VIEW payment_payload_events AS SELECT id, actor FROM audit_events WHERE payload @> '{"provider":"stripe"}';
