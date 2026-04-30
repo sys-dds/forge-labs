@@ -55,4 +55,14 @@ cat <<'CLINICS'
 03-feeds-ranking-redone/48-edge-freshness-decay-interaction-strength
 03-feeds-ranking-redone/49-graph-candidate-debugging-why-missing
 03-feeds-ranking-redone/50-senior-social-graph-recommendation-system-design-capstone
+03-feeds-ranking-redone/51-safety-policy-decision-taxonomy
+03-feeds-ranking-redone/52-hard-filters-downranking-labels
+03-feeds-ranking-redone/53-spam-clickbait-engagement-farming-suppression
+03-feeds-ranking-redone/54-fake-engagement-bot-rings-coordinated-abuse
+03-feeds-ranking-redone/55-trust-score-account-reputation-source-quality
+03-feeds-ranking-redone/56-reporter-reliability-review-queues
+03-feeds-ranking-redone/57-sensitive-borderline-content-context-treatment
+03-feeds-ranking-redone/58-appeals-reversals-audit-lineage
+03-feeds-ranking-redone/59-safety-incident-debugging-regression-checks
+03-feeds-ranking-redone/60-senior-safety-aware-feed-ranking-system-design-capstone
 CLINICS

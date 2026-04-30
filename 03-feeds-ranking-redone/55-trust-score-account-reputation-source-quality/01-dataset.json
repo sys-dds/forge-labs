@@ -1,0 +1,67 @@
+{
+  "authors": [
+    {
+      "name": "Ben",
+      "post": "post_101",
+      "age": 1000,
+      "reports": 0,
+      "source": 95,
+      "editorial_quality": 120,
+      "followers": 100
+    },
+    {
+      "name": "Cy",
+      "post": "post_201",
+      "age": 10,
+      "reports": 3,
+      "source": 60,
+      "editorial_quality": 55,
+      "followers": 50
+    },
+    {
+      "name": "Noor",
+      "post": "post_301",
+      "age": 500,
+      "reports": 20,
+      "source": 40,
+      "editorial_quality": 20,
+      "followers": 1000
+    },
+    {
+      "name": "Diya",
+      "post": "post_401",
+      "age": 400,
+      "reports": 1,
+      "source": 98,
+      "editorial_quality": 110,
+      "followers": 80
+    },
+    {
+      "name": "Omar",
+      "post": "post_501",
+      "age": 300,
+      "reports": 8,
+      "source": 20,
+      "editorial_quality": 15,
+      "followers": 5000
+    },
+    {
+      "name": "Maya",
+      "post": "post_601",
+      "age": 15,
+      "reports": 0,
+      "source": 75,
+      "editorial_quality": 70,
+      "followers": 5
+    },
+    {
+      "name": "Lina",
+      "post": "post_701",
+      "age": 700,
+      "reports": 0,
+      "source": 99,
+      "editorial_quality": 82,
+      "followers": 20
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": "post_101",
+      "likes": [
+        "ben",
+        "diya"
+      ],
+      "reposts": [],
+      "spam": false
+    },
+    {
+      "id": "post_201",
+      "likes": [
+        "bot_a",
+        "bot_b",
+        "bot_c",
+        "bot_d"
+      ],
+      "minutes": 2,
+      "reposts": [],
+      "spam": false
+    },
+    {
+      "id": "post_301",
+      "likes": [
+        "noor"
+      ],
+      "reposts": [
+        "noor",
+        "bot_a",
+        "bot_b",
+        "bot_c"
+      ],
+      "spam": false
+    },
+    {
+      "id": "post_401",
+      "likes": [
+        "ben"
+      ],
+      "reposts": [],
+      "spam": false
+    },
+    {
+      "id": "post_501",
+      "likes": [
+        "bot_a",
+        "bot_b"
+      ],
+      "reposts": [],
+      "spam": true
+    }
+  ],
+  "new_accounts": [
+    "bot_a",
+    "bot_b",
+    "bot_c",
+    "bot_d"
+  ],
+  "coordinators": [
+    "noor"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "content": [
+    {
+      "id": "post_101",
+      "label": "safe",
+      "score": 90
+    },
+    {
+      "id": "post_201",
+      "label": "spam_scam",
+      "score": 95
+    },
+    {
+      "id": "post_301",
+      "label": "harassment_violation",
+      "score": 92
+    },
+    {
+      "id": "post_401",
+      "label": "borderline_clickbait",
+      "score": 80
+    },
+    {
+      "id": "post_501",
+      "label": "medical_context_needed",
+      "score": 75
+    },
+    {
+      "id": "post_601",
+      "label": "uncertain_report",
+      "score": 72
+    },
+    {
+      "id": "post_701",
+      "label": "safe_low_quality",
+      "score": 55
+    },
+    {
+      "id": "post_801",
+      "label": "election_review",
+      "score": 70
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "viewers": {
+    "Ada": {
+      "adult": true,
+      "medical_interest": true
+    },
+    "Ben": {
+      "adult": false,
+      "medical_interest": false
+    }
+  },
+  "content": [
+    {
+      "id": "post_101",
+      "label": "safe",
+      "score": 90
+    },
+    {
+      "id": "post_201",
+      "label": "borderline_medical",
+      "score": 80
+    },
+    {
+      "id": "post_301",
+      "label": "sensitive_political",
+      "score": 70
+    },
+    {
+      "id": "post_401",
+      "label": "age_sensitive_graphic",
+      "score": 85
+    },
+    {
+      "id": "post_501",
+      "label": "educational_safety",
+      "score": 88
+    },
+    {
+      "id": "post_601",
+      "label": "unsafe_misinformation",
+      "score": 95
+    },
+    {
+      "id": "post_701",
+      "label": "safe",
+      "score": 60
+    }
+  ]
+}

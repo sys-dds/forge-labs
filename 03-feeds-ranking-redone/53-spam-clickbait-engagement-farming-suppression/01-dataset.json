@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": "post_101",
+      "likes": 30,
+      "comments": 8,
+      "clicks": 50,
+      "fastbacks": 2,
+      "dwell": 45,
+      "source_quality": 90,
+      "text": "backend post"
+    },
+    {
+      "id": "post_201",
+      "likes": 20,
+      "comments": 5,
+      "clicks": 200,
+      "fastbacks": 80,
+      "dwell": 8,
+      "source_quality": 60,
+      "text": "shocking headline"
+    },
+    {
+      "id": "post_301",
+      "likes": 10,
+      "comments": 300,
+      "clicks": 40,
+      "fastbacks": 10,
+      "dwell": 5,
+      "source_quality": 70,
+      "text": "comment YES now"
+    },
+    {
+      "id": "post_401",
+      "likes": 15,
+      "comments": 2,
+      "clicks": 100,
+      "fastbacks": 50,
+      "dwell": 6,
+      "source_quality": 20,
+      "text": "link farm"
+    },
+    {
+      "id": "post_501",
+      "likes": 40,
+      "comments": 10,
+      "clicks": 70,
+      "fastbacks": 3,
+      "dwell": 90,
+      "source_quality": 95,
+      "text": "long read"
+    },
+    {
+      "id": "post_601",
+      "likes": 12,
+      "comments": 3,
+      "clicks": 20,
+      "fastbacks": 1,
+      "dwell": 40,
+      "source_quality": 80,
+      "text": "exploration"
+    },
+    {
+      "id": "post_701",
+      "likes": 1,
+      "comments": 1,
+      "clicks": 300,
+      "fastbacks": 250,
+      "dwell": 1,
+      "source_quality": 0,
+      "text": "spam scam"
+    }
+  ]
+}
