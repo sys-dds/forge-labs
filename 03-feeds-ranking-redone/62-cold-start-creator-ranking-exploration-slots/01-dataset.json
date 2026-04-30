@@ -1,0 +1,91 @@
+{
+  "viewer": {
+    "id": "viewer_ada",
+    "interests": [
+      "backend",
+      "distributed systems"
+    ]
+  },
+  "creators": [
+    {
+      "id": "creator_ben",
+      "topic": "backend",
+      "historical_engagement": 700,
+      "profile_complete": true,
+      "sample_quality": 88,
+      "blocked": false
+    },
+    {
+      "id": "creator_maya",
+      "topic": "backend",
+      "historical_engagement": 0,
+      "profile_complete": true,
+      "sample_quality": 91,
+      "blocked": false
+    },
+    {
+      "id": "creator_lina",
+      "topic": "cooking",
+      "historical_engagement": 0,
+      "profile_complete": true,
+      "sample_quality": 84,
+      "blocked": false
+    },
+    {
+      "id": "creator_theo",
+      "topic": "backend",
+      "historical_engagement": 0,
+      "profile_complete": false,
+      "sample_quality": 86,
+      "blocked": false
+    },
+    {
+      "id": "creator_omar",
+      "topic": "backend clickbait",
+      "historical_engagement": 500,
+      "profile_complete": true,
+      "sample_quality": 35,
+      "blocked": false
+    },
+    {
+      "id": "creator_noor",
+      "topic": "backend",
+      "historical_engagement": 0,
+      "profile_complete": true,
+      "sample_quality": 95,
+      "blocked": true
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_101",
+      "creator_id": "creator_ben",
+      "base_score": 86
+    },
+    {
+      "id": "post_201",
+      "creator_id": "creator_maya",
+      "base_score": 70
+    },
+    {
+      "id": "post_301",
+      "creator_id": "creator_lina",
+      "base_score": 60
+    },
+    {
+      "id": "post_401",
+      "creator_id": "creator_theo",
+      "base_score": 65
+    },
+    {
+      "id": "post_501",
+      "creator_id": "creator_omar",
+      "base_score": 89
+    },
+    {
+      "id": "post_601",
+      "creator_id": "creator_noor",
+      "base_score": 92
+    }
+  ]
+}

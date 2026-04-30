@@ -65,4 +65,14 @@ cat <<'CLINICS'
 03-feeds-ranking-redone/58-appeals-reversals-audit-lineage
 03-feeds-ranking-redone/59-safety-incident-debugging-regression-checks
 03-feeds-ranking-redone/60-senior-safety-aware-feed-ranking-system-design-capstone
+03-feeds-ranking-redone/61-creator-exposure-budgets-popularity-bias-control
+03-feeds-ranking-redone/62-cold-start-creator-ranking-exploration-slots
+03-feeds-ranking-redone/63-long-tail-content-quality-audience-fit
+03-feeds-ranking-redone/64-creator-fatigue-diversity-repeated-author-caps
+03-feeds-ranking-redone/65-marketplace-buyer-intent-listing-relevance
+03-feeds-ranking-redone/66-seller-quality-trust-fulfilment-response-ranking
+03-feeds-ranking-redone/67-marketplace-supply-demand-local-availability
+03-feeds-ranking-redone/68-marketplace-risk-disputes-refunds-fraud-suppression
+03-feeds-ranking-redone/69-ecosystem-debugging-why-not-shown
+03-feeds-ranking-redone/70-senior-creator-marketplace-ranking-system-design-capstone
 CLINICS

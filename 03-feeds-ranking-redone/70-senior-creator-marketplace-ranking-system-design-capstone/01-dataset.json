@@ -1,0 +1,98 @@
+{
+  "viewer_buyer": {
+    "id": "Ada",
+    "content_intent": [
+      "backend"
+    ],
+    "marketplace_intent": {
+      "query": "sink repair",
+      "location": "Glasgow"
+    }
+  },
+  "candidates": [
+    {
+      "id": "post_101",
+      "type": "post",
+      "score": 95,
+      "treatment": "keep",
+      "reason": "popular_quality_creator"
+    },
+    {
+      "id": "post_201",
+      "type": "post",
+      "score": 86,
+      "treatment": "keep",
+      "reason": "cold_start_quality_creator"
+    },
+    {
+      "id": "post_301",
+      "type": "post",
+      "score": 80,
+      "treatment": "keep",
+      "reason": "long_tail_niche_creator"
+    },
+    {
+      "id": "post_401",
+      "type": "post",
+      "score": 97,
+      "treatment": "risk",
+      "reason": "low_quality_viral_creator"
+    },
+    {
+      "id": "listing_501",
+      "type": "listing",
+      "score": 94,
+      "treatment": "keep",
+      "reason": "trusted_sink_repair_today"
+    },
+    {
+      "id": "listing_601",
+      "type": "listing",
+      "score": 84,
+      "treatment": "keep",
+      "reason": "good_seller_tomorrow"
+    },
+    {
+      "id": "listing_701",
+      "type": "listing",
+      "score": 99,
+      "treatment": "risk",
+      "reason": "high_marketplace_risk"
+    },
+    {
+      "id": "listing_801",
+      "type": "listing",
+      "score": 90,
+      "treatment": "reject",
+      "reason": "blocked_seller"
+    },
+    {
+      "id": "listing_901",
+      "type": "listing",
+      "score": 76,
+      "treatment": "keep",
+      "reason": "clean_cold_start_seller"
+    },
+    {
+      "id": "creator_1001",
+      "type": "creator",
+      "score": 75,
+      "treatment": "missing",
+      "reason": "exposure_budget_exhausted"
+    },
+    {
+      "id": "listing_1101",
+      "type": "listing",
+      "score": 78,
+      "treatment": "missing",
+      "reason": "seller_fully_loaded"
+    },
+    {
+      "id": "post_1201",
+      "type": "post",
+      "score": 88,
+      "treatment": "reject",
+      "reason": "blocked_creator"
+    }
+  ]
+}

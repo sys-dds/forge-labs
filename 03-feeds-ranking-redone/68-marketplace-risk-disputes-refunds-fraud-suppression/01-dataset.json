@@ -1,0 +1,58 @@
+{
+  "listings": [
+    {
+      "id": "listing_101",
+      "seller": "Ben",
+      "price": 7500,
+      "dispute_rate": 0.01,
+      "refund_rate": 0.02,
+      "fraud_flags": 0,
+      "blocked": false
+    },
+    {
+      "id": "listing_201",
+      "seller": "Omar",
+      "price": 3500,
+      "dispute_rate": 0.25,
+      "refund_rate": 0.3,
+      "fraud_flags": 3,
+      "blocked": false
+    },
+    {
+      "id": "listing_301",
+      "seller": "Diya",
+      "price": 8000,
+      "dispute_rate": 0.03,
+      "refund_rate": 0.04,
+      "fraud_flags": 0,
+      "blocked": false
+    },
+    {
+      "id": "listing_401",
+      "seller": "Maya",
+      "price": 7800,
+      "dispute_rate": 0.0,
+      "refund_rate": 0.0,
+      "fraud_flags": 0,
+      "blocked": false
+    },
+    {
+      "id": "listing_501",
+      "seller": "Cy",
+      "price": 2500,
+      "dispute_rate": 0.1,
+      "refund_rate": 0.2,
+      "fraud_flags": 2,
+      "blocked": false
+    },
+    {
+      "id": "listing_601",
+      "seller": "Noor",
+      "price": 7000,
+      "dispute_rate": 0,
+      "refund_rate": 0,
+      "fraud_flags": 0,
+      "blocked": true
+    }
+  ]
+}

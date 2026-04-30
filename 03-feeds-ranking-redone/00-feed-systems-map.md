@@ -24,3 +24,6 @@ Clinics 41-50 place social graph retrieval before ranking: follow graph, mutuals
 ## Safety And Integrity Layer
 
 Clinics 51-60 place policy labels, evidence rows, hard filters, downranking, labels, review queues, appeals, incidents, and audit traces around retrieval and ranking.
+## Creator And Marketplace Ecosystem Clinics
+
+Clinics 01-10 cover feed pipeline foundations; 11-20 product surface ranking patterns; 21-30 evaluation, experiments, incidents, and senior design; 31-40 advanced retrieval, embeddings, ANN, and recall debugging; 41-50 social graph, communities, and graph algorithms; 51-60 safety, integrity, abuse, and trust ranking; 61-70 creator ecosystem and marketplace ranking depth. Stay on Feeds/Ranking Redone unless the user approves moving to another track. At clinic 70, Feeds/Ranking Redone is feature-complete unless review asks for another feed expansion.

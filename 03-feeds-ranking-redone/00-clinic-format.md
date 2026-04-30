@@ -25,3 +25,6 @@ Clinics 41-50 include graph candidates, missed graph candidates, rejected items,
 ## Safety Clinic Contract
 
 Clinics 51-60 include policy decisions, evidence rows, rejected/downranked/informed/review rows, safety_debug_trace, audit logs where relevant, shortcut audit, mutation checks, and senior review notes.
+## Creator And Marketplace Ecosystem Clinics
+
+Clinics 01-10 cover feed pipeline foundations; 11-20 product surface ranking patterns; 21-30 evaluation, experiments, incidents, and senior design; 31-40 advanced retrieval, embeddings, ANN, and recall debugging; 41-50 social graph, communities, and graph algorithms; 51-60 safety, integrity, abuse, and trust ranking; 61-70 creator ecosystem and marketplace ranking depth. Stay on Feeds/Ranking Redone unless the user approves moving to another track. At clinic 70, Feeds/Ranking Redone is feature-complete unless review asks for another feed expansion.

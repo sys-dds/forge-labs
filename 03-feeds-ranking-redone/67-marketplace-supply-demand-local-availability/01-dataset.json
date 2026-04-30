@@ -1,0 +1,78 @@
+{
+  "demand": [
+    {
+      "market": "Glasgow",
+      "service": "sink_repair_today",
+      "requests": 10,
+      "trusted_sellers": 2
+    },
+    {
+      "market": "Edinburgh",
+      "service": "sink_repair_today",
+      "requests": 3,
+      "trusted_sellers": 5
+    }
+  ],
+  "listings": [
+    {
+      "id": "listing_101",
+      "seller": "Ben",
+      "city": "Glasgow",
+      "availability": "today",
+      "load": 2,
+      "capacity": 5,
+      "risk": "clean",
+      "blocked": false
+    },
+    {
+      "id": "listing_201",
+      "seller": "Diya",
+      "city": "Glasgow",
+      "availability": "today",
+      "load": 5,
+      "capacity": 5,
+      "risk": "clean",
+      "blocked": false
+    },
+    {
+      "id": "listing_301",
+      "seller": "Maya",
+      "city": "Edinburgh",
+      "availability": "today",
+      "load": 1,
+      "capacity": 5,
+      "risk": "clean",
+      "blocked": false
+    },
+    {
+      "id": "listing_401",
+      "seller": "Lina",
+      "city": "Glasgow",
+      "availability": "tomorrow",
+      "load": 1,
+      "capacity": 5,
+      "risk": "clean",
+      "blocked": false
+    },
+    {
+      "id": "listing_501",
+      "seller": "Omar",
+      "city": "Glasgow",
+      "availability": "today",
+      "load": 4,
+      "capacity": 4,
+      "risk": "high",
+      "blocked": false
+    },
+    {
+      "id": "listing_601",
+      "seller": "Noor",
+      "city": "Glasgow",
+      "availability": "today",
+      "load": 0,
+      "capacity": 5,
+      "risk": "clean",
+      "blocked": true
+    }
+  ]
+}

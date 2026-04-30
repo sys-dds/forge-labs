@@ -1,0 +1,61 @@
+{
+  "viewer": {
+    "id": "viewer_ada",
+    "interests": [
+      "backend",
+      "distributed systems",
+      "movie visuals"
+    ]
+  },
+  "content": [
+    {
+      "id": "post_101",
+      "topic": "backend",
+      "engagement": 900,
+      "quality": 85,
+      "blocked": false
+    },
+    {
+      "id": "post_201",
+      "topic": "backend distributed systems",
+      "engagement": 40,
+      "quality": 92,
+      "blocked": false
+    },
+    {
+      "id": "post_301",
+      "topic": "gardening",
+      "engagement": 20,
+      "quality": 88,
+      "blocked": false
+    },
+    {
+      "id": "post_401",
+      "topic": "generic meme",
+      "engagement": 1200,
+      "quality": 35,
+      "blocked": false
+    },
+    {
+      "id": "post_501",
+      "topic": "movie visuals backend",
+      "engagement": 60,
+      "quality": 80,
+      "blocked": false
+    },
+    {
+      "id": "post_601",
+      "topic": "spam",
+      "engagement": 5,
+      "quality": 10,
+      "blocked": false
+    },
+    {
+      "id": "post_701",
+      "topic": "backend",
+      "engagement": 15,
+      "quality": 90,
+      "blocked": true
+    }
+  ]
+}

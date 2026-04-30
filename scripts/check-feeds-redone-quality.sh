@@ -28,6 +28,7 @@ root_files=(
   03-feeds-ranking-redone/00-policy-treatment-map.md
   03-feeds-ranking-redone/00-abuse-and-trust-debugging-playbook.md
   03-feeds-ranking-redone/00-safety-aware-ranking-map.md
+  03-feeds-ranking-redone/00-creator-ecosystem-for-beginners.md
 )
 
 shared_files=(
@@ -39,6 +40,7 @@ shared_files=(
   03-feeds-ranking-redone/_shared/retrieval_math.py
   03-feeds-ranking-redone/_shared/graph_helpers.py
   03-feeds-ranking-redone/_shared/safety_helpers.py
+  03-feeds-ranking-redone/_shared/ecosystem_helpers.py
 )
 
 clinics=(
@@ -102,6 +104,16 @@ clinics=(
   03-feeds-ranking-redone/58-appeals-reversals-audit-lineage
   03-feeds-ranking-redone/59-safety-incident-debugging-regression-checks
   03-feeds-ranking-redone/60-senior-safety-aware-feed-ranking-system-design-capstone
+  03-feeds-ranking-redone/61-creator-exposure-budgets-popularity-bias-control
+  03-feeds-ranking-redone/62-cold-start-creator-ranking-exploration-slots
+  03-feeds-ranking-redone/63-long-tail-content-quality-audience-fit
+  03-feeds-ranking-redone/64-creator-fatigue-diversity-repeated-author-caps
+  03-feeds-ranking-redone/65-marketplace-buyer-intent-listing-relevance
+  03-feeds-ranking-redone/66-seller-quality-trust-fulfilment-response-ranking
+  03-feeds-ranking-redone/67-marketplace-supply-demand-local-availability
+  03-feeds-ranking-redone/68-marketplace-risk-disputes-refunds-fraud-suppression
+  03-feeds-ranking-redone/69-ecosystem-debugging-why-not-shown
+  03-feeds-ranking-redone/70-senior-creator-marketplace-ranking-system-design-capstone
 )
 
 for file in "${root_files[@]}" "${shared_files[@]}"; do
@@ -113,7 +125,34 @@ for clinic in "${clinics[@]}"; do
   common=(README.md 00-design.md 00-scenario.md 01-dataset.json 02-broken_simulation.py 03-solution.py 04-proof.tests.py 05-debugging-notes.md 06-break-fix-drills.md 07-interview-explanation.md 08-what-to-notice.md 09-evidence-map.md)
   for file in "${common[@]}"; do [[ -s "$clinic/$file" ]] || fail "missing $clinic/$file"; done
   clinic_name="$(basename "$clinic")"
-  if [[ "$clinic_name" =~ ^(51|52|53|54|55|56|57|58|59|60)- ]]; then
+
+  if [[ "$clinic_name" =~ ^(61|62|63|64|65|66|67|68|69|70)- ]]; then
+    for heading in "What this clinic teaches" "Creator/marketplace problem and user impact" "Named viewers/buyers/creators/sellers/listings and why each exists" "Broken ecosystem/ranking behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+      if grep -Eq 'import +(numpy|pandas|sklearn)|from +(numpy|pandas|sklearn)' "$file"; then fail "$file imports non-scope marketplace dependency"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +expected\["marketplace_rankings"\]|return +expected\["creator_rankings"\]|return +expected\["seller_rankings"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'ecosystem_debug_trace|debug_trace' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks ecosystem_debug_trace or debug_trace assertion"
+    grep -Eq 'assert_rejected|risk_suppressed_items|downranked_items|exposure_rows|fairness_rows' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks rejected/risk/downranked/exposure/fairness assertion"
+    if [[ "$clinic_name" =~ ^61- ]]; then grep -q 'exposure_rows' "$clinic/04-proof.tests.py" || fail "$clinic exposure proof lacks exposure_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^62- ]]; then grep -q 'cold_start_rows' "$clinic/04-proof.tests.py" || fail "$clinic cold-start proof lacks cold_start_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^63- ]]; then grep -Eq 'long_tail_rows|popularity_bias_rows' "$clinic/04-proof.tests.py" || fail "$clinic long-tail proof lacks long_tail/popularity assertion"; fi
+    if [[ "$clinic_name" =~ ^65- ]]; then grep -q 'buyer_intent_rows' "$clinic/04-proof.tests.py" || fail "$clinic buyer intent proof lacks buyer_intent_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^66- ]]; then grep -q 'seller_quality_rows' "$clinic/04-proof.tests.py" || fail "$clinic seller quality proof lacks seller_quality_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^67- ]]; then grep -q 'supply_rows' "$clinic/04-proof.tests.py" && grep -q 'demand_rows' "$clinic/04-proof.tests.py" || fail "$clinic supply demand proof lacks rows assertion"; fi
+    if [[ "$clinic_name" =~ ^68- ]]; then grep -q 'trust_score_rows\|risk_score_rows' "$clinic/04-proof.tests.py" || fail "$clinic risk proof lacks trust/risk rows assertion"; fi
+    if [[ "$clinic_name" =~ ^69- ]]; then grep -q 'missing_ecosystem_explanations' "$clinic/04-proof.tests.py" || fail "$clinic debugging proof lacks missing ecosystem explanation assertion"; fi
+    if [[ "$clinic_name" =~ ^70- ]]; then grep -q 'ecosystem_system_design' "$clinic/04-proof.tests.py" || fail "$clinic capstone proof lacks rich ecosystem design assertion"; fi
+    grep -q '| Mutation | Expected failing proof |' "$clinic/13-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/13-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
+    grep -q 'Review questions' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Review questions"
+    grep -q 'Telemetry' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Telemetry"
+    grep -q 'Do not over-engineer yet' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing restraint note"
+  elif [[ "$clinic_name" =~ ^(51|52|53|54|55|56|57|58|59|60)- ]]; then
     extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
   elif [[ "$clinic_name" =~ ^(41|42|43|44|45|46|47|48|49|50)- ]]; then
     extra=(10-beginner-walkthrough.md 11-senior-review-notes.md 12-shortcut-audit.md 13-mutation-checks.md)
@@ -138,7 +177,34 @@ for clinic in "${clinics[@]}"; do
     fail "$clinic evidence map has vague cells"
   fi
 
-  if [[ "$clinic_name" =~ ^(51|52|53|54|55|56|57|58|59|60)- ]]; then
+
+  if [[ "$clinic_name" =~ ^(61|62|63|64|65|66|67|68|69|70)- ]]; then
+    for heading in "What this clinic teaches" "Creator/marketplace problem and user impact" "Named viewers/buyers/creators/sellers/listings and why each exists" "Broken ecosystem/ranking behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
+      grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
+    done
+    for file in "$clinic/02-broken_simulation.py" "$clinic/03-solution.py" "$clinic/04-proof.tests.py"; do
+      if grep -Eq 'clinic\.startswith\(|data\["clinic"\]\.startswith\(|if clinic in|if clinic ==' "$file"; then fail "$file contains dispatcher shortcut"; fi
+      if grep -Eq 'import +(numpy|pandas|sklearn)|from +(numpy|pandas|sklearn)' "$file"; then fail "$file imports non-scope marketplace dependency"; fi
+    done
+    if grep -Eq 'return +expected\["final_feed"\]|return +expected\["marketplace_rankings"\]|return +expected\["creator_rankings"\]|return +expected\["seller_rankings"\]|return +data\["expected"\]|return +expected($|[^A-Za-z0-9_])' "$clinic/03-solution.py"; then fail "$clinic solution returns expected directly"; fi
+    grep -Eq 'ecosystem_debug_trace|debug_trace' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks ecosystem_debug_trace or debug_trace assertion"
+    grep -Eq 'assert_rejected|risk_suppressed_items|downranked_items|exposure_rows|fairness_rows' "$clinic/04-proof.tests.py" || fail "$clinic proof lacks rejected/risk/downranked/exposure/fairness assertion"
+    if [[ "$clinic_name" =~ ^61- ]]; then grep -q 'exposure_rows' "$clinic/04-proof.tests.py" || fail "$clinic exposure proof lacks exposure_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^62- ]]; then grep -q 'cold_start_rows' "$clinic/04-proof.tests.py" || fail "$clinic cold-start proof lacks cold_start_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^63- ]]; then grep -Eq 'long_tail_rows|popularity_bias_rows' "$clinic/04-proof.tests.py" || fail "$clinic long-tail proof lacks long_tail/popularity assertion"; fi
+    if [[ "$clinic_name" =~ ^65- ]]; then grep -q 'buyer_intent_rows' "$clinic/04-proof.tests.py" || fail "$clinic buyer intent proof lacks buyer_intent_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^66- ]]; then grep -q 'seller_quality_rows' "$clinic/04-proof.tests.py" || fail "$clinic seller quality proof lacks seller_quality_rows assertion"; fi
+    if [[ "$clinic_name" =~ ^67- ]]; then grep -q 'supply_rows' "$clinic/04-proof.tests.py" && grep -q 'demand_rows' "$clinic/04-proof.tests.py" || fail "$clinic supply demand proof lacks rows assertion"; fi
+    if [[ "$clinic_name" =~ ^68- ]]; then grep -q 'trust_score_rows\|risk_score_rows' "$clinic/04-proof.tests.py" || fail "$clinic risk proof lacks trust/risk rows assertion"; fi
+    if [[ "$clinic_name" =~ ^69- ]]; then grep -q 'missing_ecosystem_explanations' "$clinic/04-proof.tests.py" || fail "$clinic debugging proof lacks missing ecosystem explanation assertion"; fi
+    if [[ "$clinic_name" =~ ^70- ]]; then grep -q 'ecosystem_system_design' "$clinic/04-proof.tests.py" || fail "$clinic capstone proof lacks rich ecosystem design assertion"; fi
+    grep -q '| Mutation | Expected failing proof |' "$clinic/13-mutation-checks.md" || fail "$clinic mutation file missing table"
+    mutation_rows="$(grep -Ec '^\| [^|-]' "$clinic/13-mutation-checks.md")"
+    [[ "$mutation_rows" -ge 6 ]] || fail "$clinic mutation file needs at least 5 rows"
+    grep -q 'Review questions' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Review questions"
+    grep -q 'Telemetry' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing Telemetry"
+    grep -q 'Do not over-engineer yet' "$clinic/11-senior-review-notes.md" || fail "$clinic senior review missing restraint note"
+  elif [[ "$clinic_name" =~ ^(51|52|53|54|55|56|57|58|59|60)- ]]; then
     for heading in "What this clinic teaches" "Safety/integrity problem and user impact" "Named users/content/reports/policies and why each exists" "Broken safety/ranking behavior" "Exact wrong result from the broken version" "Correct result from the solution" "Proof assertions" "Beginner mental model" "Senior engineering review angle" "What the learner should notice" "Interview explanation target"; do
       grep -q "$heading" "$clinic/00-design.md" || fail "$clinic design missing $heading"
     done
@@ -266,6 +332,10 @@ grep -q "0.5 \* 0.7 = 0.35" 03-feeds-ranking-redone/00-graph-algorithms-for-begi
 grep -q "Ada -> backend_club -> javaconf" 03-feeds-ranking-redone/00-graph-debugging-playbook.md || fail "root docs define graph tracing without path example"
 grep -q "post_201 has spam_scam" 03-feeds-ranking-redone/00-safety-integrity-for-beginners.md || fail "root docs define safety without row-level example"
 grep -q "Ada 0.9 and Ben 0.8" 03-feeds-ranking-redone/00-abuse-and-trust-debugging-playbook.md || fail "root docs define trust without score/evidence example"
+
+grep -q "creator_maya has 0 historical exposure" 03-feeds-ranking-redone/00-exposure-fairness-and-popularity-bias.md || fail "root docs define fairness without exposure example"
+grep -q "response time, cancellation rate, dispute rate, completed jobs, and fulfilment quality" 03-feeds-ranking-redone/00-marketplace-ranking-for-beginners.md || fail "root docs define marketplace trust without score components"
+if find 03-feeds-ranking-redone -maxdepth 1 -type d -name '7[1-9]-*' | grep -q .; then fail "clinics 71-80 must not be added"; fi
 if grep -RIEq "import +(numpy|pandas|sklearn|faiss|annoy|hnswlib|networkx|igraph|graphframes)|from +(numpy|pandas|sklearn|faiss|annoy|hnswlib|networkx|igraph|graphframes)" 03-feeds-ranking-redone scripts; then fail "non-scope ML/vector/graph dependency imported"; fi
 
 echo "PASS feeds redone quality gate"
