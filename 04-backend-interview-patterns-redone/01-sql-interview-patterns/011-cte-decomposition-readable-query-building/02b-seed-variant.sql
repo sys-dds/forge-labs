@@ -1,0 +1,5 @@
+SET search_path TO bip_sql_011;
+INSERT INTO sellers VALUES (201,'Iris',true,35),(202,'Jon',true,50),(203,'Kara',true,25),(204,'Mina',false,20);
+INSERT INTO listings VALUES (7001,201,'active'),(7002,201,'active'),(7003,201,'active'),(8001,202,'active'),(8002,202,'active'),(8003,202,'active'),(9001,203,'active'),(9002,203,'active'),(9003,203,'active'),(9101,204,'active'),(9102,204,'active'),(9103,204,'active');
+INSERT INTO orders VALUES (101,201,'completed',false),(102,201,'completed',false),(103,201,'completed',false),(104,201,'completed',false),(105,201,'completed',false),(106,202,'completed',false),(107,202,'completed',false),(108,202,'completed',false),(109,202,'completed',false),(110,202,'completed',false),(111,202,'cancelled',false),(112,203,'completed',false),(113,203,'completed',false),(114,203,'completed',false),(115,203,'completed',false),(116,204,'completed',false),(117,204,'completed',false),(118,204,'completed',false),(119,204,'completed',false),(120,204,'completed',false);
+INSERT INTO listing_impressions VALUES (101,7001,'2026-01-30'),(102,8001,'2026-01-29'),(103,9001,'2026-01-30'),(104,9101,'2026-01-30');

@@ -1,0 +1,4 @@
+listing_id,previous_price_pence,current_price_pence,drop_percent,changed_at
+201,12000,9000,25.00,2026-02-02 09:00:00
+203,5000,4000,20.00,2026-02-03 11:00:00
+203,4000,3000,25.00,2026-02-04 11:00:00
