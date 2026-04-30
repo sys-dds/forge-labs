@@ -13,7 +13,7 @@ SELECT CASE WHEN (
   JOIN post_likes pl ON pl.post_id = p.id
   JOIN comments c ON c.post_id = p.id
   WHERE p.id = 'A1'
-) = 6 THEN 1 ELSE fail_test('assertion failed') END AS a1_raw_join_has_six_rows;
+) = 6 THEN 1 ELSE fail_test('expected Ada post A1 raw like/comment join to create 6 rows from 2 likes times 3 comments; seed no longer proves row multiplication') END AS a1_raw_join_has_six_rows;
 
 CREATE TEMP TABLE expected_post_metrics (
   post_id text,
@@ -31,7 +31,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_post_metrics EXCEPT SELECT post_id, author_handle, like_count, comment_count FROM post_metrics)
   UNION ALL
   (SELECT post_id, author_handle, like_count, comment_count FROM post_metrics EXCEPT SELECT * FROM expected_post_metrics)
-) THEN 1 ELSE fail_test('assertion failed') END AS exact_post_metrics;
+) THEN 1 ELSE fail_test('expected post metrics {A1 2 likes 3 comments, A2 1 like 0 comments, B1 3 likes 1 comment}; broken query multiplied child rows, dropped A2, or counted hidden A3') END AS exact_post_metrics;
 
 CREATE TEMP TABLE expected_author_metrics (
   author_handle text,
@@ -49,7 +49,7 @@ SELECT CASE WHEN NOT EXISTS (
   (SELECT * FROM expected_author_metrics EXCEPT SELECT author_handle, visible_post_count, total_likes, total_comments FROM author_metrics)
   UNION ALL
   (SELECT author_handle, visible_post_count, total_likes, total_comments FROM author_metrics EXCEPT SELECT * FROM expected_author_metrics)
-) THEN 1 ELSE fail_test('assertion failed') END AS exact_author_metrics;
+) THEN 1 ELSE fail_test('expected author metrics Ada={2 posts,3 likes,3 comments}, Ben={1,3,1}, Cy={0,0,0}; broken query used joined child grain or dropped Cy') END AS exact_author_metrics;
 
-SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM post_metrics WHERE post_id = 'A3') THEN 1 ELSE fail_test('assertion failed') END AS hidden_a3_excluded;
-SELECT CASE WHEN EXISTS (SELECT 1 FROM post_metrics WHERE post_id = 'A2' AND comment_count = 0) THEN 1 ELSE fail_test('assertion failed') END AS a2_survives_zero_comments;
+SELECT CASE WHEN NOT EXISTS (SELECT 1 FROM post_metrics WHERE post_id = 'A3') THEN 1 ELSE fail_test('expected hidden Ada post A3 excluded from post metrics despite its 5 likes and 5 comments') END AS hidden_a3_excluded;
+SELECT CASE WHEN EXISTS (SELECT 1 FROM post_metrics WHERE post_id = 'A2' AND comment_count = 0) THEN 1 ELSE fail_test('expected Ada post A2 to survive with comment_count=0; broken inner comment join removed it') END AS a2_survives_zero_comments;

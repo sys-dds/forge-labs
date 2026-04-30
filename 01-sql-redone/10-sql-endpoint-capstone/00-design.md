@@ -40,3 +40,10 @@ The endpoint is not a table dump: candidates, exclusions, counts, and cursor fie
 
 Explain endpoint projection, graph candidates, exclusion-before-ranking, aggregation grain, stable cursor fields, and how to evolve performance without removing safety predicates.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ben, already-followed exclusion is not tested.
+- Wrong behavior if removed: without Cy, blocked creator exclusion is not tested.
+- Wrong behavior if removed: without Diya, the top valid creator and count grain are not tested.
+- Wrong behavior if removed: without Omar, no-visible-signal exclusion is not tested.
+- Wrong behavior if removed: without Lina, stable tie-break ordering with Maya is not tested.

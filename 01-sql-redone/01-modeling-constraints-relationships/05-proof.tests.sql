@@ -41,6 +41,6 @@ WHERE EXISTS (SELECT 1 FROM follows WHERE follower_id = 1 AND followed_id = 2)
   AND NOT EXISTS (SELECT 1 FROM follows WHERE follower_id = 5 OR followed_id = 5)
   AND NOT EXISTS (SELECT 1 FROM blocks WHERE blocker_id = 5 OR blocked_id = 5);
 
-SELECT CASE WHEN COUNT(*) = 2 THEN 1 ELSE fail_test('assertion failed') END AS ben_101_saved_by_ada_and_diya
+SELECT CASE WHEN COUNT(*) = 2 THEN 1 ELSE fail_test('expected Ben listing 101 saved exactly once by Ada and exactly once by Diya; broken relationship model lost one save or allowed a duplicate user/listing fact') END AS ben_101_saved_by_ada_and_diya
 FROM saved_listings
 WHERE listing_id = 101 AND user_id IN (1, 4);

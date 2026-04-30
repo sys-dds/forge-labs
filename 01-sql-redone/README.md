@@ -31,7 +31,14 @@ Recommended order:
 8. `08-recursive-comment-threads` returns a scoped comment subtree with depth and stable order.
 9. `09-analytics-funnel-and-daily-metrics` counts signup-user funnel metrics instead of raw event rows.
 10. `10-sql-endpoint-capstone` combines projection, graph exclusions, aggregation, visible signals, and stable cursors.
+11. `11-common-relationship-modeling-patterns` models students, teachers, classes, subjects, assignments, submissions, lessons, and attendance.
+12. `12-social-feed-data-model` models posts, comments, reactions, reposts, follows, blocks, mutes, groups, and visibility.
+13. `13-feed-candidate-generation` collects followed-author, shared-group, liked, and reposted candidate posts before ranking.
+14. `14-feed-ranking-inputs-and-simple-scoring` prepares inspectable ranking feature rows and a simple score.
+15. `15-timeline-fanout-inbox-and-notifications` models timeline read tables, notification inboxes, dedupe, and unread counts.
 
 Clinics 01-05 teach core mechanics: constraints, joins, aggregation grain, pagination, and matching exclusions. Clinics 06-10 turn those mechanics into endpoint-shaped backend scenarios: public projections, graph suggestions, recursive threads, analytics dashboards, and a creator discovery capstone.
+
+Clinics 11-15 teach product data patterns: learning-platform relationships, social feed tables, feed candidate recall, ranking input rows, and timeline/notification read models.
 
 To break/fix intentionally, change `04-solution.sql`, rerun `05-proof.tests.sql`, and force yourself to explain the exact row that proves the bug. If the explanation does not name Ada, Ben post 102, Maya, or another concrete row from the clinic, it is probably too vague.

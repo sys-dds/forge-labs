@@ -37,3 +37,10 @@ Counts must be isolated from each other, privacy fields must be left out of the 
 
 Explain table shape versus API shape, private field exclusion, count isolation, viewer-specific search filters, and why Diya's zero posts still produce a valid profile result.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ben email, public projection leakage is not tested.
+- Wrong behavior if removed: without Ben visible posts, count isolation is not tested.
+- Wrong behavior if removed: without Cy private profile, searchable filtering is not tested.
+- Wrong behavior if removed: without Diya, zero-post searchable profiles are not proven.
+- Wrong behavior if removed: without Noor, Ada-specific block search is not tested.

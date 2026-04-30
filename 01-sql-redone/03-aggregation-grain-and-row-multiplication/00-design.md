@@ -36,3 +36,10 @@ Likes and comments are independent child tables; counting after joining them mea
 
 Explain choosing output grain first, aggregating child tables separately, and joining summaries back to parent rows.
 
+## Row removal checks
+
+- Wrong behavior if removed: without A1, row multiplication from 2 likes and 3 comments is not visible.
+- Wrong behavior if removed: without A2, zero-comment survival is not tested.
+- Wrong behavior if removed: without A3, hidden-post exclusion is not tested.
+- Wrong behavior if removed: without B1, non-Ada post metrics have no comparison row.
+- Wrong behavior if removed: without Cy, zero-post author summaries are not proven.

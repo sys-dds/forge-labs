@@ -36,3 +36,10 @@ Composite keys describe relationship facts directly, and Noor's absence of relat
 
 Explain one-to-one profile, one-to-many listings, many-to-many saved listings, self-referencing follows/blocks, and database-owned invariants under concurrent requests.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ada profile 1001, duplicate-profile rejection is not tied to a real user.
+- Wrong behavior if removed: without Ben listing 101, Ada and Diya cannot prove per-user saved listing uniqueness.
+- Wrong behavior if removed: without Cy, Ada's block relationship has no target.
+- Wrong behavior if removed: without Noor, no-relationship users are not proven valid.
+- Wrong behavior if removed: without Ada follows Ben, self-referencing relationship tables lose their valid follow comparison.

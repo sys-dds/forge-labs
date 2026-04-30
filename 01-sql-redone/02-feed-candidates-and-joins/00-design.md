@@ -37,3 +37,10 @@ Mutes and blocks are eligibility filters, and zero-comment posts need left joins
 
 Explain viewer to follows to authors to posts, anti-join exclusions, separate aggregation, and candidate set before ranking.
 
+## Row removal checks
+
+- Wrong behavior if removed: without Ben post 102, zero-comment posts are not protected.
+- Wrong behavior if removed: without Ben post 101, exact like/comment aggregation is not proven.
+- Wrong behavior if removed: without Cy post 201, mute exclusion is untested.
+- Wrong behavior if removed: without Noor post 301, block exclusion is untested.
+- Wrong behavior if removed: without Ben post 103, hidden-post filtering is untested.

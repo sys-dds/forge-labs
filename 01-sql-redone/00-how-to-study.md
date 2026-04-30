@@ -17,3 +17,7 @@ The point is not to memorize SQL syntax. The point is to learn how backend bugs 
 Clinics 01-05 teach the core mechanics: constraints, joins, aggregation grain, pagination, and matching exclusions. Clinics 06-10 use those mechanics in endpoint/query scenarios: public profile projection, social suggestions, recursive comments, analytics funnels, and a creator discovery capstone.
 
 Attempt clinic 10 after clinics 01-09. It expects you to recognize projection boundaries from clinic 06, graph exclusions from clinic 07, aggregation grain from clinic 03, visibility rules from clinic 02, and stable ordering from clinic 04.
+
+Clinics 11-15 teach common product data patterns. Study them after the endpoint clinics: they move from school relationships to social feed tables, candidate generation, ranking inputs, and timeline/notification read models.
+
+After clinic 15, move to PostgreSQL Redone for database-specific correctness. A future feed/ranking path can later handle ranking algorithms, personalization, diversity, experiments, and evaluation.
