@@ -1,0 +1,11 @@
+SET search_path TO bank_r2_005;
+WITH balances AS (SELECT account_id, SUM(CASE side WHEN 'credit' THEN amount_cents ELSE -amount_cents END) AS posted_cents FROM ledger_entries GROUP BY account_id), tx_totals AS (SELECT ledger_transaction_id, SUM(amount_cents) AS debit_total, SUM(amount_cents) AS credit_total FROM ledger_entries GROUP BY ledger_transaction_id), attempts AS (SELECT idempotency_key, COUNT(*) AS attempt_count, COUNT(*) AS transfer_count, 0 AS conflict_count FROM transfer_attempts GROUP BY idempotency_key), latest_state AS (SELECT transfer_id, MAX(event_state) AS event_state FROM transaction_events GROUP BY transfer_id)
+SELECT 'available_balance_contract' AS contract_name, b.account_id::text AS subject_id, b.posted_cents::text AS observed_value, 'available balance subtracts pending holds from posted ledger balance' AS expected_reason FROM balances b WHERE b.account_id=101
+UNION ALL SELECT 'balanced_ledger_contract', ledger_transaction_id::text, (debit_total=credit_total)::text, 'successful transfer posts balanced debit and credit entries' FROM tx_totals WHERE ledger_transaction_id=9001
+UNION ALL SELECT 'idempotency_contract', idempotency_key, transfer_count::text, 'same idempotency key returns one transfer result' FROM attempts WHERE idempotency_key='idem-cap-001'
+UNION ALL SELECT 'duplicate_suppression_contract', idempotency_key, attempt_count::text||' attempts/'||transfer_count::text||' transfer', 'duplicate retry does not double-post' FROM attempts WHERE idempotency_key='idem-cap-001'
+UNION ALL SELECT 'conflict_detection_contract', idempotency_key, conflict_count::text, 'conflicting idempotency fingerprint is visible' FROM attempts WHERE idempotency_key='idem-cap-002'
+UNION ALL SELECT 'lifecycle_contract', transfer_id::text, event_state, 'pending and failed transfers are not posted balance' FROM latest_state WHERE transfer_id=3002
+UNION ALL SELECT 'reversal_contract', reversal_id::text, original_ledger_transaction_id::text||'->'||reversal_ledger_transaction_id::text, 'reversal links original and balancing reversal transaction' FROM reversals WHERE reversal_id=7001
+UNION ALL SELECT 'audit_debug_trace_contract', transfer_id::text, COUNT(*)::text, 'transaction_events explain transfer lifecycle' FROM transaction_events WHERE transfer_id=3001 GROUP BY transfer_id
+ORDER BY contract_name;

@@ -86,3 +86,7 @@ The second path is **02-postgres**. It keeps the SQL workshop intact and adds Po
 ./scripts/forge-test-all-postgres.sh
 ./scripts/forge-verify-postgres.sh
 ```
+
+## Backend Interview Redone Paths
+
+The redone interview area now includes completed SQL Interview Patterns, completed Product Interaction Data Modeling Patterns, and the new **05-banking-systems-redone** track for banking correctness foundations.

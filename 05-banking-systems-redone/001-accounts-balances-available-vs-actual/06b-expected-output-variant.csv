@@ -1,0 +1,8 @@
+contract_name,subject_id,observed_value,expected_reason
+active_account_visible,101,active,active accounts appear in balance view
+actual_balance,101,100000,posted snapshot is actual balance before holds
+available_balance,101,75000,available equals actual minus pending holds
+available_vs_actual_difference,101,25000,difference equals active pending hold total
+closed_account_hidden,account:102,0,closed account 102 is not active-balance visible
+pending_hold_total,101,25000,only pending unexpired holds reduce available balance
+released_hold_excluded,101,2,released and expired holds are excluded from active hold total

@@ -1,0 +1,6 @@
+SET search_path TO bank_r2_002;
+CREATE TABLE currencies (currency text PRIMARY KEY CHECK (currency IN ('GBP','USD')));
+CREATE TABLE accounts (account_id integer PRIMARY KEY, account_name text NOT NULL, account_type text NOT NULL CHECK (account_type IN ('current','savings','clearing','fee')), currency text NOT NULL REFERENCES currencies(currency));
+CREATE TABLE ledger_transactions (ledger_transaction_id integer PRIMARY KEY, description text NOT NULL, currency text NOT NULL REFERENCES currencies(currency), transaction_state text NOT NULL CHECK (transaction_state IN ('pending','posted','reversed','failed')));
+CREATE TABLE ledger_entries (ledger_entry_id integer PRIMARY KEY, ledger_transaction_id integer NOT NULL REFERENCES ledger_transactions(ledger_transaction_id), account_id integer NOT NULL REFERENCES accounts(account_id), side text NOT NULL CHECK (side IN ('debit','credit')), amount_cents integer NOT NULL CHECK (amount_cents > 0), entry_seq integer NOT NULL, created_at timestamp NOT NULL, UNIQUE (ledger_transaction_id, entry_seq));
+CREATE TABLE ledger_entry_metadata (metadata_id integer PRIMARY KEY, ledger_entry_id integer NOT NULL REFERENCES ledger_entries(ledger_entry_id), metadata_key text NOT NULL, metadata_value text NOT NULL);

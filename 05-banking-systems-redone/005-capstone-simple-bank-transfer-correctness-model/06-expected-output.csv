@@ -1,0 +1,9 @@
+contract_name,subject_id,observed_value,expected_reason
+audit_debug_trace_contract,3001,2,transaction_events explain transfer lifecycle
+available_balance_contract,101,73000,available balance subtracts pending holds from posted ledger balance
+balanced_ledger_contract,9001,true,successful transfer posts balanced debit and credit entries
+conflict_detection_contract,idem-cap-002,1,conflicting idempotency fingerprint is visible
+duplicate_suppression_contract,idem-cap-001,2 attempts/1 transfer,duplicate retry does not double-post
+idempotency_contract,idem-cap-001,1,same idempotency key returns one transfer result
+lifecycle_contract,3002,pending,pending and failed transfers are not posted balance
+reversal_contract,7001,9002->9003,reversal links original and balancing reversal transaction

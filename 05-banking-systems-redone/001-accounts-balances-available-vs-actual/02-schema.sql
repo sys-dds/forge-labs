@@ -1,0 +1,6 @@
+SET search_path TO bank_r2_001;
+CREATE TABLE customers (customer_id integer PRIMARY KEY, customer_name text NOT NULL);
+CREATE TABLE accounts (account_id integer PRIMARY KEY, customer_id integer NOT NULL REFERENCES customers(customer_id), account_name text NOT NULL, account_type text NOT NULL CHECK (account_type IN ('current','savings','clearing','fee')), currency text NOT NULL CHECK (currency IN ('GBP','USD')), account_status text NOT NULL CHECK (account_status IN ('active','closed','frozen')));
+CREATE TABLE posted_balance_snapshots (snapshot_id integer PRIMARY KEY, account_id integer NOT NULL REFERENCES accounts(account_id), posted_balance_cents integer NOT NULL, snapshot_at timestamp NOT NULL);
+CREATE TABLE account_holds (hold_id integer PRIMARY KEY, account_id integer NOT NULL REFERENCES accounts(account_id), amount_cents integer NOT NULL CHECK (amount_cents > 0), hold_state text NOT NULL CHECK (hold_state IN ('pending','released','expired')), expires_at timestamp NOT NULL, released_at timestamp, reason text NOT NULL);
+CREATE TABLE account_status_events (event_id integer PRIMARY KEY, account_id integer NOT NULL REFERENCES accounts(account_id), status text NOT NULL CHECK (status IN ('active','closed','frozen')), event_at timestamp NOT NULL, reason text NOT NULL);
