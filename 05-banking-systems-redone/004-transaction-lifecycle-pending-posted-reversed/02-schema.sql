@@ -1,0 +1,6 @@
+SET search_path TO bank_r2_004;
+CREATE TABLE accounts (account_id integer PRIMARY KEY, account_name text NOT NULL, currency text NOT NULL CHECK (currency IN ('GBP','USD')));
+CREATE TABLE ledger_transactions (ledger_transaction_id integer PRIMARY KEY, external_transaction_id text NOT NULL UNIQUE, state text NOT NULL CHECK (state IN ('pending','posted','reversed','failed')), currency text NOT NULL CHECK (currency IN ('GBP','USD')));
+CREATE TABLE ledger_entries (ledger_entry_id integer PRIMARY KEY, ledger_transaction_id integer NOT NULL REFERENCES ledger_transactions(ledger_transaction_id), account_id integer NOT NULL REFERENCES accounts(account_id), side text NOT NULL CHECK (side IN ('debit','credit')), amount_cents integer NOT NULL CHECK (amount_cents > 0));
+CREATE TABLE transaction_events (event_id integer PRIMARY KEY, external_transaction_id text NOT NULL, account_id integer NOT NULL REFERENCES accounts(account_id), event_state text NOT NULL CHECK (event_state IN ('pending','posted','failed','reversed')), amount_cents integer NOT NULL, event_at timestamp NOT NULL, note text NOT NULL);
+CREATE TABLE reversals (reversal_id integer PRIMARY KEY, original_external_transaction_id text NOT NULL, reversal_external_transaction_id text NOT NULL, reason text NOT NULL);

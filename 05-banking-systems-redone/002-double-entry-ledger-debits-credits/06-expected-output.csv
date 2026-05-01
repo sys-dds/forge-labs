@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+account_balance_from_entries,101,47000,account 101 balance derives from signed ledger entries
+append_only_entry_trace,9001,2,ledger transaction keeps source entry rows
+balanced_transaction,9001,true,ledger transaction 9001 has equal debit and credit totals
+currency_consistency,9001,true,entries post to accounts in the transaction currency
+debit_credit_rows_exist,9001,1 debit/1 credit,both sides exist for the ledger transaction
+unbalanced_transaction_detected,9002,true,ledger transaction 9002 is detected as unbalanced

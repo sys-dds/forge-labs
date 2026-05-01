@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+current_state_from_events,tx-posted-2,reversed,current state is derived from latest lifecycle event
+failed_excluded_from_balance,tx-failed-1,failed,failed latest state does not create posted balance rows
+lifecycle_history_trace,tx-posted-1,2,history remains queryable after state changes
+pending_exposure,101,2500,latest pending transactions affect pending exposure
+posted_affects_balance,101,-4000,posted ledger entries affect posted balance
+reversal_links_original,7001,tx-posted-2->tx-reversal-1,reversal row links original and reversal transactions

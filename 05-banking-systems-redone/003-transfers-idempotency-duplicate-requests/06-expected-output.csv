@@ -1,0 +1,7 @@
+contract_name,subject_id,observed_value,expected_reason
+conflicting_key_detected,idem-rent-001,1,same key with different fingerprint becomes conflict
+duplicate_no_second_ledger_transaction,3001,1,duplicate retry does not create a second ledger transaction
+failed_attempt_retry_rule,idem-rent-002,failed_retryable,failed attempt is marked retryable and has no posted ledger rows
+first_request_created_transfer,3001,posted,first request creates posted transfer 3001
+idempotency_debug_trace,idem-rent-001,3,attempt rows explain first call retry conflict and failed retry rule
+retry_same_key_same_result,idem-rent-001,3001=3001,same key and fingerprint returns same transfer id

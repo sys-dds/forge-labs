@@ -1,0 +1,11 @@
+SET search_path TO bank_r2_005;
+INSERT INTO customers VALUES (1,'Ada'),(2,'Ben');
+INSERT INTO accounts VALUES (101,1,'Ada Current','GBP','active'),(202,2,'Ben Current','GBP','active'),(999,1,'Bank Clearing','GBP','active');
+INSERT INTO account_holds VALUES (201,101,22000,'pending'),(202,101,3000,'released');
+INSERT INTO ledger_transactions VALUES (8001,'opening-101','posted','GBP'),(8002,'opening-202','posted','GBP'),(9001,'transfer-3001','posted','GBP'),(9002,'transfer-3004','reversed','GBP'),(9003,'reversal-3004','posted','GBP');
+INSERT INTO ledger_entries VALUES (1,8001,999,'debit',100000),(2,8001,101,'credit',100000),(3,8002,999,'debit',25000),(4,8002,202,'credit',25000),(5,9001,101,'debit',12000),(6,9001,202,'credit',12000),(7,9002,101,'debit',6000),(8,9002,202,'credit',6000),(9,9003,101,'credit',6000),(10,9003,202,'debit',6000);
+INSERT INTO transfer_requests VALUES (3001,101,202,12000,'GBP','posted',9001),(3002,101,202,5000,'GBP','pending',NULL),(3003,101,202,4000,'GBP','failed',NULL),(3004,101,202,6000,'GBP','reversed',9002),(3005,101,202,13000,'GBP','conflict',NULL);
+INSERT INTO idempotency_keys VALUES (1,'idem-cap-001','from101-to202-12000',3001,'active'),(2,'idem-cap-002','from101-to202-12000',3001,'conflict');
+INSERT INTO transfer_attempts VALUES (1,'idem-cap-001','from101-to202-12000','created',3001),(2,'idem-cap-001','from101-to202-12000','duplicate_returned',3001),(3,'idem-cap-002','from101-to202-13000','conflict',3005);
+INSERT INTO transaction_events VALUES (1,'transfer-3001',3001,'pending',12000,'2026-05-01 09:00'),(2,'transfer-3001',3001,'posted',12000,'2026-05-01 09:01'),(3,'transfer-3002',3002,'pending',5000,'2026-05-01 09:02'),(4,'transfer-3003',3003,'failed',4000,'2026-05-01 09:03'),(5,'transfer-3004',3004,'posted',6000,'2026-05-01 09:04'),(6,'transfer-3004',3004,'reversed',6000,'2026-05-01 09:05'),(7,'transfer-3001',3001,'posted',12000,'2026-05-01 09:06');
+INSERT INTO reversals VALUES (7001,9002,9003,'customer dispute');

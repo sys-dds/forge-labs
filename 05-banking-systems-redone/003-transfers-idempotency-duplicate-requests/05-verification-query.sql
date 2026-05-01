@@ -1,0 +1,9 @@
+SET search_path TO bank_r2_003;
+WITH transfer_ledger_counts AS (SELECT tr.transfer_id, COUNT(DISTINCT le.ledger_transaction_id) AS ledger_count FROM transfer_requests tr LEFT JOIN ledger_entries le ON le.ledger_transaction_id=tr.ledger_transaction_id GROUP BY tr.transfer_id), key_attempts AS (SELECT idempotency_key, COUNT(*) FILTER (WHERE attempt_state='conflict') AS conflicts, COUNT(DISTINCT transfer_id) FILTER (WHERE transfer_id IS NOT NULL) AS transfer_count FROM transfer_attempts GROUP BY idempotency_key)
+SELECT 'first_request_created_transfer' AS contract_name, transfer_id::text AS subject_id, request_state AS observed_value, 'first request creates posted transfer 3001' AS expected_reason FROM transfer_requests WHERE transfer_id=3001
+UNION ALL SELECT 'retry_same_key_same_result', idempotency_key, MIN(transfer_id)::text || '=' || MAX(transfer_id)::text, 'same key and fingerprint returns same transfer id' FROM transfer_attempts WHERE idempotency_key='idem-rent-001' AND request_fingerprint='from101-to202-12000' GROUP BY idempotency_key
+UNION ALL SELECT 'duplicate_no_second_ledger_transaction', transfer_id::text, ledger_count::text, 'duplicate retry does not create a second ledger transaction' FROM transfer_ledger_counts WHERE transfer_id=3001
+UNION ALL SELECT 'conflicting_key_detected', idempotency_key, conflicts::text, 'same key with different fingerprint becomes conflict' FROM key_attempts WHERE idempotency_key='idem-rent-001'
+UNION ALL SELECT 'failed_attempt_retry_rule', idempotency_key, attempt_state, 'failed attempt is marked retryable and has no posted ledger rows' FROM transfer_attempts WHERE idempotency_key='idem-rent-002'
+UNION ALL SELECT 'idempotency_debug_trace', idempotency_key, COUNT(*)::text, 'attempt rows explain first call retry conflict and failed retry rule' FROM transfer_attempts GROUP BY idempotency_key HAVING idempotency_key='idem-rent-001'
+ORDER BY contract_name;

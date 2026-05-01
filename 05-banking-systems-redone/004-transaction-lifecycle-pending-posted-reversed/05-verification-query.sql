@@ -1,0 +1,9 @@
+SET search_path TO bank_r2_004;
+WITH latest_state AS (SELECT DISTINCT ON (external_transaction_id) external_transaction_id, account_id, event_state, amount_cents FROM transaction_events ORDER BY external_transaction_id, event_at DESC), posted_balance AS (SELECT le.account_id, SUM(CASE le.side WHEN 'credit' THEN le.amount_cents ELSE -le.amount_cents END) AS balance_cents FROM ledger_entries le JOIN ledger_transactions lt USING (ledger_transaction_id) WHERE lt.state IN ('posted','reversed') GROUP BY le.account_id), pending AS (SELECT account_id, SUM(amount_cents) AS pending_cents FROM latest_state WHERE event_state='pending' GROUP BY account_id)
+SELECT 'pending_exposure' AS contract_name, account_id::text AS subject_id, pending_cents::text AS observed_value, 'latest pending transactions affect pending exposure' AS expected_reason FROM pending WHERE account_id=101
+UNION ALL SELECT 'posted_affects_balance', account_id::text, balance_cents::text, 'posted ledger entries affect posted balance' FROM posted_balance WHERE account_id=101
+UNION ALL SELECT 'failed_excluded_from_balance', external_transaction_id, event_state, 'failed latest state does not create posted balance rows' FROM latest_state WHERE external_transaction_id='tx-failed-1'
+UNION ALL SELECT 'reversal_links_original', reversal_id::text, original_external_transaction_id||'->'||reversal_external_transaction_id, 'reversal row links original and reversal transactions' FROM reversals WHERE reversal_id=7001
+UNION ALL SELECT 'current_state_from_events', external_transaction_id, event_state, 'current state is derived from latest lifecycle event' FROM latest_state WHERE external_transaction_id='tx-posted-2'
+UNION ALL SELECT 'lifecycle_history_trace', external_transaction_id, COUNT(*)::text, 'history remains queryable after state changes' FROM transaction_events WHERE external_transaction_id='tx-posted-1' GROUP BY external_transaction_id
+ORDER BY contract_name;
