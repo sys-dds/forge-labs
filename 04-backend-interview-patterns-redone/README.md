@@ -1,6 +1,8 @@
 # Backend Interview Patterns Redone
 
 This track contains runnable backend interview clinics. It is a data-contract and modeling practice track, not an application framework track or database-internals track. The slices use Docker/Postgres plus shell scripts so a learner can reset data, run a solution, diff exact CSV output, and study the pattern.
+
+Status: SQL Interview Patterns are complete at 30 clinics. Product Interaction Data Modeling is complete at 40 clinics and now has a packaging/study layer. The next planned track after review is Banking Systems Redone, but it is not created here.
 ## Advanced SQL Interview Patterns 011-020
 
 Clinics 011-020 extend the lab with CTE decomposition, EXISTS and NOT EXISTS, self-comparison, running totals, rolling windows, ranking buckets, date spines, sessionization, effective-dated joins, and marketplace trust investigation queries. The same Docker/Postgres runner and base-plus-variant proof strategy from 001-010 still applies.

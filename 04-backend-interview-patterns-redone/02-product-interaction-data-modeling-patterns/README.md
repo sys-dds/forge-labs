@@ -1,15 +1,58 @@
 # Product Interaction Data Modeling Patterns
 
-This section teaches small backend interview models for product interactions: profile visibility, follows, friendships, reactions, comments, swipes, matches, home feeds, notifications, activity logs, simple recommendation candidates, counters, read models, sharing/saves, user controls, safety moderation, trust components, abuse evidence, audit lineage, marketplace/creator exposure, buyer intent, seller quality, offers/bookings, supply/demand, messaging/inbox communication, community memberships, roles, private access, posts, events, moderation traces, discovery/search topics, filters, facets, trends, collections, and read contracts.
+This section teaches backend interview data modeling for product interactions. It is data modeling and query-contract practice: schemas, seed rows, verification queries, expected CSV output, and broken queries that demonstrate common shortcuts. It is not app implementation.
 
-Run:
+The section is complete at 40 clinics and now includes a packaging layer for interview study.
+
+## Run
+
+List clinics:
 
 ```bash
 ./scripts/bip-pim-list.sh
+```
+
+Run all clinic proofs:
+
+```bash
 ./scripts/bip-pim-test-all.sh
 ```
 
-Clinics:
+Run one clinic:
+
+```bash
+./scripts/bip-pim-test-one.sh 04-backend-interview-patterns-redone/02-product-interaction-data-modeling-patterns/010-capstone-small-social-product-model
+```
+
+Run quality checks:
+
+```bash
+./scripts/check-bip-pim-quality.sh
+./scripts/check-bip-pim-packaging.sh
+```
+
+## Study Pack
+
+- [PRODUCT_INTERACTION_PATTERN_MAP.md](PRODUCT_INTERACTION_PATTERN_MAP.md) maps all 40 clinics by pattern family.
+- [PIM_STUDY_PLAN.md](PIM_STUDY_PLAN.md) gives 7-day, 14-day, and 30-day study plans.
+- [PIM_CHEATSHEET.md](PIM_CHEATSHEET.md) summarizes mental models, table shapes, traps, and clinic references.
+- [PIM_INTERVIEW_ANSWERS.md](PIM_INTERVIEW_ANSWERS.md) gives concise interview answer templates.
+- [PIM_COMMON_MODELING_MISTAKES.md](PIM_COMMON_MODELING_MISTAKES.md) catalogs common modeling bugs and the clinics that catch them.
+- [PIM_CAPSTONE_GUIDE.md](PIM_CAPSTONE_GUIDE.md) explains capstones `010`, `015`, `020`, `025`, `030`, `035`, and `040`.
+- [PIM_PRACTICE_ROUTES.md](PIM_PRACTICE_ROUTES.md) gives targeted practice routes for social, safety, marketplace, messaging, communities, discovery, and senior backend interviews.
+
+## Clinic Range Map
+
+- `001-005`: identity/profile, relationship graph, content interactions, and swipe/match basics.
+- `006-010`: feeds, notifications, activity, recommendation candidates, and small social capstone.
+- `011-015`: counters, read models, audience groups, saves/reposts, user controls, and read-model capstone.
+- `016-020`: reports, moderation, appeals, trust components, abuse signals, and safety capstone.
+- `021-025`: creator exposure, buyer intent, seller quality, offers/bookings, supply/demand, and marketplace capstone.
+- `026-030`: conversations, messages, delivery, read receipts, edits/deletes, inbox ordering, and communication capstone.
+- `031-035`: communities, memberships, roles, join requests, channels, events, RSVPs, moderation, and community capstone.
+- `036-040`: topics, search queries, filters, facets, trends, collections, and discovery capstone.
+
+## Clinics
 
 - `001-profile-visibility-and-profile-links`
 - `002-follows-unfollows-blocks`
@@ -52,4 +95,4 @@ Clinics:
 - `039-collections-playlists-bookmark-folders`
 - `040-capstone-discovery-search-collections-product-model`
 
-Each clinic has base and variant data so the model has to work from relationships and constraints, not from memorised rows.
+Each clinic has base and variant data so the model has to work from relationships and constraints, not from memorized rows.
